@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
@@ -11,10 +11,19 @@ public class PlayerController : MonoBehaviour
     public float basicMoveSpeed;
     public float JumpForce;
     [Range(0, 2)]
-    public int jumpCount;
+    public int jumpCount = 2;
     [Header("점프 판정 관련")]
     public float groundDistance;
     public LayerMask groundLayer;
+    [Header("대쉬 관련")]
+    public float dashForce;
+    [Range(0,2)]
+    public int dashCount = 2;
+    public int dir;
+    public bool isDashing;
+    [Space]
+    float defaultGravity;
+    Coroutine dashCool;
     [Header("private형식의 접근 변수")]
     Rigidbody2D rigid;
     Animator ani;
@@ -45,22 +54,29 @@ public class PlayerController : MonoBehaviour
     }
     void movePosition()
     {
-        float moveX = movement.x * basicMoveSpeed;
-        if (movement.x != 0)
+        if(!isDashing)
         {
-            transform.localScale = new Vector2(movement.x, 1);
+            float moveX = movement.x * basicMoveSpeed;
+            if (movement.x != 0)
+            {
+                transform.localScale = new Vector2(movement.x, 1);
+            }
+            rigid.linearVelocityX = moveX;
         }
-        rigid.linearVelocityX = moveX;
     }
 
     public void AniDashControll()
     {
         ani.SetBool("isDash", false);
+        isDashing  = false;
+        rigid.gravityScale = defaultGravity;
+        dashCool = StartCoroutine(DashCool());
     } //애니메이션 이벤트 전용 메서드
 
     public void OnMove(InputValue value)
     {
         movement = value.Get<Vector2>();
+        if (movement.x != 0) dir = (int)movement.x;
     }
     public void OnJump()
     {
@@ -73,9 +89,23 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash()
     {
-        ani.SetBool("isDash", true);
-        ani.Play("Dash", 0, 0);
-        rigid.AddForceX(transform.localScale.x * 3, ForceMode2D.Impulse);
+        if(!isDashing && dashCount > 0)
+        {
+            if(dashCool != null) StopCoroutine(dashCool);
+            dashCount--;
+            isDashing = true;
+            ani.SetBool("isDash", true);
+            ani.Play("Dash", 0, 0);
+            defaultGravity = rigid.gravityScale;
+            rigid.gravityScale = 0;
+            rigid.linearVelocity = new Vector2(transform.localScale.x * dashForce, 0f);
+        }
+    }
+
+    IEnumerator DashCool()
+    {
+        yield return new WaitForSeconds(1f);
+        dashCount = 2;
     }
 
     private void OnDrawGizmos()
