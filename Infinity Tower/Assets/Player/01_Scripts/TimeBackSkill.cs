@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeBackSkill : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    Animator ani;
+    InputSystem_Actions inputs;
+
+    private void Awake()
     {
-        
+        ani = GetComponent<Animator>();
+        inputs = new InputSystem_Actions();
+    }
+    private void OnEnable()
+    {
+        inputs.Player.Enable();
+
+        inputs.Player.Skill.started += OnSkillAnimation;
+        inputs.Player.Skill.canceled += EndSkillAnimation;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        inputs.Player.Skill.started -= OnSkillAnimation;
+        inputs.Player.Skill.canceled -= EndSkillAnimation;
+
+        inputs.Player.Disable();
     }
+
+    void OnSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", true);
+    void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
 }

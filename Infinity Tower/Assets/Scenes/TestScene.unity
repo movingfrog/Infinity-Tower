@@ -946,6 +946,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  dashForce: 6
+  dashCount: 2
+  dir: 0
+  isDashing: 0
 --- !u!114 &1525326395
 MonoBehaviour:
   m_ObjectHideFlags: 0
