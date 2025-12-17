@@ -27,6 +27,10 @@ public class TimeBackSkill : MonoBehaviour
         inputs.Player.Disable();
     }
 
-    void OnSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", true);
+    void OnSkillAnimation(InputAction.CallbackContext callback)
+    {
+        ani.SetBool("isUsingSkill", true);
+        ani.SetTrigger("useSkill");
+    }
     void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
 }
