@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
     void movePosition()
     {
-        if(!isDashing && ani.GetBool("isUsingSKill"))
+        if(!isDashing && !ani.GetBool("isUsingSkill"))
         {
             float moveX = movement.x * basicMoveSpeed;
             if (movement.x != 0)
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump()
     {
-        if(jumpCount != 0 && ani.GetBool("isUsingSKill"))
+        if(jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash()
     {
-        if(!isDashing && dashCount > 0 && ani.GetBool("isUsingSKill"))
+        if(!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
         {
             if(dashCool != null) StopCoroutine(dashCool);
             dashCount--;

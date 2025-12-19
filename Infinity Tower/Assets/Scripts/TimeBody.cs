@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using TMPro.EditorUtilities;
 using Unity.Collections;
 using UnityEngine;
 
@@ -27,13 +25,13 @@ public class TimeBody : MonoBehaviour
             SyncValue();
         }
     }
+    public static int MAX_recordTime {  get; private set; }
 
     static void SyncValue()
     {
         MAX_recordTime = Mathf.CeilToInt(recordTime / Time.fixedDeltaTime);
     }
 
-    private static float MAX_recordTime;
     private int MAX_CAPACITY;
     private int _writeIndex = 0;
     private int _currentCount = 0;
@@ -45,11 +43,13 @@ public class TimeBody : MonoBehaviour
         recordTime = recordTimeInternal;
         MAX_CAPACITY = Mathf.CeilToInt(10f / Time.fixedDeltaTime);
         SyncValue();
+        stateData = new NativeArray<TimeData>(MAX_CAPACITY, Allocator.Persistent);
     }
 
     private void Start()
     {
         if (TimeManager.Instance == null) UnityEditor.EditorApplication.isPlaying = false;
+        TimeManager.Instance.timeBodies.Add(this);
     } //TimeManager없을 때 예외처리 코드
 
     private void OnValidate()
@@ -77,7 +77,7 @@ public class TimeBody : MonoBehaviour
         int actualFrameAgo = Mathf.Min(frameAgo, MAX_recordTime);
         if (actualFrameAgo < 0) return;
 
-        int readIndex = (_writeIndex -= actualFrameAgo + MAX_recordTime) % MAX_recordTime; //순환 버퍼로 인해 현재의 값의 위치를 찾는 식
+        int readIndex = (_writeIndex - actualFrameAgo + MAX_recordTime) % MAX_recordTime; //순환 버퍼로 인해 현재의 값의 위치를 찾는 식
         TimeData data = stateData[readIndex];
 
         transform.position = data.position;

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,17 +51,17 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (_currentFrameAgo >= )
-        //{
-
-        //}
+        if (_currentFrameAgo >= TimeBody.MAX_recordTime)
+        {
+            StopRewind();
+        }
         if (isRewinding)
         {
             _currentFrameAgo++;
 
             foreach(var obj in timeBodies)
             {
-                //obj.
+                obj.Rewind(_currentFrameAgo);
             }
         }
     }
@@ -73,8 +71,14 @@ public class TimeManager : MonoBehaviour
         isRewinding = true;
         _currentFrameAgo = 0;
     }
+    
     public void StopRewind(InputAction.CallbackContext callback)
     {
+        StopRewind();
+    }
+    public void StopRewind()
+    {
         isRewinding = false;
+
     }
 }
