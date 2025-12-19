@@ -74,9 +74,9 @@ public class TimeBody : MonoBehaviour
 
     public void Rewind(int frameAgo)
     {
-        int actualFrameAgo = Mathf.Min(frameAgo, MAX_recordTime);
-        if (actualFrameAgo < 0) return;
+        if (_currentCount < 0) return;
 
+        int actualFrameAgo = Mathf.Min(frameAgo, MAX_recordTime);
         int readIndex = (_writeIndex - actualFrameAgo + MAX_recordTime) % MAX_recordTime; //순환 버퍼로 인해 현재의 값의 위치를 찾는 식
         TimeData data = stateData[readIndex];
 

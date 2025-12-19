@@ -51,7 +51,7 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_currentFrameAgo >= TimeBody.MAX_recordTime)
+        if (_currentFrameAgo >= TimeBody.MAX_recordTime /*플레이어 현재 기록의 수로 비교 필요*/)
         {
             StopRewind();
         }
@@ -80,5 +80,11 @@ public class TimeManager : MonoBehaviour
     {
         isRewinding = false;
 
+        foreach(var obj in timeBodies)
+        {
+            obj.ResetTimeDataAfterRewind(_currentFrameAgo);
+        }
+
+        _currentFrameAgo = 0;
     }
 }

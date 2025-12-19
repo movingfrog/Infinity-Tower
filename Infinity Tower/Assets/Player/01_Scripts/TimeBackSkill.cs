@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,12 +17,14 @@ public class TimeBackSkill : MonoBehaviour
         inputs.Player.Enable();
 
         inputs.Player.Skill.started += OnSkillAnimation;
+        inputs.Player.Skill.performed += CheckRecord;
         inputs.Player.Skill.canceled += EndSkillAnimation;
     }
 
     private void OnDisable()
     {
         inputs.Player.Skill.started -= OnSkillAnimation;
+        inputs.Player.Skill.performed -= CheckRecord;
         inputs.Player.Skill.canceled -= EndSkillAnimation;
 
         inputs.Player.Disable();
@@ -31,6 +34,10 @@ public class TimeBackSkill : MonoBehaviour
     {
         ani.SetBool("isUsingSkill", true);
         ani.SetTrigger("useSkill");
+    }
+    void CheckRecord(InputAction.CallbackContext callback)
+    {
+        if (TimeManager.Instance._currentFrameAgo >= TimeBody.MAX_recordTime) ani.SetBool("isUsingSkill", false);
     }
     void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
 }

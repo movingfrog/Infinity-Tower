@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded()
     {
+        if (ani.GetBool("isUsingSkill")) return false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
         ani.SetFloat("Velo", rigid.linearVelocityY);
         return hit.collider != null;
