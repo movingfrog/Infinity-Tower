@@ -776,6 +776,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1207202312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1207202314}
+  - component: {fileID: 1207202313}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1207202313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207202312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a6ef55a48153340a5ad3704d11d69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBodies: []
+  _currentFrameAgo: 0
+--- !u!4 &1207202314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207202312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525326389
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +838,7 @@ GameObject:
   - component: {fileID: 1525326395}
   - component: {fileID: 1525326394}
   - component: {fileID: 1525326397}
+  - component: {fileID: 1525326398}
   m_Layer: 0
   m_Name: SPRITE_SHEET_0
   m_TagString: Untagged
@@ -1020,6 +1067,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d03c218dd495a744b3a5558f43b2518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1525326398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525326389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e5de73a56e8064e91b8ec19d2aa576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordTimeInternal: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1028,3 +1088,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 794814287}
   - {fileID: 1525326393}
+  - {fileID: 1207202314}
