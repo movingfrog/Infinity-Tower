@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +18,7 @@ public class TimeManager : MonoBehaviour
         }
     }
     public List<TimeBody> timeBodies;
+    public TimeBody playerBody { get; private set; }
 
     public bool isRewinding { get; private set; }
     public int _currentFrameAgo = 0;
@@ -32,6 +34,17 @@ public class TimeManager : MonoBehaviour
         else Destroy(gameObject);
 
         inputs = new InputSystem_Actions();
+    }
+    private void Start()
+    {
+        StartCoroutine(setupPlayerBody());
+    }
+
+    IEnumerator setupPlayerBody()
+    {
+        yield return null;
+
+        playerBody = timeBodies.Find(t => t.CompareTag("Player"));
     }
 
     private void OnEnable()
@@ -51,8 +64,10 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_currentFrameAgo >= TimeBody.MAX_recordTime /*플레이어 현재 기록의 수로 비교 필요*/)
+        if (playerBody == null) return;
+        if (_currentFrameAgo >= playerBody.currentCount/*플레이어 현재 기록의 수로 비교 필요*/)
         {
+            Debug.Log("log");
             StopRewind();
         }
         if (isRewinding)

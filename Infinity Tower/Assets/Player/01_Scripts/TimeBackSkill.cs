@@ -37,7 +37,7 @@ public class TimeBackSkill : MonoBehaviour
     }
     void CheckRecord(InputAction.CallbackContext callback)
     {
-        if (TimeManager.Instance._currentFrameAgo >= TimeBody.MAX_recordTime) ani.SetBool("isUsingSkill", false);
+        if (TimeManager.Instance._currentFrameAgo >= TimeManager.Instance.playerBody.currentCount) ani.SetBool("isUsingSkill", false);
     }
     void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
 }

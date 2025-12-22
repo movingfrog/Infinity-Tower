@@ -32,17 +32,21 @@ public class TimeBody : MonoBehaviour
         MAX_recordTime = Mathf.CeilToInt(recordTime / Time.fixedDeltaTime);
     }
 
-    private int MAX_CAPACITY;
-    private int _writeIndex = 0;
-    private int _currentCount = 0;
+    private int MAX_CAPACITY; //아예 최대 값
+    private int _writeIndex = 0; //현재 기록 다음 순서
+    private int _currentCount = 0; //현재 기록된 수
+    public int currentCount { get { return _currentCount; } }
 
     NativeArray<TimeData> stateData;
 
     private void Awake()
     {
-        recordTime = recordTimeInternal;
+        if(recordTime == 0)
+        {
+            recordTime = recordTimeInternal;
+            SyncValue();
+        } // 맨 처음만 초기화하는 예외처리 코드
         MAX_CAPACITY = Mathf.CeilToInt(10f / Time.fixedDeltaTime);
-        SyncValue();
         stateData = new NativeArray<TimeData>(MAX_CAPACITY, Allocator.Persistent);
     }
 
