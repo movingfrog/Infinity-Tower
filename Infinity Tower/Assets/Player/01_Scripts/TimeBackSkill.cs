@@ -1,9 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class TimeBackSkill : MonoBehaviour
 {
+    bool checkRewind;
     Animator ani;
     InputSystem_Actions inputs;
 
@@ -17,27 +19,31 @@ public class TimeBackSkill : MonoBehaviour
         inputs.Player.Enable();
 
         inputs.Player.Skill.started += OnSkillAnimation;
-        inputs.Player.Skill.performed += CheckRecord;
         inputs.Player.Skill.canceled += EndSkillAnimation;
     }
 
     private void OnDisable()
     {
         inputs.Player.Skill.started -= OnSkillAnimation;
-        inputs.Player.Skill.performed -= CheckRecord;
         inputs.Player.Skill.canceled -= EndSkillAnimation;
 
         inputs.Player.Disable();
+    }
+    private void FixedUpdate()
+    {
+        if(!TimeManager.Instance.isRewinding && checkRewind)
+        {
+            ani.SetBool("isUsingSkill", false);
+            checkRewind = false;
+        }
     }
 
     void OnSkillAnimation(InputAction.CallbackContext callback)
     {
         ani.SetBool("isUsingSkill", true);
         ani.SetTrigger("useSkill");
-    }
-    void CheckRecord(InputAction.CallbackContext callback)
-    {
-        if (TimeManager.Instance._currentFrameAgo >= TimeManager.Instance.playerBody.currentCount) ani.SetBool("isUsingSkill", false);
+        ani.SetFloat("Velo", 0);
+        checkRewind = true;
     }
     void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
 }
