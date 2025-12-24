@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(TimeBody))]
 public class PlayerController : MonoBehaviour
 {
     [Header("플레이어 물리 작용 관련")]
@@ -29,15 +30,10 @@ public class PlayerController : MonoBehaviour
     Animator ani;
     Vector2 movement;
 
-    void Start()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
-    }
-
-    private void Update()
-    {
-
     }
 
     private void FixedUpdate()
@@ -48,13 +44,14 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded()
     {
+        if (ani.GetBool("isUsingSkill")) return false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
         ani.SetFloat("Velo", rigid.linearVelocityY);
         return hit.collider != null;
     }
     void movePosition()
     {
-        if(!isDashing)
+        if(!isDashing && !ani.GetBool("isUsingSkill"))
         {
             float moveX = movement.x * basicMoveSpeed;
             if (movement.x != 0)
@@ -80,7 +77,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump()
     {
-        if(jumpCount != 0)
+        if(jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
@@ -89,7 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash()
     {
-        if(!isDashing && dashCount > 0)
+        if(!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
         {
             if(dashCool != null) StopCoroutine(dashCool);
             dashCount--;
