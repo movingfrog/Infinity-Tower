@@ -9,4 +9,5 @@ public interface IHealth
     // 체력 관련 함수
     public void Hurt(float damage);
     public void Heal(float amount);
+    public void Die();
 }

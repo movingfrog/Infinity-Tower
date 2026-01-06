@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class parentEnemy : MonoBehaviour, IHealth
+public abstract class parentEnemy : MonoBehaviour, IHealth
 {
     public bool isDie;
 
@@ -15,6 +15,9 @@ public class parentEnemy : MonoBehaviour, IHealth
         HP = MaxHP;
     }
 
+    protected abstract void Move();
+    protected abstract void Attack();
+
     public void Hurt(float damage)
     {
         if(HP - damage > 0)
@@ -24,9 +27,14 @@ public class parentEnemy : MonoBehaviour, IHealth
         }
         else
         {
-            isDie = true;
-            ani.SetTrigger("isDie");
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        isDie = true;
+        ani.SetTrigger("isDie");
     }
 
     public void Heal(float amount)
