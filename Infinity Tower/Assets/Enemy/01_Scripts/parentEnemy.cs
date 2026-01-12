@@ -3,13 +3,15 @@ using UnityEngine;
 public abstract class parentEnemy : MonoBehaviour, IHealth
 {
     public bool isDie;
+    public bool isAttack;
+    public GameObject hitEffect;
 
-    Animator ani;
+    protected Animator ani;
     
     public float HP { get; set; }
     public float MaxHP { get; set; }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         ani = GetComponent<Animator>();
         HP = MaxHP;
@@ -22,8 +24,10 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     {
         if(HP - damage > 0)
         {
-            HP -= damage;
-            //이펙트 추가 필요
+            HP -= damage; 
+            GameObject _hitEffect = Instantiate(hitEffect);
+            _hitEffect.transform.position = transform.position;
+            Destroy(_hitEffect, .5f);
         }
         else
         {
@@ -31,18 +35,20 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         isDie = true;
         ani.SetTrigger("isDie");
     }
 
-    public void Heal(float amount)
+    public void Heal(float amount, GameObject healObject)
     {
         if (!isDie)
         {
             HP += amount;
-            //이펙트 추가 필요(체력 회복 이펙트와 체력 회복 텍스트)
+            GameObject healEffect = Instantiate(healObject);
+            healEffect.transform.position = transform.position;
+            Destroy(healEffect, .5f);
         }
     }
 }
