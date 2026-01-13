@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(DamageFlash))]
+[RequireComponent(typeof(TimeBody))]
 public abstract class parentEnemy : MonoBehaviour, IHealth
 {
     [Header("체력 관련")]
@@ -31,6 +32,14 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y);
         MaxHP = defaultHP; //이후에 레벨 공식 필요
         HP = MaxHP;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (TimeManager.Instance.isRewinding) return;
+
+        Attack();
+        Move();
     }
 
     protected abstract void Move();
