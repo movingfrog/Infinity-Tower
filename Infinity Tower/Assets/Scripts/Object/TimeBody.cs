@@ -25,7 +25,7 @@ public class TimeBody : MonoBehaviour
             SyncValue();
         }
     }
-    public static int MAX_recordTime {  get; private set; }
+    public static int MAX_recordTime { get; private set; }
 
     static void SyncValue()
     {
