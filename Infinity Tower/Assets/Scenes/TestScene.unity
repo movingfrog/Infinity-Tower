@@ -159,8 +159,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0/0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c25b404b942b0e347b5724111091fd99, type: 2}
+  m_sharedMaterial: {fileID: -7100080317633917537, guid: c25b404b942b0e347b5724111091fd99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.6
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1164,7 +1164,7 @@ GameObject:
   - component: {fileID: 1053359535}
   - component: {fileID: 1053359534}
   m_Layer: 5
-  m_Name: EnemyHealthCanvas
+  m_Name: HealthTextCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,6 +1475,9 @@ MonoBehaviour:
   dashCount: 2
   dir: 0
   isDashing: 0
+  dashLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1525326395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ecd79c2a476944b9707c43fc0ae548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentCanvas: {fileID: 1053359533}
+  _hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
 --- !u!1 &1980115503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,9 +1871,10 @@ MonoBehaviour:
   defaultHP: 100
   parentCanvas: {fileID: 1053359533}
   HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
-  hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
+  _hitText: {fileID: 0}
   AttackDamage: 1
   isAttack: 0
+  AttackDelay: 0.3
   attackSize: {x: 1.5, y: 1.5}
   attackPosition: {x: 0.25, y: 0}
   attackLayer:

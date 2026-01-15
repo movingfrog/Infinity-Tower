@@ -5,6 +5,7 @@ public interface IHealth
     // 체력 관련 변수
     public float HP { get; set; }
     public float MaxHP { get; set; }
+    public GameObject hitText { get; set; }
 
     // 체력 관련 함수
     public void Hurt(float damage);

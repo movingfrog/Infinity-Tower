@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public int dashCount = 2;
     public int dir;
     public bool isDashing;
+    public LayerMask dashLayer;
+    private LayerMask currentLayer;
     [Space]
     float defaultGravity;
     Coroutine dashCool;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        currentLayer = gameObject.layer;
     }
 
     private void FixedUpdate()
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.localScale = new Vector2(movement.x, 1);
             }
+            //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }
     }
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         ani.SetBool("isDash", false);
         isDashing  = false;
+        gameObject.layer = currentLayer;
         rigid.gravityScale = defaultGravity;
         dashCool = StartCoroutine(DashCool());
     } //애니메이션 이벤트 전용 메서드
@@ -79,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         if(jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
+            if (isDashing) AniDashControll();
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
             jumpCount--;
@@ -93,6 +99,7 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             ani.SetBool("isDash", true);
             ani.Play("Dash", 0, 0);
+            gameObject.layer = dashLayer;
             defaultGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
             rigid.linearVelocity = new Vector2(transform.localScale.x * dashForce, 0f);

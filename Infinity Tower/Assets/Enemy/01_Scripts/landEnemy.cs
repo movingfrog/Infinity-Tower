@@ -1,9 +1,9 @@
-using System.Linq.Expressions;
 using UnityEngine;
-using UnityEngine.Jobs;
 
 public class landEnemy : parentEnemy
 {
+    [Range(0f, 1f)]
+    public float AttackDelay;
     public Vector2 attackSize;
     public Vector2 attackPosition;
     public LayerMask attackLayer;
@@ -41,6 +41,7 @@ public class landEnemy : parentEnemy
         {
             isAttack = true;
             transform.localScale = new Vector2(transform.position.x - player.transform.position.x >= 0 ? -1 : 1, 1);
+            ani.SetBool("isRun", false);
             ani.SetTrigger("isAttack");
         }
     }
@@ -54,10 +55,12 @@ public class landEnemy : parentEnemy
             PHealth.Hurt(AttackDamage);
         }
     }
+    public void resetAttack() => StartCoroutine(waitAttackCool(AttackDelay, () => isAttack = false));
 
     protected override void Move()
     {
         if (isAttack || isDie) return;
+        ani.SetBool("isRun", true);
         rigid.linearVelocity = Vector2.right * Speed * transform.localScale.x;
         healthBar.MovePosition(transform.position);
 

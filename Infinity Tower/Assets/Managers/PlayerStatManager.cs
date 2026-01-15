@@ -38,7 +38,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        currentHP -= amount;
+        currentHP += amount;
 
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");
