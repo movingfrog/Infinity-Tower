@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             float moveX = movement.x * basicMoveSpeed;
             if (movement.x != 0)
             {
-                transform.localScale = new Vector2(movement.x, 1);
+                transform.localScale = new Vector2(movement.x > 0 ? 1 : -1, 1);
             }
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if(jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
-            if (isDashing) AniDashControll();
+            if (isDashing) rigid.gravityScale = defaultGravity;
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
             jumpCount--;

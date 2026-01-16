@@ -24,14 +24,6 @@ public class landEnemy : parentEnemy
         base.Awake();
     }
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-
-        //just test code
-        if (Input.GetKeyDown(KeyCode.X)) Hurt(1);
-    }
-
     protected override void Attack()
     {
         if (isDie) return;
