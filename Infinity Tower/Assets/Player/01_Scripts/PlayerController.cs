@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log($"sprite X: {GetComponent<SpriteRenderer>().bounds.extents.x}, sprite Y: {GetComponent<SpriteRenderer>().bounds.extents.y}");
+
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         currentLayer = gameObject.layer;
