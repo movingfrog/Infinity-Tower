@@ -53,7 +53,7 @@ public class landEnemy : parentEnemy
     {
         if (isAttack || isDie) return;
         ani.SetBool("isRun", true);
-        rigid.linearVelocity = Vector2.right * Speed * transform.localScale.x;
+        rigid.linearVelocityX = Speed * transform.localScale.x;
         healthBar.MovePosition(transform.position);
 
         RaycastHit2D wallRay = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, wallCheckDistance, wallLayer);

@@ -19,7 +19,8 @@ public class PlayerStatManager : MonoBehaviour
     public float currentHP { get; private set; }
     public Image HealthBar;
     public TextMeshProUGUI HealthText;
-
+    [Header("공격 관련")]
+    public float Damage;
 
     private void Awake()
     {
