@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour
     public int dashCount = 2;
     public int dir;
     public bool isDashing;
-    public LayerMask dashLayer;
-    private LayerMask currentLayer;
+    private int currentLayer;
     [Space]
     float defaultGravity;
     Coroutine dashCool;
@@ -99,7 +98,7 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             ani.SetBool("isDash", true);
             ani.Play("Dash", 0, 0);
-            gameObject.layer = dashLayer;
+            gameObject.layer = 8;
             defaultGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
             rigid.linearVelocity = new Vector2(transform.localScale.x * dashForce, 0f);

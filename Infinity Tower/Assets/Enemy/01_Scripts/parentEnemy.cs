@@ -77,7 +77,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         hitTextInstance.transform.position = transform.position;
         rigid.AddForce(new Vector2(randX, 5), ForceMode2D.Impulse);
 
-        Destroy(_hitText, 1f);
+        Destroy(hitTextInstance, 1f);
     }
 
     public virtual void Die()
