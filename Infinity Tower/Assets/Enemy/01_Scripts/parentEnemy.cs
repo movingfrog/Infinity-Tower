@@ -83,6 +83,8 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public virtual void Die()
     {
         isDie = true;
+        Destroy(GetComponent<Component>());
+        Destroy(GetComponent<Rigidbody2D>());
         Destroy(healthBar.gameObject);
         ani.SetTrigger("isDie");
     }

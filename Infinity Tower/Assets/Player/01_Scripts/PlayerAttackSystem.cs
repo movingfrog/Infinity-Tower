@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public enum WeaponType { Sword = 0, Gun = 1, Bow = 2, Pole = 3, None = 4 }
 public class PlayerAttackSystem : MonoBehaviour
 {
+    InputSystem_Actions input;
+    Coroutine gunCoroutine;
     Animator PlayerAni;
     Animator ani;
 
@@ -14,7 +16,6 @@ public class PlayerAttackSystem : MonoBehaviour
     public LayerMask EnemyLayer;
     [Header("공격 판정")]
     public float[] attackDamage;
-    public float AttackCoolTime;
     public float attackDirection;
     public bool endAttack = true;
     public GameObject WeaponDirection;
@@ -40,6 +41,21 @@ public class PlayerAttackSystem : MonoBehaviour
         GetWeaponType();
     }
 
+    private void OnEnable()
+    {
+        input.Player.Enable();
+
+        input.Player.Attack.started += StartAttack;
+        input.Player.Attack.canceled += EndAttack;
+    }
+    private void OnDisable()
+    {
+        input.Player.Attack.started -= StartAttack;
+        input.Player.Attack.canceled -= EndAttack;
+
+        input.Player.Disable();
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 movement = value.Get<Vector2>();
@@ -63,18 +79,23 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    public void OnAttack()
+    private void StartAttack(InputAction.CallbackContext callback)
     {
-        if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash")) return;
+        if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash")) EndAttack(callback);
         if (ani.GetBool("isGet") && endAttack)
         {
             endAttack = false;
             ani.SetTrigger("Attack");
-            StartCoroutine(AttackCool());
-            InsertDamage(WeaponProperty);
+            InsertDamage(WeaponProperty, callback);
         }
     }
-    private void InsertDamage(WeaponType weaponType)
+    private void EndAttack(InputAction.CallbackContext callback)
+    {
+        if (!endAttack) return;
+        if (gunCoroutine != null) StopCoroutine(gunCoroutine);
+        StartCoroutine(AttackCool());
+    }
+    private void InsertDamage(WeaponType weaponType, InputAction.CallbackContext call)
     {
         float finalDamage = PlayerStatManager.instance.Damage + weapon.damage;
         switch (weaponType)
@@ -83,11 +104,22 @@ public class PlayerAttackSystem : MonoBehaviour
                 Collider2D[] EnemyColl = Physics2D.OverlapBoxAll(transform.position + computeAttackRange(WeaponType.Sword), attackSize[(int)WeaponType.Sword], Sign(transform.localPosition.y) == 0 ? 0 : 90, EnemyLayer);
                 foreach (var enemy in EnemyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
+            case WeaponType.Gun:
+                gunCoroutine = StartCoroutine(GunAttack(call));
+                break;
         }
+    }
+    IEnumerator GunAttack(InputAction.CallbackContext callback)
+    {
+        while (weapon.hasAuto && weapon.Shot())
+        {
+            yield return new WaitForSeconds(weapon.AttackCoolTime);
+        }
+        EndAttack(callback);
     }
     IEnumerator AttackCool()
     {
-        yield return new WaitForSeconds(AttackCoolTime);
+        yield return new WaitForSeconds(weapon.AttackCoolTime);
         endAttack = true;
     }
 

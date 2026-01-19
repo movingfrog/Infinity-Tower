@@ -21,6 +21,7 @@ public class PlayerStatManager : MonoBehaviour
     public TextMeshProUGUI HealthText;
     [Header("공격 관련")]
     public float Damage;
+    public int Ammo;
 
     private void Awake()
     {
