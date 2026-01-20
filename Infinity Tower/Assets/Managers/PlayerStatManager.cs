@@ -45,4 +45,5 @@ public class PlayerStatManager : MonoBehaviour
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");
     }
+    public void UseAmmo(int amount) => Ammo -= amount;
 }

@@ -28,6 +28,10 @@ public class WeaponScript : MonoBehaviour
         TryGetComponent(out ani);
         Scale = Mathf.Abs(transform.localScale.x);
     }
+    private void Start()
+    {
+        getAmmo(true);
+    }
 
     private void OnEnable()
     {
@@ -42,30 +46,49 @@ public class WeaponScript : MonoBehaviour
     {
         if(currentAmmo > 0)
         {
+            currentAmmo -= 1;
+            Debug.Log(currentAmmo);
+            return true;
+        }
+        else
+        {
             if (PlayerStatManager.instance.Ammo > 0)
             {
-
+                ani.SetTrigger("Reload");
+                getAmmo();
                 return true;
             }
             else return false;
         }
-        else
-        {
-            return true;
-        }
+    }
+    void getAmmo(bool isFirst = false)
+    {
+        int ammo = PlayerStatManager.instance.Ammo - MaxAmmo >= 0 || isFirst ? MaxAmmo : PlayerStatManager.instance.Ammo;
+        if(!isFirst)PlayerStatManager.instance.UseAmmo(ammo);
+        currentAmmo = ammo;
     }
     public void PositionMove(Vector2 value, float AttackRange)
     {
         float ValueX = 1 - Mathf.Abs(Sign(value.y));
         transform.parent.localPosition = new Vector2(AttackRange * ValueX, AttackRange * Sign(value.y));
-        if (value.y < 0) transform.localScale = Scale * new Vector2(1, -1);
-        else transform.localScale = Scale * new Vector2(ValueX != 0 ? 1 : -1, 1);
+        if(type == WeaponType.Sword)
+        {
+            if (value.y < 0) transform.localScale = Scale * new Vector2(1, -1);
+            else transform.localScale = Scale * new Vector2(ValueX != 0 ? 1 : -1, 1);
+        }
+        else
+        {
+            if (value.y == 0) transform.rotation = Quaternion.identity;
+            else transform.rotation = Quaternion.Euler(new Vector3(0, 0,90 * Sign(value.y)));
+        }
     }
+    bool checkGunAttack() => currentAmmo == 0 &&PlayerStatManager.instance.Ammo == 0;
     public void Attack()
     {
+        if (type == WeaponType.Gun && checkGunAttack()) return;
         float finalDamage = PlayerStatManager.instance.Damage + damage;
-        endAttack = true;
         ani.SetTrigger("Attack");
+        endAttack = true;
         switch (type)
         {
             case WeaponType.Sword:
@@ -73,15 +96,28 @@ public class WeaponScript : MonoBehaviour
                 foreach (var enemy in EnemyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
             case WeaponType.Gun:
-
+                ShotingCoroutine = StartCoroutine(Shoting());
                 break;
         }
     }
-
+    IEnumerator Shoting()
+    {
+        ani.SetBool("isAuto", hasAuto);
+        while (Shot())
+        {
+            yield return new WaitForSeconds(AttackCoolTime);
+        }
+        ani.SetBool("isAuto", false);
+        Endattack();
+    }
     public void Endattack()
     {
         if (!endAttack) return;
-        if (ShotingCoroutine != null) StopCoroutine(ShotingCoroutine);
+        if (ShotingCoroutine != null)
+        {
+            StopCoroutine(ShotingCoroutine);
+            ani.SetBool("isAuto", false);
+        }
         StartCoroutine(AttackCool());
     }
     IEnumerator AttackCool()
