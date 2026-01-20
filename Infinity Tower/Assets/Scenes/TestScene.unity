@@ -266,13 +266,14 @@ GameObject:
   - component: {fileID: 213300619}
   - component: {fileID: 213300620}
   - component: {fileID: 213300621}
+  - component: {fileID: 213300622}
   m_Layer: 7
   m_Name: 64 Swords_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &213300619
 Transform:
   m_ObjectHideFlags: 0
@@ -356,10 +357,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  endAttack: 0
   damage: 3
-  AttackCoolTime: 0
+  AttackCoolTime: 0.3
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackSize: {x: 1.125, y: 1.25}
+  attackRange: {x: 0.3375, y: 0.3375}
   hasAuto: 0
   MaxAmmo: 0
+--- !u!95 &213300622
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213300618}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e122ee599f13f7d458de0159b6c28482, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &366053889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,12 +1398,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776682175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 0.93, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4959912, y: 4.803811, z: 0.0021040654}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1506656990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794814286
 GameObject:
@@ -1814,7 +1843,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469382489}
-  - component: {fileID: 1469382490}
   m_Layer: 7
   m_Name: WeaponPosition
   m_TagString: Untagged
@@ -1839,28 +1867,40 @@ Transform:
   - {fileID: 1632278228}
   m_Father: {fileID: 1525326393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1469382490
-Animator:
-  serializedVersion: 7
+--- !u!1 &1506656989
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469382488}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e122ee599f13f7d458de0159b6c28482, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506656990}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1506656990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506656989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6259913, y: -3.873811, z: -0.0021040654}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2069223667}
+  - {fileID: 1892316577}
+  - {fileID: 776682183}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525326389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,7 +2107,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!50 &1525326396
@@ -2148,27 +2188,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eae0500025cd44bad5345b2796a864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSize:
-  - {x: 1.25, y: 1.5}
-  - {x: 0, y: 0}
-  attackRange:
-  - {x: 0.375, y: 0.375}
-  - {x: 0, y: 0}
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackDamage:
-  - 0
-  - 0
   attackDirection: 0.45
-  endAttack: 1
   WeaponDirection: {fileID: 1469382488}
   weaponPrefeb:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  type: 0
 --- !u!1 &1632278227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,13 +2206,14 @@ GameObject:
   - component: {fileID: 1632278228}
   - component: {fileID: 1632278230}
   - component: {fileID: 1632278229}
+  - component: {fileID: 1632278231}
   m_Layer: 0
   m_Name: AK 47 [96x48]_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1632278228
 Transform:
   m_ObjectHideFlags: 0
@@ -2212,7 +2239,7 @@ Animator:
   m_GameObject: {fileID: 1632278227}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3575960c9d65a1645b49c6dc73c64a1f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 90f5dbc0fdc9325409749b19d25abe25, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2279,6 +2306,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1632278231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632278227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  endAttack: 0
+  damage: 2
+  AttackCoolTime: 0.1
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackSize: {x: 0, y: 0}
+  attackRange: {x: 0, y: 0}
+  hasAuto: 1
+  MaxAmmo: 30
 --- !u!1 &1892316569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,12 +2586,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892316569}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.14, y: -1.23, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.765991, y: 2.643811, z: 0.0021040654}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1506656990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1964657191
 GameObject:
@@ -2865,12 +2915,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069223665}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: -3.762, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.2859914, y: 0.11181092, z: 0.0021040654}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1506656990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2069223668
 Animator:
@@ -3128,9 +3178,7 @@ SceneRoots:
   - {fileID: 794814287}
   - {fileID: 1525326393}
   - {fileID: 1207202314}
-  - {fileID: 2069223667}
-  - {fileID: 1892316577}
-  - {fileID: 776682183}
+  - {fileID: 1506656990}
   - {fileID: 1053359537}
   - {fileID: 366053892}
   - {fileID: 511875994}
