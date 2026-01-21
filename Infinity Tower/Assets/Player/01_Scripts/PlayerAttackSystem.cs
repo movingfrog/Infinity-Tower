@@ -44,14 +44,20 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void StartAttack(InputAction.CallbackContext callback)
     {
-        if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash")) EndAttack(callback);
-        if (weapon != null && !weapon.endAttack)
+        if(weapon != null)
         {
-            weapon.Attack();
+            weapon.isPusing = true;
+            if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash")) return;
+            if (!weapon.endAttack)
+            {
+                weapon.Attack();
+            }
         }
     }
     private void EndAttack(InputAction.CallbackContext callback)
     {
+        if (weapon == null) return;
+        weapon.isPusing = false;
         weapon.Endattack();
     }
 

@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     public float dashForce;
     [Range(0,2)]
     public int dashCount = 2;
-    public int dir;
     public bool isDashing;
     private int currentLayer;
     [Space]
@@ -56,10 +55,7 @@ public class PlayerController : MonoBehaviour
         if(!isDashing && !ani.GetBool("isUsingSkill"))
         {
             float moveX = movement.x * basicMoveSpeed;
-            if (movement.x != 0)
-            {
-                transform.localScale = new Vector2(movement.x > 0 ? 1 : -1, 1);
-            }
+            
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }
@@ -76,8 +72,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        movement = value.Get<Vector2>();
-        if (movement.x != 0) dir = (int)movement.x;
+        movement = value.Get<Vector2>(); 
+        if (movement.x != 0) transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
     }
     public void OnJump()
     {

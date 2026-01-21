@@ -1,36 +1,51 @@
 using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponScript : MonoBehaviour
 {
-    Coroutine ShotingCoroutine;
+    Coroutine ShottingCoroutine;
+    Coroutine CooltimeCoroutine;
     Animator ani;
     float Scale;
 
     public WeaponType type;
     public bool endAttack;
+    public bool isPusing;
     public float damage;
-    public float AttackCoolTime;
+    public float attackRate;
     public LayerMask EnemyLayer;
     [Foldout("근접 공격")]
     public Vector2 attackSize;
     [Foldout("근접 공격")]
     public Vector2 attackRange;
+    [Foldout("원거리 공격 관련")]
+    public Transform shotPosition;
+    [Foldout("원거리 공격 관련")]
+    public GameObject bulletPrefeb;
+    [Foldout("총기 공격 관련")]
+    public bool isReload;
     [Foldout("총기 공격 관련")]
     public bool hasAuto;
+    private bool _hasAuto;
     [Foldout("총기 공격 관련")]
     public int MaxAmmo;
+    [Foldout("총기 공격 관련")]
+    public float fireRate;
     public int currentAmmo { get; private set; }
+    private Vector2 FValue;
 
     private void Awake()
     {
         TryGetComponent(out ani);
         Scale = Mathf.Abs(transform.localScale.x);
+        _hasAuto = hasAuto;
     }
     private void Start()
     {
-        getAmmo(true);
+        currentAmmo = MaxAmmo;
+        FValue = Vector2.right;
     }
 
     private void OnEnable()
@@ -47,25 +62,29 @@ public class WeaponScript : MonoBehaviour
         if(currentAmmo > 0)
         {
             currentAmmo -= 1;
-            Debug.Log(currentAmmo);
+            float finalDamage = damage + PlayerStatManager.instance.Damage * .15f; //총기 데미지 공식은 15% 낮춤
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, FValue.y * 90));
+            Bullet bullet = Instantiate(bulletPrefeb).GetComponent<Bullet>();
+            bullet.Init(shotPosition.position, rotation, FValue, finalDamage);
             return true;
         }
         else
         {
-            if (PlayerStatManager.instance.Ammo > 0)
+            if (PlayerStatManager.instance.Ammo > 0 && !isReload)
             {
+                isReload = true;
                 ani.SetTrigger("Reload");
-                getAmmo();
-                return true;
             }
-            else return false;
+            return false;
         }
     }
-    void getAmmo(bool isFirst = false)
+    public void getAmmo()
     {
-        int ammo = PlayerStatManager.instance.Ammo - MaxAmmo >= 0 || isFirst ? MaxAmmo : PlayerStatManager.instance.Ammo;
-        if(!isFirst)PlayerStatManager.instance.UseAmmo(ammo);
+        int ammo = PlayerStatManager.instance.Ammo - MaxAmmo >= 0 ? MaxAmmo : PlayerStatManager.instance.Ammo;
+        PlayerStatManager.instance.UseAmmo(ammo);
         currentAmmo = ammo;
+        isReload = false;
+        if(isPusing && hasAuto) Attack();
     }
     public void PositionMove(Vector2 value, float AttackRange)
     {
@@ -79,12 +98,14 @@ public class WeaponScript : MonoBehaviour
         else
         {
             if (value.y == 0) transform.rotation = Quaternion.identity;
-            else transform.rotation = Quaternion.Euler(new Vector3(0, 0,90 * Sign(value.y)));
+            else transform.rotation = Quaternion.Euler(new Vector3(0, 0,90 * Sign(value.y) * transform.parent.parent.localScale.x));
+            FValue = new Vector2(ValueX * transform.parent.parent.localScale.x, Sign(value.y));
         }
     }
     bool checkGunAttack() => currentAmmo == 0 &&PlayerStatManager.instance.Ammo == 0;
     public void Attack()
     {
+        if (ShottingCoroutine != null || !isPusing) return;
         if (type == WeaponType.Gun && checkGunAttack()) return;
         float finalDamage = PlayerStatManager.instance.Damage + damage;
         ani.SetTrigger("Attack");
@@ -96,34 +117,36 @@ public class WeaponScript : MonoBehaviour
                 foreach (var enemy in EnemyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
             case WeaponType.Gun:
-                ShotingCoroutine = StartCoroutine(Shoting());
+                ShottingCoroutine = StartCoroutine(Shoting());
                 break;
         }
     }
     IEnumerator Shoting()
     {
         ani.SetBool("isAuto", hasAuto);
-        while (Shot())
+        while (Shot() && hasAuto)
         {
-            yield return new WaitForSeconds(AttackCoolTime);
+            yield return new WaitForSeconds(fireRate);
         }
         ani.SetBool("isAuto", false);
-        Endattack();
+        ShottingCoroutine = null;
     }
     public void Endattack()
     {
-        if (!endAttack) return;
-        if (ShotingCoroutine != null)
+        if (ShottingCoroutine != null)
         {
-            StopCoroutine(ShotingCoroutine);
+            StopCoroutine(ShottingCoroutine);
+            ShottingCoroutine = null;
             ani.SetBool("isAuto", false);
         }
-        StartCoroutine(AttackCool());
+        if(CooltimeCoroutine != null) return;
+        CooltimeCoroutine = StartCoroutine(AttackCool());
     }
     IEnumerator AttackCool()
     {
-        yield return new WaitForSeconds(AttackCoolTime);
+        yield return new WaitForSeconds(attackRate);
         endAttack = false;
+        CooltimeCoroutine = null;
     }
 
     private Vector3 computeAttackRange() //무기 이미지에 따른 무기 공격 위치의 중심 점 반환

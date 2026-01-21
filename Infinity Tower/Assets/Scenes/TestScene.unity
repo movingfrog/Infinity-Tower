@@ -358,15 +358,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   endAttack: 0
+  isPusing: 0
   damage: 3
-  AttackCoolTime: 0.3
+  attackRate: 0.3
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 64
   attackSize: {x: 1.125, y: 1.25}
   attackRange: {x: 0.3375, y: 0.3375}
+  shotPosition: {fileID: 0}
+  bulletPrefeb: {fileID: 0}
+  isReload: 0
   hasAuto: 0
   MaxAmmo: 0
+  fireRate: 0
 --- !u!95 &213300622
 Animator:
   serializedVersion: 7
@@ -1399,7 +1404,7 @@ Transform:
   m_GameObject: {fileID: 776682175}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4959912, y: 4.803811, z: 0.0021040654}
+  m_LocalPosition: {x: -0.09000015, y: 0.4420004, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1882,7 +1887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1506656990
 Transform:
   m_ObjectHideFlags: 0
@@ -1892,7 +1897,7 @@ Transform:
   m_GameObject: {fileID: 1506656989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6259913, y: -3.873811, z: -0.0021040654}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2078,7 +2083,6 @@ MonoBehaviour:
     m_Bits: 8
   dashForce: 6
   dashCount: 2
-  dir: 0
   isDashing: 0
 --- !u!114 &1525326395
 MonoBehaviour:
@@ -2226,7 +2230,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1983205937}
   m_Father: {fileID: 1469382489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1632278229
@@ -2320,15 +2325,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   endAttack: 0
+  isPusing: 0
   damage: 2
-  AttackCoolTime: 0.1
+  attackRate: 0.3
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 64
   attackSize: {x: 0, y: 0}
   attackRange: {x: 0, y: 0}
+  shotPosition: {fileID: 1983205937}
+  bulletPrefeb: {fileID: 6161912332551938688, guid: 7c56e96b3be31cb4c96c2e0907282e83, type: 3}
+  isReload: 0
   hasAuto: 1
   MaxAmmo: 30
+  fireRate: 0.2
 --- !u!1 &1892316569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,7 +2597,7 @@ Transform:
   m_GameObject: {fileID: 1892316569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.765991, y: 2.643811, z: 0.0021040654}
+  m_LocalPosition: {x: 6.18, y: -1.7179997, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2829,6 +2839,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1983205936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983205937}
+  m_Layer: 0
+  m_Name: Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983205937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983205936}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6, y: 0.085, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1632278228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069223665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,7 +2957,7 @@ Transform:
   m_GameObject: {fileID: 2069223665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2859914, y: 0.11181092, z: 0.0021040654}
+  m_LocalPosition: {x: -0.3, y: -3.44, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
