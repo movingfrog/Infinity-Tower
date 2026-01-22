@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class PlayerAttackSystem : MonoBehaviour
 {
     InputSystem_Actions input;
     Animator PlayerAni;
+    bool isPusing;
 
     [Header("공격 판정")]
     public float attackDirection;
@@ -40,6 +42,18 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         Vector2 movement = value.Get<Vector2>();
         weapon.PositionMove(movement, attackDirection);
+    }
+    public void OnFireMode()
+    {
+        if (isPusing) return;
+        if (weapon != null) weapon.FireSelect();
+        isPusing = true;
+        StartCoroutine(waitPusing());
+    }
+    IEnumerator waitPusing()
+    {
+        yield return new WaitForSeconds(.5f);
+        isPusing = false;
     }
 
     private void StartAttack(InputAction.CallbackContext callback)

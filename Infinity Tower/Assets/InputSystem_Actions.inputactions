@@ -37,7 +37,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -46,7 +46,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -100,6 +100,15 @@
                     "name": "Skill",
                     "type": "Button",
                     "id": "e17b146c-03d0-49fc-80df-90683d3b4495",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireMode",
+                    "type": "Button",
+                    "id": "57bf3334-9515-422a-9af7-903cd5952780",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -533,6 +542,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a63cbfe-75c3-4875-ae4f-49ea9d909430",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "FireMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

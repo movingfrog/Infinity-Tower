@@ -127,7 +127,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -141,7 +141,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -165,7 +165,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -198,7 +198,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,7 +220,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,7 +242,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,7 +264,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,7 +286,7 @@ TextureImporter:
         width: 31
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -307,8 +307,8 @@ TextureImporter:
         y: 6
         width: 36
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.57, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,12 +325,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_6
       rect:
         serializedVersion: 2
-        x: 494
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 487
+        y: 5
+        width: 38
+        height: 34
+      alignment: 9
+      pivot: {x: 0.595, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,12 +347,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_7
       rect:
         serializedVersion: 2
-        x: 574
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 567
+        y: 1
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.59, y: 0.74}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -369,12 +369,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_8
       rect:
         serializedVersion: 2
-        x: 654
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 647
+        y: 2
+        width: 38
+        height: 37
+      alignment: 9
+      pivot: {x: 0.595, y: 0.73}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -391,12 +391,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_9
       rect:
         serializedVersion: 2
-        x: 734
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 727
+        y: 1
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6, y: 0.74}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -413,12 +413,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_10
       rect:
         serializedVersion: 2
-        x: 814
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 807
+        y: 0
+        width: 38
+        height: 39
+      alignment: 9
+      pivot: {x: 0.6, y: 0.735}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,12 +435,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_11
       rect:
         serializedVersion: 2
-        x: 894
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 888
+        y: 1
+        width: 37
+        height: 38
+      alignment: 9
+      pivot: {x: 0.58, y: 0.73}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -457,12 +457,12 @@ TextureImporter:
       name: Pistol_V1.00 - RELOAD_12
       rect:
         serializedVersion: 2
-        x: 974
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 970
+        y: 5
+        width: 35
+        height: 34
+      alignment: 9
+      pivot: {x: 0.56, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -476,37 +476,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_13
+      name: Pistol_V1.00 - RELOAD_14
       rect:
         serializedVersion: 2
         x: 1052
         y: 8
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 166ae06069e67b4d0800000000000000
-      internalID: -3118902626305005983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_14
-      rect:
-        serializedVersion: 2
-        x: 1054
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 33
+        height: 31
+      alignment: 9
+      pivot: {x: 0.53, y: 0.67}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -527,8 +505,8 @@ TextureImporter:
         y: 11
         width: 31
         height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.63}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -549,8 +527,8 @@ TextureImporter:
         y: 14
         width: 31
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -571,8 +549,8 @@ TextureImporter:
         y: 16
         width: 31
         height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -594,7 +572,7 @@ TextureImporter:
         width: 31
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -616,7 +594,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -638,7 +616,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -660,7 +638,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -682,7 +660,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -704,7 +682,7 @@ TextureImporter:
         width: 31
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -717,165 +695,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_24
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 5
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d5d36adea1e13800800000000000000
-      internalID: 590501167266780628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_25
-      rect:
-        serializedVersion: 2
-        x: 567
-        y: 1
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd052ad9f5a9723e0800000000000000
-      internalID: -2078522967550963492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_26
-      rect:
-        serializedVersion: 2
-        x: 647
-        y: 2
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3dee6342e98ff2550800000000000000
-      internalID: 6138398175225376467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_27
-      rect:
-        serializedVersion: 2
-        x: 727
-        y: 1
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a36bed0d45a445c50800000000000000
-      internalID: 6653024277675030074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_28
-      rect:
-        serializedVersion: 2
-        x: 807
-        y: 0
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea6ba020105123df0800000000000000
-      internalID: -202075939204843858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_29
-      rect:
-        serializedVersion: 2
-        x: 888
-        y: 1
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: acfc290c5d7ab14a0800000000000000
-      internalID: -6621514290617462838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - RELOAD_30
-      rect:
-        serializedVersion: 2
-        x: 970
-        y: 5
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac96f9bcffae1b930800000000000000
-      internalID: 4157362315393460682
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 535b2ae970a0666449f2f7ed109dbb80
     internalID: 0
     vertices: []
     indices: 

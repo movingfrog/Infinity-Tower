@@ -57,6 +57,13 @@ public class WeaponScript : MonoBehaviour
         ani.SetBool("isGet", false);
     }
 
+    public void FireSelect()
+    {
+        if (_hasAuto)
+        {
+            hasAuto = !hasAuto;
+        }
+    }
     public bool Shot()
     {
         if(currentAmmo > 0)
@@ -105,7 +112,7 @@ public class WeaponScript : MonoBehaviour
     bool checkGunAttack() => currentAmmo == 0 &&PlayerStatManager.instance.Ammo == 0;
     public void Attack()
     {
-        if (ShottingCoroutine != null || !isPusing) return;
+        if (ShottingCoroutine != null || !isPusing || isReload) return;
         if (type == WeaponType.Gun && checkGunAttack()) return;
         float finalDamage = PlayerStatManager.instance.Damage + damage;
         ani.SetTrigger("Attack");

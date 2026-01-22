@@ -121,7 +121,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -135,7 +135,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -159,7 +159,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -192,7 +192,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -214,7 +214,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,7 +236,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,7 +258,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,7 +280,7 @@ TextureImporter:
         width: 31
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,7 +302,7 @@ TextureImporter:
         width: 31
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -324,7 +324,7 @@ TextureImporter:
         width: 31
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,7 +346,7 @@ TextureImporter:
         width: 31
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -368,7 +368,7 @@ TextureImporter:
         width: 31
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -390,7 +390,7 @@ TextureImporter:
         width: 31
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -404,37 +404,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_10
+      name: Pistol_V1.00 - EMPTYING_11
       rect:
         serializedVersion: 2
         x: 810
         y: 10
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0eba5a0513a67e00800000000000000
-      internalID: 1042199674546208267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_11
-      rect:
-        serializedVersion: 2
-        x: 814
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 35
+        height: 29
+      alignment: 9
+      pivot: {x: 0.59, y: 0.64}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -448,37 +426,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_12
+      name: Pistol_V1.00 - EMPTYING_13
       rect:
         serializedVersion: 2
         x: 891
         y: 6
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 704460b2015dd2580800000000000000
-      internalID: -8850183427295132665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_13
-      rect:
-        serializedVersion: 2
-        x: 894
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 33
+      alignment: 9
+      pivot: {x: 0.58, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -495,12 +451,12 @@ TextureImporter:
       name: Pistol_V1.00 - EMPTYING_14
       rect:
         serializedVersion: 2
-        x: 974
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 968
+        y: 5
+        width: 37
+        height: 34
+      alignment: 9
+      pivot: {x: 0.6, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -517,12 +473,12 @@ TextureImporter:
       name: Pistol_V1.00 - EMPTYING_15
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1048
+        y: 0
+        width: 37
+        height: 39
+      alignment: 9
+      pivot: {x: 0.6, y: 0.73}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -539,12 +495,12 @@ TextureImporter:
       name: Pistol_V1.00 - EMPTYING_16
       rect:
         serializedVersion: 2
-        x: 1134
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1125
+        y: 0
+        width: 40
+        height: 39
+      alignment: 9
+      pivot: {x: 0.63, y: 0.74}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -561,12 +517,12 @@ TextureImporter:
       name: Pistol_V1.00 - EMPTYING_17
       rect:
         serializedVersion: 2
-        x: 1214
-        y: 19
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1204
+        y: 0
+        width: 41
+        height: 39
+      alignment: 9
+      pivot: {x: 0.65, y: 0.73}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -587,8 +543,8 @@ TextureImporter:
         y: 0
         width: 39
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.633, y: 0.74}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -609,8 +565,8 @@ TextureImporter:
         y: 0
         width: 40
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.64, y: 0.74}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -632,7 +588,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -654,7 +610,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -676,7 +632,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -698,7 +654,7 @@ TextureImporter:
         width: 29
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -720,7 +676,7 @@ TextureImporter:
         width: 31
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,99 +689,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_25
-      rect:
-        serializedVersion: 2
-        x: 968
-        y: 5
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9a665cab035f37d30800000000000000
-      internalID: 4428152448276063913
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_26
-      rect:
-        serializedVersion: 2
-        x: 1048
-        y: 0
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d42e91e6b1a431990800000000000000
-      internalID: -7416502679677312435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_27
-      rect:
-        serializedVersion: 2
-        x: 1125
-        y: 0
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e95da1be47930b10800000000000000
-      internalID: 1946565828198357475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pistol_V1.00 - EMPTYING_28
-      rect:
-        serializedVersion: 2
-        x: 1204
-        y: 0
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 38af471b14d7c8b40800000000000000
-      internalID: 5443863770687666819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 87795f59804ea1643a909ce44b0cff5c
     internalID: 0
     vertices: []
     indices: 
