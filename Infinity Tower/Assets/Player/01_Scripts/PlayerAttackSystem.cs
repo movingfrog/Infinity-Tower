@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum WeaponType { Sword = 0, Gun = 1, Bow = 2, Pole = 3, None = 4 }
+public enum WeaponType { Sword = 0, Gun = 1, Bow = 2, Spear = 3, None = 4 }
 public class PlayerAttackSystem : MonoBehaviour
 {
     InputSystem_Actions input;

@@ -97,8 +97,13 @@ public class WeaponScript : MonoBehaviour
     {
         float ValueX = 1 - Mathf.Abs(Sign(value.y));
         transform.parent.localPosition = new Vector2(AttackRange * ValueX, AttackRange * Sign(value.y));
-        if(type == WeaponType.Sword)
+        if(type == WeaponType.Sword || type == WeaponType.Spear)
         {
+            if(type == WeaponType.Spear)
+            {
+                ani.SetInteger("X", (int)(ValueX * transform.parent.parent.localScale.x));
+                ani.SetInteger("Y", (int)Sign(value.y));
+            }
             if (value.y < 0) transform.localScale = Scale * new Vector2(1, -1);
             else transform.localScale = Scale * new Vector2(ValueX != 0 ? 1 : -1, 1);
         }
@@ -120,11 +125,17 @@ public class WeaponScript : MonoBehaviour
         switch (type)
         {
             case WeaponType.Sword:
-                Collider2D[] EnemyColl = Physics2D.OverlapBoxAll(transform.position + computeAttackRange(), attackSize, Sign(transform.localPosition.y) == 0 ? 0 : 90, EnemyLayer);
+                Vector3 currentPosition = new Vector3(transform.parent.parent.position.x, transform.position.y, 0);
+                Collider2D[] EnemyColl = Physics2D.OverlapBoxAll(currentPosition + computeAttackRange(), attackSize, Sign(transform.localPosition.y) == 0 ? 0 : 90, EnemyLayer);
                 foreach (var enemy in EnemyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
             case WeaponType.Gun:
                 ShottingCoroutine = StartCoroutine(Shoting());
+                break;
+            case WeaponType.Spear:
+                Vector3 SpearPosition = new Vector3(transform.parent.parent.position.x, transform.position.y, 0);
+                Collider2D[] _EnemeyColl = Physics2D.OverlapBoxAll(SpearPosition + computeAttackRange(), attackSize, ani.GetInteger("Y") == 0 ? 0 : 90, EnemyLayer);
+                foreach (var enemy in _EnemeyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
         }
     }
@@ -169,6 +180,7 @@ public class WeaponScript : MonoBehaviour
     {
         Gizmos.color = Color.green * new Color(1, 1, 1, .1f);
         Vector2 vec = Sign(transform.parent.localPosition.y) == 0 ? attackSize : new Vector2(attackSize.y, attackSize.x);
-        Gizmos.DrawCube(transform.parent.parent.position + computeAttackRange(), vec);
+        Vector3 currentPosition = new Vector3(transform.parent.parent.position.x, transform.position.y, 0);
+        Gizmos.DrawCube(currentPosition + computeAttackRange(), vec);
     }
 }
