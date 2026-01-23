@@ -21,7 +21,7 @@ public class resetState : StateMachineBehaviour
     {
         if (OnStateReset)
         {
-            if (animator.TryGetComponent<PlayerController>(out PlayerController P)) P.AniDashControll();
+            if (animator.TryGetComponent<PlayerController>(out PlayerController P) && P.isDashing) P.AniDashControll();
         }
     }
 }
