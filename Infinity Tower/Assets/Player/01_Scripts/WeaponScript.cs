@@ -1,12 +1,15 @@
 using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Jobs;
 using UnityEngine.UIElements;
 
 public class WeaponScript : MonoBehaviour
 {
+    Coroutine ChargingCoroutine;
     Coroutine ShottingCoroutine;
     Coroutine CooltimeCoroutine;
+    GameObject arrow;
     Animator ani;
     float Scale;
 
@@ -33,6 +36,8 @@ public class WeaponScript : MonoBehaviour
     public int MaxAmmo;
     [Foldout("총기 공격 관련")]
     public float fireRate;
+    [Foldout("활 공격 관련")]
+    public bool isCrossBow;
     public int currentAmmo { get; private set; }
     private Vector2 FValue;
 
@@ -64,7 +69,7 @@ public class WeaponScript : MonoBehaviour
             hasAuto = !hasAuto;
         }
     }
-    public bool Shot()
+    private bool Shot()
     {
         if(currentAmmo > 0)
         {
@@ -83,6 +88,29 @@ public class WeaponScript : MonoBehaviour
                 ani.SetTrigger("Reload");
             }
             return false;
+        }
+    }
+    private void ShotArrow(float Percent)
+    {
+        ani.SetTrigger("Shot");
+        float finalDamage = (damage + PlayerStatManager.instance.Damage) * (.3f + Percent * (1 - .3f));
+        
+        Arrow _arrow = arrow.GetComponent<Arrow>();
+        _arrow.Shot(FValue, Percent, finalDamage);
+    }
+    public void ArrowMove(float percent)
+    {
+        switch (percent)
+        {
+            case .2f:
+                arrow.transform.position = new Vector2(-.1f, 0f);
+                break;
+            case .4f:
+                arrow.transform.position = new Vector2(-.1325f, 0f);
+                break;
+            case 1f:
+                arrow.transform.position = new Vector2(-.215f, 0f);
+                break;
         }
     }
     public void getAmmo()
@@ -137,6 +165,9 @@ public class WeaponScript : MonoBehaviour
                 Collider2D[] _EnemeyColl = Physics2D.OverlapBoxAll(SpearPosition + computeAttackRange(), attackSize, ani.GetInteger("Y") == 0 ? 0 : 90, EnemyLayer);
                 foreach (var enemy in _EnemeyColl) enemy.GetComponent<IHealth>().Hurt(finalDamage);
                 break;
+            case WeaponType.Bow:
+                ChargingCoroutine = StartCoroutine(Charging());
+                break;
         }
     }
     IEnumerator Shoting()
@@ -149,6 +180,26 @@ public class WeaponScript : MonoBehaviour
         ani.SetBool("isAuto", false);
         ShottingCoroutine = null;
     }
+    IEnumerator Charging()
+    {
+        float temp = 0;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, FValue.y * 90));
+        arrow = Instantiate(bulletPrefeb);
+        arrow.GetComponent<Arrow>().Init(rotation);
+        arrow.transform.position = shotPosition.position;
+        while (isPusing)
+        {
+            if (isCrossBow)
+            {
+                temp = 1;
+                break;
+            }
+            temp += Time.deltaTime;
+            yield return null;
+        }
+        ShotArrow(temp);
+    }
+
     public void Endattack()
     {
         if (ShottingCoroutine != null)
@@ -157,6 +208,7 @@ public class WeaponScript : MonoBehaviour
             ShottingCoroutine = null;
             ani.SetBool("isAuto", false);
         }
+        if (type == WeaponType.Bow) isPusing = false;
         if(CooltimeCoroutine != null) return;
         CooltimeCoroutine = StartCoroutine(AttackCool());
     }
