@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Arrow : MonoBehaviour
 {
     float Damage;
@@ -14,12 +13,18 @@ public class Arrow : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = 0;
+        GetComponent<Collider2D>().enabled = false;
     }
 
-    public void Init(Quaternion rotation)
+    private void FixedUpdate()
     {
-        transform.rotation = rotation;
+        if(rigid != null && rigid.linearVelocity.sqrMagnitude > .1f)
+        {
+            float angle = Mathf.Atan2(rigid.linearVelocityY, rigid.linearVelocityX) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
+
     IEnumerator IgnoreWall()
     {
         int bulletLayer = gameObject.layer;
@@ -38,12 +43,15 @@ public class Arrow : MonoBehaviour
     {
         Damage = damage;
         rigid.linearVelocity = value * currentSpeed * percent;
+        GetComponent<Collider2D>().enabled = true;
         StartCoroutine(IgnoreWall());
         StartCoroutine(useGravity(percent));
     }
     IEnumerator useGravity(float percent)
     {
-        yield return new WaitForSeconds(currentSpeed * percent);
+        float flyTime = .3f + (percent * .7f);
+
+        yield return new WaitForSeconds(flyTime);
         rigid.gravityScale = 1;
     }
     private bool layerCheck(int _layer)
@@ -56,12 +64,13 @@ public class Arrow : MonoBehaviour
     {
         if (layerCheck(collision.gameObject.layer))
         {
-            if(collision.TryGetComponent<IHealth>(out IHealth health))
+            if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
                 health.Hurt(Damage);
             }
-            rigid.linearVelocity = Vector2.zero;
-            transform.parent = collision.transform;
+            Destroy(GetComponent<Collider2D>());
+            Destroy(rigid);
+            transform.SetParent(collision.transform, true);
             Destroy(gameObject, 5f);
         }
     }

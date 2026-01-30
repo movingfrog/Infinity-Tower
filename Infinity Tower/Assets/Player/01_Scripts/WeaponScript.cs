@@ -93,25 +93,11 @@ public class WeaponScript : MonoBehaviour
     private void ShotArrow(float Percent)
     {
         ani.SetTrigger("Shot");
-        float finalDamage = (damage + PlayerStatManager.instance.Damage) * (.3f + Percent * (1 - .3f));
-        
+        arrow.transform.SetParent(null, true);
+        arrow.transform.localScale = Vector3.one;
+        float finalDamage = (damage + PlayerStatManager.instance.Damage) * (.3f + Percent * .7f);
         Arrow _arrow = arrow.GetComponent<Arrow>();
         _arrow.Shot(FValue, Percent, finalDamage);
-    }
-    public void ArrowMove(float percent)
-    {
-        switch (percent)
-        {
-            case .2f:
-                arrow.transform.position = new Vector2(-.1f, 0f);
-                break;
-            case .4f:
-                arrow.transform.position = new Vector2(-.1325f, 0f);
-                break;
-            case 1f:
-                arrow.transform.position = new Vector2(-.215f, 0f);
-                break;
-        }
     }
     public void getAmmo()
     {
@@ -183,10 +169,12 @@ public class WeaponScript : MonoBehaviour
     IEnumerator Charging()
     {
         float temp = 0;
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, FValue.y * 90));
-        arrow = Instantiate(bulletPrefeb);
-        arrow.GetComponent<Arrow>().Init(rotation);
-        arrow.transform.position = shotPosition.position;
+        arrow = Instantiate(bulletPrefeb, shotPosition);
+        arrow.transform.localPosition = Vector2.zero;
+
+        Rigidbody2D arrowRB = arrow.GetComponent<Rigidbody2D>();
+        if(arrowRB != null) arrowRB.simulated = false;
+
         while (isPusing)
         {
             if (isCrossBow)
@@ -194,9 +182,11 @@ public class WeaponScript : MonoBehaviour
                 temp = 1;
                 break;
             }
-            temp += Time.deltaTime;
+            temp = Mathf.Min(temp + Time.deltaTime, 1f);
             yield return null;
         }
+
+        if (arrowRB != null) arrowRB.simulated = true;
         ShotArrow(temp);
     }
 
