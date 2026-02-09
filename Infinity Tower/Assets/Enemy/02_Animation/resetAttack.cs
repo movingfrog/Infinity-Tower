@@ -17,7 +17,7 @@ public class resetAttack : StateMachineBehaviour
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.TryGetComponent<landEnemy>(out landEnemy enemy)) enemy.isAttack = false;
+        if (animator.TryGetComponent<landEnemy>(out landEnemy enemy)) enemy.resetAttack();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
