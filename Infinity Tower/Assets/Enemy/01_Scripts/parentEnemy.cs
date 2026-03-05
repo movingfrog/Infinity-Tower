@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(TimeBody))]
 public abstract class parentEnemy : MonoBehaviour, IHealth
 {
+    public bool Fly;
+
     [Header("체력 관련")]
     public bool isDie;
     public float defaultHP;
@@ -18,6 +20,8 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     [Header("공격 관련")]
     public float AttackDamage;
     public bool isAttack;
+    [Range(0f,1f)]
+    public float attackDelay;
 
     protected Animator ani;
     private DamageFlash _damageFlash;
@@ -25,6 +29,8 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public float HP { get; set; }
     public float MaxHP { get; set; }
     public GameObject hitText { get; set; }
+    
+    public void resetAttack() => StartCoroutine(waitAttackCool(attackDelay, () => isAttack = false));
 
     protected virtual void Awake()
     {
@@ -32,7 +38,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         _damageFlash = GetComponent<DamageFlash>();
         GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
         healthBar = temp.GetComponent<HealthBar>();
-        healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y);
+        healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y, Fly);
         MaxHP = defaultHP; //이후에 레벨 공식 필요
         HP = MaxHP;
     }
@@ -83,7 +89,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public virtual void Die()
     {
         isDie = true;
-        Destroy(GetComponent<Component>());
+        Destroy(GetComponent<Collider2D>());
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(healthBar.gameObject);
         ani.SetTrigger("isDie");

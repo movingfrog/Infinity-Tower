@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class landEnemy : parentEnemy
 {
-    [Range(0f, 1f)]
-    public float AttackDelay;
     public Vector2 attackSize;
     public Vector2 attackPosition;
     public LayerMask attackLayer;
@@ -47,7 +45,6 @@ public class landEnemy : parentEnemy
             PHealth.Hurt(AttackDamage);
         }
     }
-    public void resetAttack() => StartCoroutine(waitAttackCool(AttackDelay, () => isAttack = false));
 
     protected override void Move()
     {
@@ -60,6 +57,12 @@ public class landEnemy : parentEnemy
         RaycastHit2D groundRay = Physics2D.Raycast(transform.position + new Vector3(0, -.5f, 0) + new Vector3(transform.localScale.x, 0, 0), Vector2.down, groundCheckDistance, groundLayer);
 
         if (wallRay.collider != null || groundRay.collider == null) transform.localScale = new Vector2(-transform.localScale.x, 1);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        Destroy(gameObject, .5f);
     }
 
     private void OnDrawGizmos()
