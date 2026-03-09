@@ -29,12 +29,15 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public float HP { get; set; }
     public float MaxHP { get; set; }
     public GameObject hitText { get; set; }
-    
+
+    protected Rigidbody2D rigid;
+
     public void resetAttack() => StartCoroutine(waitAttackCool(attackDelay, () => isAttack = false));
 
     protected virtual void Awake()
     {
         ani = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
         _damageFlash = GetComponent<DamageFlash>();
         GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
         healthBar = temp.GetComponent<HealthBar>();
