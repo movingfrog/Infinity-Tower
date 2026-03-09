@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movePosition();
-        if (isGrounded() && rigid.linearVelocityY == 0) jumpCount = 2;
+        if (isGrounded() && rigid.linearVelocityY <= 0.1f) jumpCount = 2;
     }
 
     bool isGrounded()
