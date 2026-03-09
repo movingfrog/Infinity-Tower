@@ -12,15 +12,7 @@ public class landEnemy : parentEnemy
     public float wallCheckDistance;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
-    
-    
-    protected Rigidbody2D rigid;
 
-    protected override void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-        base.Awake();
-    }
 
     protected override void Attack()
     {

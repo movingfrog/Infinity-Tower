@@ -17,14 +17,6 @@ public class flyEnemy : parentEnemy
     public Vector2 angle;
     public LayerMask observLayer;
 
-    Rigidbody2D rigid;
-
-    protected override void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-        base.Awake();
-    }
-
     protected override void Attack()
     {
         if (isDie) return;
