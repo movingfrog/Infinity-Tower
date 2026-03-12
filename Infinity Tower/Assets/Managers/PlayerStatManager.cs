@@ -22,6 +22,14 @@ public class PlayerStatManager : MonoBehaviour
     [Header("공격 관련")]
     public float Damage;
     public int Ammo;
+    [Header("추가 능력치")]
+    [Range(-1f, 1f)]
+    public float Crit_Rate = .3f;
+    public float Crit_Dmg = 1.5f;
+    public float Speed;
+    public float Atk;
+    public float GoldBoost = 1;
+    public float HealBoost = 1;
 
     private void Awake()
     {
@@ -40,7 +48,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        currentHP += amount;
+        currentHP += amount * amount > 0 ? HealBoost : 1;
 
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: WoodSword
   m_EditorClassIdentifier: Assembly-CSharp::Item
   spriteImage: {fileID: 269407000259738857, guid: f8e3065bf144a2744b3664ad6b723631, type: 3}
+  itemName: 
   itemInfo: "\uADF8\uC800 \uC5F0\uC2B5\uC744 \uC704\uD574 \uC81C\uC791\uB41C \uAC80\\n\uB108\uBB34
     \uC57D\uD558\uB2E4"
-  price: 20
-  itemDamage: 0
-  statModifiers: []
+  level: 0
+  MaxItemCount: 0
+  isWearable: 1
+  Equips:
+    type: 0
+    itemDamage: 5
+    statModifiers: []
