@@ -8,7 +8,7 @@ public class Slot : MonoBehaviour
     private TextMeshProUGUI Text;
     public Image SlotSprite;
     public bool isEmpty = true;
-    [Range(1, 9)]
+    [Range(0, 8)]
     public int slotIndex;
     [Header("아이템 속성")]
     public Item item;
@@ -17,7 +17,7 @@ public class Slot : MonoBehaviour
     private void Awake()
     {
         Text = GetComponent<TextMeshProUGUI>();
-        Text.gameObject.SetActive(false);
+        Text.color = new Color(0, 0, 0, 0);
     }
 
     public void GetItem(Item currentItem, int currentItemCount)
@@ -34,14 +34,15 @@ public class Slot : MonoBehaviour
             if(item == currentItem && item.MaxItemCount < itemCount + currentItemCount)
             {
                 itemCount += currentItemCount;
-                Text.gameObject.SetActive(true);
+                Text.color = Color.white;
                 Text.text = itemCount.ToString("0");
             }
         }
     }
     public void GetItemInfo()
     {
-
+        if (item == null) return;
+        ItemInfoUI.Instance.OpenInfo(item);
     }
 
     void ChangeSlot()

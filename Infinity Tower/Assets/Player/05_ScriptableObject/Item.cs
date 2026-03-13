@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StatType { CRIT_RATE, CRIT_DMG, ATK, GOLDBOOST, SPEED, HEALBOOST }
+public enum StatType { ATK, CRIT_RATE, CRIT_DMG, SPEED, GOLDBOOST, HEALBOOST }
 public enum ItemLevel { Common, Rare, Legend }
 public enum EquipType { Weapon, Accessorie }
 [Serializable]
