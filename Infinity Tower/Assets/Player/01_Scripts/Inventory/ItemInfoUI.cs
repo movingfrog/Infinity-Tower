@@ -25,23 +25,25 @@ public class ItemInfoUI : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null) Destroy(gameObject);
         Instance = this;
+        detailPanel = GetComponent<RectTransform>();
         startPos = transform.position;
     }
 
     public void OpenInfo(Item item)
     {
         drawText(item);
-        detailPanel.DOMove(endPos, duration).SetEase(Ease.OutBack);
+        detailPanel.DOAnchorPos(endPos, duration).SetEase(Ease.OutBounce);
     }
-    public void CloseInfo() => detailPanel.DOMove(startPos, duration).SetEase(Ease.OutBack);
+    public void CloseInfo() => detailPanel.DOMove(startPos, duration).SetEase(Ease.OutCirc);
 
     public void drawText(Item item)
     {
         itemImage.sprite = item.spriteImage;
         itemName.text = item.itemName;
         itemInfo.text = item.itemInfo;
-        string itemLevelHex = ColorUtility.ToHtmlStringRGBA(ItemLevelColor[(int)item.level]);
+        string itemLevelHex = "#" + ColorUtility.ToHtmlStringRGB(ItemLevelColor[(int)item.level]);
         if (item.isWearable)
         {
             itemStat.color = statColor;
@@ -55,7 +57,7 @@ public class ItemInfoUI : MonoBehaviour
                     for(int i = 0; i < item.Equips.statModifiers.Count; i++)
                     {
                         itemStat.text += $"{ItemStatName[(int)item.Equips.statModifiers[i].Type]}: " + (item.Equips.statModifiers[i].Type == StatType.ATK ? "+" : "")
-                            + item.Equips.statModifiers[i].Value.ToString("0") + (item.Equips.statModifiers[i].Type != StatType.ATK ? "%" : "");
+                            + item.Equips.statModifiers[i].Value.ToString("0") + (item.Equips.statModifiers[i].Type != StatType.ATK ? "%" : "") + "\n";
                     }
                     break;
             }
