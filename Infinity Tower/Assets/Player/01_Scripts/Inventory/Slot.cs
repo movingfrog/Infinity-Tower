@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,8 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public Image SlotSprite;
     [Range(0, 8)]
     public int slotIndex;
+    [Foldout("¿¹¿Ü ½½·Ô")]
+    public Sprite defaultSprite;
 
     private void Awake()
     {
@@ -43,9 +46,17 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         else
         {
-            SlotSprite.sprite = null;
-            SlotSprite.color = Color.white * 0;
-            if (type == SlotType.Inventory) Text.color = new Color(0, 0, 0, 0);
+            if(type == SlotType.Inventory)
+            {
+                SlotSprite.sprite = null;
+                SlotSprite.color = Color.white * 0;
+                Text.color = new Color(0, 0, 0, 0);
+            }
+            else
+            {
+                SlotSprite.sprite = defaultSprite;
+                SlotSprite.color = new Color(1, 1, 1, .25f);
+            }
         }
     }
     public void GetItemInfo()
@@ -66,18 +77,16 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         dragAfterParent = SlotSprite.rectTransform.parent;
         SlotSprite.rectTransform.SetParent(InventoryManager.Instance.GetComponentInChildren<RectTransform>());
         SlotSprite.transform.SetAsLastSibling();
-        SlotSprite.raycastTarget = false;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!hasDrag) return;
-        //if(eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
-        //{
-        //    InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
-        //}
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
+        {
+            InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex, targetSlot.type, type);
+        }
 
         SlotSprite.rectTransform.SetParent(dragAfterParent);
-        SlotSprite.raycastTarget = true;
     }
 }
     

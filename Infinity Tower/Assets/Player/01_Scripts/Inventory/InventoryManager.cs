@@ -7,6 +7,12 @@ public class InvenItem
     public Item item;
     public int currentItemCount;
 
+    public InvenItem(Item _item, int _itemCount)
+    {
+        item = _item;
+        currentItemCount = _itemCount;
+    }
+
     public void resetItem()
     {
         item = null;
@@ -42,15 +48,50 @@ public class InventoryManager : MonoBehaviour
         Inven.SetActive(!Inven.activeSelf);
     }
 
-    public void swapItem(int startIndex, int targetIndex)
+    public void swapItem(int startIndex, int targetIndex, SlotType targetType, SlotType type)
     {
-        InvenItem temp = invenItem[startIndex];
-        invenItem[startIndex] = invenItem[targetIndex];
-        invenItem[targetIndex] = temp;
+        switch (targetType)
+        {
+            case SlotType.Inventory:
+                if(type == SlotType.Inventory)
+                {
+                    InvenItem temp = invenItem[startIndex];
+                    invenItem[startIndex] = invenItem[targetIndex];
+                    invenItem[targetIndex] = temp;
+                }
+                else
+                {
+                    //하다가 만 곳
+                    //만들어야 할 것
+                    //1. weapon과 accessory배열 합치기
+                    //2. 시작이 inventory가 아닐 때 새 invenitem을 생성해서 끼워주기 만들기
+                    //InvenItem temp = new InvenItem()
+                }
+                break;
+            case SlotType.Weapon:
+                InvenItem weaponTemp = new InvenItem(weaponItem[targetIndex], 0);
+                weaponItem[targetIndex] = invenItem[startIndex].item;
+                invenItem[startIndex] = weaponTemp;
+                break;
+            case SlotType.Accessory:
+
+
+                equipAccessory();
+                break;
+            case SlotType.Import:
+                break;
+        }
 
         refreshAllSlot();
     }
-
+    void equipAccessory()
+    {
+        PlayerStatManager.instance.resetStat();
+        if (accessoryItem[0] != null) for (int i = 0; i < accessoryItem[0].Equips.statModifiers.Count; i++) 
+                PlayerStatManager.instance.statUp(accessoryItem[0].Equips.statModifiers[i].Type, accessoryItem[0].Equips.statModifiers[i].Value);
+        if (accessoryItem[1] != null) for (int i = 0; i < accessoryItem[1].Equips.statModifiers.Count; i++) 
+                PlayerStatManager.instance.statUp(accessoryItem[1].Equips.statModifiers[i].Type, accessoryItem[1].Equips.statModifiers[i].Value);
+    }
     void refreshAllSlot()
     {
         for(int i = 0; i < invenSlot.Length; i++)

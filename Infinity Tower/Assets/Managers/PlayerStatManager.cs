@@ -1,3 +1,4 @@
+using System.ComponentModel.Design.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,8 +27,8 @@ public class PlayerStatManager : MonoBehaviour
     [Range(-1f, 1f)]
     public float Crit_Rate = .3f;
     public float Crit_Dmg = 1.5f;
-    public float Speed;
-    public float Atk;
+    public float Speed = 1;
+    public float Atk = 1;
     public float GoldBoost = 1;
     public float HealBoost = 1;
 
@@ -44,6 +45,29 @@ public class PlayerStatManager : MonoBehaviour
         }
         currentHP = MaxHP;
         ChangeHealth(0);
+    }
+
+    public void resetStat()
+    {
+        Crit_Rate = .3f;
+        Crit_Dmg = 1.5f;
+        Speed = 1;
+        Atk = 0;
+        GoldBoost = 1;
+        HealBoost = 1;
+    }
+
+    public void statUp(StatType stat, float Increase)
+    {
+        switch (stat)
+        {
+            case StatType.ATK: Atk += Increase; break;
+            case StatType.CRIT_RATE: Crit_Rate += Increase / 100; break;
+            case StatType.CRIT_DMG: Crit_Dmg += Increase / 100; break;
+            case StatType.SPEED: Speed += Increase / 100; break;
+            case StatType.GOLDBOOST: GoldBoost += Increase / 100; break;
+            case StatType.HEALBOOST: HealBoost += Increase / 100; break;
+        }
     }
 
     public void ChangeHealth(float amount)
