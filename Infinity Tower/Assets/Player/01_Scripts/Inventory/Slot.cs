@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum SlotType { Inventory, Weapon, Accessory, Import }
+
 public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private TextMeshProUGUI Text;
@@ -11,51 +13,45 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public bool hasDrag;
     Transform dragAfterParent;
     [Header("Slot 加己")]
+    public SlotType type;
     public Image SlotSprite;
-    public bool isEmpty = true;
     [Range(0, 8)]
     public int slotIndex;
-    [Header("酒捞袍 加己")]
-    public Item item;
-    public int itemCount;
 
     private void Awake()
     {
-        Text = GetComponentInChildren<TextMeshProUGUI>();
+        if (type == SlotType.Inventory)
+        {
+            Text = GetComponentInChildren<TextMeshProUGUI>();
+            Text.color = new Color(0, 0, 0, 0);
+        }
         button = GetComponent<Button>();
-        Text.color = new Color(0, 0, 0, 0);
         button.onClick.AddListener(GetItemInfo);
     }
 
-    public void GetItem(Item currentItem, int currentItemCount)
+    public void refrashUI(Item currentItem, int currentItemCount = 0)
     {
-        if (isEmpty)
+        if(currentItem != null)
         {
-            isEmpty = false;
-            item = currentItem;
-            itemCount += currentItemCount;
-            ChangeSlot();
+            SlotSprite.sprite = currentItem.spriteImage;
+            SlotSprite.color = Color.white;
+            if (!currentItem.isWearable)
+            {
+                Text.color = Color.white;
+                Text.text = currentItemCount.ToString("0");
+            }
         }
         else
         {
-            if(item == currentItem && item.MaxItemCount < itemCount + currentItemCount)
-            {
-                itemCount += currentItemCount;
-                Text.color = Color.white;
-                Text.text = itemCount.ToString("0");
-            }
+            SlotSprite.sprite = null;
+            SlotSprite.color = Color.white * 0;
+            if (type == SlotType.Inventory) Text.color = new Color(0, 0, 0, 0);
         }
     }
     public void GetItemInfo()
     {
-        if (item == null) return;
-        ItemInfoUI.Instance.OpenInfo(item);
-    }
-
-    void ChangeSlot()
-    {
-        SlotSprite.sprite = item.spriteImage;
-        SlotSprite.color = Color.white;
+        if (InventoryManager.Instance.invenItem[slotIndex].item == null) return;
+        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.invenItem[slotIndex].item);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -68,14 +64,20 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if (!hasDrag) return;
         dragAfterParent = SlotSprite.rectTransform.parent;
-        SlotSprite.rectTransform.parent = transform.root;
+        SlotSprite.rectTransform.SetParent(InventoryManager.Instance.GetComponentInChildren<RectTransform>());
         SlotSprite.transform.SetAsLastSibling();
+        SlotSprite.raycastTarget = false;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!hasDrag) return;
+        //if(eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
+        //{
+        //    InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
+        //}
+
         SlotSprite.rectTransform.SetParent(dragAfterParent);
-        SlotSprite.rectTransform.position = Vector3.zero;
+        SlotSprite.raycastTarget = true;
     }
 }
     
