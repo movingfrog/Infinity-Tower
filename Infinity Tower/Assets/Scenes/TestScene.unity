@@ -1059,10 +1059,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 502826626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &210379868
 MonoBehaviour:
@@ -1928,6 +1928,7 @@ GameObject:
   - component: {fileID: 295909736}
   - component: {fileID: 295909738}
   - component: {fileID: 295909737}
+  - component: {fileID: 295909739}
   m_Layer: 0
   m_Name: Image (5)
   m_TagString: Untagged
@@ -1993,6 +1994,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295909735}
   m_CullTransparentMesh: 1
+--- !u!114 &295909739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295909735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 80}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &308779852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,7 +2444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a8d46f46a03974f8c80ae63ae60640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot
-  hasDrag: 0
+  hasDrag: 1
   type: 1
   SlotSprite: {fileID: 2021812426}
   slotIndex: 1
@@ -3408,6 +3433,7 @@ GameObject:
   - component: {fileID: 502826626}
   - component: {fileID: 502826628}
   - component: {fileID: 502826627}
+  - component: {fileID: 502826629}
   m_Layer: 0
   m_Name: Image (5)
   m_TagString: Untagged
@@ -3473,6 +3499,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502826625}
   m_CullTransparentMesh: 1
+--- !u!114 &502826629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502826625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 80}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &506564254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,10 +3787,9 @@ MonoBehaviour:
   - {fileID: 517965145}
   - {fileID: 544521277}
   - {fileID: 2096157966}
-  weaponSlot:
+  equipSlot:
   - {fileID: 2002424262}
   - {fileID: 328221359}
-  accessorySlot:
   - {fileID: 1874756600}
   - {fileID: 819081338}
   importSlot:
@@ -3767,10 +3816,9 @@ MonoBehaviour:
     currentItemCount: 0
   - item: {fileID: 0}
     currentItemCount: 0
-  weaponItem:
+  equipItem:
   - {fileID: 0}
   - {fileID: 0}
-  accessoryItem:
   - {fileID: 0}
   - {fileID: 0}
   importItem:
@@ -21297,10 +21345,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 295909736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694616220
 MonoBehaviour:
@@ -22255,10 +22303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a8d46f46a03974f8c80ae63ae60640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot
-  hasDrag: 0
+  hasDrag: 1
   type: 2
   SlotSprite: {fileID: 694616220}
-  slotIndex: 1
+  slotIndex: 3
   defaultSprite: {fileID: 21300000, guid: c94951c7cf65d462daaa40d56df07096, type: 3}
 --- !u!224 &828610357 stripped
 RectTransform:
@@ -27545,10 +27593,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a8d46f46a03974f8c80ae63ae60640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot
-  hasDrag: 0
+  hasDrag: 1
   type: 2
   SlotSprite: {fileID: 210379868}
-  slotIndex: 0
+  slotIndex: 2
   defaultSprite: {fileID: 21300000, guid: 0c2422132a0144f3aa262a286fc30258, type: 3}
 --- !u!1 &1891086158
 GameObject:
@@ -28664,7 +28712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a8d46f46a03974f8c80ae63ae60640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slot
-  hasDrag: 0
+  hasDrag: 1
   type: 1
   SlotSprite: {fileID: 776610865}
   slotIndex: 0

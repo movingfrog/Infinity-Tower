@@ -28,12 +28,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject Inven;
     [Header("인벤 주요 기능")]
     public Slot[] invenSlot;
-    public Slot[] weaponSlot;
-    public Slot[] accessorySlot;
+    public Slot[] equipSlot;
     public Slot[] importSlot;
     public InvenItem[] invenItem = new InvenItem[9];
-    public Item[] weaponItem = new Item[2];
-    public Item[] accessoryItem = new Item[2];
+    public Item[] equipItem = new Item[4];
     public Item[] importItem = new Item[4];
 
 
@@ -61,22 +59,30 @@ public class InventoryManager : MonoBehaviour
                 }
                 else
                 {
-                    //하다가 만 곳
-                    //만들어야 할 것
-                    //1. weapon과 accessory배열 합치기
-                    //2. 시작이 inventory가 아닐 때 새 invenitem을 생성해서 끼워주기 만들기
-                    //InvenItem temp = new InvenItem()
+                    if ( invenItem[targetIndex].item == null || invenItem[targetIndex].item.isWearable)
+                    {
+                        InvenItem temp = new InvenItem(equipItem[startIndex], 1);
+                        equipItem[startIndex] = invenItem[targetIndex].item;
+                        invenItem[targetIndex] = temp;
+                    }
                 }
                 break;
             case SlotType.Weapon:
-                InvenItem weaponTemp = new InvenItem(weaponItem[targetIndex], 0);
-                weaponItem[targetIndex] = invenItem[startIndex].item;
-                invenItem[startIndex] = weaponTemp;
+                if (invenItem[startIndex].item.isWearable)
+                {
+                    InvenItem weaponTemp = new InvenItem(equipItem[targetIndex], 1);
+                    equipItem[targetIndex] = invenItem[startIndex].item;
+                    invenItem[startIndex] = weaponTemp;
+                }
                 break;
             case SlotType.Accessory:
-
-
-                equipAccessory();
+                if (invenItem[startIndex].item.isWearable)    
+                {
+                    InvenItem accessoryTemp = new InvenItem(equipItem[targetIndex], 1);
+                    equipItem[targetIndex] = invenItem[startIndex].item;
+                    invenItem[startIndex] = accessoryTemp;
+                    equipAccessory();
+                }
                 break;
             case SlotType.Import:
                 break;
@@ -87,10 +93,10 @@ public class InventoryManager : MonoBehaviour
     void equipAccessory()
     {
         PlayerStatManager.instance.resetStat();
-        if (accessoryItem[0] != null) for (int i = 0; i < accessoryItem[0].Equips.statModifiers.Count; i++) 
-                PlayerStatManager.instance.statUp(accessoryItem[0].Equips.statModifiers[i].Type, accessoryItem[0].Equips.statModifiers[i].Value);
-        if (accessoryItem[1] != null) for (int i = 0; i < accessoryItem[1].Equips.statModifiers.Count; i++) 
-                PlayerStatManager.instance.statUp(accessoryItem[1].Equips.statModifiers[i].Type, accessoryItem[1].Equips.statModifiers[i].Value);
+        if (equipItem[2] != null) for (int i = 0; i < equipItem[2].Equips.statModifiers.Count; i++) 
+                PlayerStatManager.instance.statUp(equipItem[2].Equips.statModifiers[i].Type, equipItem[2].Equips.statModifiers[i].Value);
+        if (equipItem[3] != null) for (int i = 0; i < equipItem[3].Equips.statModifiers.Count; i++)
+                PlayerStatManager.instance.statUp(equipItem[3].Equips.statModifiers[i].Type, equipItem[3].Equips.statModifiers[i].Value);
     }
     void refreshAllSlot()
     {
@@ -98,10 +104,9 @@ public class InventoryManager : MonoBehaviour
         {
             invenSlot[i].refrashUI(invenItem[i].item, invenItem[i].currentItemCount);
         }
-        for (int i = 0; i < weaponSlot.Length; i++)
+        for (int i = 0; i < equipSlot.Length; i++)
         {
-            weaponSlot[i].refrashUI(weaponItem[i]);
-            accessorySlot[i].refrashUI(accessoryItem[i]);
+            equipSlot[i].refrashUI(equipItem[i]);
         }
         for(int i = 0;i< importSlot.Length; i++)
         {
