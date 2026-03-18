@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum SlotType { Inventory, Weapon, Accessory, Import }
+public enum SlotType { Inventory, Weapon, Accessories, Import }
 
 public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -16,7 +16,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     [Header("Slot 속성")]
     public SlotType type;
     public Image SlotSprite;
-    [Range(0, 8)]
+    [Range(0, 16)]
     public int slotIndex;
     [Foldout("예외 슬롯")]
     public Sprite defaultSprite;
@@ -32,16 +32,16 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         button.onClick.AddListener(GetItemInfo);
     }
 
-    public void refrashUI(Item currentItem, int currentItemCount = 0)
+    public void refrashUI(InvenItem currentItem)
     {
-        if(currentItem != null)
+        if(currentItem.item != null)
         {
-            SlotSprite.sprite = currentItem.spriteImage;
+            SlotSprite.sprite = currentItem.item.spriteImage;
             SlotSprite.color = Color.white;
-            if (!currentItem.isWearable)
+            if (!currentItem.item.isEquippable)
             {
                 Text.color = Color.white;
-                Text.text = currentItemCount.ToString("0");
+                Text.text = currentItem.currentItemCount.ToString("0");
             }
         }
         else
@@ -61,8 +61,8 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void GetItemInfo()
     {
-        if (InventoryManager.Instance.invenItem[slotIndex].item == null) return;
-        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.invenItem[slotIndex].item);
+        if (InventoryManager.Instance.allItem[slotIndex].item == null) return;
+        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.allItem[slotIndex].item);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -83,7 +83,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (!hasDrag) return;
         if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
         {
-            InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex, targetSlot.type, type);
+            InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
         }
 
         SlotSprite.rectTransform.SetParent(dragAfterParent);

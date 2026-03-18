@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,12 +28,12 @@ public class InventoryManager : MonoBehaviour
     [Header("인벤 열고 닫는 기능")]
     public GameObject Inven;
     [Header("인벤 주요 기능")]
-    public Slot[] invenSlot;
-    public Slot[] equipSlot;
-    public Slot[] importSlot;
-    public InvenItem[] invenItem = new InvenItem[9];
-    public Item[] equipItem = new Item[4];
-    public Item[] importItem = new Item[4];
+    public Slot[] allSlot;
+    public InvenItem[] allItem = new InvenItem[17];
+    private const int INVEN_START = 0;
+    private const int WEAPON_START = 9;
+    private const int ACCESSORY_START = 11;
+    private const int IMPORT_START = 13;
 
 
     private void Awake()
@@ -46,71 +47,39 @@ public class InventoryManager : MonoBehaviour
         Inven.SetActive(!Inven.activeSelf);
     }
 
-    public void swapItem(int startIndex, int targetIndex, SlotType targetType, SlotType type)
+    bool canPlace(int targetIndex, InvenItem draggingItem)
     {
-        switch (targetType)
-        {
-            case SlotType.Inventory:
-                if(type == SlotType.Inventory)
-                {
-                    InvenItem temp = invenItem[startIndex];
-                    invenItem[startIndex] = invenItem[targetIndex];
-                    invenItem[targetIndex] = temp;
-                }
-                else
-                {
-                    if ( invenItem[targetIndex].item == null || invenItem[targetIndex].item.isWearable)
-                    {
-                        InvenItem temp = new InvenItem(equipItem[startIndex], 1);
-                        equipItem[startIndex] = invenItem[targetIndex].item;
-                        invenItem[targetIndex] = temp;
-                    }
-                }
-                break;
-            case SlotType.Weapon:
-                if (invenItem[startIndex].item.isWearable)
-                {
-                    InvenItem weaponTemp = new InvenItem(equipItem[targetIndex], 1);
-                    equipItem[targetIndex] = invenItem[startIndex].item;
-                    invenItem[startIndex] = weaponTemp;
-                }
-                break;
-            case SlotType.Accessory:
-                if (invenItem[startIndex].item.isWearable)    
-                {
-                    InvenItem accessoryTemp = new InvenItem(equipItem[targetIndex], 1);
-                    equipItem[targetIndex] = invenItem[startIndex].item;
-                    invenItem[startIndex] = accessoryTemp;
-                    equipAccessory();
-                }
-                break;
-            case SlotType.Import:
-                break;
-        }
+        SlotType targetType = allSlot[targetIndex].type;
 
+        if (targetType == SlotType.Inventory) return true;
+
+        return targetType == draggingItem.item.slotType;
+    }
+
+    public void swapItem(int startIndex, int targetIndex)
+    {
+        if (!canPlace(targetIndex, allItem[startIndex])) return;
+
+        InvenItem temp = allItem[startIndex];
+        allItem[startIndex] = allItem[targetIndex];
+        allItem[targetIndex] = temp;
+
+        if (allSlot[targetIndex].type == SlotType.Accessories) equipAccessories();
         refreshAllSlot();
     }
-    void equipAccessory()
+    void equipAccessories()
     {
         PlayerStatManager.instance.resetStat();
-        if (equipItem[2] != null) for (int i = 0; i < equipItem[2].Equips.statModifiers.Count; i++) 
-                PlayerStatManager.instance.statUp(equipItem[2].Equips.statModifiers[i].Type, equipItem[2].Equips.statModifiers[i].Value);
-        if (equipItem[3] != null) for (int i = 0; i < equipItem[3].Equips.statModifiers.Count; i++)
-                PlayerStatManager.instance.statUp(equipItem[3].Equips.statModifiers[i].Type, equipItem[3].Equips.statModifiers[i].Value);
+        if (allItem[ACCESSORY_START].item != null) for (int i = 0; i < allItem[ACCESSORY_START].item.Equips.statModifiers.Count; i++) 
+                PlayerStatManager.instance.statUp(allItem[ACCESSORY_START].item.Equips.statModifiers[i].Type, allItem[ACCESSORY_START].item.Equips.statModifiers[i].Value);
+        if (allItem[ACCESSORY_START + 1].item != null) for (int i = 0; i < allItem[ACCESSORY_START + 1].item.Equips.statModifiers.Count; i++)
+                PlayerStatManager.instance.statUp(allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Type, allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Value);
     }
     void refreshAllSlot()
     {
-        for(int i = 0; i < invenSlot.Length; i++)
+        for(int i = 0; i < allSlot.Length; i++)
         {
-            invenSlot[i].refrashUI(invenItem[i].item, invenItem[i].currentItemCount);
-        }
-        for (int i = 0; i < equipSlot.Length; i++)
-        {
-            equipSlot[i].refrashUI(equipItem[i]);
-        }
-        for(int i = 0;i< importSlot.Length; i++)
-        {
-            importSlot[i].refrashUI(importItem[i]);
+            allSlot[i].refrashUI(allItem[i]);
         }
     }
 

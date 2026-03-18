@@ -44,15 +44,15 @@ public class ItemInfoUI : MonoBehaviour
         itemName.text = item.itemName;
         itemInfo.text = item.itemInfo;
         string itemLevelHex = "#" + ColorUtility.ToHtmlStringRGB(ItemLevelColor[(int)item.level]);
-        if (item.isWearable)
+        if (item.isEquippable)
         {
             itemStat.color = statColor;
-            switch (item.Equips.type)
+            switch (item.slotType)
             {
-                case EquipType.Weapon:
+                case SlotType.Weapon:
                     itemStat.text = $"{ItemStatName[0]}: +{item.Equips.itemDamage}";
                     break;
-                case EquipType.Accessorie:
+                case SlotType.Accessories:
                     itemStat.text = "";
                     for(int i = 0; i < item.Equips.statModifiers.Count; i++)
                     {

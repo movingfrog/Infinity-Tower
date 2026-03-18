@@ -5,7 +5,6 @@ using UnityEngine;
 
 public enum StatType { ATK, CRIT_RATE, CRIT_DMG, SPEED, GOLDBOOST, HEALBOOST }
 public enum ItemLevel { Common, Rare, Legend }
-public enum EquipType { Weapon, Accessorie }
 [Serializable]
 public class StatModifier
 {
@@ -15,7 +14,6 @@ public class StatModifier
 [Serializable]
 public class EquipmentClass
 {
-    public EquipType type;
     [Foldout("무기 아이템")]
     public uint itemDamage;
     [Foldout("악세서리 아이템")]
@@ -30,8 +28,9 @@ public class Item : ScriptableObject
     public string itemName;
     public string itemInfo;
     public ItemLevel level;
+    public SlotType slotType;
     public int MaxItemCount;
-    public bool isWearable;
+    public bool isEquippable;
     [Foldout("장비들")]
     public EquipmentClass Equips;
 }
