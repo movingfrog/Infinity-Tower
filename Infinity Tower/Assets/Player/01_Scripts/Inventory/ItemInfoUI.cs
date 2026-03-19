@@ -41,6 +41,7 @@ public class ItemInfoUI : MonoBehaviour
     public void drawText(Item item)
     {
         itemImage.sprite = item.spriteImage;
+        itemName.color = ItemLevelColor[(int)item.level];
         itemName.text = item.itemName;
         itemInfo.text = item.itemInfo;
         string itemLevelHex = "#" + ColorUtility.ToHtmlStringRGB(ItemLevelColor[(int)item.level]);

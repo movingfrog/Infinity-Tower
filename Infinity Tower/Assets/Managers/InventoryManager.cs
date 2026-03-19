@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -45,6 +46,34 @@ public class InventoryManager : MonoBehaviour
     public void OnInven()
     {
         Inven.SetActive(!Inven.activeSelf);
+    }
+
+    public void GetItem(Item dropItem, int amount)
+    {
+        int i = INVEN_START;
+        while(amount > 0 && i < WEAPON_START)
+        {
+            if (allItem[i].item == null)
+            {
+                int addCount = Mathf.Min(dropItem.MaxItemCount, amount);
+                allItem[i] = new InvenItem(dropItem, addCount);
+                amount -= addCount;
+            }
+            else if (allItem[i].item == dropItem && !dropItem.isEquippable)
+            {
+                int spaceLeft = dropItem.MaxItemCount - allItem[i].currentItemCount;
+                if(spaceLeft > 0)
+                {
+                    int addCount = Mathf.Min(spaceLeft, amount);
+                    allItem[i].currentItemCount += addCount;
+                    amount -= addCount;
+                }
+            }
+
+            i++;
+        }
+
+        refreshAllSlot();
     }
 
     bool canPlace(int targetIndex, InvenItem draggingItem)

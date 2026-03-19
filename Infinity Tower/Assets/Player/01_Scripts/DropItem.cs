@@ -1,13 +1,19 @@
-using JetBrains.Annotations;
-using UnityEditor.EventSystems;
 using UnityEngine;
 
-public class DropItem : MonoBehaviour
+public abstract class DropItem : MonoBehaviour
 {
-    public float moveSpeed;
-    public float getSize;
-    public float moveSize;
+    [Header("æ∆¿Ã≈€ ¡§∫∏")]
+    public Item item;
+    [Header("æ∆¿Ã≈€ »πµÊ")]
+    public float moveSpeed = 1;
+    public float getSize = .75f;
+    public float moveSize = 1;
     public LayerMask player;
+
+    private void Awake()
+    {
+        GetComponent<SpriteRenderer>().sprite = item.spriteImage;
+    }
 
     private void FixedUpdate()
     {
@@ -15,13 +21,23 @@ public class DropItem : MonoBehaviour
 
         if (outPlayer != null)
         {
-            transform.position = Vector3.Lerp(transform.position, outPlayer.transform.position, moveSpeed * Time.deltaTime);
             if ((transform.position - outPlayer.transform.position).magnitude <= getSize)
             {
-                Destroy(gameObject);
+                getItem();
+            }
+            else
+            {
+                moveItem(outPlayer);
             }
         }
     }
+
+    protected virtual void moveItem(Collider2D outPlayer)
+    {
+        transform.position = Vector3.Lerp(transform.position, outPlayer.transform.position, moveSpeed * Time.deltaTime);
+    }
+
+    protected abstract void getItem();
 
     private void OnDrawGizmos()
     {

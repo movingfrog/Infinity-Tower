@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
-  m_Name: SpeedRing
+  m_Name: CriticalRing
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: 4215945548530567760, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
-  itemName: "\uBC14\uB78C\uC774 \uB2F4\uAE34 \uBC18\uC9C0"
-  itemInfo: "\uB9C8\uBC95\uC774 \uB2F4\uAE34 \uAE30\uBCF8 \uBC18\uC9C0\\n\uBAB8\uC774
-    \uAC00\uBCCD\uB2E4"
-  level: 0
+  spriteImage: {fileID: -4835467516592528276, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  itemName: "\uC815\uAD50\uD55C \uD30C\uAD34\uC790\uC758 \uBC18\uC9C0"
+  itemInfo: "\uB9C8\uBC95\uC758 \uD798\uC73C\uB85C \uC815\uAD50\uD558\uACE0 \uAC15\uB825\uD558\uAC8C
+    \uACF5\uACA9\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uB294 \uBC18\uC9C0"
+  level: 1
   slotType: 2
   MaxItemCount: 1
   isEquippable: 1
   Equips:
     itemDamage: 0
     statModifiers:
-    - Type: 3
-      Value: 30
+    - Type: 1
+      Value: 35
+    - Type: 2
+      Value: 50
