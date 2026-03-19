@@ -11,12 +11,15 @@ public class DropItem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, moveSize);
+        Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, moveSize, player);
 
-        if(outPlayer != null)
+        if (outPlayer != null)
         {
             transform.position = Vector3.Lerp(transform.position, outPlayer.transform.position, moveSpeed * Time.deltaTime);
-            if ((transform.position - outPlayer.transform.position).magnitude <= getSize) Destroy(gameObject);
+            if ((transform.position - outPlayer.transform.position).magnitude <= getSize)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

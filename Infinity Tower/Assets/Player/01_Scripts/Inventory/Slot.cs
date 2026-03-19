@@ -81,7 +81,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!hasDrag) return;
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
+        if ( eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot))
         {
             InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
         }
