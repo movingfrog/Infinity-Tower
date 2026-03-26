@@ -44,11 +44,11 @@ public class InventoryManager : MonoBehaviour
     public void OnInven()
     {
         if (
-            !PlayerStatManager.instance.getState()
+            !PlayerStatManager.instance.getState(PlayerState.Idle)
             && PlayerStatManager.instance.currentState != PlayerState.InvenOpen
         )
             return;
-        if (PlayerStatManager.instance.getState())
+        if (PlayerStatManager.instance.getState(PlayerState.Idle))
         {
             Inven.SetActive(true);
             PlayerStatManager.instance.ChangeState(PlayerState.InvenOpen);

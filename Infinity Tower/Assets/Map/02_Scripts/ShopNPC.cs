@@ -9,6 +9,4 @@ public class ShopNPC : NPC
         ShopUI.SetActive(true);
         PlayerStatManager.instance.ChangeState(PlayerState.ShopOpen);
     }
-
-    public override void OnCancelAction() { }
 }

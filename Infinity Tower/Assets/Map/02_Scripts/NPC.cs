@@ -5,6 +5,7 @@ public abstract class NPC : MonoBehaviour
     [Header("NPC ¼Ó¼º")]
     public string NPCName;
     public string[] dialogueLines;
+    public string[] addDialogueLine;
     public string selectAText;
     public string selectBText;
 
@@ -28,7 +29,7 @@ public abstract class NPC : MonoBehaviour
 
     public void OnInteract()
     {
-        if (isIn && PlayerStatManager.instance.getState())
+        if (isIn && PlayerStatManager.instance.getState(PlayerState.Idle))
         {
             PlayerStatManager.instance.ChangeState(PlayerState.Interacting);
             NPCUI.instance.SettingUI(
@@ -43,7 +44,11 @@ public abstract class NPC : MonoBehaviour
     }
 
     public abstract void OnConfirmAction();
-    public abstract void OnCancelAction();
+
+    public virtual void OnCancelAction()
+    {
+        NPCUI.instance.SettingUI(NPCName, addDialogueLine, "noting", "noting", null, null);
+    }
 
     private void OnDrawGizmos()
     {

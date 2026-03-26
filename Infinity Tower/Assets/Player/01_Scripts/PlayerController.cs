@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -86,6 +87,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+            return;
         movement = value.Get<Vector2>();
         if (movement.x != 0)
             transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
@@ -93,6 +99,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+            return;
         if (jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
             if (isDashing)
@@ -105,6 +116,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash()
     {
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+            return;
         if (!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
         {
             if (dashCool != null)

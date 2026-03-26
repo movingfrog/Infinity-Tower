@@ -110,7 +110,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public void ChangeState(PlayerState State) => currentState = State;
 
-    public bool getState() => currentState == PlayerState.Idle;
+    public bool getState(PlayerState compareState) => currentState == compareState;
 
     public void resetState() => currentState = PlayerState.Idle;
 }

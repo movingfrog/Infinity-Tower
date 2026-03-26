@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class NPCUI : MonoBehaviour
@@ -9,6 +10,7 @@ public class NPCUI : MonoBehaviour
     public static NPCUI instance;
 
     private Button button;
+    private int selectNum;
 
     [Header("UI속성")]
     public TextMeshProUGUI NPCName;
@@ -20,7 +22,11 @@ public class NPCUI : MonoBehaviour
     public GameObject TextBoxUI;
     public GameObject selectObject;
 
-    [Header("세팅")]
+    [Header("선택 UI위치")]
+    public Image selectArrow;
+    public RectTransform[] selectPos;
+
+    [Header("대사 세팅")]
     public float typingSpeed = .05f;
 
     private Tween typingTween;
@@ -101,7 +107,19 @@ public class NPCUI : MonoBehaviour
     private void ShowSelect()
     {
         isTyping = false;
-        selectObject.SetActive(true);
+        if (onSelectA != null && onSelectB != null)
+            selectObject.SetActive(true);
+        else
+            CloseUI();
+    }
+
+    private void ExecuteSelect()
+    {
+        CloseUI();
+        if (selectNum == 0)
+            onSelectA.Invoke();
+        else
+            onSelectB.Invoke();
     }
 
     private void CloseUI()
@@ -110,6 +128,21 @@ public class NPCUI : MonoBehaviour
         selectObject.SetActive(false);
         TextBoxUI.SetActive(false);
         PlayerStatManager.instance.resetState();
+    }
+
+    private void UpdateSelectUI()
+    {
+        selectArrow.rectTransform.anchoredPosition = selectPos[selectNum].anchoredPosition;
+    }
+
+    public void OnSelect(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
+        if (input.y != 0)
+        {
+            selectNum += (((int)input.y) + 2) % 2;
+            UpdateSelectUI();
+        }
     }
 
     public void OnInteract()
@@ -126,7 +159,7 @@ public class NPCUI : MonoBehaviour
             }
             else
             {
-                Debug.Log("선택된 옵션을 실행");
+                ExecuteSelect();
             }
         }
     }
