@@ -67,7 +67,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,7 +105,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -135,10 +135,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 33
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_2
       rect:
         serializedVersion: 2
-        x: 49
+        x: 32
         y: 0
-        width: 14
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_3
       rect:
         serializedVersion: 2
-        x: 67
+        x: 48
         y: 0
-        width: 10
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_4
       rect:
         serializedVersion: 2
-        x: 84
+        x: 64
         y: 0
-        width: 8
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_5
       rect:
         serializedVersion: 2
-        x: 101
+        x: 80
         y: 0
-        width: 6
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -265,12 +265,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_6
       rect:
         serializedVersion: 2
-        x: 116
+        x: 96
         y: 0
-        width: 8
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -287,12 +287,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_7
       rect:
         serializedVersion: 2
-        x: 131
+        x: 112
         y: 0
-        width: 10
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -309,12 +309,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_8
       rect:
         serializedVersion: 2
-        x: 145
+        x: 128
         y: 0
-        width: 14
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -331,12 +331,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_9
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -353,12 +353,12 @@ TextureImporter:
       name: gem_round_16x16_12f_0d_10
       rect:
         serializedVersion: 2
-        x: 175
+        x: 160
         y: 0
-        width: 17
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -371,11 +371,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: gem_round_16x16_12f_0d_11
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c6b4328fea7894d935bc55d085432e
+      internalID: -817359866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d1dc4c5553e502a49be6314e24cdb732
     internalID: 0
     vertices: []
     indices: 
@@ -383,11 +405,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       gem_round_16x16_12f_0d_0: -215253152408261627
       gem_round_16x16_12f_0d_1: -1602916942051226340
       gem_round_16x16_12f_0d_10: -4730432106654496566
+      gem_round_16x16_12f_0d_11: -817359866
       gem_round_16x16_12f_0d_2: -7969327053913403402
       gem_round_16x16_12f_0d_3: 5541147228153270466
       gem_round_16x16_12f_0d_4: -6775319386242722364
