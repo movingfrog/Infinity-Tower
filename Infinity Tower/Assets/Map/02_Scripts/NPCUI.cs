@@ -9,6 +9,7 @@ public class NPCUI : MonoBehaviour
 {
     public static NPCUI instance;
 
+    [SerializeField]
     private Button button;
     private int selectNum;
 
@@ -40,7 +41,6 @@ public class NPCUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        button = GetComponent<Button>();
         button.onClick.AddListener(OnInteract);
         selectObject.SetActive(false);
     }
@@ -137,6 +137,8 @@ public class NPCUI : MonoBehaviour
 
     public void OnSelect(InputValue value)
     {
+        if (!selectObject.activeSelf)
+            return;
         Vector2 input = value.Get<Vector2>();
         if (input.y != 0)
         {

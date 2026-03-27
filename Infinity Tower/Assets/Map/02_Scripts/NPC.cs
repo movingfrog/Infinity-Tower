@@ -29,6 +29,7 @@ public abstract class NPC : MonoBehaviour
 
     public void OnInteract()
     {
+        Debug.Log("dslkfj");
         if (isIn && PlayerStatManager.instance.getState(PlayerState.Idle))
         {
             PlayerStatManager.instance.ChangeState(PlayerState.Interacting);
