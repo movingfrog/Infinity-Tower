@@ -4,13 +4,14 @@ public abstract class DropItem : MonoBehaviour
 {
     [Header("æ∆¿Ã≈€ ¡§∫∏")]
     public Item item;
+
     [Header("æ∆¿Ã≈€ »πµÊ")]
     public float moveSpeed = 1;
     public float getSize = .75f;
     public float moveSize = 1;
     public LayerMask player;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         GetComponent<SpriteRenderer>().sprite = item.spriteImage;
     }
@@ -34,7 +35,11 @@ public abstract class DropItem : MonoBehaviour
 
     protected virtual void moveItem(Collider2D outPlayer)
     {
-        transform.position = Vector3.Lerp(transform.position, outPlayer.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(
+            transform.position,
+            outPlayer.transform.position,
+            moveSpeed * Time.deltaTime
+        );
     }
 
     protected abstract void getItem();

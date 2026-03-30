@@ -1,10 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionItem : DropItem
 {
     private Color[] rarityColor = { Color.white, Color.cyan, Color.yellow };
     private GameObject InstItemInfo;
+
+    private void OnEnable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started += InteractGetItem;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started -= InteractGetItem;
+    }
 
     private void Start()
     {
@@ -15,14 +26,15 @@ public class InteractionItem : DropItem
         InstItemInfo.SetActive(false);
     }
 
+    public void InteractGetItem(InputAction.CallbackContext callback)
+    {
+        InventoryManager.Instance.GetItem(item, 1);
+        Destroy(gameObject);
+    }
+
     protected override void getItem()
     {
         InstItemInfo.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            InventoryManager.Instance.GetItem(item, 1);
-            Destroy(gameObject);
-        }
     }
 
     protected override void moveItem(Collider2D outPlayer)
@@ -30,6 +42,7 @@ public class InteractionItem : DropItem
         InstItemInfo.SetActive(false);
         base.moveItem(outPlayer);
     }
+
     private void OnDestroy()
     {
         if (InventoryManager.Instance != null && InstItemInfo != null)

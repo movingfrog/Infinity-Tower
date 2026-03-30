@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     {
         get
         {
-            if(null == instance)
+            if (null == instance)
             {
                 return null;
             }
@@ -22,19 +22,18 @@ public class TimeManager : MonoBehaviour
 
     public bool isRewinding { get; private set; }
     public int _currentFrameAgo = 0;
-    private InputSystem_Actions inputs;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else Destroy(gameObject);
-
-        inputs = new InputSystem_Actions();
+        else
+            Destroy(gameObject);
     }
+
     private void Start()
     {
         StartCoroutine(setupPlayerBody());
@@ -49,23 +48,23 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        inputs.Player.Enable();
-
-        inputs.Player.Skill.started += StartRewind;
-        inputs.Player.Skill.canceled += StopRewind;
+        InputManager.Instance.inputActions.Player.Skill.started += StartRewind;
+        InputManager.Instance.inputActions.Player.Skill.canceled += StopRewind;
     }
+
     private void OnDisable()
     {
-        inputs.Player.Skill.started -= StartRewind;
-        inputs.Player.Skill.canceled -= StopRewind;
-
-        inputs.Player.Disable();
+        InputManager.Instance.inputActions.Player.Skill.started -= StartRewind;
+        InputManager.Instance.inputActions.Player.Skill.canceled -= StopRewind;
     }
 
     private void FixedUpdate()
     {
-        if (playerBody == null) return;
-        if (_currentFrameAgo >= playerBody.currentCount/*플레이어 현재 기록의 수로 비교 필요*/)
+        if (playerBody == null)
+            return;
+        if (
+            _currentFrameAgo >= playerBody.currentCount /*플레이어 현재 기록의 수로 비교 필요*/
+        )
         {
             Debug.Log("log");
             StopRewind();
@@ -74,7 +73,7 @@ public class TimeManager : MonoBehaviour
         {
             _currentFrameAgo++;
 
-            foreach(var obj in timeBodies)
+            foreach (var obj in timeBodies)
             {
                 obj.Rewind(_currentFrameAgo);
             }
@@ -86,16 +85,17 @@ public class TimeManager : MonoBehaviour
         isRewinding = true;
         _currentFrameAgo = 0;
     }
-    
+
     public void StopRewind(InputAction.CallbackContext callback)
     {
         StopRewind();
     }
+
     public void StopRewind()
     {
         isRewinding = false;
 
-        foreach(var obj in timeBodies)
+        foreach (var obj in timeBodies)
         {
             obj.ResetTimeDataAfterRewind(_currentFrameAgo);
         }

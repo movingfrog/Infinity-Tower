@@ -2,22 +2,55 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    private static InputManager _instance;
+    private static InputSystem_Actions _inputAction;
 
-    public InputSystem_Actions inputActions { get; private set; }
+    public static InputManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<InputManager>();
+                if (_instance == null)
+                {
+                    var obj = new GameObject("InputManager");
+                    _instance = obj.AddComponent<InputManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    public InputSystem_Actions inputActions
+    {
+        get
+        {
+            if (_inputAction == null)
+            {
+                _inputAction = new InputSystem_Actions();
+                _inputAction.Enable();
+            }
+            return _inputAction;
+        }
+    }
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null || _instance == this)
         {
-            Instance = this;
-            inputActions = new InputSystem_Actions();
-            inputActions.Enable();
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
-        {
             Destroy(gameObject);
-        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance != null)
+            _instance = null;
+        if (_inputAction != null)
+            _inputAction = null;
     }
 }

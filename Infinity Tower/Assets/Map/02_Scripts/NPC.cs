@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class NPC : MonoBehaviour
 {
@@ -15,6 +16,16 @@ public abstract class NPC : MonoBehaviour
     public float radius;
     public bool isIn;
 
+    private void OnEnable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started += OnInteract;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started -= OnInteract;
+    }
+
     protected void FixedUpdate()
     {
         Collider2D Player = Physics2D.OverlapCircle(transform.position, radius, PlayerLayer);
@@ -27,7 +38,7 @@ public abstract class NPC : MonoBehaviour
         }
     }
 
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext callback)
     {
         Debug.Log("dslkfj");
         if (isIn && PlayerStatManager.instance.getState(PlayerState.Idle))
