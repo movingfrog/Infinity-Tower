@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class InvenItem
@@ -41,7 +42,17 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnInven()
+    private void OnEnable()
+    {
+        InputManager.Instance.inputActions.Player.Inven.started += OnInven;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.inputActions.Player.Inven.started -= OnInven;
+    }
+
+    public void OnInven(InputAction.CallbackContext callback)
     {
         if (
             !PlayerStatManager.instance.getState(PlayerState.Idle)
