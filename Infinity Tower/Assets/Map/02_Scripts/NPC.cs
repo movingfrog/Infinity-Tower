@@ -40,7 +40,6 @@ public abstract class NPC : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext callback)
     {
-        Debug.Log("dslkfj");
         if (isIn && PlayerStatManager.instance.getState(PlayerState.Idle))
         {
             PlayerStatManager.instance.ChangeState(PlayerState.Interacting);
@@ -59,6 +58,7 @@ public abstract class NPC : MonoBehaviour
 
     public virtual void OnCancelAction()
     {
+        PlayerStatManager.instance.ChangeState(PlayerState.Interacting);
         NPCUI.instance.SettingUI(NPCName, addDialogueLine, "noting", "noting", null, null);
     }
 

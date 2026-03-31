@@ -42,6 +42,8 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start() => refreshAllSlot();
+
     private void OnEnable()
     {
         InputManager.Instance.inputActions.Player.Inven.started += OnInven;

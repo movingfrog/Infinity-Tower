@@ -90,10 +90,18 @@ public class PlayerController : MonoBehaviour
             !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
             && !PlayerStatManager.instance.getState(PlayerState.Idle)
         )
-            return;
-        movement = value.Get<Vector2>();
-        if (movement.x != 0)
-            transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
+        {
+            if (PlayerStatManager.instance.getState(PlayerState.Interacting))
+            {
+                NPCUI.instance.OnSelect(value);
+            }
+        }
+        else
+        {
+            movement = value.Get<Vector2>();
+            if (movement.x != 0)
+                transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
+        }
     }
 
     public void OnJump()

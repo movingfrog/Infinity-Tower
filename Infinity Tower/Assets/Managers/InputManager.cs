@@ -51,6 +51,6 @@ public class InputManager : MonoBehaviour
         if (_instance != null)
             _instance = null;
         if (_inputAction != null)
-            _inputAction = null;
+            _inputAction.Disable();
     }
 }

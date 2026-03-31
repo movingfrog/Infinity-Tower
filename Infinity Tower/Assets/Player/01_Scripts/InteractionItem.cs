@@ -28,6 +28,8 @@ public class InteractionItem : DropItem
 
     public void InteractGetItem(InputAction.CallbackContext callback)
     {
+        if (!InstItemInfo.activeSelf)
+            return;
         InventoryManager.Instance.GetItem(item, 1);
         Destroy(gameObject);
     }

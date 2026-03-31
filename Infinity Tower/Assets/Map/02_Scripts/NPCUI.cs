@@ -45,6 +45,16 @@ public class NPCUI : MonoBehaviour
         selectObject.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started += inter;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started -= inter;
+    }
+
     private void OnDestroy()
     {
         if (instance != null)
@@ -132,7 +142,9 @@ public class NPCUI : MonoBehaviour
 
     private void UpdateSelectUI()
     {
-        selectArrow.rectTransform.anchoredPosition = selectPos[selectNum].anchoredPosition;
+        Vector3 movePos = selectArrow.rectTransform.anchoredPosition;
+        movePos.y = selectPos[selectNum].anchoredPosition.y;
+        selectArrow.rectTransform.anchoredPosition = movePos;
     }
 
     public void OnSelect(InputValue value)
@@ -142,13 +154,17 @@ public class NPCUI : MonoBehaviour
         Vector2 input = value.Get<Vector2>();
         if (input.y != 0)
         {
-            selectNum += (((int)input.y) + 2) % 2;
+            selectNum = (selectNum + ((int)input.y) + 2) % 2;
             UpdateSelectUI();
         }
     }
 
+    void inter(InputAction.CallbackContext callback) => OnInteract();
+
     public void OnInteract()
     {
+        if (!PlayerStatManager.instance.getState(PlayerState.Interacting))
+            return;
         if (isTyping)
         {
             typingTween.Complete();
