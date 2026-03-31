@@ -42,7 +42,11 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start() => refreshAllSlot();
+    private void Start()
+    {
+        refreshAllSlot();
+        Inven.SetActive(false);
+    }
 
     private void OnEnable()
     {
