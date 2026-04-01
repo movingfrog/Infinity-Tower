@@ -129,7 +129,7 @@ public class InventoryManager : MonoBehaviour
         refreshAllSlot();
     }
 
-    void equipAccessories()
+    public void equipAccessories()
     {
         PlayerStatManager.instance.resetStat();
         if (allItem[ACCESSORY_START].item != null)
