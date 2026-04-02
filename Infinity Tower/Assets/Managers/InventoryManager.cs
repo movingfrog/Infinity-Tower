@@ -27,6 +27,9 @@ public class InventoryManager : MonoBehaviour
     [Header("인벤 열고 닫는 기능")]
     public GameObject Inven;
 
+    [Header("재화")]
+    public SO_Goods[] Goods;
+
     [Header("인벤 주요 기능")]
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
@@ -120,9 +123,7 @@ public class InventoryManager : MonoBehaviour
         if (!canPlace(targetIndex, allItem[startIndex]))
             return;
 
-        InvenItem temp = allItem[startIndex];
-        allItem[startIndex] = allItem[targetIndex];
-        allItem[targetIndex] = temp;
+        (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
             equipAccessories();
@@ -145,6 +146,10 @@ public class InventoryManager : MonoBehaviour
                     allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Value
                 );
     }
+
+    public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);
+
+    public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 
     void refreshAllSlot()
     {

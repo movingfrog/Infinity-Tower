@@ -95,7 +95,9 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             return;
         dragAfterParent = SlotSprite.rectTransform.parent;
         SlotSprite.rectTransform.SetParent(
-            InventoryManager.Instance.GetComponentInChildren<RectTransform>()
+            isAnvil
+                ? BlackSmithSystem.Instance.GetComponent<RectTransform>()
+                : InventoryManager.Instance.GetComponentInChildren<RectTransform>()
         );
         SlotSprite.transform.SetAsLastSibling();
     }

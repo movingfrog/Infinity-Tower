@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum GoodsType
+{
+    Gold,
+    Stone,
+    AcientStone,
+}
+
 public class MagnetItem : DropItem
 {
     public bool isInven;

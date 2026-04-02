@@ -6,9 +6,13 @@ public class BlackSmithSystem : MonoBehaviour
 {
     public static BlackSmithSystem Instance;
 
-    [Header("UI 속성")]
+    Animator UpgradeAnimation;
+
+    [Header("인벤 속성")]
     public Slot[] AnvilInvenSlots;
-    public InvenItem[] allItem = new InvenItem[13];
+    public InvenItem[] allItem = new InvenItem[14];
+
+    [Header("UI 속성")]
     public Image[] upgradeInfo;
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI[] gettingGoods;
@@ -29,6 +33,7 @@ public class BlackSmithSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        UpgradeAnimation = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -103,9 +108,7 @@ public class BlackSmithSystem : MonoBehaviour
         if (!canPlace(targetIndex, allItem[startIndex]))
             return;
 
-        InvenItem temp = allItem[startIndex];
-        allItem[startIndex] = allItem[targetIndex];
-        allItem[targetIndex] = temp;
+        (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         refreshAllSlot();
     }
@@ -133,6 +136,27 @@ public class BlackSmithSystem : MonoBehaviour
 
     public void upgradeEquipment()
     {
-        if (allItem[AnvilSlotStart].item != null) { }
+        if (allItem[AnvilSlotStart].item != null)
+        {
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, 0))
+                return;
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, 0))
+                return;
+
+            UpgradeAnimation.SetTrigger("isAnvil");
+        }
+    }
+
+    public void Upgrade()
+    {
+        //아이템의 추가 효과 적용 처리 필요
+        //ex) 공격 유도, 범위 증가, 근접 공격 범위 내 투사체 삭제
+        allItem[AnvilSlotStart].item = allItem[AnvilSlotStart].item.Equips.nextItem;
+    }
+
+    public void BackToGame()
+    {
+        PlayerStatManager.instance.resetState();
+        gameObject.SetActive(false);
     }
 }
