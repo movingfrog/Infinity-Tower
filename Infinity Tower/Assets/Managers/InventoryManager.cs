@@ -120,7 +120,10 @@ public class InventoryManager : MonoBehaviour
 
     public void swapItem(int startIndex, int targetIndex)
     {
-        if (!canPlace(targetIndex, allItem[startIndex]))
+        if (
+            (allSlot[startIndex].type != SlotType.Inventory && allItem[startIndex].item == null)
+            || !canPlace(targetIndex, allItem[startIndex])
+        )
             return;
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);

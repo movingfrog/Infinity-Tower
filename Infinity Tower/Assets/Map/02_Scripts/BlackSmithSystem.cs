@@ -100,12 +100,18 @@ public class BlackSmithSystem : MonoBehaviour
         if (targetType == SlotType.Inventory)
             return true;
 
-        return targetType == draggingItem.item.slotType;
+        return targetType == draggingItem.item.slotType
+            || (draggingItem.item.slotType != SlotType.Inventory && targetType == SlotType.Anvil);
     }
 
     public void swapItem(int startIndex, int targetIndex)
     {
-        if (!canPlace(targetIndex, allItem[startIndex]))
+        if (
+            (
+                AnvilInvenSlots[startIndex].type != SlotType.Inventory
+                && allItem[startIndex].item == null
+            ) || !canPlace(targetIndex, allItem[startIndex])
+        )
             return;
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
