@@ -5,31 +5,27 @@ public class TimeBackSkill : MonoBehaviour
 {
     bool checkRewind;
     Animator ani;
-    InputSystem_Actions inputs;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
-        inputs = new InputSystem_Actions();
     }
+
     private void OnEnable()
     {
-        inputs.Player.Enable();
-
-        inputs.Player.Skill.started += OnSkillAnimation;
-        inputs.Player.Skill.canceled += EndSkillAnimation;
+        InputManager.Instance.inputActions.Player.Skill.started += OnSkillAnimation;
+        InputManager.Instance.inputActions.Player.Skill.canceled += EndSkillAnimation;
     }
 
     private void OnDisable()
     {
-        inputs.Player.Skill.started -= OnSkillAnimation;
-        inputs.Player.Skill.canceled -= EndSkillAnimation;
-
-        inputs.Player.Disable();
+        InputManager.Instance.inputActions.Player.Skill.started -= OnSkillAnimation;
+        InputManager.Instance.inputActions.Player.Skill.canceled -= EndSkillAnimation;
     }
+
     private void FixedUpdate()
     {
-        if(!TimeManager.Instance.isRewinding && checkRewind)
+        if (!TimeManager.Instance.isRewinding && checkRewind)
         {
             ani.SetBool("isUsingSkill", false);
             checkRewind = false;
@@ -43,5 +39,7 @@ public class TimeBackSkill : MonoBehaviour
         ani.SetFloat("Velo", 0);
         checkRewind = true;
     }
-    void EndSkillAnimation(InputAction.CallbackContext callback) => ani.SetBool("isUsingSkill", false);
+
+    void EndSkillAnimation(InputAction.CallbackContext callback) =>
+        ani.SetBool("isUsingSkill", false);
 }

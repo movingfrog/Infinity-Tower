@@ -1,0 +1,122 @@
+using NaughtyAttributes;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public enum SlotType
+{
+    Inventory,
+    Weapon,
+    Accessories,
+    Import,
+    Anvil,
+}
+
+public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
+    private TextMeshProUGUI Text;
+    private Button button;
+
+    [Header("Drag 加己")]
+    public bool hasDrag;
+    Transform dragAfterParent;
+
+    [Header("Slot 加己")]
+    public SlotType type;
+    public Image SlotSprite;
+
+    [Range(0, 16)]
+    public int slotIndex;
+    public bool isAnvil;
+
+    [Foldout("抗寇 浇吩")]
+    public Sprite defaultSprite;
+
+    private void Awake()
+    {
+        if (type == SlotType.Inventory)
+        {
+            Text = GetComponentInChildren<TextMeshProUGUI>();
+            Text.color = new Color(0, 0, 0, 0);
+        }
+        if (!isAnvil)
+        {
+            button = GetComponent<Button>();
+            button.onClick.AddListener(GetItemInfo);
+        }
+    }
+
+    public void refrashUI(InvenItem currentItem)
+    {
+        if (currentItem.item != null)
+        {
+            SlotSprite.sprite = currentItem.item.spriteImage;
+            SlotSprite.color = Color.white;
+            if (!currentItem.item.isEquippable)
+            {
+                Text.color = Color.white;
+                Text.text = currentItem.currentItemCount.ToString("0");
+            }
+        }
+        else
+        {
+            if (type == SlotType.Inventory)
+            {
+                SlotSprite.sprite = null;
+                SlotSprite.color = Color.white * 0;
+                Text.color = new Color(0, 0, 0, 0);
+            }
+            else
+            {
+                SlotSprite.sprite = defaultSprite;
+                SlotSprite.color = new Color(1, 1, 1, .25f);
+            }
+        }
+    }
+
+    public void GetItemInfo()
+    {
+        if (InventoryManager.Instance.allItem[slotIndex].item == null)
+            return;
+        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.allItem[slotIndex].item);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (!hasDrag)
+            return;
+        SlotSprite.rectTransform.position = eventData.position;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (!hasDrag)
+            return;
+        dragAfterParent = SlotSprite.rectTransform.parent;
+        SlotSprite.rectTransform.SetParent(
+            isAnvil
+                ? BlackSmithSystem.Instance.GetComponent<RectTransform>()
+                : InventoryManager.Instance.GetComponentInChildren<RectTransform>()
+        );
+        SlotSprite.transform.SetAsLastSibling();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (!hasDrag)
+            return;
+        if (
+            eventData.pointerCurrentRaycast.gameObject != null
+            && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot)
+        )
+        {
+            if (isAnvil)
+                BlackSmithSystem.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
+            else
+                InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
+        }
+
+        SlotSprite.rectTransform.SetParent(dragAfterParent);
+    }
+}

@@ -11,20 +11,26 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 물리 작용 관련")]
     public float basicMoveSpeed;
     public float JumpForce;
+
     [Range(0, 2)]
     public int jumpCount = 2;
+
     [Header("점프 판정 관련")]
     public float groundDistance;
     public LayerMask groundLayer;
+
     [Header("대쉬 관련")]
     public float dashForce;
-    [Range(0,2)]
+
+    [Range(0, 2)]
     public int dashCount = 2;
     public bool isDashing;
     private int currentLayer;
+
     [Space]
     float defaultGravity;
     Coroutine dashCool;
+
     [Header("private형식의 접근 변수")]
     Rigidbody2D rigid;
     Animator ani;
@@ -40,22 +46,30 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movePosition();
-        if (isGrounded() && rigid.linearVelocityY <= 0.1f) jumpCount = 2;
+        if (isGrounded() && rigid.linearVelocityY <= .1f)
+            jumpCount = 2;
     }
 
     bool isGrounded()
     {
-        if (ani.GetBool("isUsingSkill")) return false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
+        if (ani.GetBool("isUsingSkill"))
+            return false;
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            Vector2.down,
+            groundDistance,
+            groundLayer
+        );
         ani.SetFloat("Velo", rigid.linearVelocityY);
         return hit.collider != null;
     }
+
     void movePosition()
     {
-        if(!isDashing && !ani.GetBool("isUsingSkill"))
+        if (!isDashing && !ani.GetBool("isUsingSkill"))
         {
             float moveX = movement.x * basicMoveSpeed;
-            
+
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }
@@ -64,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public void AniDashControll()
     {
         ani.SetBool("isDash", false);
-        isDashing  = false;
+        isDashing = false;
         gameObject.layer = currentLayer;
         rigid.gravityScale = defaultGravity;
         dashCool = StartCoroutine(DashCool());
@@ -72,24 +86,52 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        movement = value.Get<Vector2>(); 
-        if (movement.x != 0) transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+        {
+            if (PlayerStatManager.instance.getState(PlayerState.Interacting))
+            {
+                NPCUI.instance.OnSelect(value);
+            }
+        }
+        else
+        {
+            movement = value.Get<Vector2>();
+            if (movement.x != 0)
+                transform.localScale = new Vector2(Mathf.Sign(movement.x), 1);
+        }
     }
+
     public void OnJump()
     {
-        if(jumpCount != 0 && !ani.GetBool("isUsingSkill"))
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+            return;
+        if (jumpCount != 0 && !ani.GetBool("isUsingSkill"))
         {
-            if (isDashing) rigid.gravityScale = defaultGravity;
+            if (isDashing)
+                rigid.gravityScale = defaultGravity;
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
             jumpCount--;
         }
     }
+
     public void OnDash()
     {
-        if(!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
+        if (
+            !PlayerStatManager.instance.getState(PlayerState.InvenOpen)
+            && !PlayerStatManager.instance.getState(PlayerState.Idle)
+        )
+            return;
+        if (!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
         {
-            if(dashCool != null) StopCoroutine(dashCool);
+            if (dashCool != null)
+                StopCoroutine(dashCool);
             dashCount--;
             isDashing = true;
             ani.SetBool("isDash", true);

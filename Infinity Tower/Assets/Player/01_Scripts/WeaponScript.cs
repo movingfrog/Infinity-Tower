@@ -1,7 +1,6 @@
 using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Jobs;
 using UnityEngine.UIElements;
 
 public class WeaponScript : MonoBehaviour
