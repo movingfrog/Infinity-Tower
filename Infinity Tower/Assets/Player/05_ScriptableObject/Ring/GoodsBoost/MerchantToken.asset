@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
-  m_Name: ATKRing
+  m_Name: MerchantToken
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: -3964896431499438999, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
-  itemName: "\uD798\uC758 \uBC18\uC9C0"
-  itemInfo: "\uB9C8\uBC95\uC774 \uB2F4\uAE34 \uAE30\uBCF8 \uBC18\uC9C0\\n\uD798\uC774
-    \uC138\uC84C\uB2E4"
-  level: 0
+  spriteImage: {fileID: 3742662972983192148, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  itemName: "\uC0C1\uC778\uC758 \uC99D\uD45C"
+  itemInfo: 
+  level: 1
   slotType: 2
   MaxItemCount: 1
   isEquippable: 1
   Equips:
+    nextItem: {fileID: 11400000, guid: 72065aeeb2c3d0b4486163c3ffb8fefc, type: 2}
+    anvilInfoLine: 
     itemDamage: 0
     statModifiers:
-    - Type: 0
-      Value: 3
+    - Type: 4
+      Value: 50
+    - Type: 5
+      Value: 25

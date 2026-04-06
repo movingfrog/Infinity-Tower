@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
-  m_Name: GoldBoostRing
+  m_Name: LuckyRing
   m_EditorClassIdentifier: Assembly-CSharp::Item
   spriteImage: {fileID: 4215945548530567760, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
   itemName: "\uD589\uC6B4\uC758 \uBC18\uC9C0"
@@ -21,6 +21,8 @@ MonoBehaviour:
   MaxItemCount: 1
   isEquippable: 1
   Equips:
+    nextItem: {fileID: 11400000, guid: a514b8e6577470743ae2fd333388bea2, type: 2}
+    anvilInfoLine: 
     itemDamage: 0
     statModifiers:
     - Type: 4

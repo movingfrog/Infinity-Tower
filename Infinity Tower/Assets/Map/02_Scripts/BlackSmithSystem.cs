@@ -13,6 +13,7 @@ public class BlackSmithSystem : MonoBehaviour
     public InvenItem[] allItem = new InvenItem[14];
 
     [Header("UI 속성")]
+    public GameObject Panel;
     public Image[] upgradeInfo;
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI[] gettingGoods;
@@ -38,6 +39,7 @@ public class BlackSmithSystem : MonoBehaviour
 
     private void OnEnable()
     {
+        Panel.SetActive(false);
         getItem();
         refreshAllSlot();
     }
@@ -57,27 +59,13 @@ public class BlackSmithSystem : MonoBehaviour
 
     private void giveItem()
     {
-        if (allItem[AnvilSlotStart].item != null)
-        {
-            for (int i = 0; i < AnvilSlotStart; i++)
-            {
-                if (allItem[i].item == null)
-                {
-                    swapItem(i, AnvilSlotStart);
-                }
-            }
-            if (allItem[AnvilSlotStart].item != null)
-            {
-                Debug.LogError(
-                    "아직 구현 안됨 강화 탭에 넣은 상태로 끄면 떨어트리는 로직 구현 필요"
-                );
-            }
-        }
+        RemoveInven();
         for (int i = 0; i < AnvilSlotStart; i++)
         {
             InventoryManager.Instance.allItem[i] = allItem[i];
         }
 
+        InventoryManager.Instance.refreshAllSlot();
         InventoryManager.Instance.equipAccessories();
     }
 
@@ -101,22 +89,41 @@ public class BlackSmithSystem : MonoBehaviour
             return true;
 
         return targetType == draggingItem.item.slotType
-            || (draggingItem.item.slotType != SlotType.Inventory && targetType == SlotType.Anvil);
+            || (
+                draggingItem.item.level != ItemLevel.Legend
+                && draggingItem.item.slotType != SlotType.Inventory
+                && targetType == SlotType.Anvil
+            );
     }
 
     public void swapItem(int startIndex, int targetIndex)
     {
-        if (
-            (
-                AnvilInvenSlots[startIndex].type != SlotType.Inventory
-                && allItem[startIndex].item == null
-            ) || !canPlace(targetIndex, allItem[startIndex])
-        )
+        if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         refreshAllSlot();
+    }
+
+    private void RemoveInven()
+    {
+        if (allItem[AnvilSlotStart].item != null)
+        {
+            for (int i = 0; i < AnvilSlotStart; i++)
+            {
+                if (allItem[i].item == null)
+                {
+                    swapItem(AnvilSlotStart, i);
+                }
+            }
+            if (allItem[AnvilSlotStart].item != null)
+            {
+                Debug.LogError(
+                    "아직 구현 안됨 강화 탭에 넣은 상태로 끄면 떨어트리는 로직 구현 필요"
+                );
+            }
+        }
     }
 
     private void AnvilUIRefresh(uint gold, uint upgradeStone, int useGold, int useStone, Item item)
@@ -128,12 +135,16 @@ public class BlackSmithSystem : MonoBehaviour
 
         if (item != null)
         {
+            for (int i = 0; i < upgradeInfo.Length; i++)
+                upgradeInfo[i].color = Color.white;
             upgradeInfo[0].sprite = item.spriteImage;
             upgradeInfo[1].sprite = item.Equips.nextItem.spriteImage;
             upgradeText.text = item.Equips.anvilInfoLine;
         }
         else
         {
+            for (int i = 0; i < upgradeInfo.Length; i++)
+                upgradeInfo[i].color = new Color(0, 0, 0, 0);
             upgradeInfo[0].sprite = null;
             upgradeInfo[1].sprite = null;
             upgradeText.text = "";
@@ -149,6 +160,7 @@ public class BlackSmithSystem : MonoBehaviour
             if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, 0))
                 return;
 
+            Panel.SetActive(true);
             UpgradeAnimation.SetTrigger("isAnvil");
         }
     }
@@ -157,7 +169,11 @@ public class BlackSmithSystem : MonoBehaviour
     {
         //아이템의 추가 효과 적용 처리 필요
         //ex) 공격 유도, 범위 증가, 근접 공격 범위 내 투사체 삭제
+        Panel.SetActive(false);
         allItem[AnvilSlotStart].item = allItem[AnvilSlotStart].item.Equips.nextItem;
+        if (allItem[AnvilSlotStart].item.level == ItemLevel.Legend)
+            RemoveInven();
+        refreshAllSlot();
     }
 
     public void BackToGame()
