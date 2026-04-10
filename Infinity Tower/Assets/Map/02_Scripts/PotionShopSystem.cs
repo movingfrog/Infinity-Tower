@@ -21,7 +21,12 @@ public class PotionShopSystem : MonoBehaviour
         }
     }
 
-    void ShowInfo(Potion _potion) { }
+    void ShowInfo(Potion _potion)
+    {
+        PotionName.text = _potion.potionName;
+        PotionInfo.text = _potion.potionInfo;
+        PotionIcon.sprite = _potion.PotionIcon;
+    }
 
     void BuyPotion(Potion _potion) { }
 }
