@@ -11,7 +11,9 @@ public class PotionShopSystem : MonoBehaviour
     [Header("UI 속성")]
     public TextMeshProUGUI PotionName;
     public TextMeshProUGUI PotionInfo;
+    public TextMeshProUGUI SatietyText;
     public Image PotionIcon;
+    public Image SatietyBarImage;
 
     private void Awake()
     {
@@ -26,6 +28,13 @@ public class PotionShopSystem : MonoBehaviour
         PotionName.text = _potion.potionName;
         PotionInfo.text = _potion.potionInfo;
         PotionIcon.sprite = _potion.PotionIcon;
+        RefreshSatietyBar();
+    }
+
+    void RefreshSatietyBar()
+    {
+        SatietyBarImage.fillAmount = PlayerStatManager.instance.Satiety / 100f;
+        SatietyText.text = PlayerStatManager.instance.Satiety.ToString("0") + "/100";
     }
 
     //0을 potion의 price로 바꿀 필요 있음
@@ -39,6 +48,13 @@ public class PotionShopSystem : MonoBehaviour
             PlayerStatManager.instance.IncreassHealth(_potion.healthAmount);
             PlayerStatManager.instance.ChangeHealth(_potion.healAmount - _potion.healthAmount);
             PlayerStatManager.instance.Satiety += _potion.satietyAmount;
+            RefreshSatietyBar();
         }
+    }
+
+    public void BackToGame()
+    {
+        PlayerStatManager.instance.resetState();
+        gameObject.SetActive(false);
     }
 }
