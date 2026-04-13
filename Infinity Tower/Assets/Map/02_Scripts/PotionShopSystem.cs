@@ -28,5 +28,17 @@ public class PotionShopSystem : MonoBehaviour
         PotionIcon.sprite = _potion.PotionIcon;
     }
 
-    void BuyPotion(Potion _potion) { }
+    //0을 potion의 price로 바꿀 필요 있음
+    void BuyPotion(Potion _potion)
+    {
+        if (
+            PlayerStatManager.instance.Satiety < 100
+            && InventoryManager.Instance.UseGoods(GoodsType.Gold, 0)
+        )
+        {
+            PlayerStatManager.instance.IncreassHealth(_potion.healthAmount);
+            PlayerStatManager.instance.ChangeHealth(_potion.healAmount - _potion.healthAmount);
+            PlayerStatManager.instance.Satiety += _potion.satietyAmount;
+        }
+    }
 }
