@@ -120,10 +120,7 @@ public class InventoryManager : MonoBehaviour
 
     public void swapItem(int startIndex, int targetIndex)
     {
-        if (
-            (allSlot[startIndex].type != SlotType.Inventory && allItem[startIndex].item == null)
-            || !canPlace(targetIndex, allItem[startIndex])
-        )
+        if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
@@ -154,7 +151,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 
-    void refreshAllSlot()
+    public void refreshAllSlot()
     {
         for (int i = 0; i < allSlot.Length; i++)
         {

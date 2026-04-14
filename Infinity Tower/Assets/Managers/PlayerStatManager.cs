@@ -29,6 +29,7 @@ public class PlayerStatManager : MonoBehaviour
     [Header("체력 관련")]
     public float MaxHP;
     public float currentHP { get; private set; }
+    public int Satiety;
     public Image HealthBar;
     public TextMeshProUGUI HealthText;
 
@@ -95,9 +96,25 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    public void IncreassHealth(float amount)
+    {
+        MaxHP += amount;
+        ChangeHealth(amount);
+    }
+
+    public bool DecreassHealth(float amount)
+    {
+        if (MaxHP - amount <= 0)
+            return false;
+        MaxHP -= amount;
+        return true;
+    }
+
     public void ChangeHealth(float amount)
     {
-        currentHP += amount * amount > 0 ? HealBoost : 1;
+        currentHP += amount * (amount > 0 ? HealBoost : 1);
+        if (currentHP > MaxHP)
+            currentHP = MaxHP;
 
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");

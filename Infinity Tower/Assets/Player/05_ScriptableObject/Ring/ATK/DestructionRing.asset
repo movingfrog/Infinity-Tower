@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
+  m_Name: DestructionRing
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  spriteImage: {fileID: -735235787872156715, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  itemName: "\uD30C\uAD34\uC758 \uBC18\uC9C0"
+  itemInfo: 
+  level: 2
+  slotType: 2
+  MaxItemCount: 1
+  isEquippable: 1
+  Equips:
+    nextItem: {fileID: 0}
+    anvilInfoLine: 
+    itemDamage: 0
+    statModifiers: []

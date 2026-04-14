@@ -5,7 +5,11 @@ public abstract class NPC : MonoBehaviour
 {
     [Header("NPC ¼Ó¼º")]
     public string NPCName;
+
+    [TextArea]
     public string[] dialogueLines;
+
+    [TextArea]
     public string[] addDialogueLine;
     public string selectAText;
     public string selectBText;
