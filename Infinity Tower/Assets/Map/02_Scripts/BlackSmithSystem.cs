@@ -2,17 +2,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlackSmithSystem : MonoBehaviour
+public class BlackSmithSystem : InvenParent
 {
-    public static BlackSmithSystem Instance;
-
     Animator UpgradeAnimation;
 
-    [Header("ÀÎº¥ ¼Ó¼º")]
+    [Header("ì¸ë²¤ ì†ì„±")]
     public Slot[] AnvilInvenSlots;
     public InvenItem[] allItem = new InvenItem[14];
 
-    [Header("UI ¼Ó¼º")]
+    [Header("UI ì†ì„±")]
     public GameObject Panel;
     public Image[] upgradeInfo;
     public TextMeshProUGUI upgradeText;
@@ -26,15 +24,9 @@ public class BlackSmithSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         UpgradeAnimation = GetComponent<Animator>();
+        for (int i = 0; i < AnvilInvenSlots.Length; i++)
+            AnvilInvenSlots[i].invenManager = this;
     }
 
     private void OnEnable()
@@ -96,7 +88,7 @@ public class BlackSmithSystem : MonoBehaviour
             );
     }
 
-    public void swapItem(int startIndex, int targetIndex)
+    public override void swapItem(int startIndex, int targetIndex)
     {
         if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
@@ -105,6 +97,8 @@ public class BlackSmithSystem : MonoBehaviour
 
         refreshAllSlot();
     }
+
+    public override RectTransform CanvasTransform() => GetComponent<RectTransform>();
 
     private void RemoveInven()
     {
@@ -120,7 +114,7 @@ public class BlackSmithSystem : MonoBehaviour
             if (allItem[AnvilSlotStart].item != null)
             {
                 Debug.LogError(
-                    "¾ÆÁ÷ ±¸Çö ¾ÈµÊ °­È­ ÅÇ¿¡ ³ÖÀº »óÅÂ·Î ²ô¸é ¶³¾îÆ®¸®´Â ·ÎÁ÷ ±¸Çö ÇÊ¿ä"
+                    "ì•„ì§ êµ¬í˜„ ì•ˆë¨ ê°•í™” íƒ­ì— ë„£ì€ ìƒíƒœë¡œ ë„ë©´ ë–¨ì–´íŠ¸ë¦¬ëŠ” ë¡œì§ êµ¬í˜„ í•„ìš”"
                 );
             }
         }
@@ -167,8 +161,8 @@ public class BlackSmithSystem : MonoBehaviour
 
     public void Upgrade()
     {
-        //¾ÆÀÌÅÛÀÇ Ãß°¡ È¿°ú Àû¿ë Ã³¸® ÇÊ¿ä
-        //ex) °ø°İ À¯µµ, ¹üÀ§ Áõ°¡, ±ÙÁ¢ °ø°İ ¹üÀ§ ³» Åõ»çÃ¼ »èÁ¦
+        //ì•„ì´í…œì˜ ì¶”ê°€ íš¨ê³¼ ì ìš© ì²˜ë¦¬ í•„ìš”
+        //ex) ê³µê²© ìœ ë„, ë²”ìœ„ ì¦ê°€, ê·¼ì ‘ ê³µê²© ë²”ìœ„ ë‚´ íˆ¬ì‚¬ì²´ ì‚­ì œ
         Panel.SetActive(false);
         allItem[AnvilSlotStart].item = allItem[AnvilSlotStart].item.Equips.nextItem;
         if (allItem[AnvilSlotStart].item.level == ItemLevel.Legend)

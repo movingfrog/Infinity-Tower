@@ -18,19 +18,22 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private TextMeshProUGUI Text;
     private Button button;
 
-    [Header("Drag 加己")]
+    [Header("甏�毽瀽")]
+    public InvenParent invenManager;
+
+    [Header("Drag 靻嶌劚")]
     public bool hasDrag;
     Transform dragAfterParent;
 
-    [Header("Slot 加己")]
+    [Header("Slot 靻嶌劚")]
     public SlotType type;
     public Image SlotSprite;
 
     [Range(0, 16)]
     public int slotIndex;
-    public bool isAnvil;
+    public bool isStoreUI;
 
-    [Foldout("抗寇 浇吩")]
+    [Foldout("鞓堨櫢 鞀’")]
     public Sprite defaultSprite;
 
     private void Awake()
@@ -40,7 +43,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             Text = GetComponentInChildren<TextMeshProUGUI>();
             Text.color = new Color(0, 0, 0, 0);
         }
-        if (!isAnvil)
+        if (!isStoreUI)
         {
             button = GetComponent<Button>();
             button.onClick.AddListener(GetItemInfo);
@@ -94,11 +97,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (!hasDrag)
             return;
         dragAfterParent = SlotSprite.rectTransform.parent;
-        SlotSprite.rectTransform.SetParent(
-            isAnvil
-                ? BlackSmithSystem.Instance.GetComponent<RectTransform>()
-                : InventoryManager.Instance.GetComponentInChildren<RectTransform>()
-        );
+        SlotSprite.rectTransform.SetParent(invenManager.CanvasTransform());
         SlotSprite.transform.SetAsLastSibling();
     }
 
@@ -111,10 +110,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot)
         )
         {
-            if (isAnvil)
-                BlackSmithSystem.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
-            else
-                InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
+            invenManager.swapItem(this.slotIndex, targetSlot.slotIndex);
         }
 
         SlotSprite.rectTransform.SetParent(dragAfterParent);

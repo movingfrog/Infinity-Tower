@@ -20,17 +20,17 @@ public class InvenItem
     }
 }
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : InvenParent
 {
     public static InventoryManager Instance;
 
-    [Header("ÀÎº¥ ¿­°í ´İ´Â ±â´É")]
+    [Header("ì¸ë²¤ ì—´ê³  ë‹«ëŠ” ê¸°ëŠ¥")]
     public GameObject Inven;
 
-    [Header("ÀçÈ­")]
+    [Header("ì¬í™”")]
     public SO_Goods[] Goods;
 
-    [Header("ÀÎº¥ ÁÖ¿ä ±â´É")]
+    [Header("ì¸ë²¤ ì£¼ìš” ê¸°ëŠ¥")]
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
     private const int INVEN_START = 0;
@@ -43,6 +43,8 @@ public class InventoryManager : MonoBehaviour
         if (Instance != null)
             Destroy(gameObject);
         Instance = this;
+        for (int i = 0; i < allSlot.Length; i++)
+            allSlot[i].invenManager = this;
     }
 
     private void Start()
@@ -118,7 +120,7 @@ public class InventoryManager : MonoBehaviour
         return targetType == draggingItem.item.slotType;
     }
 
-    public void swapItem(int startIndex, int targetIndex)
+    public override void swapItem(int startIndex, int targetIndex)
     {
         if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
@@ -129,6 +131,8 @@ public class InventoryManager : MonoBehaviour
             equipAccessories();
         refreshAllSlot();
     }
+
+    public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
 
     public void equipAccessories()
     {
