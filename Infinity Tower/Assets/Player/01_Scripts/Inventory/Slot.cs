@@ -29,7 +29,6 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public SlotType type;
     public Image SlotSprite;
 
-    [Range(0, 16)]
     public int slotIndex;
     public bool isStoreUI;
 

@@ -33,7 +33,7 @@ public class BlackSmithSystem : InvenParent
     {
         Panel.SetActive(false);
         getItem();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     private void OnDisable()
@@ -57,11 +57,11 @@ public class BlackSmithSystem : InvenParent
             InventoryManager.Instance.allItem[i] = allItem[i];
         }
 
-        InventoryManager.Instance.refreshAllSlot();
+        InventoryManager.Instance.RefreshAllSlot();
         InventoryManager.Instance.equipAccessories();
     }
 
-    private void refreshAllSlot()
+    public override void RefreshAllSlot()
     {
         for (int i = 0; i < AnvilInvenSlots.Length; i++)
         {
@@ -73,7 +73,7 @@ public class BlackSmithSystem : InvenParent
             AnvilUIRefresh(0, 0, 0, 0, null);
     }
 
-    bool canPlace(int targetIndex, InvenItem draggingItem)
+    public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
         SlotType targetType = AnvilInvenSlots[targetIndex].type;
 
@@ -95,7 +95,7 @@ public class BlackSmithSystem : InvenParent
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     public override RectTransform CanvasTransform() => GetComponent<RectTransform>();
@@ -167,7 +167,7 @@ public class BlackSmithSystem : InvenParent
         allItem[AnvilSlotStart].item = allItem[AnvilSlotStart].item.Equips.nextItem;
         if (allItem[AnvilSlotStart].item.level == ItemLevel.Legend)
             RemoveInven();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     public void BackToGame()

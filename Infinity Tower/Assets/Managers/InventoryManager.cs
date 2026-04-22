@@ -49,7 +49,7 @@ public class InventoryManager : InvenParent
 
     private void Start()
     {
-        refreshAllSlot();
+        RefreshAllSlot();
         Inven.SetActive(false);
     }
 
@@ -107,10 +107,10 @@ public class InventoryManager : InvenParent
             i++;
         }
 
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
-    bool canPlace(int targetIndex, InvenItem draggingItem)
+    public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
         SlotType targetType = allSlot[targetIndex].type;
 
@@ -129,7 +129,7 @@ public class InventoryManager : InvenParent
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
             equipAccessories();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
@@ -155,7 +155,7 @@ public class InventoryManager : InvenParent
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 
-    public void refreshAllSlot()
+    public override void RefreshAllSlot()
     {
         for (int i = 0; i < allSlot.Length; i++)
         {

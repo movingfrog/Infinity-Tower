@@ -26,18 +26,18 @@ public class PlayerStatManager : MonoBehaviour
 
     public PlayerState currentState { get; private set; }
 
-    [Header("Ã¼·Â °ü·Ã")]
+    [Header("ì²´ë ¥ ì‹œìŠ¤í…œ?")]
     public float MaxHP;
     public float currentHP { get; private set; }
     public int Satiety;
     public Image HealthBar;
     public TextMeshProUGUI HealthText;
 
-    [Header("°ø°Ý °ü·Ã")]
+    [Header("ê³µê²© ì‹œìŠ¤í…œ")]
     public float Damage;
     public int Ammo;
 
-    [Header("Ãß°¡ ´É·ÂÄ¡")]
+    [Header("ì¶”ê°€ ëŠ¥ë ¥ì¹˜")]
     [Range(-1f, 1f)]
     public float Crit_Rate = .3f;
     public float Crit_Dmg = 1.5f;
