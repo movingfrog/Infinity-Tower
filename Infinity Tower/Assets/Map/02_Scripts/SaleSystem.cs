@@ -8,6 +8,7 @@ public class SaleSystem : InvenParent
     public Slot[] AllSlots;
     public InvenItem[] AllItem = new InvenItem[22];
 
+    private const int InventorySlotEnd = 9;
     private const int SaleSlotStart = 13;
 
     private void Awake()
@@ -18,7 +19,10 @@ public class SaleSystem : InvenParent
     public void Sale()
     {
         SaleAnimation.SetTrigger("Sale");
-
+        for (int i = 0; i < InventorySlotEnd; i++)
+        {
+            //InventoryManager.Instance.GetGoods(GoodsType.Gold, );
+        }
         RefreshAllSlot();
     }
 
