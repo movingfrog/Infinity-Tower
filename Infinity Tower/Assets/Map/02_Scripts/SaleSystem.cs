@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SaleSystem : InvenParent
 {
@@ -16,14 +16,40 @@ public class SaleSystem : InvenParent
         SaleAnimation = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        getItem();
+        RefreshAllSlot();
+    }
+
+    private void getItem()
+    {
+        for (int i = 0; i < SaleSlotStart; i++)
+        {
+            AllItem[i] = InventoryManager.Instance.allItem[i];
+        }
+    }
+
     public void Sale()
     {
         SaleAnimation.SetTrigger("Sale");
         for (int i = 0; i < InventorySlotEnd; i++)
         {
-            //InventoryManager.Instance.GetGoods(GoodsType.Gold, );
+            if (AllItem[i].item == null)
+                continue;
+            InventoryManager.Instance.GetGoods(
+                GoodsType.Gold,
+                (uint)PriceTable.GetSellPrice(AllItem[i].item.level, AllItem[i].item.isEquippable)
+            );
+            AllItem[i].item = null;
         }
         RefreshAllSlot();
+    }
+
+    public void BackToGame()
+    {
+        PlayerStatManager.instance.resetState();
+        gameObject.SetActive(false);
     }
 
     public override RectTransform CanvasTransform() => GetComponent<RectTransform>();

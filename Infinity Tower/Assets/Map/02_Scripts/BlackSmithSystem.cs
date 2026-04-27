@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -149,7 +150,11 @@ public class BlackSmithSystem : InvenParent
     {
         if (allItem[AnvilSlotStart].item != null)
         {
-            if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, 0))
+            Dictionary<GoodsType, uint> goodsPrice = PriceTable.UpgradePrice(
+                allItem[AnvilSlotStart].item.level
+            );
+
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, goodsPrice[GoodsType.Gold]))
                 return;
             if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, 0))
                 return;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public static class PriceTable
 {
@@ -12,6 +12,8 @@ public static class PriceTable
     private const int healthValue = 5;
     private const int goldValue = 100;
 
+    private const int lootValue = 5;
+
     private const float SellEfficiency = .3f;
 
     private const float SmithyMultiplier = 0.5f;
@@ -22,5 +24,19 @@ public static class PriceTable
     public static int GetPrice(ItemLevel grade, bool isHealth) =>
         GetCoefficient(grade) * (isHealth ? healthValue : goldValue);
 
-    //public static int GetSellPrice(ItemLevel grade, bool isEquip) => isEquip ? (int)(GetPrice(grade, false) * SellEfficiency) : GetCoefficient(grade)
+    public static int GetSellPrice(ItemLevel grade, bool isEquip) =>
+        isEquip
+            ? (int)(GetPrice(grade, false) * SellEfficiency)
+            : GetCoefficient(grade) * lootValue;
+
+    public static Dictionary<GoodsType, uint> UpgradePrice(ItemLevel currentGrade)
+    {
+        uint goldPrice = (uint)GetPrice(currentGrade, false) * (int)(1 + SmithyMultiplier);
+        uint stonePrice = 0;
+        return new Dictionary<GoodsType, uint>
+        {
+            { GoodsType.Gold, goldPrice },
+            { GoodsType.Stone, stonePrice },
+        };
+    }
 }
