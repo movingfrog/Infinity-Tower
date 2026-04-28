@@ -1,9 +1,10 @@
-using Unity.Collections;
+ï»¿using Unity.Collections;
 using UnityEngine;
 
 public struct TimeData
 {
     public Vector2 position;
+
     public TimeData(Vector2 position)
     {
         this.position = position;
@@ -12,7 +13,7 @@ public struct TimeData
 
 public class TimeBody : MonoBehaviour
 {
-    [Header("½Ã°£ ±â·Ï °ü·Ã º¯¼ö")]
+    [Header("ì‹œê°„ ê¸°ë¡ ê´€ë ¨ ë³€ìˆ˜")]
     [SerializeField, Range(5f, 10f)]
     private float recordTimeInternal = 5f;
     private static float tempRecordTime;
@@ -32,34 +33,38 @@ public class TimeBody : MonoBehaviour
         MAX_recordTime = Mathf.CeilToInt(recordTime / Time.fixedDeltaTime);
     }
 
-    private int MAX_CAPACITY; //¾Æ¿¹ ÃÖ´ë °ª
-    private int _writeIndex = 0; //ÇöÀç ±â·Ï ´ÙÀ½ ¼ø¼­
-    private int _currentCount = 0; //ÇöÀç ±â·ÏµÈ ¼ö
-    public int currentCount { get { return _currentCount; } }
+    private int MAX_CAPACITY; //ì•„ì˜ˆ ìµœëŒ€ ê°’
+    private int _writeIndex = 0; //í˜„ì¬ ê¸°ë¡ ë‹¤ìŒ ìˆœì„œ
+    private int _currentCount = 0; //í˜„ì¬ ê¸°ë¡ëœ ìˆ˜
+    public int currentCount
+    {
+        get { return _currentCount; }
+    }
 
     NativeArray<TimeData> stateData;
 
     private void Awake()
     {
-        if(recordTime == 0)
+        if (recordTime == 0)
         {
             recordTime = recordTimeInternal;
             SyncValue();
-        } // ¸Ç Ã³À½¸¸ ÃÊ±âÈ­ÇÏ´Â ¿¹¿ÜÃ³¸® ÄÚµå
+        } // ë§¨ ì²˜ìŒë§Œ ì´ˆê¸°í™”í•˜ëŠ” ì˜ˆì™¸ì²˜ë¦¬ ì½”ë“œ
         MAX_CAPACITY = Mathf.CeilToInt(10f / Time.fixedDeltaTime);
         stateData = new NativeArray<TimeData>(MAX_CAPACITY, Allocator.Persistent);
     }
 
     private void Start()
     {
-        if (TimeManager.Instance == null) UnityEditor.EditorApplication.isPlaying = false;
+        if (TimeManager.Instance == null)
+            UnityEditor.EditorApplication.isPlaying = false;
         TimeManager.Instance.timeBodies.Add(this);
-    } //TimeManager¾øÀ» ¶§ ¿¹¿ÜÃ³¸® ÄÚµå
+    } //TimeManagerì—†ì„ ë•Œ ì˜ˆì™¸ì²˜ë¦¬ ì½”ë“œ
 
     private void OnValidate()
     {
         recordTime = recordTimeInternal;
-    } //°ªÀÌ ¹Ù²ğ ¶§ È£ÃâµÇ´Â ÇÔ¼ö(recordTimeInternalÀÌ ¹Ù²î¸é È£ÃâµÊ);
+    } //ê°’ì´ ë°”ë€” ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜(recordTimeInternalì´ ë°”ë€Œë©´ í˜¸ì¶œë¨);
 
     private void FixedUpdate()
     {
@@ -73,15 +78,17 @@ public class TimeBody : MonoBehaviour
     {
         stateData[_writeIndex] = new TimeData(transform.position);
         _writeIndex = (_writeIndex + 1) % MAX_recordTime;
-        if (_currentCount < MAX_recordTime) _currentCount++;
+        if (_currentCount < MAX_recordTime)
+            _currentCount++;
     }
 
     public void Rewind(int frameAgo)
     {
-        if (_currentCount < 0 || frameAgo > _currentCount) return;
+        if (_currentCount < 0 || frameAgo > _currentCount)
+            return;
 
         int actualFrameAgo = Mathf.Min(frameAgo, MAX_recordTime);
-        int readIndex = (_writeIndex - actualFrameAgo + MAX_recordTime) % MAX_recordTime; //¼øÈ¯ ¹öÆÛ·Î ÀÎÇØ ÇöÀçÀÇ °ªÀÇ À§Ä¡¸¦ Ã£´Â ½Ä
+        int readIndex = (_writeIndex - actualFrameAgo + MAX_recordTime) % MAX_recordTime; //ìˆœí™˜ ë²„í¼ë¡œ ì¸í•´ í˜„ì¬ì˜ ê°’ì˜ ìœ„ì¹˜ë¥¼ ì°¾ëŠ” ì‹
         TimeData data = stateData[readIndex];
 
         transform.position = data.position;
@@ -89,13 +96,14 @@ public class TimeBody : MonoBehaviour
 
     public void ResetTimeDataAfterRewind(int frameAgo)
     {
-        int lastRestoredIndex = (_writeIndex - frameAgo + MAX_recordTime) % MAX_recordTime; //ÇöÀç º¹¿øµÈ ½ÃÁ¡ÀÇ ÀÎµ¦½º¸¦ °è»ê
+        int lastRestoredIndex = (_writeIndex - frameAgo + MAX_recordTime) % MAX_recordTime; //í˜„ì¬ ë³µì›ëœ ì‹œì ì˜ ì¸ë±ìŠ¤ë¥¼ ê³„ì‚°
         _writeIndex = lastRestoredIndex;
         _currentCount = Mathf.Max(0, _currentCount - frameAgo);
     }
 
     private void OnDestroy()
     {
-        if(stateData.IsCreated) stateData.Dispose();
+        if (stateData.IsCreated)
+            stateData.Dispose();
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
@@ -29,6 +30,7 @@ public class InventoryManager : InvenParent
 
     [Header("재화")]
     public SO_Goods[] Goods;
+    public TextMeshProUGUI[] GoodsText;
 
     [Header("인벤 주요 기능")]
     public Slot[] allSlot;
@@ -72,6 +74,12 @@ public class InventoryManager : InvenParent
             return;
         if (PlayerStatManager.instance.getState(PlayerState.Idle))
         {
+            for (int i = 0; i < Goods.Length; i++)
+            {
+                GoodsText[i].text = Goods[i].Get.ToString("0");
+                if (Goods[i].Type == GoodsType.Gold)
+                    GoodsText[i].text += "G";
+            }
             Inven.SetActive(true);
             PlayerStatManager.instance.ChangeState(PlayerState.InvenOpen);
         }

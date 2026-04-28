@@ -26,7 +26,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public PlayerState currentState { get; private set; }
 
-    [Header("체력 시스템?")]
+    [Header("체력 시스템")]
     public float MaxHP;
     public float currentHP { get; private set; }
     public int Satiety;

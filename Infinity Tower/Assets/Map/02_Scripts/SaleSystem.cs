@@ -10,6 +10,7 @@ public class SaleSystem : InvenParent
 
     private const int InventorySlotEnd = 9;
     private const int SaleSlotStart = 13;
+    private const int SaleSlotEnd = 22;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class SaleSystem : InvenParent
         RefreshAllSlot();
     }
 
+    private void OnDisable()
+    {
+        GiveItem();
+    }
+
     private void getItem()
     {
         for (int i = 0; i < SaleSlotStart; i++)
@@ -30,13 +36,52 @@ public class SaleSystem : InvenParent
         }
     }
 
+    private void GiveItem()
+    {
+        RemoveInven();
+        for (int i = 0; i < SaleSlotStart; i++)
+        {
+            InventoryManager.Instance.allItem[i] = AllItem[i];
+        }
+
+        InventoryManager.Instance.RefreshAllSlot();
+        InventoryManager.Instance.equipAccessories();
+    }
+
+    private void RemoveInven()
+    {
+        if (AllItem[SaleSlotStart].item != null)
+        {
+            for (int i = 0; i < SaleSlotStart; i++)
+            {
+                if (AllItem[i].item == null)
+                {
+                    swapItem(SaleSlotStart, i);
+                }
+            }
+            if (AllItem[SaleSlotStart].item != null)
+            {
+                Debug.LogError(
+                    "아직 구현 안됨 강화 탭에 넣은 상태로 끄면 떨어트리는 로직 구현 필요"
+                );
+            }
+        }
+    }
+
     public void Sale()
     {
         SaleAnimation.SetTrigger("Sale");
-        for (int i = 0; i < InventorySlotEnd; i++)
+    }
+
+    public void SaleAnimationFuc()
+    {
+        for (int i = SaleSlotStart; i < SaleSlotEnd; i++)
         {
             if (AllItem[i].item == null)
                 continue;
+            Debug.Log(
+                (uint)PriceTable.GetSellPrice(AllItem[i].item.level, AllItem[i].item.isEquippable)
+            );
             InventoryManager.Instance.GetGoods(
                 GoodsType.Gold,
                 (uint)PriceTable.GetSellPrice(AllItem[i].item.level, AllItem[i].item.isEquippable)
