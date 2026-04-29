@@ -1,11 +1,14 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceUIManager : MonoBehaviour
 {
+    public Color[] rarityColor = { Color.white, Color.cyan, Color.yellow };
+
     public static SpaceUIManager Instance;
 
-    [SerializeField] private GameObject infoUIPrefab;
+    [SerializeField]
+    private GameObject infoUIPrefab;
     private List<Transform> itemTranform = new List<Transform>();
     private List<Transform> uiTranform = new List<Transform>();
     private Transform camTransform;
@@ -16,9 +19,10 @@ public class SpaceUIManager : MonoBehaviour
         camTransform = Camera.main.transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        for(int i = 0;i<itemTranform.Count;i++) uiTranform[i].position = itemTranform[i].position;
+        for (int i = 0; i < itemTranform.Count; i++)
+            uiTranform[i].position = itemTranform[i].position;
     }
 
     public GameObject CreateItemUI(GameObject targetItem)
@@ -28,6 +32,7 @@ public class SpaceUIManager : MonoBehaviour
         uiTranform.Add(newUI.transform);
         return newUI;
     }
+
     public void RemoveItemUI(GameObject uiObject, GameObject itemObject)
     {
         if (uiTranform.Contains(uiObject.transform))
@@ -43,11 +48,12 @@ public class SpaceUIManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (uiTranform.Count == 0) return;
+        if (uiTranform.Count == 0)
+            return;
 
         Quaternion targetRotation = camTransform.rotation;
 
-        for(int i = 0; i < uiTranform.Count; i++)
+        for (int i = 0; i < uiTranform.Count; i++)
         {
             uiTranform[i].transform.rotation = targetRotation;
         }
@@ -55,6 +61,7 @@ public class SpaceUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Instance == this) Instance = null;
+        if (Instance == this)
+            Instance = null;
     }
 }

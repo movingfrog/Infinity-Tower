@@ -261,7 +261,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 223.255, y: -25}
-  m_SizeDelta: {x: 346.51, y: 36.01}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7255788933015588905
 CanvasRenderer:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC288\uD37C\uC6B8\uD2B8\uB77C \uC5C4\uCCAD\uB09C \uCE7C"
+  m_text: "\uC288\uD37C\uC6B8\uD2B8\uB77C \uC5C4\uCCAD\uB09C \uCE7C "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa6e786dfeb07bb459fdd1f9063d6bca, type: 2}
   m_sharedMaterial: {fileID: 6622615649445044210, guid: fa6e786dfeb07bb459fdd1f9063d6bca, type: 2}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_fontSizeMin: 30
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &7359071254503810841
 GameObject:
   m_ObjectHideFlags: 0
