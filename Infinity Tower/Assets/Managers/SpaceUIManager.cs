@@ -5,7 +5,7 @@ public class SpaceUIManager : MonoBehaviour
 {
     public Color[] rarityColor = { Color.white, Color.cyan, Color.yellow };
 
-    public static SpaceUIManager Instance;
+    public static SpaceUIManager Instance { get; private set; }
 
     [SerializeField]
     private GameObject infoUIPrefab;

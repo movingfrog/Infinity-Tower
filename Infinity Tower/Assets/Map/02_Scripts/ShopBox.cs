@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Constraints;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +6,7 @@ public class ShopBox : MonoBehaviour
 {
     [Header("플레이어 관련")]
     [SerializeField]
-    private int getSize = 1;
+    private float getSize = 1;
 
     [SerializeField]
     private LayerMask Player;
@@ -17,8 +16,12 @@ public class ShopBox : MonoBehaviour
     private SpriteRenderer ItemImage;
 
     [SerializeField]
+    private int itemDropXForce;
+
+    [SerializeField]
     private bool isHealth;
 
+    private GameObject DroppedItem;
     private GameObject ItemInfoObject;
     private TextMeshProUGUI ItemInfoText;
     private Item sellItem;
@@ -26,6 +29,7 @@ public class ShopBox : MonoBehaviour
 
     private void Start()
     {
+        DroppedItem = GameManager.Instance.ItemPrefab;
         ItemInfoObject = SpaceUIManager.Instance.CreateItemUI(gameObject);
         ItemInfoText = ItemInfoObject.GetComponentInChildren<TextMeshProUGUI>();
         RefreshUI();
@@ -72,7 +76,13 @@ public class ShopBox : MonoBehaviour
 
             if (isPaymentSuccess)
             {
-                Debug.LogError("아이템 떨어트리는 함수");
+                WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                    DroppedItem,
+                    sellItem,
+                    transform.position,
+                    DropType.Shop,
+                    itemDropXForce
+                );
                 ItemImage.sprite = null;
                 sellItem = null;
                 hasItem = false;

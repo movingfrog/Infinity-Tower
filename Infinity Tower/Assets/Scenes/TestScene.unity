@@ -854,6 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 65431909}
   - component: {fileID: 65431910}
+  - component: {fileID: 65431911}
   m_Layer: 0
   m_Name: ShopBox
   m_TagString: Untagged
@@ -936,6 +937,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &65431911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65431908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca69e4d01cbef40bc1a1949d218891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopBox
+  getSize: 0.5
+  Player:
+    serializedVersion: 2
+    m_Bits: 384
+  ItemImage: {fileID: 524135982}
+  isHealth: 0
 --- !u!1 &74217023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5804,6 +5823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369989044}
   - component: {fileID: 369989045}
+  - component: {fileID: 369989046}
   m_Layer: 0
   m_Name: ShopBox
   m_TagString: Untagged
@@ -5886,6 +5906,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &369989046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369989043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca69e4d01cbef40bc1a1949d218891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopBox
+  getSize: 0.5
+  Player:
+    serializedVersion: 2
+    m_Bits: 384
+  ItemImage: {fileID: 1006088108}
+  isHealth: 0
 --- !u!1001 &371613727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48404,6 +48442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1974419349}
   - component: {fileID: 1974419350}
+  - component: {fileID: 1974419351}
   m_Layer: 0
   m_Name: ShopBox
   m_TagString: Untagged
@@ -48486,6 +48525,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1974419351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974419348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca69e4d01cbef40bc1a1949d218891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopBox
+  getSize: 0.5
+  Player:
+    serializedVersion: 2
+    m_Bits: 384
+  ItemImage: {fileID: 2014919614}
+  isHealth: 0
 --- !u!1 &1974732750
 GameObject:
   m_ObjectHideFlags: 0
@@ -49999,6 +50056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2034099528}
   - component: {fileID: 2034099529}
+  - component: {fileID: 2034099530}
   m_Layer: 0
   m_Name: ShopBox
   m_TagString: Untagged
@@ -50081,6 +50139,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2034099530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034099527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca69e4d01cbef40bc1a1949d218891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopBox
+  getSize: 0.5
+  Player:
+    serializedVersion: 2
+    m_Bits: 384
+  ItemImage: {fileID: 864335623}
+  isHealth: 0
 --- !u!1 &2039264111
 GameObject:
   m_ObjectHideFlags: 0
@@ -50166,6 +50242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042416110}
   - component: {fileID: 2042416111}
+  - component: {fileID: 2042416112}
   m_Layer: 0
   m_Name: ShopBox
   m_TagString: Untagged
@@ -50248,6 +50325,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2042416112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042416109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca69e4d01cbef40bc1a1949d218891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopBox
+  getSize: 0.5
+  Player:
+    serializedVersion: 2
+    m_Bits: 384
+  ItemImage: {fileID: 422692961}
+  isHealth: 0
 --- !u!1 &2048762059
 GameObject:
   m_ObjectHideFlags: 0

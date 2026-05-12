@@ -18,6 +18,8 @@ public class BlackSmithSystem : InvenParent
     public TextMeshProUGUI[] gettingGoods;
     public TextMeshProUGUI[] usingGoods;
 
+    GameObject DroppedItem;
+
     private const int InvenStart = 0;
     private const int WeaponStart = 9;
     private const int AccessoryStart = 11;
@@ -41,6 +43,8 @@ public class BlackSmithSystem : InvenParent
     {
         giveItem();
     }
+
+    private void Start() => DroppedItem = GameManager.Instance.ItemPrefab;
 
     private void getItem()
     {
@@ -101,6 +105,8 @@ public class BlackSmithSystem : InvenParent
 
     public override RectTransform CanvasTransform() => GetComponent<RectTransform>();
 
+    public override void DroppingItem() { }
+
     private void RemoveInven()
     {
         if (allItem[AnvilSlotStart].item != null)
@@ -114,8 +120,12 @@ public class BlackSmithSystem : InvenParent
             }
             if (allItem[AnvilSlotStart].item != null)
             {
-                Debug.LogError(
-                    "아직 구현 안됨 강화 탭에 넣은 상태로 끄면 떨어트리는 로직 구현 필요"
+                WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                    DroppedItem,
+                    allItem[AnvilSlotStart].item,
+                    transform.position,
+                    DropType.Inventory,
+                    -1
                 );
             }
         }

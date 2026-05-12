@@ -23,7 +23,10 @@ public class InvenItem
 
 public class InventoryManager : InvenParent
 {
-    public static InventoryManager Instance;
+    GameObject DroppedItem;
+    GameObject DroppedLoot;
+
+    public static InventoryManager Instance { get; private set; }
 
     [Header("인벤 열고 닫는 기능")]
     public GameObject Inven;
@@ -35,6 +38,7 @@ public class InventoryManager : InvenParent
     [Header("인벤 주요 기능")]
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
+
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
     private const int ACCESSORY_START = 11;
@@ -53,6 +57,8 @@ public class InventoryManager : InvenParent
     {
         RefreshAllSlot();
         Inven.SetActive(false);
+        DroppedItem = GameManager.Instance.ItemPrefab;
+        DroppedLoot = GameManager.Instance.LootPrefab;
     }
 
     private void OnEnable()
@@ -141,6 +147,8 @@ public class InventoryManager : InvenParent
     }
 
     public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
+
+    public override void DroppingItem() { }
 
     public void equipAccessories()
     {

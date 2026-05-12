@@ -2,6 +2,8 @@
 
 public class SaleSystem : InvenParent
 {
+    GameObject DroppedItem;
+    GameObject DroppedLoot;
     Animator SaleAnimation;
 
     [Header("인벤 속성")]
@@ -15,6 +17,12 @@ public class SaleSystem : InvenParent
     private void Awake()
     {
         SaleAnimation = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        DroppedItem = GameManager.Instance.ItemPrefab;
+        DroppedLoot = GameManager.Instance.LootPrefab;
     }
 
     private void OnEnable()
@@ -50,7 +58,7 @@ public class SaleSystem : InvenParent
 
     private void RemoveInven()
     {
-        if (AllItem[SaleSlotStart].item != null)
+        if (CheckSaleSlot)
         {
             for (int i = 0; i < SaleSlotStart; i++)
             {
@@ -59,12 +67,34 @@ public class SaleSystem : InvenParent
                     swapItem(SaleSlotStart, i);
                 }
             }
-            if (AllItem[SaleSlotStart].item != null)
+            for (int i = SaleSlotStart; i < AllSlots.Length; i++)
             {
-                Debug.LogError(
-                    "아직 구현 안됨 강화 탭에 넣은 상태로 끄면 떨어트리는 로직 구현 필요"
-                );
+                if (AllItem[i].item != null)
+                {
+                    WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                        AllItem[i].item.isEquippable ? DroppedItem : DroppedLoot,
+                        AllItem[i].item,
+                        transform.position,
+                        DropType.Inventory,
+                        1,
+                        .25f,
+                        AllItem[i].item.isEquippable ? 0 : AllItem[i].currentItemCount
+                    );
+                }
             }
+        }
+    }
+
+    bool CheckSaleSlot
+    {
+        get
+        {
+            for (int i = SaleSlotStart; i < AllSlots.Length; i++)
+            {
+                if (AllItem[i].item != null)
+                    return true;
+            }
+            return false;
         }
     }
 
@@ -126,4 +156,6 @@ public class SaleSystem : InvenParent
 
         RefreshAllSlot();
     }
+
+    public override void DroppingItem() { }
 }

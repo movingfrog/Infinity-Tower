@@ -111,7 +111,10 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             invenManager.swapItem(this.slotIndex, targetSlot.slotIndex);
         }
-
+        else if (eventData.pointerCurrentRaycast.gameObject == null)
+        {
+            invenManager.DroppingItem();
+        }
         SlotSprite.rectTransform.SetParent(dragAfterParent);
     }
 }
