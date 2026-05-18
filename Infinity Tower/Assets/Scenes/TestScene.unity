@@ -954,6 +954,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   ItemImage: {fileID: 524135982}
+  itemDropXForce: 0.5
   isHealth: 0
 --- !u!1 &74217023
 GameObject:
@@ -5923,6 +5924,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   ItemImage: {fileID: 1006088108}
+  itemDropXForce: 0
   isHealth: 0
 --- !u!1001 &371613727
 PrefabInstance:
@@ -9427,6 +9429,8 @@ MonoBehaviour:
   Satiety: 0
   HealthBar: {fileID: 2115064527}
   HealthText: {fileID: 200816671}
+  Level: 1
+  <maxLevel>k__BackingField: 100
   Damage: 0
   Ammo: 300
   Crit_Rate: 0.3
@@ -48542,6 +48546,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   ItemImage: {fileID: 2014919614}
+  itemDropXForce: 0
   isHealth: 0
 --- !u!1 &1974732750
 GameObject:
@@ -49693,27 +49698,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2006311059}
-  - component: {fileID: 2006311058}
+  - component: {fileID: 2006311060}
   m_Layer: 0
-  m_Name: CameraManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2006311058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006311057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c80e1b7ac350348a6e7044ae8ad8e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  confiner: {fileID: 90411858}
 --- !u!4 &2006311059
 Transform:
   m_ObjectHideFlags: 0
@@ -49729,6 +49721,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2006311060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006311057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779539bf3bb0451439665febd7d6170e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  confiner: {fileID: 90411858}
+  ItemPrefab: {fileID: 0}
+  LootPrefab: {fileID: 0}
+  maxCommonProb: 45
+  minCommonProb: 60
+  maxRareProb: 50
+  minRareProb: 39
+  allEquip:
+  - {fileID: 11400000, guid: 44c074bef79544c498b4231ba1838258, type: 2}
+  - {fileID: 11400000, guid: cc943441048bef345b270c98b4715c91, type: 2}
+  - {fileID: 11400000, guid: 5ab48194ec2bb6f4fa9a8dd32b83f8d2, type: 2}
+  - {fileID: 11400000, guid: 44793aad68a695544a4a5bae1143828e, type: 2}
+  - {fileID: 11400000, guid: 356772471073fde4aaba1828b6b970ec, type: 2}
+  - {fileID: 11400000, guid: cf1047a904c63ec4bacc4dd7ce48de1a, type: 2}
+  - {fileID: 11400000, guid: 3605d157de8362142a99134e1f5a28a9, type: 2}
+  - {fileID: 11400000, guid: b496871b7e1fcc14fbf75b0701f6861f, type: 2}
+  - {fileID: 11400000, guid: 549254c86c3c25c4fa2cdb7ba9dfca33, type: 2}
+  - {fileID: 11400000, guid: 80baaf596ee7ca84b9716c216c915833, type: 2}
+  - {fileID: 11400000, guid: a514b8e6577470743ae2fd333388bea2, type: 2}
+  - {fileID: 11400000, guid: 72065aeeb2c3d0b4486163c3ffb8fefc, type: 2}
+  - {fileID: 11400000, guid: 1813a27e80aa92244a10dac2d10699f7, type: 2}
+  - {fileID: 11400000, guid: 934680ca32b40b642b2c27dd785ddfe9, type: 2}
+  - {fileID: 11400000, guid: 1efe15a5aeef88c4aa603a375048a624, type: 2}
+  - {fileID: 11400000, guid: a87704627a8936c4d80d055d76d371d6, type: 2}
+  - {fileID: 11400000, guid: fd593eca2f28a2f42a9a768650e4a0e0, type: 2}
+  - {fileID: 11400000, guid: ad9215585829cb34287d63b848f103d4, type: 2}
 --- !u!1 &2014919612
 GameObject:
   m_ObjectHideFlags: 0
@@ -50156,6 +50186,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   ItemImage: {fileID: 864335623}
+  itemDropXForce: 0
   isHealth: 0
 --- !u!1 &2039264111
 GameObject:
@@ -50342,6 +50373,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   ItemImage: {fileID: 422692961}
+  itemDropXForce: 0
   isHealth: 0
 --- !u!1 &2048762059
 GameObject:

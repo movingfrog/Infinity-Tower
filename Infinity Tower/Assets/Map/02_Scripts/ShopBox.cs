@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,20 +17,32 @@ public class ShopBox : MonoBehaviour
     private SpriteRenderer ItemImage;
 
     [SerializeField]
-    private int itemDropXForce;
+    private float itemDropXForce;
 
     [SerializeField]
     private bool isHealth;
 
-    private GameObject DroppedItem;
-    private GameObject ItemInfoObject;
+    [Header("오브젝트 속성")]
     private TextMeshProUGUI ItemInfoText;
     private Item sellItem;
     private bool hasItem;
 
+    [Header("GameManager할당 받을 값")]
+    private List<Item> allEquipItem;
+    private float[] maxProb = new float[2];
+    private float[] minProb = new float[2];
+    private int MaxLevel;
+    private GameObject DroppedItem;
+    private GameObject ItemInfoObject;
+
     private void Start()
     {
         DroppedItem = GameManager.Instance.ItemPrefab;
+        allEquipItem = GameManager.Instance.allEquip;
+        maxProb = GameManager.Instance.maxProb();
+        minProb = GameManager.Instance.minProb();
+        MaxLevel = PlayerStatManager.instance.maxLevel;
+        GetNewItem();
         ItemInfoObject = SpaceUIManager.Instance.CreateItemUI(gameObject);
         ItemInfoText = ItemInfoObject.GetComponentInChildren<TextMeshProUGUI>();
         RefreshUI();
@@ -51,13 +64,31 @@ public class ShopBox : MonoBehaviour
     private void FixedUpdate()
     {
         Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, getSize, Player);
+        bool isPlayer =
+            outPlayer != null
+            && (outPlayer.transform.position - transform.position).magnitude <= getSize;
 
-        ItemInfoObject.SetActive(outPlayer != null);
+        ItemInfoObject.SetActive(isPlayer);
+    }
+
+    public void GetNewItem()
+    {
+        (float c, float r, float l) = WorkerHub<ProbabilityWorker>.Instance.GetLevelBasedProb(
+            PlayerStatManager.instance.Level,
+            MaxLevel,
+            maxProb,
+            minProb
+        );
+        Debug.Log(PlayerStatManager.instance.Level);
+        Debug.Log(MaxLevel);
+        Debug.Log(c + " " + r + " " + l);
+        sellItem = WorkerHub<ItemCreateWorker>.Instance.CreateItemWorker(allEquipItem, c, r, l);
     }
 
     private void RefreshUI()
     {
-        string infoLine = sellItem.itemName + $"<color=>";
+        string infoLine =
+            sellItem.itemName + $" <color=yellow>G{PriceTable.GetPrice(sellItem.level, isHealth)}";
         ItemInfoText.color = SpaceUIManager.Instance.rarityColor[(int)sellItem.level];
         ItemInfoText.text = infoLine;
         ItemImage.sprite = sellItem.spriteImage;

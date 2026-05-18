@@ -1,4 +1,6 @@
-﻿using Unity.Cinemachine;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public interface IWorker { }
@@ -48,5 +50,71 @@ public struct ItemDropWorker : IWorker
         rigid.AddForce(force);
         if (magnet != null)
             magnet.Amount = itemCount;
+    }
+}
+
+public struct ItemCreateWorker : IWorker
+{
+    public Item CreateItemWorker(List<Item> allItem, float common, float rare, float legend)
+    {
+        if (allItem == null || allItem.Count == 0)
+            return null;
+
+        ItemLevel targetRarity = DetermineRarity(common, rare, legend);
+
+        int matchCount = 0;
+        foreach (var item in allItem)
+        {
+            if (item.level == targetRarity)
+                matchCount++;
+        }
+
+        if (matchCount == 0)
+            return allItem[Random.Range(0, allItem.Count)];
+
+        int randomIndex = Random.Range(0, matchCount);
+
+        int currentIndex = 0;
+        foreach (var item in allItem)
+        {
+            if (item.level == targetRarity)
+            {
+                if (currentIndex == randomIndex)
+                    return item;
+                currentIndex++;
+            }
+        }
+
+        return null;
+    }
+
+    private ItemLevel DetermineRarity(float c, float r, float l)
+    {
+        float randomValue = Random.Range(0f, 100f);
+
+        if (randomValue < c)
+            return ItemLevel.Common;
+        if (randomValue < c + r)
+            return ItemLevel.Rare;
+        return ItemLevel.Legend;
+    }
+}
+
+public struct ProbabilityWorker : IWorker
+{
+    public (float c, float r, float l) GetLevelBasedProb(
+        int level,
+        int maxLevel,
+        float[] maxProb,
+        float[] minProb
+    )
+    {
+        float t = Mathf.Clamp01((float)(level - 1) / (maxLevel - 1));
+
+        float common = Mathf.Lerp(minProb[0], maxProb[0], t);
+        float rare = Mathf.Lerp(minProb[1], maxProb[1], t);
+
+        float legend = 100 - (common + rare);
+        return (common, rare, legend);
     }
 }

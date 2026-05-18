@@ -1,23 +1,10 @@
-﻿using Unity.Cinemachine;
+﻿using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance
-    {
-        get
-        {
-            if (Instance == null)
-            {
-                Debug.LogError(
-                    "아직 할당 되지 않았습니다 Editor전 Initialization에서 호출을 없애주세요"
-                );
-                return null;
-            }
-            return Instance;
-        }
-        set { Instance = value; }
-    }
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -37,4 +24,17 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("떨어진 전리품 Prefab을 할당 해주세요")]
     public GameObject LootPrefab;
+
+    [Header("ItemCreateWorker용 변수")]
+    public float maxCommonProb;
+    public float minCommonProb;
+    public float maxRareProb;
+    public float minRareProb;
+
+    public float[] maxProb() => new float[2] { maxCommonProb, maxRareProb };
+
+    public float[] minProb() => new float[2] { minCommonProb, minRareProb };
+
+    [Tooltip("모든 장비 SO를 할당해주세요")]
+    public List<Item> allEquip;
 }

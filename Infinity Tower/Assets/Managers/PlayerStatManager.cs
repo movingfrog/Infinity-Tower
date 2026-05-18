@@ -33,6 +33,12 @@ public class PlayerStatManager : MonoBehaviour
     public Image HealthBar;
     public TextMeshProUGUI HealthText;
 
+    [Header("레벨 시스템")]
+    public int Level;
+
+    [field: SerializeField]
+    public int maxLevel { get; private set; }
+
     [Header("공격 시스템")]
     public float Damage;
     public int Ammo;
