@@ -9,7 +9,7 @@ public static class PriceTable
         { ItemLevel.Legend, 5 },
     };
 
-    private const uint healthValue = 5;
+    private const uint healthValue = 1;
     private const uint goldValue = 100;
 
     private const uint lootValue = 5;

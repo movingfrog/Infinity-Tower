@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -90,7 +89,9 @@ public class ShopBox : MonoBehaviour
     private void RefreshUI()
     {
         string infoLine =
-            sellItem.itemName + $" <color=yellow>G{PriceTable.GetPrice(sellItem.level, isHealth)}";
+            sellItem.itemName
+            + (!isHealth ? " <color=yellow>G" : " <color=red>♥")
+            + PriceTable.GetPrice(sellItem.level, isHealth);
         ItemInfoText.color = SpaceUIManager.Instance.rarityColor[(int)sellItem.level];
         ItemInfoText.text = infoLine;
         ItemImage.sprite = sellItem.spriteImage;

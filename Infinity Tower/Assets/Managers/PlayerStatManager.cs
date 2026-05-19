@@ -113,6 +113,7 @@ public class PlayerStatManager : MonoBehaviour
         if (MaxHP - amount <= 0)
             return false;
         MaxHP -= amount;
+        ChangeHealth(0);
         return true;
     }
 
@@ -121,7 +122,6 @@ public class PlayerStatManager : MonoBehaviour
         currentHP += amount * (amount > 0 ? HealBoost : 1);
         if (currentHP > MaxHP)
             currentHP = MaxHP;
-
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");
     }

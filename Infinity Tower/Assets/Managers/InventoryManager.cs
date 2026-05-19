@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -59,6 +60,16 @@ public class InventoryManager : InvenParent
         Inven.SetActive(false);
         DroppedItem = GameManager.Instance.ItemPrefab;
         DroppedLoot = GameManager.Instance.LootPrefab;
+        UseInEditor();
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    private void UseInEditor()
+    {
+        for (int i = 0; i < Goods.Length; i++)
+        {
+            Goods[i].Decrease(Goods[i].Get);
+        }
     }
 
     private void OnEnable()
