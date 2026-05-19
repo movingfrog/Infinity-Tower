@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -83,6 +84,7 @@ public class ShopBox : MonoBehaviour
         Debug.Log(MaxLevel);
         Debug.Log(c + " " + r + " " + l);
         sellItem = WorkerHub<ItemCreateWorker>.Instance.CreateItemWorker(allEquipItem, c, r, l);
+        hasItem = true;
     }
 
     private void RefreshUI()
