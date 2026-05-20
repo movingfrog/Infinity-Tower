@@ -42,10 +42,9 @@ public class ShopBox : MonoBehaviour
         maxProb = GameManager.Instance.maxProb();
         minProb = GameManager.Instance.minProb();
         MaxLevel = PlayerStatManager.instance.maxLevel;
-        GetNewItem();
         ItemInfoObject = SpaceUIManager.Instance.CreateItemUI(gameObject);
         ItemInfoText = ItemInfoObject.GetComponentInChildren<TextMeshProUGUI>();
-        RefreshUI();
+        GetNewItem();
         ItemInfoObject.SetActive(false);
     }
 
@@ -68,7 +67,8 @@ public class ShopBox : MonoBehaviour
             outPlayer != null
             && (outPlayer.transform.position - transform.position).magnitude <= getSize;
 
-        ItemInfoObject.SetActive(isPlayer);
+        if (ItemInfoObject != null)
+            ItemInfoObject.SetActive(isPlayer);
     }
 
     public void GetNewItem()
@@ -79,11 +79,14 @@ public class ShopBox : MonoBehaviour
             maxProb,
             minProb
         );
-        Debug.Log(PlayerStatManager.instance.Level);
-        Debug.Log(MaxLevel);
-        Debug.Log(c + " " + r + " " + l);
         sellItem = WorkerHub<ItemCreateWorker>.Instance.CreateItemWorker(allEquipItem, c, r, l);
         hasItem = true;
+        if (ItemInfoObject == null)
+        {
+            ItemInfoObject = SpaceUIManager.Instance.CreateItemUI(gameObject);
+            ItemInfoText = ItemInfoObject.GetComponentInChildren<TextMeshProUGUI>();
+        }
+        RefreshUI();
     }
 
     private void RefreshUI()
@@ -115,9 +118,14 @@ public class ShopBox : MonoBehaviour
                     sellItem,
                     transform.position,
                     DropType.Shop,
-                    itemDropXForce
+                    itemDropXForce,
+                    .25f,
+                    1,
+                    ItemInfoObject,
+                    gameObject
                 );
                 ItemImage.sprite = null;
+                ItemInfoObject = null;
                 sellItem = null;
                 hasItem = false;
             }

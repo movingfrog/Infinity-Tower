@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpaceUIManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class SpaceUIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject infoUIPrefab;
-    private List<Transform> itemTranform = new List<Transform>();
+    private List<Transform> itemTransform = new List<Transform>();
     private List<Transform> uiTranform = new List<Transform>();
     private Transform camTransform;
 
@@ -21,16 +22,25 @@ public class SpaceUIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < itemTranform.Count; i++)
-            uiTranform[i].position = itemTranform[i].position;
+        for (int i = 0; i < itemTransform.Count; i++)
+            uiTranform[i].position = itemTransform[i].position;
     }
 
     public GameObject CreateItemUI(GameObject targetItem)
     {
         GameObject newUI = Instantiate(infoUIPrefab, this.transform);
-        itemTranform.Add(targetItem.transform);
+        itemTransform.Add(targetItem.transform);
         uiTranform.Add(newUI.transform);
         return newUI;
+    }
+
+    public void ChangeItemTransform(GameObject targetItem, GameObject originItem)
+    {
+        int index = itemTransform.IndexOf(originItem.transform);
+        if (index != -1)
+        {
+            itemTransform[index] = targetItem.transform;
+        }
     }
 
     public void RemoveItemUI(GameObject uiObject, GameObject itemObject)
@@ -39,9 +49,9 @@ public class SpaceUIManager : MonoBehaviour
         {
             uiTranform.Remove(uiObject.transform);
         }
-        if (itemTranform.Contains(itemObject.transform))
+        if (itemTransform.Contains(itemObject.transform))
         {
-            itemTranform.Remove(itemObject.transform);
+            itemTransform.Remove(itemObject.transform);
         }
         Destroy(uiObject);
     }

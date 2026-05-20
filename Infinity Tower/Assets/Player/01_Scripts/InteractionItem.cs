@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 
 public class InteractionItem : DropItem
 {
-    private GameObject InstItemInfo;
+    public GameObject InstItemInfo { get; set; }
+
+    public GameObject originObject { get; set; }
 
     private void OnEnable()
     {
@@ -18,7 +20,10 @@ public class InteractionItem : DropItem
 
     private void Start()
     {
-        InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
+        if (InstItemInfo == null)
+            InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
+        else
+            SpaceUIManager.Instance.ChangeItemTransform(gameObject, originObject);
         TextMeshProUGUI TMP = InstItemInfo.GetComponentInChildren<TextMeshProUGUI>();
         TMP.color = SpaceUIManager.Instance.rarityColor[(int)item.level];
         TMP.text = item.itemName;

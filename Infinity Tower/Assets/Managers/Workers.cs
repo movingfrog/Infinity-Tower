@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -33,7 +34,9 @@ public struct ItemDropWorker : IWorker
         DropType type,
         float Xforce,
         float Yforce = .25f,
-        int itemCount = 0
+        int itemCount = 0,
+        GameObject ItemInfoObject = null,
+        GameObject parentObject = null
     )
     {
         var obj = Object.Instantiate(prefab, pos, Quaternion.identity);
@@ -50,6 +53,12 @@ public struct ItemDropWorker : IWorker
         rigid.AddForce(force);
         if (magnet != null)
             magnet.Amount = itemCount;
+        if (ItemInfoObject != null)
+        {
+            obj.TryGetComponent<InteractionItem>(out InteractionItem interItem);
+            interItem.InstItemInfo = ItemInfoObject;
+            interItem.originObject = parentObject;
+        }
     }
 }
 
