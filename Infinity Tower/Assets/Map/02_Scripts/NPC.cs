@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public abstract class NPC : MonoBehaviour
 {
-    [Header("NPC ¼Ó¼º")]
+    [Header("NPC ì†ì„±")]
     public string NPCName;
 
     [TextArea]
@@ -14,7 +14,7 @@ public abstract class NPC : MonoBehaviour
     public string selectAText;
     public string selectBText;
 
-    [Header("ÇÃ·¹ÀÌ¾î Å½Áö °ü·Ã º¯¼ö")]
+    [Header("í”Œë ˆì´ì–´ íƒì§€ ê´€ë ¨ ë³€ìˆ˜")]
     public GameObject interactionIcon;
     public LayerMask PlayerLayer;
     public float radius;
