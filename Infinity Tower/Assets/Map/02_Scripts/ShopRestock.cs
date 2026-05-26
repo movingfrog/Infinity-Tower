@@ -75,7 +75,7 @@ public class ShopRestock : MonoBehaviour
 
     IEnumerator SpinRestockImage(float amount)
     {
-        for (float i = 0; i < 1; i += Time.deltaTime * spinSpeedAmount)
+        for (float i = 0; i < 1; i += Time.deltaTime * amount)
         {
             RestockImage.rotation = Quaternion.Lerp(
                 Quaternion.identity,
