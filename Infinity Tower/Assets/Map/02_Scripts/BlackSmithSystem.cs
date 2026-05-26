@@ -166,7 +166,7 @@ public class BlackSmithSystem : InvenParent
 
             if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, goodsPrice[GoodsType.Gold]))
                 return;
-            if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, 0))
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, goodsPrice[GoodsType.Stone]))
                 return;
 
             Panel.SetActive(true);

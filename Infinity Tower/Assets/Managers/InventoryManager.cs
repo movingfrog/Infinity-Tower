@@ -91,11 +91,15 @@ public class InventoryManager : InvenParent
             return;
         if (PlayerStatManager.instance.getState(PlayerState.Idle))
         {
-            for (int i = 0; i < Goods.Length; i++)
+            int limit = Mathf.Min(Goods.Length, GoodsText.Length);
+            for (int i = 0; i < limit; i++)
             {
-                GoodsText[i].text = Goods[i].Get.ToString("0");
-                if (Goods[i].Type == GoodsType.Gold)
-                    GoodsText[i].text += "G";
+                if (Goods[i] != null && GoodsText[i] != null)
+                {
+                    GoodsText[i].text = Goods[i].Get.ToString("0");
+                    if (Goods[i].Type == GoodsType.Gold)
+                        GoodsText[i].text += "G";
+                }
             }
             Inven.SetActive(true);
             PlayerStatManager.instance.ChangeState(PlayerState.InvenOpen);

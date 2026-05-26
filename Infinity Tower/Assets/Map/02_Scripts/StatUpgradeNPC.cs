@@ -6,7 +6,7 @@ public class StatUpgradeNPC : NPC
     [SerializeField]
     private bool isVola;
 
-    [Header("스탟 증가 재화")]
+    [Header("스탯 증가 재화")]
     [SerializeField]
     private int useAmount;
 
@@ -15,7 +15,7 @@ public class StatUpgradeNPC : NPC
         //플레이어 스탯 증가 함수
         if (isVola)
         {
-            if (InventoryManager.Instance.UseGoods(GoodsType.Stone, (uint)useAmount) || true)
+            if (InventoryManager.Instance.UseGoods(GoodsType.Stone, (uint)useAmount))
             {
                 StatType randStat = GetRandomEnumValue<StatType>();
                 while (randStat == StatType.CRIT_RATE)

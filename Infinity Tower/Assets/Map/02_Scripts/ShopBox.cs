@@ -62,10 +62,8 @@ public class ShopBox : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, getSize, Player);
-        bool isPlayer =
-            outPlayer != null
-            && (outPlayer.transform.position - transform.position).magnitude <= getSize;
+        Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, getSize * .8f, Player);
+        bool isPlayer = outPlayer != null;
 
         if (ItemInfoObject != null)
             ItemInfoObject.SetActive(isPlayer);
@@ -102,7 +100,7 @@ public class ShopBox : MonoBehaviour
 
     private void Buy(InputAction.CallbackContext context)
     {
-        if (hasItem && ItemInfoObject.activeSelf)
+        if (hasItem && ItemInfoObject != null && ItemInfoObject.activeSelf)
         {
             uint price = PriceTable.GetPrice(sellItem.level, isHealth);
             bool isPaymentSuccess = false;

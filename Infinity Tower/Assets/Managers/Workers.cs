@@ -43,7 +43,7 @@ public struct ItemDropWorker : IWorker
         obj.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid);
         obj.TryGetComponent<DropItem>(out DropItem item);
         obj.TryGetComponent<MagnetItem>(out MagnetItem magnet);
-        if (rigid == item)
+        if (rigid == null || item == null)
             return;
         Vector3 force =
             type == DropType.Shop

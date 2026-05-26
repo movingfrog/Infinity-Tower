@@ -60,11 +60,23 @@ public class SaleSystem : InvenParent
     {
         if (CheckSaleSlot)
         {
-            for (int i = 0; i < SaleSlotStart; i++)
+            int invenIdx = 0;
+            for (int saleIdx = SaleSlotStart; saleIdx < AllSlots.Length; saleIdx++)
             {
-                if (AllItem[i].item == null)
+                if (AllItem[saleIdx].item != null)
                 {
-                    swapItem(SaleSlotStart, i);
+                    while (invenIdx < SaleSlotStart && AllItem[invenIdx].item != null)
+                    {
+                        invenIdx++;
+                    }
+                    if (invenIdx < SaleSlotStart)
+                    {
+                        swapItem(saleIdx, invenIdx);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
             for (int i = SaleSlotStart; i < AllSlots.Length; i++)
@@ -149,7 +161,11 @@ public class SaleSystem : InvenParent
 
     public override void swapItem(int startIndex, int targetIndex)
     {
-        if (AllItem[startIndex].item == null || !canPlace(targetIndex, AllItem[startIndex]))
+        if (
+            AllItem[startIndex] == null
+            || AllItem[startIndex].item == null
+            || !canPlace(targetIndex, AllItem[startIndex])
+        )
             return;
 
         (AllItem[startIndex], AllItem[targetIndex]) = (AllItem[targetIndex], AllItem[startIndex]);

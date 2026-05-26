@@ -49,17 +49,19 @@ public class ShopRestock : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Collider2D outPlayer = Physics2D.OverlapCircle(transform.position, interactSize, Player);
-        bool playerState =
-            outPlayer != null
-            && (outPlayer.transform.position - transform.position).magnitude < interactSize;
+        Collider2D outPlayer = Physics2D.OverlapCircle(
+            transform.position,
+            interactSize * .8f,
+            Player
+        );
+        bool playerState = outPlayer != null;
 
         ItemInfoObject.SetActive(playerState);
     }
 
     private void Restock(InputAction.CallbackContext context)
     {
-        if (restockCount > 0 && ItemInfoObject.activeSelf)
+        if (restockCount > 0 && ItemInfoObject != null && ItemInfoObject.activeSelf)
         {
             foreach (var shop in allShopBox)
             {
@@ -80,7 +82,7 @@ public class ShopRestock : MonoBehaviour
                 Quaternion.Euler(new Vector3(0, 0, -360)),
                 i
             );
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return null;
         }
     }
 
