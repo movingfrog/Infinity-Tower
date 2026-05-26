@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -35,25 +35,27 @@ public class EquipmentClass
     [TextArea]
     public string anvilInfoLine;
 
-    [Foldout("¹«±â ¾ÆÀÌÅÛ")]
+    [Foldout("ë¬´ê¸° ì•„ì´í…œ")]
     public uint itemDamage;
 
-    [Foldout("¾Ç¼¼¼­¸® ¾ÆÀÌÅÛ")]
+    [Foldout("ì•…ì„¸ì„œë¦¬ ì•„ì´í…œ")]
     public List<StatModifier> statModifiers;
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Objects/Item", order = 0)]
 public class Item : ScriptableObject
 {
-    [Header("¾ÆÀÌÅÛ ¼Ó¼º")]
+    [Header("ì•„ì´í…œ ì†ì„±")]
     public Sprite spriteImage;
     public string itemName;
+
+    [TextArea]
     public string itemInfo;
     public ItemLevel level;
     public SlotType slotType;
     public int MaxItemCount;
     public bool isEquippable;
 
-    [Foldout("Àåºñµé")]
+    [Foldout("ì¥ë¹„ë“¤")]
     public EquipmentClass Equips;
 }

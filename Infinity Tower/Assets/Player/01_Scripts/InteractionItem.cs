@@ -1,11 +1,12 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractionItem : DropItem
 {
-    private Color[] rarityColor = { Color.white, Color.cyan, Color.yellow };
-    private GameObject InstItemInfo;
+    public GameObject InstItemInfo { get; set; }
+
+    public GameObject originObject { get; set; }
 
     private void OnEnable()
     {
@@ -19,9 +20,12 @@ public class InteractionItem : DropItem
 
     private void Start()
     {
-        InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
+        if (InstItemInfo == null)
+            InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
+        else
+            SpaceUIManager.Instance.ChangeItemTransform(gameObject, originObject);
         TextMeshProUGUI TMP = InstItemInfo.GetComponentInChildren<TextMeshProUGUI>();
-        TMP.color = rarityColor[(int)item.level];
+        TMP.color = SpaceUIManager.Instance.rarityColor[(int)item.level];
         TMP.text = item.itemName;
         InstItemInfo.SetActive(false);
     }

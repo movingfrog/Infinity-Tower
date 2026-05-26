@@ -1,23 +1,24 @@
+Ôªøusing System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlackSmithSystem : MonoBehaviour
+public class BlackSmithSystem : InvenParent
 {
-    public static BlackSmithSystem Instance;
-
     Animator UpgradeAnimation;
 
-    [Header("¿Œ∫• º”º∫")]
+    [Header("Ïù∏Î≤§ ÏÜçÏÑ±")]
     public Slot[] AnvilInvenSlots;
     public InvenItem[] allItem = new InvenItem[14];
 
-    [Header("UI º”º∫")]
+    [Header("UI ÏÜçÏÑ±")]
     public GameObject Panel;
     public Image[] upgradeInfo;
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI[] gettingGoods;
     public TextMeshProUGUI[] usingGoods;
+
+    GameObject DroppedItem;
 
     private const int InvenStart = 0;
     private const int WeaponStart = 9;
@@ -26,28 +27,24 @@ public class BlackSmithSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         UpgradeAnimation = GetComponent<Animator>();
+        for (int i = 0; i < AnvilInvenSlots.Length; i++)
+            AnvilInvenSlots[i].invenManager = this;
     }
 
     private void OnEnable()
     {
         Panel.SetActive(false);
         getItem();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     private void OnDisable()
     {
         giveItem();
     }
+
+    private void Start() => DroppedItem = GameManager.Instance.ItemPrefab;
 
     private void getItem()
     {
@@ -65,11 +62,11 @@ public class BlackSmithSystem : MonoBehaviour
             InventoryManager.Instance.allItem[i] = allItem[i];
         }
 
-        InventoryManager.Instance.refreshAllSlot();
+        InventoryManager.Instance.RefreshAllSlot();
         InventoryManager.Instance.equipAccessories();
     }
 
-    private void refreshAllSlot()
+    public override void RefreshAllSlot()
     {
         for (int i = 0; i < AnvilInvenSlots.Length; i++)
         {
@@ -81,7 +78,7 @@ public class BlackSmithSystem : MonoBehaviour
             AnvilUIRefresh(0, 0, 0, 0, null);
     }
 
-    bool canPlace(int targetIndex, InvenItem draggingItem)
+    public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
         SlotType targetType = AnvilInvenSlots[targetIndex].type;
 
@@ -96,15 +93,19 @@ public class BlackSmithSystem : MonoBehaviour
             );
     }
 
-    public void swapItem(int startIndex, int targetIndex)
+    public override void swapItem(int startIndex, int targetIndex)
     {
         if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
 
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
-        refreshAllSlot();
+        RefreshAllSlot();
     }
+
+    public override RectTransform CanvasTransform() => GetComponent<RectTransform>();
+
+    public override void DroppingItem() { }
 
     private void RemoveInven()
     {
@@ -119,8 +120,12 @@ public class BlackSmithSystem : MonoBehaviour
             }
             if (allItem[AnvilSlotStart].item != null)
             {
-                Debug.LogError(
-                    "æ∆¡˜ ±∏«ˆ æ»µ  ∞≠»≠ ≈«ø° ≥÷¿∫ ªÛ≈¬∑Œ ≤Ù∏È ∂≥æÓ∆Æ∏Æ¥¬ ∑Œ¡˜ ±∏«ˆ « ø‰"
+                WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                    DroppedItem,
+                    allItem[AnvilSlotStart].item,
+                    transform.position,
+                    DropType.Inventory,
+                    -1
                 );
             }
         }
@@ -155,9 +160,13 @@ public class BlackSmithSystem : MonoBehaviour
     {
         if (allItem[AnvilSlotStart].item != null)
         {
-            if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, 0))
+            Dictionary<GoodsType, uint> goodsPrice = PriceTable.UpgradePrice(
+                allItem[AnvilSlotStart].item.level
+            );
+
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Gold, goodsPrice[GoodsType.Gold]))
                 return;
-            if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, 0))
+            if (!InventoryManager.Instance.UseGoods(GoodsType.Stone, goodsPrice[GoodsType.Stone]))
                 return;
 
             Panel.SetActive(true);
@@ -167,13 +176,13 @@ public class BlackSmithSystem : MonoBehaviour
 
     public void Upgrade()
     {
-        //æ∆¿Ã≈€¿« √ﬂ∞° »ø∞˙ ¿˚øÎ √≥∏Æ « ø‰
-        //ex) ∞¯∞› ¿Øµµ, π¸¿ß ¡ı∞°, ±Ÿ¡¢ ∞¯∞› π¸¿ß ≥ª ≈ıªÁ√º ªË¡¶
+        //ÏïÑÏù¥ÌÖúÏùò Ï∂îÍ∞Ä Ìö®Í≥º Ï†ÅÏö© Ï≤òÎ¶¨ ÌïÑÏöî
+        //ex) Í≥µÍ≤© Ïú†ÎèÑ, Î≤îÏúÑ Ï¶ùÍ∞Ä, Í∑ºÏ†ë Í≥µÍ≤© Î≤îÏúÑ ÎÇ¥ Ìà¨ÏÇ¨Ï≤¥ ÏÇ≠Ï†ú
         Panel.SetActive(false);
         allItem[AnvilSlotStart].item = allItem[AnvilSlotStart].item.Equips.nextItem;
         if (allItem[AnvilSlotStart].item.level == ItemLevel.Legend)
             RemoveInven();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
     public void BackToGame()

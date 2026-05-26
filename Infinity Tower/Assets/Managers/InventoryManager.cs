@@ -1,3 +1,5 @@
+Ôªøusing System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,19 +22,24 @@ public class InvenItem
     }
 }
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : InvenParent
 {
-    public static InventoryManager Instance;
+    GameObject DroppedItem;
+    GameObject DroppedLoot;
 
-    [Header("¿Œ∫• ø≠∞Ì ¥›¥¬ ±‚¥…")]
+    public static InventoryManager Instance { get; private set; }
+
+    [Header("Ïù∏Î≤§ Ïó¥Í≥† Îã´Îäî Í∏∞Îä•")]
     public GameObject Inven;
 
-    [Header("¿Á»≠")]
+    [Header("Ïû¨Ìôî")]
     public SO_Goods[] Goods;
+    public TextMeshProUGUI[] GoodsText;
 
-    [Header("¿Œ∫• ¡÷ø‰ ±‚¥…")]
+    [Header("Ïù∏Î≤§ Ï£ºÏöî Í∏∞Îä•")]
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
+
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
     private const int ACCESSORY_START = 11;
@@ -43,12 +50,26 @@ public class InventoryManager : MonoBehaviour
         if (Instance != null)
             Destroy(gameObject);
         Instance = this;
+        for (int i = 0; i < allSlot.Length; i++)
+            allSlot[i].invenManager = this;
     }
 
     private void Start()
     {
-        refreshAllSlot();
+        RefreshAllSlot();
         Inven.SetActive(false);
+        DroppedItem = GameManager.Instance.ItemPrefab;
+        DroppedLoot = GameManager.Instance.LootPrefab;
+        UseInEditor();
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    private void UseInEditor()
+    {
+        for (int i = 0; i < Goods.Length; i++)
+        {
+            Goods[i].Decrease(Goods[i].Get);
+        }
     }
 
     private void OnEnable()
@@ -70,6 +91,16 @@ public class InventoryManager : MonoBehaviour
             return;
         if (PlayerStatManager.instance.getState(PlayerState.Idle))
         {
+            int limit = Mathf.Min(Goods.Length, GoodsText.Length);
+            for (int i = 0; i < limit; i++)
+            {
+                if (Goods[i] != null && GoodsText[i] != null)
+                {
+                    GoodsText[i].text = Goods[i].Get.ToString("0");
+                    if (Goods[i].Type == GoodsType.Gold)
+                        GoodsText[i].text += "G";
+                }
+            }
             Inven.SetActive(true);
             PlayerStatManager.instance.ChangeState(PlayerState.InvenOpen);
         }
@@ -105,10 +136,10 @@ public class InventoryManager : MonoBehaviour
             i++;
         }
 
-        refreshAllSlot();
+        RefreshAllSlot();
     }
 
-    bool canPlace(int targetIndex, InvenItem draggingItem)
+    public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
         SlotType targetType = allSlot[targetIndex].type;
 
@@ -118,7 +149,7 @@ public class InventoryManager : MonoBehaviour
         return targetType == draggingItem.item.slotType;
     }
 
-    public void swapItem(int startIndex, int targetIndex)
+    public override void swapItem(int startIndex, int targetIndex)
     {
         if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
@@ -127,8 +158,12 @@ public class InventoryManager : MonoBehaviour
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
             equipAccessories();
-        refreshAllSlot();
+        RefreshAllSlot();
     }
+
+    public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
+
+    public override void DroppingItem() { }
 
     public void equipAccessories()
     {
@@ -151,7 +186,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 
-    public void refreshAllSlot()
+    public override void RefreshAllSlot()
     {
         for (int i = 0; i < allSlot.Length; i++)
         {

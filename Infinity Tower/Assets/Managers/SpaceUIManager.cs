@@ -1,12 +1,16 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpaceUIManager : MonoBehaviour
 {
-    public static SpaceUIManager Instance;
+    public Color[] rarityColor = { Color.white, Color.cyan, Color.yellow };
 
-    [SerializeField] private GameObject infoUIPrefab;
-    private List<Transform> itemTranform = new List<Transform>();
+    public static SpaceUIManager Instance { get; private set; }
+
+    [SerializeField]
+    private GameObject infoUIPrefab;
+    private List<Transform> itemTransform = new List<Transform>();
     private List<Transform> uiTranform = new List<Transform>();
     private Transform camTransform;
 
@@ -16,38 +20,50 @@ public class SpaceUIManager : MonoBehaviour
         camTransform = Camera.main.transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        for(int i = 0;i<itemTranform.Count;i++) uiTranform[i].position = itemTranform[i].position;
+        for (int i = 0; i < itemTransform.Count; i++)
+            uiTranform[i].position = itemTransform[i].position;
     }
 
     public GameObject CreateItemUI(GameObject targetItem)
     {
         GameObject newUI = Instantiate(infoUIPrefab, this.transform);
-        itemTranform.Add(targetItem.transform);
+        itemTransform.Add(targetItem.transform);
         uiTranform.Add(newUI.transform);
         return newUI;
     }
+
+    public void ChangeItemTransform(GameObject targetItem, GameObject originItem)
+    {
+        int index = itemTransform.IndexOf(originItem.transform);
+        if (index != -1)
+        {
+            itemTransform[index] = targetItem.transform;
+        }
+    }
+
     public void RemoveItemUI(GameObject uiObject, GameObject itemObject)
     {
         if (uiTranform.Contains(uiObject.transform))
         {
             uiTranform.Remove(uiObject.transform);
         }
-        if (itemTranform.Contains(itemObject.transform))
+        if (itemTransform.Contains(itemObject.transform))
         {
-            itemTranform.Remove(itemObject.transform);
+            itemTransform.Remove(itemObject.transform);
         }
         Destroy(uiObject);
     }
 
     private void LateUpdate()
     {
-        if (uiTranform.Count == 0) return;
+        if (uiTranform.Count == 0)
+            return;
 
         Quaternion targetRotation = camTransform.rotation;
 
-        for(int i = 0; i < uiTranform.Count; i++)
+        for (int i = 0; i < uiTranform.Count; i++)
         {
             uiTranform[i].transform.rotation = targetRotation;
         }
@@ -55,6 +71,7 @@ public class SpaceUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Instance == this) Instance = null;
+        if (Instance == this)
+            Instance = null;
     }
 }

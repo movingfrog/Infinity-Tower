@@ -1,9 +1,9 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 [CreateAssetMenu(fileName = "Potion", menuName = "Scriptable Objects/Potion", order = 1)]
 public class Potion : ScriptableObject
 {
-    [Header("UIº”º∫")]
+    [Header("UIÏÜçÏÑ±")]
     public Sprite PotionIcon;
     public string potionName;
 
@@ -11,11 +11,11 @@ public class Potion : ScriptableObject
     public string potionInfo;
     public uint price;
 
-    [Header("π∞æ‡ »ø∞˙")]
+    [Header("Î¨ºÏïΩ Ìö®Í≥º")]
     [Range(1, 10)]
     public int healAmount;
 
-    [Range(1, 3)]
+    [Range(0, 3)]
     public int healthAmount;
 
     [Range(1, 100)]

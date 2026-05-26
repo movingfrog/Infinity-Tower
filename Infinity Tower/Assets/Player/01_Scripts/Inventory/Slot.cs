@@ -1,4 +1,4 @@
-using NaughtyAttributes;
+Ôªøusing NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,19 +18,21 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private TextMeshProUGUI Text;
     private Button button;
 
-    [Header("Drag º”º∫")]
+    [Header("Í¥ÄÎ¶¨Ïûê")]
+    public InvenParent invenManager;
+
+    [Header("Drag ÏÜçÏÑ±")]
     public bool hasDrag;
     Transform dragAfterParent;
 
-    [Header("Slot º”º∫")]
+    [Header("Slot ÏÜçÏÑ±")]
     public SlotType type;
     public Image SlotSprite;
 
-    [Range(0, 16)]
     public int slotIndex;
-    public bool isAnvil;
+    public bool isStoreUI;
 
-    [Foldout("øπø‹ ΩΩ∑‘")]
+    [Foldout("ÏòàÏô∏ Ïä¨Î°Ø")]
     public Sprite defaultSprite;
 
     private void Awake()
@@ -40,7 +42,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             Text = GetComponentInChildren<TextMeshProUGUI>();
             Text.color = new Color(0, 0, 0, 0);
         }
-        if (!isAnvil)
+        if (!isStoreUI)
         {
             button = GetComponent<Button>();
             button.onClick.AddListener(GetItemInfo);
@@ -94,11 +96,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (!hasDrag)
             return;
         dragAfterParent = SlotSprite.rectTransform.parent;
-        SlotSprite.rectTransform.SetParent(
-            isAnvil
-                ? BlackSmithSystem.Instance.GetComponent<RectTransform>()
-                : InventoryManager.Instance.GetComponentInChildren<RectTransform>()
-        );
+        SlotSprite.rectTransform.SetParent(invenManager.CanvasTransform());
         SlotSprite.transform.SetAsLastSibling();
     }
 
@@ -111,12 +109,12 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Slot targetSlot)
         )
         {
-            if (isAnvil)
-                BlackSmithSystem.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
-            else
-                InventoryManager.Instance.swapItem(this.slotIndex, targetSlot.slotIndex);
+            invenManager.swapItem(this.slotIndex, targetSlot.slotIndex);
         }
-
+        else if (eventData.pointerCurrentRaycast.gameObject == null)
+        {
+            invenManager.DroppingItem();
+        }
         SlotSprite.rectTransform.SetParent(dragAfterParent);
     }
 }

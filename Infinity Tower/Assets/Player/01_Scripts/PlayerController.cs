@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,18 +8,21 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(TimeBody))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("ÇÃ·¹ÀÌ¾î ¹°¸® ÀÛ¿ë °ü·Ã")]
+    [Header("í”Œë ˆì´ì–´ ë¬¼ë¦¬ ì‘ìš© ê´€ë ¨")]
     public float basicMoveSpeed;
     public float JumpForce;
+
+    private const float groundCheck = .1f;
+    private const float bounceCheck = 3f;
 
     [Range(0, 2)]
     public int jumpCount = 2;
 
-    [Header("Á¡ÇÁ ÆÇÁ¤ °ü·Ã")]
+    [Header("ì í”„ íŒì • ê´€ë ¨")]
     public float groundDistance;
     public LayerMask groundLayer;
 
-    [Header("´ë½¬ °ü·Ã")]
+    [Header("ëŒ€ì‰¬ ê´€ë ¨")]
     public float dashForce;
 
     [Range(0, 2)]
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
     float defaultGravity;
     Coroutine dashCool;
 
-    [Header("privateÇü½ÄÀÇ Á¢±Ù º¯¼ö")]
+    [Header("privateí˜•ì‹ì˜ ì ‘ê·¼ ë³€ìˆ˜")]
     Rigidbody2D rigid;
     Animator ani;
     Vector2 movement;
@@ -46,8 +49,13 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movePosition();
-        if (isGrounded() && rigid.linearVelocityY <= .1f)
-            jumpCount = 2;
+        if (isGrounded())
+        {
+            if (rigid.linearVelocityY <= groundCheck)
+                jumpCount = 2;
+            else if (rigid.linearVelocityY <= bounceCheck)
+                rigid.linearVelocityY = 0;
+        }
     }
 
     bool isGrounded()
@@ -82,7 +90,7 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = currentLayer;
         rigid.gravityScale = defaultGravity;
         dashCool = StartCoroutine(DashCool());
-    } //¾Ö´Ï¸ŞÀÌ¼Ç ÀÌº¥Æ® Àü¿ë ¸Ş¼­µå
+    } //ì• ë‹ˆë©”ì´ì…˜ ì´ë²¤íŠ¸ ì „ìš© ë©”ì„œë“œ
 
     public void OnMove(InputValue value)
     {
