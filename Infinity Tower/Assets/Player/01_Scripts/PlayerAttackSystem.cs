@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,13 +16,13 @@ public class PlayerAttackSystem : MonoBehaviour
     Animator PlayerAni;
     bool isPusing;
 
-    [Header("°ø°Ý ÆÇÁ¤")]
+    [Header("ê³µê²© íŒì •")]
     public float attackDirection;
     public GameObject WeaponDirection;
 
-    [Header("°ø°Ý ÇüÅÂ")]
+    [Header("ê³µê²© í˜•íƒœ")]
     public GameObject[] weaponPrefeb;
-    private WeaponScript weapon;
+    private Weapon weapon;
 
     private void Awake()
     {
@@ -52,8 +52,6 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (isPusing)
             return;
-        if (weapon != null)
-            weapon.FireSelect();
         isPusing = true;
         StartCoroutine(waitPusing());
     }
@@ -68,7 +66,7 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon != null)
         {
-            weapon.isPusing = true;
+            weapon.isPushing = true;
             if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash"))
                 return;
             if (!weapon.endAttack)
@@ -82,15 +80,15 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon == null)
             return;
-        weapon.isPusing = false;
-        weapon.Endattack();
+        weapon.isPushing = false;
+        weapon.EndAttack();
     }
 
     private void GetWeaponType()
     {
         if (WeaponDirection.transform.childCount > 0)
         {
-            weapon = WeaponDirection.GetComponentInChildren<WeaponScript>();
+            weapon = WeaponDirection.GetComponentInChildren<Weapon>();
         }
     }
 }
