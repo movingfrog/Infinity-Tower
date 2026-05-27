@@ -53,7 +53,7 @@ public class SaleSystem : InvenParent
         }
 
         InventoryManager.Instance.RefreshAllSlot();
-        InventoryManager.Instance.equipAccessories();
+        InventoryManager.Instance.EquipAccessories();
     }
 
     private void RemoveInven()

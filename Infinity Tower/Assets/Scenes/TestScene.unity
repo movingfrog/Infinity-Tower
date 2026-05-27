@@ -1311,8 +1311,8 @@ GameObject:
   m_Component:
   - component: {fileID: 213300619}
   - component: {fileID: 213300620}
-  - component: {fileID: 213300621}
   - component: {fileID: 213300622}
+  - component: {fileID: 213300623}
   m_Layer: 7
   m_Name: WoodSword
   m_TagString: Untagged
@@ -1394,35 +1394,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &213300621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213300618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  endAttack: 0
-  isPusing: 0
-  damage: 5
-  attackRate: 0.5
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 1.75, y: 1.25}
-  attackRange: {x: 0.5, y: 0.5}
-  shotPosition: {fileID: 0}
-  bulletPrefeb: {fileID: 0}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &213300622
 Animator:
   serializedVersion: 7
@@ -1445,6 +1416,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &213300623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213300618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fc96cff41da12448f1e7ae88495337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
+  damage: 5
+  attackRate: 0.5
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackSize: {x: 1.75, y: 1.25}
+  attackRange: {x: 0.5, y: 0.5}
 --- !u!1 &249565034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1635,7 @@ GameObject:
   - component: {fileID: 254072273}
   - component: {fileID: 254072276}
   - component: {fileID: 254072275}
-  - component: {fileID: 254072274}
+  - component: {fileID: 254072277}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -1669,35 +1659,6 @@ Transform:
   - {fileID: 1558211060}
   m_Father: {fileID: 1469382489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &254072274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254072272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  endAttack: 0
-  isPusing: 0
-  damage: 15
-  attackRate: 1
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1558211060}
-  bulletPrefeb: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &254072275
 Animator:
   serializedVersion: 7
@@ -1779,6 +1740,26 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &254072277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254072272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a545807d995fab743a78979a47d8605b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  damage: 15
+  attackRate: 1
+  shotPosition: {fileID: 1558211060}
+  bulletPrefab: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
+  isCrossBow: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &269155333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3950,8 +3931,8 @@ MonoBehaviour:
     currentItemCount: 1
   - item: {fileID: 11400000, guid: 5ab48194ec2bb6f4fa9a8dd32b83f8d2, type: 2}
     currentItemCount: 1
-  - item: {fileID: 0}
-    currentItemCount: 0
+  - item: {fileID: 11400000, guid: 14d64eb4e4035f64f9ca841788d6e9df, type: 2}
+    currentItemCount: 1
   - item: {fileID: 0}
     currentItemCount: 0
   - item: {fileID: 0}
@@ -22543,7 +22524,7 @@ GameObject:
   - component: {fileID: 1186118595}
   - component: {fileID: 1186118598}
   - component: {fileID: 1186118597}
-  - component: {fileID: 1186118596}
+  - component: {fileID: 1186118599}
   m_Layer: 0
   m_Name: Crossbow-Sheet_0
   m_TagString: Untagged
@@ -22567,35 +22548,6 @@ Transform:
   - {fileID: 1526594555}
   m_Father: {fileID: 1469382489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186118596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186118594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  endAttack: 0
-  isPusing: 0
-  damage: 20
-  attackRate: 2.25
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1526594555}
-  bulletPrefeb: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 1
 --- !u!95 &1186118597
 Animator:
   serializedVersion: 7
@@ -22677,6 +22629,26 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1186118599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186118594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a545807d995fab743a78979a47d8605b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  damage: 20
+  attackRate: 2.25
+  shotPosition: {fileID: 1526594555}
+  bulletPrefab: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
+  isCrossBow: 1
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1207202312
 GameObject:
   m_ObjectHideFlags: 0
@@ -28037,7 +28009,7 @@ GameObject:
   - component: {fileID: 2061356481}
   - component: {fileID: 2061356484}
   - component: {fileID: 2061356483}
-  - component: {fileID: 2061356482}
+  - component: {fileID: 2061356485}
   m_Layer: 0
   m_Name: spear_12_0
   m_TagString: Untagged
@@ -28060,35 +28032,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1469382489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &2061356482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061356480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
-  endAttack: 0
-  isPusing: 0
-  damage: 2
-  attackRate: 0.2
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 1.25, y: 0.5}
-  attackRange: {x: 0.25, y: 0.25}
-  shotPosition: {fileID: 0}
-  bulletPrefeb: {fileID: 0}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &2061356483
 Animator:
   serializedVersion: 7
@@ -28170,6 +28113,25 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2061356485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061356480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd68ece9bbfe01c46b26c3235179af13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpearWeapon
+  damage: 2
+  attackRate: 0.2
+  attackSize: {x: 1.25, y: 0.5}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackRange: {x: 0.25, y: 0.25}
 --- !u!1 &2068577452
 GameObject:
   m_ObjectHideFlags: 0

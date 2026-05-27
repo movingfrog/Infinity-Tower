@@ -157,7 +157,9 @@ public class InventoryManager : InvenParent
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
-            equipAccessories();
+            EquipAccessories();
+        if (allSlot[targetIndex].type == SlotType.Weapon)
+            EquipWeapon();
         RefreshAllSlot();
     }
 
@@ -165,7 +167,7 @@ public class InventoryManager : InvenParent
 
     public override void DroppingItem() { }
 
-    public void equipAccessories()
+    public void EquipAccessories()
     {
         PlayerStatManager.instance.resetStat();
         if (allItem[ACCESSORY_START].item != null)
@@ -181,6 +183,8 @@ public class InventoryManager : InvenParent
                     allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Value
                 );
     }
+
+    public void EquipWeapon() { }
 
     public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);
 

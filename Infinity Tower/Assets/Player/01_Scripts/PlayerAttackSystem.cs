@@ -67,7 +67,11 @@ public class PlayerAttackSystem : MonoBehaviour
         if (weapon != null)
         {
             weapon.isPushing = true;
-            if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash"))
+            if (
+                PlayerAni.GetBool("isUsingSkill")
+                || PlayerAni.GetBool("isDash")
+                || PlayerStatManager.instance.currentState != PlayerState.Idle
+            )
                 return;
             if (!weapon.endAttack)
             {
