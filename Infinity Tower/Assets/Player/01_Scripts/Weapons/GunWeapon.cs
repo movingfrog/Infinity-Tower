@@ -24,13 +24,15 @@ public class GunWeapon : Weapon
         _hasAuto = hasAuto;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         InputManager.Instance.inputActions.Player.FireMode.started += ToggleAutoFire;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
     }
 

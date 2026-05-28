@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -39,6 +40,8 @@ public class InventoryManager : InvenParent
     [Header("인벤 주요 기능")]
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
+
+    public event Action<Item> equipEvent;
 
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
@@ -159,7 +162,7 @@ public class InventoryManager : InvenParent
         if (allSlot[targetIndex].type == SlotType.Accessories)
             EquipAccessories();
         if (allSlot[targetIndex].type == SlotType.Weapon)
-            EquipWeapon();
+            EquipWeapon(allItem[targetIndex].item);
         RefreshAllSlot();
     }
 
@@ -184,7 +187,12 @@ public class InventoryManager : InvenParent
                 );
     }
 
-    public void EquipWeapon() { }
+    public void EquipWeapon(Item weaponItem)
+    {
+        UnityEngine.Debug.Log("무기 장착");
+
+        equipEvent?.Invoke(weaponItem);
+    }
 
     public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);
 

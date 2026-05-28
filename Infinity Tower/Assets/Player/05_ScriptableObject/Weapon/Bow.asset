@@ -21,5 +21,8 @@ MonoBehaviour:
   MaxItemCount: 1
   isEquippable: 1
   Equips:
+    nextItem: {fileID: 0}
+    anvilInfoLine: 
+    Type: 2
     itemDamage: 15
     statModifiers: []

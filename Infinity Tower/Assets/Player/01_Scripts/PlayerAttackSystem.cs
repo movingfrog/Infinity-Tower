@@ -21,7 +21,7 @@ public class PlayerAttackSystem : MonoBehaviour
     public GameObject WeaponDirection;
 
     [Header("공격 형태")]
-    public GameObject[] weaponPrefeb;
+    public WeaponData[] PrefabData;
     private Weapon weapon;
 
     private void Awake()
@@ -34,12 +34,20 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.equipEvent += AddEquipWeapon;
+        }
     }
 
     private void OnDisable()
     {
         InputManager.Instance.inputActions.Player.Attack.started -= StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.equipEvent -= AddEquipWeapon;
+        }
     }
 
     public void OnMove(InputValue value)
@@ -93,6 +101,25 @@ public class PlayerAttackSystem : MonoBehaviour
         if (WeaponDirection.transform.childCount > 0)
         {
             weapon = WeaponDirection.GetComponentInChildren<Weapon>();
+        }
+    }
+
+    private void AddEquipWeapon(Item item)
+    {
+        foreach (var w in PrefabData)
+        {
+            if (w.Type == item.Equips.Type)
+            {
+                GameObject weaponObject = Instantiate(
+                    w.GetPrefabByLevel(item.level),
+                    WeaponDirection.transform
+                );
+                if (weapon == null)
+                {
+                    weaponObject.SetActive(true);
+                    GetWeaponType();
+                }
+            }
         }
     }
 }

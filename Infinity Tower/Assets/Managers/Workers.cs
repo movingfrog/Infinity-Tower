@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
-using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 

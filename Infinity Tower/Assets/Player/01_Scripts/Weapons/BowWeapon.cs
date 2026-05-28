@@ -23,6 +23,7 @@ public class BowWeapon : Weapon
         if (endAttack || cooltimeCoroutine != null || ChargingCoroutine != null)
             return;
 
+        ani.SetTrigger("Attack");
         isPushing = true;
         endAttack = true; // 쿨타임 플래그 가동
         ChargingCoroutine = StartCoroutine(Charging());
