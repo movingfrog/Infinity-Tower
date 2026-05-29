@@ -41,7 +41,10 @@ public class InventoryManager : InvenParent
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
 
-    public event Action<Item> equipEvent;
+    public event Action<Item> EquipEvent;
+    public event Func<Item, bool> ChangeEvent;
+
+    private int currentWeaponCount = 1;
 
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
@@ -78,11 +81,13 @@ public class InventoryManager : InvenParent
     private void OnEnable()
     {
         InputManager.Instance.inputActions.Player.Inven.started += OnInven;
+        InputManager.Instance.inputActions.Player.WeaponChange.started += ChangeWeapon;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.inputActions.Player.Inven.started -= OnInven;
+        InputManager.Instance.inputActions.Player.WeaponChange.started -= ChangeWeapon;
     }
 
     public void OnInven(InputAction.CallbackContext callback)
@@ -191,7 +196,20 @@ public class InventoryManager : InvenParent
     {
         UnityEngine.Debug.Log("무기 장착");
 
-        equipEvent?.Invoke(weaponItem);
+        EquipEvent?.Invoke(weaponItem);
+    }
+
+    public void ChangeWeapon(InputAction.CallbackContext callback)
+    {
+        if (
+            allItem[WEAPON_START + currentWeaponCount].item != null
+            && ChangeEvent != null
+            && ChangeEvent(allItem[WEAPON_START + currentWeaponCount].item)
+        )
+        {
+            ;
+            currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
+        }
     }
 
     public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);

@@ -7,6 +7,10 @@ public abstract class Weapon : MonoBehaviour
     protected float baseScale;
     protected Coroutine cooltimeCoroutine;
 
+    [Header("무기 특성 설정")]
+    public WeaponType Type;
+    public ItemLevel Level;
+
     [Header("무기 설정")]
     public float damage;
     public float attackRate;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public enum WeaponType
 {
@@ -36,7 +37,8 @@ public class PlayerAttackSystem : MonoBehaviour
         InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
         if (InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.equipEvent += AddEquipWeapon;
+            InventoryManager.Instance.EquipEvent += AddEquipWeapon;
+            InventoryManager.Instance.ChangeEvent += ChangeEquipWeapon;
         }
     }
 
@@ -46,7 +48,8 @@ public class PlayerAttackSystem : MonoBehaviour
         InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;
         if (InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.equipEvent -= AddEquipWeapon;
+            InventoryManager.Instance.EquipEvent -= AddEquipWeapon;
+            InventoryManager.Instance.ChangeEvent -= ChangeEquipWeapon;
         }
     }
 
@@ -74,6 +77,7 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon != null)
         {
+            Debug.Log("sdfklj");
             weapon.isPushing = true;
             if (
                 PlayerAni.GetBool("isUsingSkill")
@@ -121,5 +125,28 @@ public class PlayerAttackSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool ChangeEquipWeapon(Item item)
+    {
+        if (WeaponDirection.transform.childCount > 1)
+        {
+            GameObject targetObject = null;
+            foreach (var w in WeaponDirection.GetComponentsInChildren<Weapon>(true))
+            {
+                w.gameObject.SetActive(false);
+                if (w.Type == item.Equips.Type && w.Level == item.level)
+                {
+                    targetObject = w.gameObject;
+                }
+            }
+            if (targetObject != null)
+            {
+                targetObject.SetActive(true);
+                GetWeaponType();
+                return true;
+            }
+        }
+        return false;
     }
 }
