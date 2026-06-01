@@ -16,14 +16,19 @@ public class SpearWeapon : Weapon
             transform.position.y,
             0
         );
-        Collider2D[] _EnemeyColl = Physics2D.OverlapBoxAll(
+        Collider2D[] _EnemyColl = Physics2D.OverlapBoxAll(
             SpearPosition + computeAttackRange(),
             attackSize,
             ani.GetInteger("Y") == 0 ? 0 : 90,
             EnemyLayer
         );
-        foreach (var enemy in _EnemeyColl)
-            enemy.GetComponent<IHealth>().Hurt(finalDamage);
+        foreach (var enemy in _EnemyColl)
+        {
+            if (enemy.TryGetComponent<IHealth>(out var health))
+            {
+                health.Hurt(finalDamage);
+            }
+        }
     }
 
     public override void EndAttack()

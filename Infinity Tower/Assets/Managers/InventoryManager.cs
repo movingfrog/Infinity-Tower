@@ -167,7 +167,7 @@ public class InventoryManager : InvenParent
         if (allSlot[targetIndex].type == SlotType.Accessories)
             EquipAccessories();
         if (allSlot[targetIndex].type == SlotType.Weapon)
-            EquipWeapon(allItem[targetIndex].item);
+            EquipWeapon(allItem[targetIndex]?.item);
         RefreshAllSlot();
     }
 
@@ -201,13 +201,12 @@ public class InventoryManager : InvenParent
 
     public void ChangeWeapon(InputAction.CallbackContext callback)
     {
+        var weaponItem = allItem[WEAPON_START + currentWeaponCount];
         if (
-            allItem[WEAPON_START + currentWeaponCount].item != null
-            && ChangeEvent != null
-            && ChangeEvent(allItem[WEAPON_START + currentWeaponCount].item)
+            weaponItem.item != null
+            && ChangeEvent?.Invoke(allItem[WEAPON_START + currentWeaponCount].item) == true
         )
         {
-            ;
             currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
         }
     }

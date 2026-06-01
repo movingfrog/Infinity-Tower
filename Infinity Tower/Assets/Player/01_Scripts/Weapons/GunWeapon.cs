@@ -27,13 +27,15 @@ public class GunWeapon : Weapon
     protected override void OnEnable()
     {
         base.OnEnable();
-        InputManager.Instance.inputActions.Player.FireMode.started += ToggleAutoFire;
+        if (InputManager.Instance != null)
+            InputManager.Instance.inputActions.Player.FireMode.started += ToggleAutoFire;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
+        if (InputManager.Instance != null)
+            InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
     }
 
     private void Start()

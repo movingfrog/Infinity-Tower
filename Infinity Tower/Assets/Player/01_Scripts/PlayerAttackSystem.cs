@@ -77,7 +77,6 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon != null)
         {
-            Debug.Log("sdfklj");
             weapon.isPushing = true;
             if (
                 PlayerAni.GetBool("isUsingSkill")
@@ -110,6 +109,9 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void AddEquipWeapon(Item item)
     {
+        if (item == null || item.Equips == null)
+            return;
+
         foreach (var w in PrefabData)
         {
             if (w.Type == item.Equips.Type)
@@ -129,6 +131,9 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private bool ChangeEquipWeapon(Item item)
     {
+        if (item == null || item.Equips == null)
+            return false;
+
         if (WeaponDirection.transform.childCount > 1)
         {
             GameObject targetObject = null;

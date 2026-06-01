@@ -24,7 +24,12 @@ public class SwordWeapon : Weapon
             EnemyLayer
         );
         foreach (var enemy in EnemyColl)
-            enemy.GetComponent<IHealth>().Hurt(finalDamage);
+        {
+            if (enemy.TryGetComponent<IHealth>(out var health))
+            {
+                health.Hurt(finalDamage);
+            }
+        }
     }
 
     public override void EndAttack()
