@@ -35,10 +35,11 @@ public class EquipmentClass
     [TextArea]
     public string anvilInfoLine;
 
-    [Foldout("무기 아이템")]
+    [Header("무기 아이템")]
+    public WeaponType Type;
     public uint itemDamage;
 
-    [Foldout("악세서리 아이템")]
+    [Header("악세서리 아이템")]
     public List<StatModifier> statModifiers;
 }
 
@@ -56,6 +57,6 @@ public class Item : ScriptableObject
     public int MaxItemCount;
     public bool isEquippable;
 
-    [Foldout("장비들")]
+    [Header("장비들")]
     public EquipmentClass Equips;
 }

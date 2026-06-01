@@ -1,6 +1,7 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public enum WeaponType
 {
@@ -16,13 +17,13 @@ public class PlayerAttackSystem : MonoBehaviour
     Animator PlayerAni;
     bool isPusing;
 
-    [Header("°ø°Ý ÆÇÁ¤")]
+    [Header("ê³µê²© íŒì •")]
     public float attackDirection;
     public GameObject WeaponDirection;
 
-    [Header("°ø°Ý ÇüÅÂ")]
-    public GameObject[] weaponPrefeb;
-    private WeaponScript weapon;
+    [Header("ê³µê²© í˜•íƒœ")]
+    public WeaponData[] PrefabData;
+    private Weapon weapon;
 
     private void Awake()
     {
@@ -34,12 +35,22 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.EquipEvent += AddEquipWeapon;
+            InventoryManager.Instance.ChangeEvent += ChangeEquipWeapon;
+        }
     }
 
     private void OnDisable()
     {
         InputManager.Instance.inputActions.Player.Attack.started -= StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.EquipEvent -= AddEquipWeapon;
+            InventoryManager.Instance.ChangeEvent -= ChangeEquipWeapon;
+        }
     }
 
     public void OnMove(InputValue value)
@@ -52,8 +63,6 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (isPusing)
             return;
-        if (weapon != null)
-            weapon.FireSelect();
         isPusing = true;
         StartCoroutine(waitPusing());
     }
@@ -68,8 +77,12 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon != null)
         {
-            weapon.isPusing = true;
-            if (PlayerAni.GetBool("isUsingSkill") || PlayerAni.GetBool("isDash"))
+            weapon.isPushing = true;
+            if (
+                PlayerAni.GetBool("isUsingSkill")
+                || PlayerAni.GetBool("isDash")
+                || PlayerStatManager.instance.currentState != PlayerState.Idle
+            )
                 return;
             if (!weapon.endAttack)
             {
@@ -82,15 +95,63 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (weapon == null)
             return;
-        weapon.isPusing = false;
-        weapon.Endattack();
+        weapon.isPushing = false;
+        weapon.EndAttack();
     }
 
     private void GetWeaponType()
     {
         if (WeaponDirection.transform.childCount > 0)
         {
-            weapon = WeaponDirection.GetComponentInChildren<WeaponScript>();
+            weapon = WeaponDirection.GetComponentInChildren<Weapon>();
         }
+    }
+
+    private void AddEquipWeapon(Item item)
+    {
+        if (item == null || item.Equips == null)
+            return;
+
+        foreach (var w in PrefabData)
+        {
+            if (w.Type == item.Equips.Type)
+            {
+                GameObject weaponObject = Instantiate(
+                    w.GetPrefabByLevel(item.level),
+                    WeaponDirection.transform
+                );
+                if (weapon == null)
+                {
+                    weaponObject.SetActive(true);
+                    GetWeaponType();
+                }
+            }
+        }
+    }
+
+    private bool ChangeEquipWeapon(Item item)
+    {
+        if (item == null || item.Equips == null)
+            return false;
+
+        if (WeaponDirection.transform.childCount > 1)
+        {
+            GameObject targetObject = null;
+            foreach (var w in WeaponDirection.GetComponentsInChildren<Weapon>(true))
+            {
+                w.gameObject.SetActive(false);
+                if (w.Type == item.Equips.Type && w.Level == item.level)
+                {
+                    targetObject = w.gameObject;
+                }
+            }
+            if (targetObject != null)
+            {
+                targetObject.SetActive(true);
+                GetWeaponType();
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,6 +41,11 @@ public class InventoryManager : InvenParent
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
 
+    public event Action<Item> EquipEvent;
+    public event Func<Item, bool> ChangeEvent;
+
+    private int currentWeaponCount = 1;
+
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
     private const int ACCESSORY_START = 11;
@@ -75,11 +81,13 @@ public class InventoryManager : InvenParent
     private void OnEnable()
     {
         InputManager.Instance.inputActions.Player.Inven.started += OnInven;
+        InputManager.Instance.inputActions.Player.WeaponChange.started += ChangeWeapon;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.inputActions.Player.Inven.started -= OnInven;
+        InputManager.Instance.inputActions.Player.WeaponChange.started -= ChangeWeapon;
     }
 
     public void OnInven(InputAction.CallbackContext callback)
@@ -157,7 +165,9 @@ public class InventoryManager : InvenParent
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
-            equipAccessories();
+            EquipAccessories();
+        if (allSlot[targetIndex].type == SlotType.Weapon)
+            EquipWeapon(allItem[targetIndex]?.item);
         RefreshAllSlot();
     }
 
@@ -165,7 +175,7 @@ public class InventoryManager : InvenParent
 
     public override void DroppingItem() { }
 
-    public void equipAccessories()
+    public void EquipAccessories()
     {
         PlayerStatManager.instance.resetStat();
         if (allItem[ACCESSORY_START].item != null)
@@ -180,6 +190,25 @@ public class InventoryManager : InvenParent
                     allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Type,
                     allItem[ACCESSORY_START + 1].item.Equips.statModifiers[i].Value
                 );
+    }
+
+    public void EquipWeapon(Item weaponItem)
+    {
+        UnityEngine.Debug.Log("무기 장착");
+
+        EquipEvent?.Invoke(weaponItem);
+    }
+
+    public void ChangeWeapon(InputAction.CallbackContext callback)
+    {
+        var weaponItem = allItem[WEAPON_START + currentWeaponCount];
+        if (
+            weaponItem.item != null
+            && ChangeEvent?.Invoke(allItem[WEAPON_START + currentWeaponCount].item) == true
+        )
+        {
+            currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
+        }
     }
 
     public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);

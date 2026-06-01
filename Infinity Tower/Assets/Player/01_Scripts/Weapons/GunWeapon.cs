@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunWeapon : Weapon
 {
@@ -23,13 +24,27 @@ public class GunWeapon : Weapon
         _hasAuto = hasAuto;
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (InputManager.Instance != null)
+            InputManager.Instance.inputActions.Player.FireMode.started += ToggleAutoFire;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (InputManager.Instance != null)
+            InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
+    }
+
     private void Start()
     {
         currentAmmo = maxAmmo;
         fireDirection = Vector2.right;
     }
 
-    public void ToggleAutoFire()
+    public void ToggleAutoFire(InputAction.CallbackContext callback)
     {
         if (_hasAuto)
             hasAuto = !hasAuto;
