@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystals_2
+      name: useStone
       rect:
         serializedVersion: 2
         x: 66
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crystals_5
+      name: useGoods
       rect:
         serializedVersion: 2
         x: 49
@@ -287,11 +287,11 @@ TextureImporter:
     nameFileIdTable:
       Crystals_0: 4775630859605534401
       Crystals_1: 7308664677214642820
-      Crystals_2: -8237667901665138252
       Crystals_3: -2467140366469486843
       Crystals_4: -8602326965400858886
-      Crystals_5: -3283395716511959148
       Crystals_6: -5767893256424630917
+      useGoods: -3283395716511959148
+      useStone: -8237667901665138252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

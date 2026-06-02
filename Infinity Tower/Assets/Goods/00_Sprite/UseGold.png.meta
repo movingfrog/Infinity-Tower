@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coin4_16x16_0
+      name: useGOld
       rect:
         serializedVersion: 2
         x: 0
@@ -334,7 +334,6 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      coin4_16x16_0: -9101638437731702489
       coin4_16x16_1: -6661236927759346515
       coin4_16x16_2: 7617503416278664282
       coin4_16x16_3: -4231109534564670576
@@ -343,6 +342,7 @@ TextureImporter:
       coin4_16x16_6: 5990794370452848736
       coin4_16x16_7: 4876748081492023510
       coin4_16x16_8: 441921950
+      useGOld: -9101638437731702489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
