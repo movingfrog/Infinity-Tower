@@ -127,3 +127,8 @@ public struct ProbabilityWorker : IWorker
         return (common, rare, legend);
     }
 }
+
+public struct SoundWorker : IWorker
+{
+    
+}
