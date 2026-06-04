@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "RewardItem", menuName = "Scriptable Objects/Reward/RewardItem")]
 public class RewardItem : RewardTable
 {
     [Header("아이템 생성 속성")]
-    public ItemLevel level { get; set; }
-    public List<Item> items { get; set; }
-    public float commonPercent { get; set; }
-    public float rarePercent { get; set; }
+    public float commonPercent;
+    public float rarePercent;
 
     [Header("물리 작용")]
     public float xForce;
@@ -19,7 +16,7 @@ public class RewardItem : RewardTable
             return;
 
         Item item = WorkerHub<ItemCreateWorker>.Instance.CreateItemWorker(
-            items,
+            GameManager.Instance.allEquip,
             commonPercent,
             rarePercent,
             0

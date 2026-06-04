@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: RewardItem
   m_EditorClassIdentifier: Assembly-CSharp::RewardItem
   Type: 0
-  RewardObject: {fileID: 0}
+  RewardObject: {fileID: 4493739165130996437, guid: 5433417d3a87ec14eaf5975b14a83089, type: 3}
   minRewardAmount: 1
   maxRewardAmount: 1
+  commonPercent: 75
+  rarePercent: 25
   xForce: 0.25
