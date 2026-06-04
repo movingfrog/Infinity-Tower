@@ -1,19 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class DropItem : MonoBehaviour
 {
-    [Header("¾ÆÀÌÅÛ Á¤º¸")]
+    [Header("ì•„ì´í…œ ì •ë³´")]
     public Item item;
 
-    [Header("¾ÆÀÌÅÛ È¹µæ")]
+    [Header("ì•„ì´í…œ íšë“")]
     public float moveSpeed = 1;
     public float getSize = .75f;
     public float moveSize = 1;
     public LayerMask player;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = item.spriteImage;
+        if (item != null && TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        {
+            spriteRenderer.sprite = item.spriteImage;
+        }
     }
 
     private void FixedUpdate()

@@ -18,8 +18,9 @@ public class InteractionItem : DropItem
         InputManager.Instance.inputActions.Player.Interact.started -= InteractGetItem;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         if (InstItemInfo == null)
             InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
         else

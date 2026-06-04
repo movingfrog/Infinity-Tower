@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4493739165130996437
+--- !u!1 &7426994540622281465
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7935365433321890756}
-  - component: {fileID: 2389731862655745173}
-  - component: {fileID: 5831934022373910082}
-  - component: {fileID: 6666587653583935159}
-  - component: {fileID: 8227666548383813011}
+  - component: {fileID: 4129877634807122323}
+  - component: {fileID: 331613429464746864}
+  - component: {fileID: 160844538746462276}
+  - component: {fileID: 2972815616264334110}
+  - component: {fileID: 4554056203488792351}
   m_Layer: 0
-  m_Name: DroppedInteractionItem
+  m_Name: AcientStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7935365433321890756
+--- !u!4 &4129877634807122323
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493739165130996437}
+  m_GameObject: {fileID: 7426994540622281465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.42, y: -3.24, z: 0}
+  m_LocalPosition: {x: -35.139175, y: 31.323473, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2389731862655745173
+--- !u!212 &331613429464746864
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493739165130996437}
+  m_GameObject: {fileID: 7426994540622281465}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,25 +82,44 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3964896431499438999, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  m_Sprite: {fileID: -3283395716511959148, guid: ecda0027742e7044ebb070fe117fa6d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!58 &5831934022373910082
+--- !u!114 &160844538746462276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426994540622281465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c6b3eced59dad4b9dbcf471df09210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootGoods
+  Type: 2
+  amount: 5
+  XForce: 0.5
+  YForce: 3
+  Layer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!58 &2972815616264334110
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493739165130996437}
+  m_GameObject: {fileID: 7426994540622281465}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -129,15 +148,15 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.1
---- !u!50 &6666587653583935159
+  m_Radius: 0.17
+--- !u!50 &4554056203488792351
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493739165130996437}
+  m_GameObject: {fileID: 7426994540622281465}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -156,23 +175,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &8227666548383813011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4493739165130996437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee44434dbc939ee428092a0799a97280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionItem
-  item: {fileID: 0}
-  moveSpeed: 1
-  getSize: 0.75
-  moveSize: 1
-  player:
-    serializedVersion: 2
-    m_Bits: 384
+  m_Constraints: 0

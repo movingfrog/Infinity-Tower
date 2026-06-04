@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abb9bcc032596e459a5f37728048c9c, type: 3}
+  m_Name: RewardItem
+  m_EditorClassIdentifier: Assembly-CSharp::RewardItem
+  Type: 0
+  RewardObject: {fileID: 4493739165130996437, guid: 5433417d3a87ec14eaf5975b14a83089, type: 3}
+  minRewardAmount: 1
+  maxRewardAmount: 1
+  commonPercent: 75
+  rarePercent: 25
+  xForce: 0.25
