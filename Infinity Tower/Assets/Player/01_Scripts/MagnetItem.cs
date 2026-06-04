@@ -13,6 +13,8 @@ public class MagnetItem : DropItem
 
     protected override void getItem()
     {
+        if (InventoryManager.Instance == null)
+            return;
         InventoryManager.Instance.GetItem(item, Amount);
         //아이템이 남으면 넘어가는 예외처리 필요
         //획득하는 소리 추가 필요

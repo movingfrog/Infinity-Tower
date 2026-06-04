@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Chest : MonoBehaviour
@@ -47,7 +45,7 @@ public class Chest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isRegistered)
+        if (!isRegistered || InteractionObject == null)
             return;
         Collider2D PlayerColl = Physics2D.OverlapCircle(transform.position, radius, PlayerLayer);
         InteractionObject.SetActive(PlayerColl != null);
@@ -60,7 +58,7 @@ public class Chest : MonoBehaviour
 
     private void Open(InputAction.CallbackContext callback)
     {
-        if (!isIn)
+        if (!isIn || ani == null || Reward == null)
             return;
         ani.SetBool("IsOpened", true);
         Reward.Reward(transform);

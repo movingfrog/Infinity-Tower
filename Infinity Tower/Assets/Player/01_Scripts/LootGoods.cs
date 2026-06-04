@@ -21,21 +21,19 @@ public class LootGoods : MonoBehaviour
     private void Awake()
     {
         float randXforce = Random.Range(-XForce, XForce);
-        TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid);
-        rigid.AddForce(new Vector2(randXforce, YForce), ForceMode2D.Impulse);
+        if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid))
+        {
+            rigid.AddForce(new Vector2(randXforce, YForce), ForceMode2D.Impulse);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((Layer & (1 << collision.gameObject.layer)) != 0)
         {
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.GetGoods(Type, amount);
             gameObject.SetActive(false);
         }
-    }
-
-    private void OnDisable()
-    {
-        if (InventoryManager.Instance != null)
-            InventoryManager.Instance.GetGoods(Type, amount);
     }
 }

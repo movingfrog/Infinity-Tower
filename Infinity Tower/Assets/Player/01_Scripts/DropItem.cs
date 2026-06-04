@@ -13,7 +13,10 @@ public abstract class DropItem : MonoBehaviour
 
     protected virtual void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = item.spriteImage;
+        if (item != null && TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        {
+            spriteRenderer.sprite = item.spriteImage;
+        }
     }
 
     private void FixedUpdate()
