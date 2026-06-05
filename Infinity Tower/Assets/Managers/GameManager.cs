@@ -17,24 +17,45 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("CamMoveWorker용 변수"), Tooltip("현재 씬의 Cinemachine을 할당해주세요")]
-    public CinemachineConfiner2D confiner;
+    [field: SerializeField]
+    public CinemachineConfiner2D confiner { get; private set; }
 
     [Header("ItemDropWorker용 변수"), Tooltip("떨어진 아이템 Prefab을 할당해주세요")]
-    public GameObject ItemPrefab;
+    [field: SerializeField]
+    public GameObject ItemPrefab { get; private set; }
 
     [Tooltip("떨어진 전리품 Prefab을 할당 해주세요")]
-    public GameObject LootPrefab;
+    [field: SerializeField]
+    public GameObject LootPrefab { get; private set; }
 
     [Header("ItemCreateWorker용 변수")]
-    public float maxCommonProb;
-    public float minCommonProb;
-    public float maxRareProb;
-    public float minRareProb;
+    [field: SerializeField]
+    public float maxCommonProb { get; private set; }
+
+    [field: SerializeField]
+    public float minCommonProb { get; private set; }
+
+    [field: SerializeField]
+    public float maxRareProb { get; private set; }
+
+    [field: SerializeField]
+    public float minRareProb { get; private set; }
 
     public float[] maxProb() => new float[2] { maxCommonProb, maxRareProb };
 
     public float[] minProb() => new float[2] { minCommonProb, minRareProb };
 
     [Tooltip("모든 장비 SO를 할당해주세요")]
-    public List<Item> allEquip;
+    [field: SerializeField]
+    public List<Item> allEquip { get; private set; }
+
+    [Header("모든 맵 리스트")]
+    [field: SerializeField]
+    public List<GameObject> ShopMap { get; private set; }
+
+    [field: SerializeField]
+    public List<GameObject> DefaultMap { get; private set; }
+
+    [field: SerializeField]
+    public List<GameObject> RewardMap { get; private set; }
 }
