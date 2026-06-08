@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Unity.Cinemachine;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public interface IWorker { }
@@ -129,11 +128,13 @@ public struct ProbabilityWorker : IWorker
 
 public struct GetRandomMap : IWorker
 {
+    private const uint MAX_RANDOM_MAP_COUNT = 8;
+
     public List<GameObject> RandMapWorker(List<GameObject> allMap, uint count)
     {
-        if (allMap == null || count <= 0)
+        if (allMap == null || allMap.Count == 0 || count <= 0)
             return null;
-        count = (uint)Mathf.Min(count, 8);
+        count = (uint)Mathf.Min(count, MAX_RANDOM_MAP_COUNT);
         List<GameObject> resultList = new List<GameObject>();
 
         for (int i = 0; i < count; i++)

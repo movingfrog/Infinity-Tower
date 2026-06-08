@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PortalConnectSystem : MonoBehaviour
 {
-    private List<Component> tempComponents = new List<Component>();
-
     // 분류용 리스트
     private List<MoveRoomPortal> inPortals = new List<MoveRoomPortal>();
     private List<MoveRoomPortal> outPortals = new List<MoveRoomPortal>();
@@ -12,11 +10,10 @@ public class PortalConnectSystem : MonoBehaviour
     private void Awake()
     {
         // 1. 자식 오브젝트에서 포탈 컴포넌트 수집
-        GetComponentsInChildren(true, tempComponents);
+        var portals = GetComponentsInChildren<MoveRoomPortal>(true);
 
-        foreach (var comp in tempComponents)
+        foreach (var portal in portals)
         {
-            MoveRoomPortal portal = comp as MoveRoomPortal;
             if (portal == null)
                 continue;
 
