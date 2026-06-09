@@ -1,27 +1,29 @@
-using NaughtyAttributes;
+ï»¿using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class flyEnemy : parentEnemy
+public class flyEnemy : OneAttackEnemy
 {
     public float attackSize;
     public LayerMask attackLayer;
-    [Foldout("¿ø°Å¸® °ø°Ý")]
+
+    [Foldout("ì›ê±°ë¦¬ ê³µê²©")]
     public Transform attackPos;
-    [Foldout("¿ø°Å¸® °ø°Ý")]
+
+    [Foldout("ì›ê±°ë¦¬ ê³µê²©")]
     public GameObject attackBall;
 
-    [Header("ÀÌµ¿ °ü·Ã")]
-    public float speed;
+    [Header("ì´ë™ ê´€ë ¨")]
     public float observSize;
     public Vector2 angle;
     public LayerMask observLayer;
 
-    protected override void Attack()
+    public override void Attack()
     {
-        if (isDie) return;
+        if (isDie)
+            return;
         Collider2D player = Physics2D.OverlapCircle(transform.position, attackSize, attackLayer);
-        if(player != null && !isAttack)
+        if (player != null && !isAttack)
         {
             isAttack = true;
             angle = player.transform.position - transform.position;
@@ -38,23 +40,24 @@ public class flyEnemy : parentEnemy
         FB.Init(angle, AttackDamage);
     }
 
-    protected override void Move()
+    public override void Move()
     {
-        if (isAttack || isDie) return;
+        if (isAttack || isDie)
+            return;
 
         Collider2D player = Physics2D.OverlapCircle(transform.position, observSize, attackLayer);
-        if(player != null)
+        if (player != null)
         {
             angle = player.transform.position - transform.position;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, angle, 0.1f, observLayer);
-            if(hit.collider != null)
+            if (hit.collider != null)
             {
                 ani.SetBool("isRun", false);
                 rigid.linearVelocity = Vector3.zero;
                 return;
             }
             ani.SetBool("isRun", true);
-            rigid.linearVelocity = angle * speed;
+            rigid.linearVelocity = angle * Speed;
             transform.localScale = new Vector3(rigid.linearVelocityX > 0 ? -1 : 1, 1, 1);
             healthBar.MovePosition(transform.position);
         }
@@ -69,8 +72,6 @@ public class flyEnemy : parentEnemy
         ani.SetTrigger("isDie");
         Destroy(gameObject, 1f);
     }
-
-
 
     private void OnDrawGizmos()
     {
