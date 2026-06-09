@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(DamageFlash))]
+[RequireComponent(typeof(TimeBody))]
 public abstract class parentEnemy : MonoBehaviour, IHealth
 {
     public bool Fly;

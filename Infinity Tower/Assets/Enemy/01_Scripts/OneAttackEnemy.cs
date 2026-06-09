@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(TimeBody))]
 public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
 {
     public bool isAttack { get; set; }
