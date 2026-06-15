@@ -1401,23 +1401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  endAttack: 0
-  isPusing: 0
-  damage: 5
-  attackRate: 0.5
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 1.75, y: 1.25}
-  attackRange: {x: 0.5, y: 0.5}
-  shotPosition: {fileID: 0}
-  bulletPrefeb: {fileID: 0}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &213300622
 Animator:
   serializedVersion: 7
@@ -1676,23 +1659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  endAttack: 0
-  isPusing: 0
-  damage: 15
-  attackRate: 1
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1558211060}
-  bulletPrefeb: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &254072275
 Animator:
   serializedVersion: 7
@@ -3179,23 +3145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  endAttack: 0
-  isPusing: 0
-  damage: 2
-  attackRate: 0.5
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1058235017}
-  bulletPrefeb: {fileID: 6161912332551938688, guid: 7c56e96b3be31cb4c96c2e0907282e83, type: 3}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 7
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &385803652
 Animator:
   serializedVersion: 7
@@ -4192,7 +4141,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.111111164, y: 18.6, z: -10}
+  m_LocalPosition: {x: -0.11111069, y: 18.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20236,15 +20185,14 @@ MonoBehaviour:
   parentCanvas: {fileID: 1053359533}
   HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
   _hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
-  AttackDamage: 1
-  isAttack: 0
-  attackDelay: 0
+  <AttackDamage>k__BackingField: 0
+  <attackDelay>k__BackingField: 0
+  <Speed>k__BackingField: 0
   attackSize: {x: 1.5, y: 1.5}
   attackPosition: {x: 0.25, y: 0}
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
-  Speed: 1.5
   groundCheckDistance: 1
   wallCheckDistance: 1
   groundLayer:
@@ -22765,23 +22713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  endAttack: 0
-  isPusing: 0
-  damage: 20
-  attackRate: 2.25
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1526594555}
-  bulletPrefeb: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 1
 --- !u!95 &1186118597
 Animator:
   serializedVersion: 7
@@ -25230,11 +25161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDirection: 0.45
   WeaponDirection: {fileID: 1469382488}
-  weaponPrefeb:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  PrefabData: []
 --- !u!114 &1525326401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25745,23 +25672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  endAttack: 0
-  isPusing: 0
-  damage: 2
-  attackRate: 0.3
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
-  shotPosition: {fileID: 1983205937}
-  bulletPrefeb: {fileID: 6161912332551938688, guid: 7c56e96b3be31cb4c96c2e0907282e83, type: 3}
-  isReload: 0
-  hasAuto: 1
-  MaxAmmo: 30
-  fireRate: 0.2
-  isCrossBow: 0
 --- !u!1001 &1645561519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27111,15 +27021,14 @@ MonoBehaviour:
   parentCanvas: {fileID: 1053359533}
   HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
   _hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
-  AttackDamage: 1
-  isAttack: 0
-  attackDelay: 0
+  <AttackDamage>k__BackingField: 0
+  <attackDelay>k__BackingField: 0
+  <Speed>k__BackingField: 0
   attackSize: {x: 1.5, y: 1.5}
   attackPosition: {x: 0.25, y: 0}
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
-  Speed: 1.5
   groundCheckDistance: 1
   wallCheckDistance: 1
   groundLayer:
@@ -28090,35 +27999,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779539bf3bb0451439665febd7d6170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  confiner: {fileID: 90411858}
-  ItemPrefab: {fileID: 4493739165130996437, guid: 5433417d3a87ec14eaf5975b14a83089, type: 3}
-  LootPrefab: {fileID: 0}
-  maxCommonProb: 45
-  minCommonProb: 60
-  maxRareProb: 50
-  minRareProb: 39
-  allEquip:
-  - {fileID: 11400000, guid: 44c074bef79544c498b4231ba1838258, type: 2}
-  - {fileID: 11400000, guid: cc943441048bef345b270c98b4715c91, type: 2}
-  - {fileID: 11400000, guid: 5ab48194ec2bb6f4fa9a8dd32b83f8d2, type: 2}
-  - {fileID: 11400000, guid: 44793aad68a695544a4a5bae1143828e, type: 2}
-  - {fileID: 11400000, guid: 356772471073fde4aaba1828b6b970ec, type: 2}
-  - {fileID: 11400000, guid: cf1047a904c63ec4bacc4dd7ce48de1a, type: 2}
-  - {fileID: 11400000, guid: 3605d157de8362142a99134e1f5a28a9, type: 2}
-  - {fileID: 11400000, guid: b496871b7e1fcc14fbf75b0701f6861f, type: 2}
-  - {fileID: 11400000, guid: 549254c86c3c25c4fa2cdb7ba9dfca33, type: 2}
-  - {fileID: 11400000, guid: 80baaf596ee7ca84b9716c216c915833, type: 2}
-  - {fileID: 11400000, guid: a514b8e6577470743ae2fd333388bea2, type: 2}
-  - {fileID: 11400000, guid: 72065aeeb2c3d0b4486163c3ffb8fefc, type: 2}
-  - {fileID: 11400000, guid: 1813a27e80aa92244a10dac2d10699f7, type: 2}
-  - {fileID: 11400000, guid: 934680ca32b40b642b2c27dd785ddfe9, type: 2}
-  - {fileID: 11400000, guid: 1efe15a5aeef88c4aa603a375048a624, type: 2}
-  - {fileID: 11400000, guid: a87704627a8936c4d80d055d76d371d6, type: 2}
-  - {fileID: 11400000, guid: fd593eca2f28a2f42a9a768650e4a0e0, type: 2}
-  - {fileID: 11400000, guid: ad9215585829cb34287d63b848f103d4, type: 2}
+  <confiner>k__BackingField: {fileID: 0}
+  <ItemPrefab>k__BackingField: {fileID: 0}
+  <LootPrefab>k__BackingField: {fileID: 0}
+  <maxCommonProb>k__BackingField: 0
+  <minCommonProb>k__BackingField: 0
+  <maxRareProb>k__BackingField: 0
+  <minRareProb>k__BackingField: 0
+  <allEquip>k__BackingField: []
   Source: {fileID: 2006311061}
-  SFX: []
+  SFX:
+  - {fileID: 8300000, guid: 413b91bd91aa0f04aa62b5e0e042046d, type: 3}
+  - {fileID: 8300000, guid: 6327ea7ebeeadc549a2b1c3db0e7fe28, type: 3}
+  - {fileID: 8300000, guid: 6d615f57addd5364681c692ea5e7f408, type: 3}
   BGM: []
+  <ShopMap>k__BackingField: []
+  <DefaultMap>k__BackingField: []
+  <RewardMap>k__BackingField: []
+  <AllRewardChest>k__BackingField: []
 --- !u!82 &2006311061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28134,7 +28032,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -28638,23 +28536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b5f29173e6142912a9e584033df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  endAttack: 0
-  isPusing: 0
-  damage: 2
-  attackRate: 0.2
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackSize: {x: 1.25, y: 0.5}
-  attackRange: {x: 0.25, y: 0.25}
-  shotPosition: {fileID: 0}
-  bulletPrefeb: {fileID: 0}
-  isReload: 0
-  hasAuto: 0
-  MaxAmmo: 0
-  fireRate: 0
-  isCrossBow: 0
 --- !u!95 &2061356483
 Animator:
   serializedVersion: 7

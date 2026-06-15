@@ -86,6 +86,11 @@ public class PlayerAttackSystem : MonoBehaviour
             if (!weapon.endAttack)
             {
                 weapon.Attack();
+
+                if (Weapon.Type == 1)
+                {
+                    WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.source, GameManager.Instance.SFX((2)));
+                }
             }
         }
     }
