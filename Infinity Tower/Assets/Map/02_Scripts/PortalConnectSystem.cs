@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PortalConnectSystem : MonoBehaviour
 {
+    [SerializeField]
+    private MoveRoomPortal LastRoomPortal;
+
     // 분류용 리스트
     private List<MoveRoomPortal> inPortals = new List<MoveRoomPortal>();
     private List<MoveRoomPortal> outPortals = new List<MoveRoomPortal>();
@@ -14,7 +17,7 @@ public class PortalConnectSystem : MonoBehaviour
 
         foreach (var portal in portals)
         {
-            if (portal == null)
+            if (portal == null || portal.LastPortal)
                 continue;
 
             if (portal.PortalType == PortalType.In)
@@ -33,7 +36,7 @@ public class PortalConnectSystem : MonoBehaviour
     private void ConnectPortal()
     {
         // 이미 섞여있기 때문에, 맨 뒤에서부터 하나씩 꺼내기만 해도 완벽한 랜덤입니다.
-        while (outPortals.Count > 0 && inPortals.Count > 0)
+        while (outPortals.Count > 0)
         {
             int lastOutIndex = outPortals.Count - 1;
             MoveRoomPortal currentOut = outPortals[lastOutIndex];
@@ -52,6 +55,13 @@ public class PortalConnectSystem : MonoBehaviour
                     chosenInIndex = i;
                     break;
                 }
+            }
+
+            if (inPortals.Count == 0)
+            {
+                currentOut.ConnectTo(LastRoomPortal);
+                LastRoomPortal.ConnectTo(targetIn);
+                continue;
             }
 
             // 조건에 맞는 포탈을 찾았다면 연결하고 In 리스트에서 안전하게 제거
