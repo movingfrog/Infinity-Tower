@@ -189,14 +189,18 @@ public struct GetRandomReward : IWorker
 
     public GameObject RandRewardWorker(GameObject[] Chests)
     {
+        if (Chests == null || Chests.Length < 4)
+        {
+            return null;
+        }
+
         float Percent = Random.Range(0f, 100f);
-        if (AwakeStonePercent >= Percent)
+        if (Percent <= AwakeStonePercent)
             return Chests[3];
-        else if (RarePercent >= Percent)
+        if (Percent <= AwakeStonePercent + RarePercent)
             return Chests[2];
-        else if (CommonPercent >= Percent)
+        if (Percent <= AwakeStonePercent + RarePercent + CommonPercent)
             return Chests[1];
-        else
-            return Chests[0];
+        return Chests[0];
     }
 }
