@@ -54,4 +54,10 @@ public class RoomClearSystem : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellowNice * new Color(1, 1, 1, .3f);
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }
