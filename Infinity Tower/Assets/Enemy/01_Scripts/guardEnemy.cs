@@ -1,15 +1,14 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-public class guardEnemy : parentEnemy
+public class guardEnemy : OneAttackEnemy
 {
     public Vector2 attackSize;
     public Vector2 attackPos;
     public LayerMask TargetLayer;
     public bool isIn;
 
-    [Header("ÀÌµ¿ °ü·Ã")]
+    [Header("ì´ë™ ê´€ë ¨")]
     public float moveSize;
-    public float moveSpeed;
     Vector3 startPos;
 
     protected override void Awake()
@@ -18,22 +17,37 @@ public class guardEnemy : parentEnemy
         base.Awake();
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
-        if (isDie || !isIn) return;
-        Collider2D player = Physics2D.OverlapBox(transform.position + (Vector3)attackPos * transform.localScale.x, attackSize, 1, TargetLayer);
-        if(player != null && !isAttack) 
+        if (isDie || !isIn)
+            return;
+        Collider2D player = Physics2D.OverlapBox(
+            transform.position + (Vector3)attackPos * transform.localScale.x,
+            attackSize,
+            1,
+            TargetLayer
+        );
+        if (player != null && !isAttack)
         {
             isAttack = true;
-            transform.localScale = new Vector2(transform.position.x - player.transform.position.x >= 0 ? 1 : -1, 1);
+            transform.localScale = new Vector2(
+                transform.position.x - player.transform.position.x >= 0 ? 1 : -1,
+                1
+            );
             rigid.linearVelocity = Vector2.zero;
             ani.SetBool("isRun", false);
             ani.SetTrigger("isAttack");
         }
     }
+
     public void insertDamage()
     {
-        Collider2D player = Physics2D.OverlapBox(transform.position + (Vector3)attackPos * transform.localScale.x, attackSize, 1, TargetLayer);
+        Collider2D player = Physics2D.OverlapBox(
+            transform.position + (Vector3)attackPos * transform.localScale.x,
+            attackSize,
+            1,
+            TargetLayer
+        );
 
         if (player != null)
         {
@@ -42,11 +56,12 @@ public class guardEnemy : parentEnemy
         }
     }
 
-    protected override void Move()
+    public override void Move()
     {
-        if(isAttack || isDie) return;
+        if (isAttack || isDie)
+            return;
         Collider2D player = Physics2D.OverlapCircle(startPos, moveSize, TargetLayer);
-        if(player != null)
+        if (player != null)
         {
             isIn = true;
             ani.SetBool("isRun", true);
@@ -63,7 +78,8 @@ public class guardEnemy : parentEnemy
                 transform.localScale = new Vector3(startAngle.x >= 0 ? -1 : 1, 1, 1);
                 rigid.linearVelocity = startAngle;
             }
-            else ani.SetBool("isRun", false);
+            else
+                ani.SetBool("isRun", false);
         }
         healthBar.MovePosition(transform.position);
     }
@@ -71,7 +87,10 @@ public class guardEnemy : parentEnemy
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 1, 1, .3f) * Color.green;
-        Gizmos.DrawWireCube(transform.position + (Vector3)attackPos * transform.localScale.x, attackSize);
+        Gizmos.DrawWireCube(
+            transform.position + (Vector3)attackPos * transform.localScale.x,
+            attackSize
+        );
         Gizmos.DrawWireSphere(startPos, moveSize);
     }
 }

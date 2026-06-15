@@ -157,3 +157,24 @@ public struct SoundWorker : IWorker
         source.Play();
     }
 }
+
+public struct GetRandomMap : IWorker
+{
+    private const uint MAX_RANDOM_MAP_COUNT = 8;
+
+    public List<GameObject> RandMapWorker(List<GameObject> allMap, uint count)
+    {
+        if (allMap == null || allMap.Count == 0 || count <= 0)
+            return null;
+        count = (uint)Mathf.Min(count, MAX_RANDOM_MAP_COUNT);
+        List<GameObject> resultList = new List<GameObject>();
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, allMap.Count);
+            resultList.Add(allMap[randomIndex]);
+        }
+
+        return resultList;
+    }
+}

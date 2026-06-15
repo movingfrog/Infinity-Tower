@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+ï»¿using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,19 +8,13 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
 {
     public bool Fly;
 
-    [Header("Ã¼·Â °ü·Ã")]
+    [Header("ì²´ë ¥ ê´€ë ¨")]
     public bool isDie;
     public float defaultHP;
     public GameObject parentCanvas;
     public GameObject HealthBar;
     protected HealthBar healthBar;
     public GameObject _hitText;
-
-    [Header("°ø°İ °ü·Ã")]
-    public float AttackDamage;
-    public bool isAttack;
-    [Range(0f,1f)]
-    public float attackDelay;
 
     protected Animator ani;
     private DamageFlash _damageFlash;
@@ -30,36 +23,20 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public float MaxHP { get; set; }
     public GameObject hitText { get; set; }
 
-    protected Rigidbody2D rigid;
-
-    public void resetAttack() => StartCoroutine(waitAttackCool(attackDelay, () => isAttack = false));
-
     protected virtual void Awake()
     {
         ani = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
         _damageFlash = GetComponent<DamageFlash>();
         GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
         healthBar = temp.GetComponent<HealthBar>();
         healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y, Fly);
-        MaxHP = defaultHP; //ÀÌÈÄ¿¡ ·¹º§ °ø½Ä ÇÊ¿ä
+        MaxHP = defaultHP; //ì´í›„ì— ë ˆë²¨ ê³µì‹ í•„ìš”
         HP = MaxHP;
     }
 
-    protected virtual void FixedUpdate()
-    {
-        if (TimeManager.Instance.isRewinding) return;
-
-        Attack();
-        Move();
-    }
-
-    protected abstract void Move();
-    protected abstract void Attack();
-
     public void Hurt(float damage)
     {
-        if(HP - damage > 0)
+        if (HP - damage > 0)
         {
             HP -= damage;
             ShowDamage(damage, Color.white);
@@ -71,14 +48,15 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
             Die();
         }
     }
+
     private void ShowDamage(float damage, Color color)
     {
-        //µ¥¹ÌÁö ÅØ½ºÆ® ¼ÂÆÃ
+        //ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ ì…‹íŒ…
         GameObject hitTextInstance = Instantiate(_hitText, parentCanvas.transform);
         Rigidbody2D rigid = hitTextInstance.GetComponent<Rigidbody2D>();
         TextMeshProUGUI text = hitTextInstance.GetComponent<TextMeshProUGUI>();
 
-        //·£´ı °ª »ı¼º
+        //ëœë¤ ê°’ ìƒì„±
         float randX = UnityEngine.Random.Range(0.5f, -.5f);
 
         text.color = color;
@@ -96,12 +74,6 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(healthBar.gameObject);
         ani.SetTrigger("isDie");
-    }
-
-    protected IEnumerator waitAttackCool(float delay, Action action)
-    {
-        yield return new WaitForSeconds(delay);
-        action?.Invoke();
     }
 
     public void Heal(float amount, GameObject healObject)

@@ -1,12 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class DamageFlash : MonoBehaviour
 {
     [ColorUsage(true, true)]
-    [SerializeField] private Color _flashColor = Color.white;
-    [SerializeField] private float _flashTime = 1.0f;
-    [SerializeField] private AnimationCurve _flashSpeedCurve;
+    [SerializeField]
+    private Color _flashColor = Color.white;
+
+    [SerializeField]
+    private float _flashTime = 1.0f;
+
+    [SerializeField]
+    private AnimationCurve _flashSpeedCurve;
 
     private SpriteRenderer _spriteRenderer;
     private Material _material;
@@ -33,14 +38,18 @@ public class DamageFlash : MonoBehaviour
     {
         _material.SetColor("_FlashColor", _flashColor);
 
-        //lerp·Î float°ª º¯È¯
-        float currentFlashAmount = 0f;
+        //lerpë¡œ floatê°’ ë³€í™˜
+        float currentFlashAmount;
         float elapsedTime = 0f;
-        while(elapsedTime < _flashTime)
+        while (elapsedTime < _flashTime)
         {
             elapsedTime += Time.deltaTime;
 
-            currentFlashAmount = Mathf.Lerp(1f, _flashSpeedCurve.Evaluate(elapsedTime), (elapsedTime / _flashTime));
+            currentFlashAmount = Mathf.Lerp(
+                1f,
+                _flashSpeedCurve.Evaluate(elapsedTime),
+                (elapsedTime / _flashTime)
+            );
             _material.SetFloat("_FlashAmount", currentFlashAmount);
 
             yield return null;
