@@ -4,6 +4,10 @@ using UnityEngine;
 
 public interface IWorker { }
 
+/// <summary>
+/// Worker구조체를 실행시키기 위한 제네릭 입니다. 필요한 구조체를 할당 후 사용해주시면 됩니다.
+/// </summary>
+/// <typeparam name="T">필요한 Worker구조체를 넣어 메서드를 실행시키면 됩니다</typeparam>
 public static class WorkerHub<T>
     where T : struct, IWorker
 {
