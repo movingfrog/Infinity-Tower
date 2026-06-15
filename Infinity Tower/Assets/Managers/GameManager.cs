@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
     [field: SerializeField]
     public List<Item> allEquip { get; private set; }
 
+    [Header("효과음 및 배경음악")]
+    [field: SerializeField]
+    public AudioSource Source { get; private set; }
+    public AudioClip[] SFX;
+    public AudioClip[] BGM;
+
     [Header("모든 맵 리스트")]
     [field: SerializeField]
     public List<GameObject> ShopMap { get; private set; }

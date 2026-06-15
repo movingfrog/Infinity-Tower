@@ -126,6 +126,8 @@ public struct ProbabilityWorker : IWorker
     }
 }
 
+public struct SoundWorker : IWorker { }
+
 public struct GetRandomMap : IWorker
 {
     private const uint MAX_RANDOM_MAP_COUNT = 8;
