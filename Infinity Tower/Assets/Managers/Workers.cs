@@ -130,5 +130,14 @@ public struct ProbabilityWorker : IWorker
 
 public struct SoundWorker : IWorker
 {
-    
+    public void PlaySFX(AudioSource source, AudioClip SFXClip)
+    {
+        source.PlayOneShot(SFXClip);
+    }
+
+    public void PlayBGM(AudioSource source, AudioClip BGMClip)
+    {
+        source.clip = BGMClip;
+        source.Play();
+    }
 }

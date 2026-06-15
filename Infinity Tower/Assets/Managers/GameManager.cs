@@ -37,4 +37,9 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("모든 장비 SO를 할당해주세요")]
     public List<Item> allEquip;
+
+    [Header("효과음 및 배경음악")]
+    public AudioSource Source;
+    public AudioClip[] SFX;
+    public AudioClip[] BGM;
 }
