@@ -1,12 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç Á¦¾î")]
+    [Header("ì• ë‹ˆë©”ì´ì…˜ ì œì–´")]
     Animator ani;
     public float R = 9.5f;
     public LayerMask Player;
-    [Header("ÀÌµ¿ °ü·Ã")]
+
+    [Header("ì´ë™ ê´€ë ¨")]
     public Portal arrivePos;
     public bool isTeleport;
 
@@ -23,7 +24,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isTeleport&&collision.CompareTag("Player"))
+        if (!isTeleport && collision.CompareTag("Player"))
         {
             arrivePos.TpPlayer(collision);
         }
@@ -37,12 +38,11 @@ public class Portal : MonoBehaviour
         }
     }
 
-    private void TpPlayer(Collider2D player)
+    protected virtual void TpPlayer(Collider2D player)
     {
         isTeleport = true;
         Vector3 playerPos = player.transform.position;
         player.transform.position = transform.position;
-
     }
 
     private void OnDrawGizmos()
