@@ -178,3 +178,25 @@ public struct GetRandomMap : IWorker
         return resultList;
     }
 }
+
+//refactor필요
+public struct GetRandomReward : IWorker
+{
+    private const float GoldPercent = 75;
+    private const float CommonPercent = 15;
+    private const float RarePercent = 7.5f;
+    private const float AwakeStonePercent = 2.5f;
+
+    public GameObject RandRewardWorker(GameObject[] Chests)
+    {
+        float Percent = Random.Range(0f, 100f);
+        if (AwakeStonePercent >= Percent)
+            return Chests[3];
+        else if (RarePercent >= Percent)
+            return Chests[2];
+        else if (CommonPercent >= Percent)
+            return Chests[1];
+        else
+            return Chests[0];
+    }
+}
