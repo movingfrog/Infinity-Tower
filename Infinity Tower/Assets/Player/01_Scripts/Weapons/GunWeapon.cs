@@ -103,6 +103,7 @@ public class GunWeapon : Weapon
     // 애니메이션 이벤트 리스너 등으로 호출될 재장전 완료 메서드
     public void CompleteReload()
     {
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[6]);
         int ammoToFill =
             PlayerStatManager.instance.Ammo - maxAmmo >= 0
                 ? maxAmmo

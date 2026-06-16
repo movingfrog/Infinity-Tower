@@ -10,6 +10,7 @@ public class SwordWeapon : Weapon
     public override void Attack()
     {
         float finalDamage = PlayerStatManager.instance.Damage + damage;
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[4]);
         ani.SetTrigger("Attack");
         endAttack = true;
         Vector3 currentPosition = new Vector3(

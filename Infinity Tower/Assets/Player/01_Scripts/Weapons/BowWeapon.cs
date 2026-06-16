@@ -23,6 +23,7 @@ public class BowWeapon : Weapon
         if (endAttack || cooltimeCoroutine != null || ChargingCoroutine != null)
             return;
 
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[7]);
         ani.SetTrigger("Attack");
         isPushing = true;
         endAttack = true; // 쿨타임 플래그 가동
@@ -57,6 +58,7 @@ public class BowWeapon : Weapon
 
     private void ShotArrow(float Percent)
     {
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[78]);
         ani.SetTrigger("Shot");
         arrow.transform.SetParent(null, true);
         arrow.transform.localScale = Vector3.one;

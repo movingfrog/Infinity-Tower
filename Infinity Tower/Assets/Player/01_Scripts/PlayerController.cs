@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 rigid.gravityScale = defaultGravity;
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
-            // WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.source, GameManager.Instance.SFX[0]); 예시 코드
+            // WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.source, GameManager.Instance.SFX(0)); 예시 코드
             WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[0]);
             jumpCount--;
         }
@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
             ani.SetBool("isDash", true);
             ani.Play("Dash", 0, 0);
             WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[1]);
+            
             gameObject.layer = 8;
             defaultGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
