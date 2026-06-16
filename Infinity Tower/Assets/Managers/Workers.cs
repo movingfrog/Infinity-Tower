@@ -41,10 +41,12 @@ public struct ItemDropWorker : IWorker
         GameObject parentObject = null
     )
     {
+        if (prefab == null)
+            return;
         var obj = Object.Instantiate(prefab, pos, Quaternion.identity);
-        obj.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid);
-        obj.TryGetComponent<DropItem>(out DropItem item);
-        obj.TryGetComponent<MagnetItem>(out MagnetItem magnet);
+        obj.TryGetComponent(out Rigidbody2D rigid);
+        obj.TryGetComponent(out DropItem item);
+        obj.TryGetComponent(out MagnetItem magnet);
         if (rigid == null || item == null)
             return;
         Vector3 force =

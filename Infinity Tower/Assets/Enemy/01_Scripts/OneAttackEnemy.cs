@@ -17,6 +17,28 @@ public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
     [field: SerializeField]
     public float Speed { get; set; }
 
+    [Header("드랍 아이템"), Space(10f)]
+    [SerializeField]
+    private Item LootItem;
+
+    [SerializeField]
+    private GameObject DroppedLootObject;
+
+    [SerializeField]
+    private int minItemCount;
+
+    [SerializeField]
+    private int maxItemCount;
+
+    [SerializeField]
+    private int minSpawnCount;
+
+    [SerializeField]
+    private int maxSpawnCount;
+
+    [SerializeField]
+    private float SpawnXForce;
+
     protected override void Awake()
     {
         base.Awake();
@@ -43,5 +65,36 @@ public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
     {
         yield return new WaitForSeconds(delay);
         action?.Invoke();
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        SpawnLoot();
+    }
+
+    protected virtual void SpawnLoot()
+    {
+        if (DroppedLootObject == null)
+        {
+            Debug.LogError("할당 되지 않았스빈다");
+            return;
+        }
+
+        int lootCount = UnityEngine.Random.Range(minItemCount, maxItemCount + 1);
+        int spawnCount = UnityEngine.Random.Range(minSpawnCount, maxSpawnCount + 1);
+
+        for (int i = 0; i < spawnCount; i++)
+        {
+            WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                DroppedLootObject,
+                LootItem,
+                transform.position,
+                DropType.Inventory,
+                SpawnXForce,
+                .25f,
+                lootCount
+            );
+        }
     }
 }
