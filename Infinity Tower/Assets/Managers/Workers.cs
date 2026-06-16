@@ -41,6 +41,8 @@ public struct ItemDropWorker : IWorker
         GameObject parentObject = null
     )
     {
+        if (prefab == null)
+            return;
         var obj = Object.Instantiate(prefab, pos, Quaternion.identity);
         obj.TryGetComponent(out Rigidbody2D rigid);
         obj.TryGetComponent(out DropItem item);

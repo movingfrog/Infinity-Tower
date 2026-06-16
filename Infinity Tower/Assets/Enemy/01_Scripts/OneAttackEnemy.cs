@@ -75,10 +75,16 @@ public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
 
     protected virtual void SpawnLoot()
     {
-        int lootCount = UnityEngine.Random.Range(minItemCount, maxItemCount + 1);
-        int SpawnCount = UnityEngine.Random.Range(minSpawnCount, maxSpawnCount + 1);
+        if (DroppedLootObject == null)
+        {
+            Debug.LogError("할당 되지 않았스빈다");
+            return;
+        }
 
-        for (int i = 0; i < SpawnCount; i++)
+        int lootCount = UnityEngine.Random.Range(minItemCount, maxItemCount + 1);
+        int spawnCount = UnityEngine.Random.Range(minSpawnCount, maxSpawnCount + 1);
+
+        for (int i = 0; i < spawnCount; i++)
         {
             WorkerHub<ItemDropWorker>.Instance.DropItemWork(
                 DroppedLootObject,
