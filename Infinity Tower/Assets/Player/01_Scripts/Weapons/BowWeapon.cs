@@ -60,7 +60,7 @@ public class BowWeapon : Weapon
         ani.SetTrigger("Shot");
         arrow.transform.SetParent(null, true);
         arrow.transform.localScale = Vector3.one;
-        float finalDamage = AttackDamageCapculator(
+        float finalDamage = AttackDamageCaculator(
             (damage + PlayerStatManager.instance.damage) * (.3f + Percent * .7f)
         );
         Arrow _arrow = arrow.GetComponent<Arrow>();

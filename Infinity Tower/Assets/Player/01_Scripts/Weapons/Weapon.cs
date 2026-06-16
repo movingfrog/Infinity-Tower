@@ -54,7 +54,7 @@ public abstract class Weapon : MonoBehaviour
         : value < 0 ? -1f
         : 0f;
 
-    protected virtual float AttackDamageCapculator(float finalDamage)
+    protected virtual float AttackDamageCaculator(float finalDamage)
     {
         if (Random.Range(0, 1.0f) <= PlayerStatManager.instance.Crit_Rate)
             finalDamage = finalDamage * PlayerStatManager.instance.Crit_Dmg;
