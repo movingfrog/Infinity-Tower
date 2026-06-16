@@ -10,12 +10,15 @@ public class PlayBGAnimation : MonoBehaviour
 
     private void Awake()
     {
-        ani = GetComponent<Animator>();
-        StartCoroutine(AnimationPlay());
+        if (TryGetComponent(out ani))
+            StartCoroutine(AnimationPlay());
     }
 
     IEnumerator AnimationPlay()
     {
+        if (runTime <= 0)
+            runTime = 1;
+
         while (true)
         {
             ani.SetBool("Play", true);
