@@ -231,16 +231,22 @@ MonoBehaviour:
   parentCanvas: {fileID: 0}
   HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
   _hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
-  AttackDamage: 1
-  isAttack: 0
-  attackDelay: 0.25
+  <AttackDamage>k__BackingField: 0
+  <attackDelay>k__BackingField: 0
+  <Speed>k__BackingField: 0
+  LootItem: {fileID: 11400000, guid: 29a5317786f208b439957da3b8c7b694, type: 2}
+  DroppedLootObject: {fileID: 6495848276855784538, guid: 15601a93f638d954084c890a8c8473e8, type: 3}
+  minItemCount: 3
+  maxItemCount: 5
+  minSpawnCount: 1
+  maxSpawnCount: 2
+  SpawnXForce: 1
   attackSize: 5
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
   attackPos: {fileID: 393438020656421747}
   attackBall: {fileID: 6933189110756272314, guid: 6f7b3c1ef133b0145a757b5672d07a90, type: 3}
-  speed: 1
   observSize: 5
   angle: {x: -0.798, y: -3.414}
   observLayer:
