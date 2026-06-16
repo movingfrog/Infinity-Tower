@@ -211,7 +211,8 @@ public class InventoryManager : InvenParent
         }
     }
 
-    public void GetGoods(GoodsType type, uint amount) => Goods[(int)type].Increase(amount);
+    public void GetGoods(GoodsType type, uint amount) =>
+        Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.GoldBoost));
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 

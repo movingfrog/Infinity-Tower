@@ -8,7 +8,7 @@ public class SpearWeapon : Weapon
 
     public override void Attack()
     {
-        float finalDamage = PlayerStatManager.instance.Damage + damage;
+        float finalDamage = AttackDamageCaculator(PlayerStatManager.instance.damage + damage);
         ani.SetTrigger("Attack");
         endAttack = true;
         Vector3 SpearPosition = new Vector3(

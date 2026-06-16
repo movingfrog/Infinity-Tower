@@ -76,7 +76,9 @@ public class GunWeapon : Weapon
         if (currentAmmo > 0)
         {
             currentAmmo--;
-            float finalDamage = damage + PlayerStatManager.instance.Damage * 0.15f;
+            float finalDamage = AttackDamageCaculator(
+                damage + PlayerStatManager.instance.damage * 0.15f
+            );
             Quaternion rotation = Quaternion.Euler(0, 0, fireDirection.y * 90);
 
             Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();

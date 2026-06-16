@@ -40,7 +40,13 @@ public class PlayerStatManager : MonoBehaviour
     public int maxLevel { get; private set; }
 
     [Header("공격 시스템")]
-    public float Damage;
+    [SerializeField]
+    private float Damage;
+    public float damage
+    {
+        get { return Damage + Atk; }
+        private set { Damage = value; }
+    }
     public int Ammo;
 
     [Header("추가 능력치")]
@@ -48,7 +54,7 @@ public class PlayerStatManager : MonoBehaviour
     public float Crit_Rate = .3f;
     public float Crit_Dmg = 1.5f;
     public float Speed = 1;
-    public float Atk = 1;
+    public float Atk = 0;
     public float GoldBoost = 1;
     public float HealBoost = 1;
 

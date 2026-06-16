@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306620578136132506}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3, y: -3.44, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -201,9 +201,9 @@ MonoBehaviour:
   parentCanvas: {fileID: 0}
   HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
   _hitText: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
-  <AttackDamage>k__BackingField: 0
-  <attackDelay>k__BackingField: 0
-  <Speed>k__BackingField: 0
+  <AttackDamage>k__BackingField: 3
+  <attackDelay>k__BackingField: 0.3
+  <Speed>k__BackingField: 3
   LootItem: {fileID: 11400000, guid: 29a5317786f208b439957da3b8c7b694, type: 2}
   DroppedLootObject: {fileID: 6495848276855784538, guid: 15601a93f638d954084c890a8c8473e8, type: 3}
   minItemCount: 3

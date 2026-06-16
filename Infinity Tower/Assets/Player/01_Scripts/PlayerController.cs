@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDashing && !ani.GetBool("isUsingSkill"))
         {
-            float moveX = movement.x * basicMoveSpeed;
+            float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.Speed;
 
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
