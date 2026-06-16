@@ -9,7 +9,7 @@ public class SwordWeapon : Weapon
 
     public override void Attack()
     {
-        float finalDamage = PlayerStatManager.instance.Damage + damage;
+        float finalDamage = AttackDamageCapculator(PlayerStatManager.instance.damage + damage);
         ani.SetTrigger("Attack");
         endAttack = true;
         Vector3 currentPosition = new Vector3(

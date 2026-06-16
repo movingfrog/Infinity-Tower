@@ -30,6 +30,7 @@ public class landEnemy : OneAttackEnemy
                 transform.position.x - player.transform.position.x >= 0 ? -1 : 1,
                 1
             );
+            rigid.linearVelocity = Vector3.zero;
             ani.SetBool("isRun", false);
             ani.SetTrigger("isAttack");
         }
