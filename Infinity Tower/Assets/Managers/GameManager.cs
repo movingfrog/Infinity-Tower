@@ -54,16 +54,6 @@ public class GameManager : MonoBehaviour
     public AudioClip[] SFX;
     public AudioClip[] BGM;
 
-    [Header("모든 맵 리스트")]
-    [field: SerializeField]
-    public List<GameObject> ShopMap { get; private set; }
-
-    [field: SerializeField]
-    public List<GameObject> DefaultMap { get; private set; }
-
-    [field: SerializeField]
-    public List<GameObject> RewardMap { get; private set; }
-
     [Header("모든 보상 상자")]
     [field: SerializeField]
     public GameObject[] AllRewardChest { get; private set; }

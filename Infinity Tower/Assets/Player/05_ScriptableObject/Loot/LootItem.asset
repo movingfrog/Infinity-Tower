@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
   m_Name: LootItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: 0}
-  itemName: 
-  itemInfo: 
+  spriteImage: {fileID: 7976121198395911719, guid: c4753f848d9d1df44ba6a6a4df98f437, type: 3}
+  itemName: "\uC801 \uC804\uB9AC\uD488"
+  itemInfo: "\uC801\uC744 \uCC98\uCE58\uD558\uBA74 \uC5BB\uC744 \uC218 \uC788\uB294
+    \uC804\uB9AC\uD488\uC774\uB2E4"
   level: 0
   slotType: 0
-  MaxItemCount: 0
+  MaxItemCount: 50
   isEquippable: 0
   Equips:
     nextItem: {fileID: 0}
