@@ -58,7 +58,7 @@ public class BowWeapon : Weapon
 
     private void ShotArrow(float Percent)
     {
-        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[78]);
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[8]);
         ani.SetTrigger("Shot");
         arrow.transform.SetParent(null, true);
         arrow.transform.localScale = Vector3.one;
