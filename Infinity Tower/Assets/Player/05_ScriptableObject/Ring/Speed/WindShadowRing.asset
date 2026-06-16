@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   spriteImage: {fileID: -2795987176655067491, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
   itemName: "\uBC14\uB78C \uADF8\uB9BC\uC790\uC758 \uBC18\uC9C0"
-  itemInfo: 
+  itemInfo: "\uBE60\uB974\uAC8C \uC801\uB4E4\uC744 \uCC98\uB9AC\uD558\uB358 \uADF8\uB9BC\uC790\uC758
+    \uC601\uD63C\uC774 \uAE43\uB4E0 \uBC18\uC9C0.\n\uC18D\uB3C4\uC640 \uB370\uBBF8\uC9C0\uB97C
+    \uC0C1\uC2B9\uC2DC\uCF1C\uC900\uB2E4.\n"
   level: 1
   slotType: 0
   MaxItemCount: 1
   isEquippable: 1
   Equips:
     nextItem: {fileID: 11400000, guid: a87704627a8936c4d80d055d76d371d6, type: 2}
-    anvilInfoLine: 
+    anvilInfoLine: "\uAC15\uD654\uB418\uBA74 \uC5B4\uC314\uC2E0\uC758 \uAE30\uC6B4\uC744
+      \uC5BB\uACE0 \uD06C\uB9AC \uD655\uB960\uC774 \uC0C1\uC2B9\uB420\uC9C0\uB3C4..?"
+    Type: 0
     itemDamage: 0
     statModifiers:
     - Type: 3
