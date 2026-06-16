@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
+  m_Name: ElaborateRing
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  spriteImage: {fileID: -3964896431499438999, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  itemName: "\uC815\uAD50\uD55C \uBC18\uC9C0"
+  itemInfo: "\uB9C8\uBC95\uC774 \uB2F4\uAE34 \uAE30\uBCF8 \uBC18\uC9C0\\n\uC815\uAD50\uD574\uC84C\uB2E4"
+  level: 0
+  slotType: 2
+  MaxItemCount: 1
+  isEquippable: 1
+  Equips:
+    nextItem: {fileID: 11400000, guid: b496871b7e1fcc14fbf75b0701f6861f, type: 2}
+    anvilInfoLine: 
+    itemDamage: 0
+    statModifiers:
+    - Type: 1
+      Value: 35

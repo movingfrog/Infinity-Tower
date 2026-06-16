@@ -1,0 +1,60 @@
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class InteractionItem : DropItem
+{
+    public GameObject InstItemInfo { get; set; }
+
+    public GameObject originObject { get; set; }
+
+    private void OnEnable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started += InteractGetItem;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.inputActions.Player.Interact.started -= InteractGetItem;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        if (InstItemInfo == null)
+            InstItemInfo = SpaceUIManager.Instance.CreateItemUI(gameObject);
+        else
+            SpaceUIManager.Instance.ChangeItemTransform(gameObject, originObject);
+        TextMeshProUGUI TMP = InstItemInfo.GetComponentInChildren<TextMeshProUGUI>();
+        TMP.color = SpaceUIManager.Instance.rarityColor[(int)item.level];
+        TMP.text = item.itemName;
+        InstItemInfo.SetActive(false);
+    }
+
+    public void InteractGetItem(InputAction.CallbackContext callback)
+    {
+        if (!InstItemInfo.activeSelf)
+            return;
+        InventoryManager.Instance.GetItem(item, 1);
+        Destroy(gameObject);
+    }
+
+    protected override void getItem()
+    {
+        InstItemInfo.SetActive(true);
+    }
+
+    protected override void moveItem(Collider2D outPlayer)
+    {
+        InstItemInfo.SetActive(false);
+        base.moveItem(outPlayer);
+    }
+
+    private void OnDestroy()
+    {
+        if (InventoryManager.Instance != null && InstItemInfo != null)
+        {
+            SpaceUIManager.Instance.RemoveItemUI(InstItemInfo, gameObject);
+        }
+    }
+}

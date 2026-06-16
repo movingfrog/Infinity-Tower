@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d177554294fe046a82745965e928d9, type: 3}
+  m_Name: BowData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  <Type>k__BackingField: 2
+  UpgradePrefab:
+  - {fileID: 8138259534442841794, guid: 1547a68e0f3f6dc4aabe7c3427889314, type: 3}
+  - {fileID: -2253911629886400664, guid: 7defe61a20abb5649ad4a83a1f136d83, type: 3}

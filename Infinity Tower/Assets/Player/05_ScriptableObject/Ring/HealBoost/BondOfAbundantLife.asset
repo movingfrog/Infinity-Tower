@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
+  m_Name: BondOfAbundantLife
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  spriteImage: {fileID: 6551347736276623788, guid: e983618d551bbf04c8c9066a467ca3a0, type: 3}
+  itemName: "\uD48D\uC694\uB85C\uC6B4 \uC0DD\uBA85\uC758 \uACB0\uC18D"
+  itemInfo: 
+  level: 1
+  slotType: 2
+  MaxItemCount: 1
+  isEquippable: 1
+  Equips:
+    nextItem: {fileID: 11400000, guid: 1efe15a5aeef88c4aa603a375048a624, type: 2}
+    anvilInfoLine: 
+    itemDamage: 0
+    statModifiers:
+    - Type: 5
+      Value: 25
+    - Type: 4
+      Value: 50
