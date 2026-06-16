@@ -63,8 +63,11 @@ public class GunWeapon : Weapon
     private IEnumerator ShootingLoop()
     {
         ani.SetBool("isAuto", hasAuto);
+        WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[2]);
+
         while (ExecuteShot() && hasAuto && isPushing)
         {
+            WorkerHub<SoundWorker>.Instance.PlaySFX(GameManager.Instance.Source, GameManager.Instance.SFX[3]);
             yield return new WaitForSeconds(fireRate);
         }
         ani.SetBool("isAuto", false);
