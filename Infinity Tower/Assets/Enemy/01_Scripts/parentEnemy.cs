@@ -17,7 +17,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public GameObject _hitText;
 
     protected Animator ani;
-    private DamageFlash _damageFlash;
+    protected DamageFlash _damageFlash;
 
     public float HP { get; set; }
     public float MaxHP { get; set; }
@@ -27,14 +27,19 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     {
         ani = GetComponent<Animator>();
         _damageFlash = GetComponent<DamageFlash>();
-        GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
-        healthBar = temp.GetComponent<HealthBar>();
-        healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y, Fly);
+        CreateHPBar();
         MaxHP = defaultHP; //이후에 레벨 공식 필요
         HP = MaxHP;
     }
 
-    public void Hurt(float damage)
+    protected virtual void CreateHPBar()
+    {
+        GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
+        healthBar = temp.GetComponent<HealthBar>();
+        healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y, Fly);
+    }
+
+    public virtual void Hurt(float damage)
     {
         if (HP - damage > 0)
         {
@@ -49,7 +54,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         }
     }
 
-    private void ShowDamage(float damage, Color color)
+    protected void ShowDamage(float damage, Color color)
     {
         //데미지 텍스트 셋팅
         GameObject hitTextInstance = Instantiate(_hitText, parentCanvas.transform);
@@ -82,9 +87,9 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         {
             HP += amount;
             ShowDamage(amount, Color.yellow);
-            GameObject healEffect = Instantiate(healObject);
-            healEffect.transform.position = transform.position;
-            Destroy(healEffect, .5f);
+            //GameObject healEffect = Instantiate(healObject);
+            //healEffect.transform.position = transform.position;
+            //Destroy(healEffect, .5f);
         }
     }
 }
