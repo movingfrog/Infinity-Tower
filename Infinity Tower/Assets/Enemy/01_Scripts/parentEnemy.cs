@@ -14,13 +14,14 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public GameObject parentCanvas;
     public GameObject HealthBar;
     protected HealthBar healthBar;
-    public GameObject _hitText;
 
     protected Animator ani;
     protected DamageFlash _damageFlash;
 
     public float HP { get; set; }
     public float MaxHP { get; set; }
+
+    [field: SerializeField]
     public GameObject hitText { get; set; }
 
     protected virtual void Awake()
@@ -36,7 +37,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     {
         GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
         healthBar = temp.GetComponent<HealthBar>();
-        healthBar.Init(transform.position, GetComponent<SpriteRenderer>().bounds.extents.y, Fly);
+        healthBar.Init(transform.position, GetComponent<Collider2D>().bounds.extents.y, Fly);
     }
 
     public virtual void Hurt(float damage)
@@ -57,7 +58,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     protected void ShowDamage(float damage, Color color)
     {
         //데미지 텍스트 셋팅
-        GameObject hitTextInstance = Instantiate(_hitText, parentCanvas.transform);
+        GameObject hitTextInstance = Instantiate(hitText, parentCanvas.transform);
         Rigidbody2D rigid = hitTextInstance.GetComponent<Rigidbody2D>();
         TextMeshProUGUI text = hitTextInstance.GetComponent<TextMeshProUGUI>();
 
