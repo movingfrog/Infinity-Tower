@@ -26,7 +26,7 @@ public abstract class BossSystem : parentEnemy
 
     protected abstract void AddPattern();
 
-    protected IEnumerator BossActionLoop()
+    protected virtual IEnumerator BossActionLoop()
     {
         yield return null;
 
