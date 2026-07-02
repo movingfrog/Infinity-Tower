@@ -57,6 +57,8 @@ public partial class Slime : OneAttackEnemy
                 isIn = true;
             }
         }
+        else
+            rigid.linearVelocityX = 0;
     }
 
     partial void BubbleAttack();

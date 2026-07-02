@@ -9,7 +9,7 @@ public partial class KingSlime
     {
         WaitNewAction -= .5f;
         PlayerPos.position = NewPhasePlayerPosition.position;
-        Start();
+        PatternCoroutine = StartCoroutine(BossActionLoop());
         HP = MaxHP;
         isDie = false;
     }
