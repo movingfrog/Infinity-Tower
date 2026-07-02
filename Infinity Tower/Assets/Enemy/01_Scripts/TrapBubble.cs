@@ -44,6 +44,6 @@ public class TrapBubble : MonoBehaviour
     private void LateUpdate()
     {
         PlayerObject.position = transform.position;
-        PlayerObject.GetComponent<IHealth>().Hurt(0);
+        PlayerHP.Hurt(0);
     }
 }

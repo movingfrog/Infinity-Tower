@@ -11,5 +11,6 @@ public partial class KingSlime
         PlayerPos.position = NewPhasePlayerPosition.position;
         Start();
         HP = MaxHP;
+        isDie = false;
     }
 }

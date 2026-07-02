@@ -16,8 +16,8 @@ public partial class KingSlime : BossSystem
 {
     [Header("체력 관련")]
     private int HealthCount = 4;
-    private List<Image> AllHealth;
-    private List<Image> HealthImage;
+    private List<Image> AllHealth = new List<Image>();
+    private List<Image> HealthImage = new List<Image>();
 
     [Header("공격 관련")]
     [Tooltip("패턴 범위 확인")]

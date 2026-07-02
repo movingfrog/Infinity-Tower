@@ -44,6 +44,7 @@ public partial class KingSlime
                         -centerToGroundDistance
                     );
                 }
+                bubble.transform.parent = null;
             }
             yield return new WaitForSeconds(BubblePatternTime / randAttackCount);
         }
@@ -138,7 +139,7 @@ public partial class KingSlime
         }
         useArea.SetActive(false);
         rigid.gravityScale = 1;
-        yield return new WaitUntil(() => rigid.linearVelocityY == 0);
+        yield return new WaitUntil(() => rigid.linearVelocityY < 0.01f);
         Collider2D Player = Physics2D.OverlapBox(
             transform.position + Vector3.down * centerToGroundDistance * transform.localScale.y,
             AttackAreaValue[2],
