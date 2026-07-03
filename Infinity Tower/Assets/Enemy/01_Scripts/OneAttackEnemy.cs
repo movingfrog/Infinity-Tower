@@ -47,7 +47,7 @@ public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
 
     protected virtual void FixedUpdate()
     {
-        if (TimeManager.Instance.isRewinding)
+        if (TimeManager.Instance.isRewinding || isDie)
             return;
 
         Attack();

@@ -9,6 +9,9 @@ public abstract class BossSystem : parentEnemy
     [SerializeField]
     protected float WaitNewAction = 1f;
 
+    [SerializeField]
+    protected float GroggyTime;
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,14 +19,14 @@ public abstract class BossSystem : parentEnemy
         AddPattern();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         StartCoroutine(BossActionLoop());
     }
 
     protected abstract void AddPattern();
 
-    IEnumerator BossActionLoop()
+    protected virtual IEnumerator BossActionLoop()
     {
         yield return null;
 
@@ -47,4 +50,6 @@ public abstract class BossSystem : parentEnemy
             yield return StartCoroutine(selectedPattern());
         }
     }
+
+    protected abstract IEnumerator Groggy();
 }
