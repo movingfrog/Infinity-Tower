@@ -1,6 +1,6 @@
 ---
 name: BugFIx
-about: Describe this issue template's purpose here.
+about: "[Bug]: "
 title: ''
 labels: ''
 assignees: ''
