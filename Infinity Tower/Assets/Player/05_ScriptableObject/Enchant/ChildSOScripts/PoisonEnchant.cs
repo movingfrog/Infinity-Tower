@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PoisonEnchant", menuName = "WeaponEnchantData/PoisonEnchant")]
@@ -10,16 +11,16 @@ public class PoisonEnchant : WeaponEnchant
     private const float TickTime = .5f;
     private const int TickAmount = 3;
 
-    protected override void WeaponUpgrade() => Debug.Log("독 공격 실행");
-
-    public void WeaponUpgrade(IHealth enemy, int weaponLevel, MonoBehaviour runner)
+    public override void WeaponUpgrade(Weapon weapon, GameObject target = null)
     {
-        WeaponUpgrade();
-        runner.StartCoroutine(PoisonAttack(weaponLevel * PoisonDamage, enemy));
+        weapon.StartCoroutine(PoisonAttack((int)(weapon.Level + 1) * PoisonDamage, target));
     }
 
-    IEnumerator PoisonAttack(float Damage, IHealth Enemy)
+    IEnumerator PoisonAttack(float Damage, GameObject target)
     {
+        IHealth Enemy = target.GetComponent<IHealth>();
+        if (Enemy == null)
+            yield break;
         for (int i = 0; i < TickAmount; i++)
         {
             Enemy.Hurt(Damage);
