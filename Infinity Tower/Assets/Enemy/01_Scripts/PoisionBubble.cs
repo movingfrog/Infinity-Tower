@@ -4,7 +4,10 @@ using UnityEngine;
 public class PoisionBubble : MonoBehaviour
 {
     [SerializeField]
-    private int PoisionTickAmount;
+    private int PoisonTickAmount;
+
+    [SerializeField]
+    private float PoisonTickRate;
 
     [SerializeField]
     private float AttackDamage;
@@ -19,7 +22,7 @@ public class PoisionBubble : MonoBehaviour
     {
         if ((Player & (1 << collision.gameObject.layer)) != 0)
         {
-            StartCoroutine(PoisionDotDamage(collision));
+            PlayerStatManager.instance.StartCoroutine(PoisionDotDamage(collision));
             Destroy(gameObject);
         }
         if ((Ground & (1 << collision.gameObject.layer)) != 0)
@@ -30,11 +33,13 @@ public class PoisionBubble : MonoBehaviour
 
     private IEnumerator PoisionDotDamage(Collider2D Player)
     {
+        if (Player == null)
+            yield break;
         IHealth PlayerHealth = Player.GetComponent<IHealth>();
-        for (int i = 0; i < PoisionTickAmount; i++)
+        for (int i = 0; i < PoisonTickAmount; i++)
         {
             PlayerHealth.Hurt(AttackDamage);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(PoisonTickRate);
         }
     }
 }

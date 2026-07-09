@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SwordWeapon : Weapon
 {
@@ -10,6 +9,7 @@ public class SwordWeapon : Weapon
     public override void Attack()
     {
         float finalDamage = AttackDamageCaculator(PlayerStatManager.instance.damage + damage);
+        TriggerHitEnchants();
         ani.SetTrigger("Attack");
         endAttack = true;
         Vector3 currentPosition = new Vector3(
@@ -28,6 +28,7 @@ public class SwordWeapon : Weapon
             if (enemy.TryGetComponent<IHealth>(out var health))
             {
                 health.Hurt(finalDamage);
+                TriggerAttackEnchant(enemy.gameObject);
             }
         }
     }

@@ -18,6 +18,9 @@ public abstract class Weapon : MonoBehaviour
     public bool endAttack { get; protected set; }
     public bool isPushing { get; set; }
 
+    [Header("각인 설정")]
+    public WeaponEnchant[] enchants = new WeaponEnchant[2];
+
     protected virtual void Awake()
     {
         TryGetComponent<Animator>(out ani);
@@ -27,6 +30,8 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void OnEnable()
     {
         OnEnableWeapon();
+
+        TriggerEnchants(EnchantType.Stat);
     }
 
     protected virtual void OnDisable()
@@ -59,5 +64,26 @@ public abstract class Weapon : MonoBehaviour
         if (Random.value <= PlayerStatManager.instance.Crit_Rate)
             finalDamage = finalDamage * PlayerStatManager.instance.Crit_Dmg;
         return finalDamage;
+    }
+
+    protected void TriggerAttackEnchant(GameObject enemy)
+    {
+        TriggerEnchants(EnchantType.Attack, enemy);
+    }
+
+    protected void TriggerHitEnchants()
+    {
+        TriggerEnchants(EnchantType.Ability);
+    }
+
+    protected void TriggerEnchants(EnchantType targetType, GameObject enemy = null)
+    {
+        for (int i = 0; i < enchants.Length; i++)
+        {
+            if (enchants[i] != null && enchants[i].Type == targetType)
+            {
+                enchants[i].WeaponUpgrade(this, enemy);
+            }
+        }
     }
 }

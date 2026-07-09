@@ -169,7 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b721445c1be4d48409443e1430c95364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisionBubble
-  PoisionTickAmount: 3
+  PoisonTickAmount: 3
+  PoisonTickRate: 0.75
   AttackDamage: 2
   Player:
     serializedVersion: 2
