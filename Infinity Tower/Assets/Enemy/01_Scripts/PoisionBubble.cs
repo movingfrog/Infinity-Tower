@@ -33,6 +33,8 @@ public class PoisionBubble : MonoBehaviour
 
     private IEnumerator PoisionDotDamage(Collider2D Player)
     {
+        if (Player == null)
+            yield break;
         IHealth PlayerHealth = Player.GetComponent<IHealth>();
         for (int i = 0; i < PoisonTickAmount; i++)
         {

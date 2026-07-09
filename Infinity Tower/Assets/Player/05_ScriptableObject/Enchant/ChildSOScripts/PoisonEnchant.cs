@@ -18,6 +18,8 @@ public class PoisonEnchant : WeaponEnchant
 
     IEnumerator PoisonAttack(float Damage, GameObject target)
     {
+        if (target == null)
+            yield break;
         IHealth Enemy = target.GetComponent<IHealth>();
         if (Enemy == null)
             yield break;
