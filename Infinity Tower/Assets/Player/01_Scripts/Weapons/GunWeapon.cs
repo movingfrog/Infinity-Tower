@@ -55,6 +55,7 @@ public class GunWeapon : Weapon
         if (shootingCoroutine != null || isReload || CheckNoAmmo())
             return;
 
+        TriggerHitEnchants();
         ani.SetTrigger("Attack");
         endAttack = true;
         shootingCoroutine = StartCoroutine(ShootingLoop());
@@ -82,7 +83,13 @@ public class GunWeapon : Weapon
             Quaternion rotation = Quaternion.Euler(0, 0, fireDirection.y * 90);
 
             Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
-            bullet.Init(shotPosition.position, rotation, fireDirection, finalDamage);
+            bullet.Init(
+                shotPosition.position,
+                rotation,
+                fireDirection,
+                finalDamage,
+                TriggerAttackEnchant
+            );
             return true;
         }
 

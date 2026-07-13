@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
   m_Name: M1911
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: 0}
-  itemName: 
-  itemInfo: 
+  spriteImage: {fileID: 9202094985950219199, guid: 0771733082309444887bb2997823b29f, type: 3}
+  itemName: M1911
+  itemInfo: "\uD560\uC544\uBC84\uC9C0\uB97C \uB118\uC5B4\uC11C \uC99D\uC870\uD560\uC544\uBC84\uC9C0
+    \uB54C \uCD1D"
   level: 0
-  slotType: 0
-  MaxItemCount: 0
-  isEquippable: 0
+  slotType: 1
+  MaxItemCount: 1
+  isEquippable: 1
   Equips:
-    nextItem: {fileID: 0}
+    nextItem: {fileID: 11400000, guid: 2d1d31a06b2bc9a42a6c89fc9406541a, type: 2}
     anvilInfoLine: 
-    Type: 0
-    itemDamage: 0
+    Type: 1
+    itemDamage: 2
     statModifiers: []

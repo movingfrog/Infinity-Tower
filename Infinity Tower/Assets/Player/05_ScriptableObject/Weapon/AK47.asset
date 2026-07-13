@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: 0}
-  itemName: 
-  itemInfo: 
-  level: 0
-  slotType: 0
-  MaxItemCount: 0
-  isEquippable: 0
+  spriteImage: {fileID: 4565813657897213748, guid: 61222bbc155fcc243945ee4b543b72e2, type: 3}
+  itemName: AK47
+  itemInfo: "\uC138\uACC4\uC5D0\uC11C \uAC00\uC7A5 \uB9CE\uC774 \uC0AC\uC6A9\uB41C
+    \uBB34\uAE30"
+  level: 1
+  slotType: 1
+  MaxItemCount: 1
+  isEquippable: 1
   Equips:
     nextItem: {fileID: 0}
     anvilInfoLine: 
-    Type: 0
-    itemDamage: 0
+    Type: 1
+    itemDamage: 2
     statModifiers: []
