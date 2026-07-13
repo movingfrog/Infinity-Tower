@@ -92,7 +92,7 @@ public class GunWeapon : Weapon
 
     private void TriggerReload()
     {
-        if (PlayerStatManager.instance.Ammo > 0 && !isReload)
+        if (!isReload)
         {
             isReload = true;
             ani.SetTrigger("Reload");
@@ -102,12 +102,7 @@ public class GunWeapon : Weapon
     // 애니메이션 이벤트 리스너 등으로 호출될 재장전 완료 메서드
     public void CompleteReload()
     {
-        int ammoToFill =
-            PlayerStatManager.instance.Ammo - maxAmmo >= 0
-                ? maxAmmo
-                : PlayerStatManager.instance.Ammo;
-        PlayerStatManager.instance.UseAmmo(ammoToFill);
-        currentAmmo = ammoToFill;
+        currentAmmo = maxAmmo;
         isReload = false;
 
         if (isPushing && hasAuto)
@@ -149,5 +144,5 @@ public class GunWeapon : Weapon
         );
     }
 
-    private bool CheckNoAmmo() => currentAmmo == 0 && PlayerStatManager.instance.Ammo == 0;
+    private bool CheckNoAmmo() => currentAmmo == 0;
 }
