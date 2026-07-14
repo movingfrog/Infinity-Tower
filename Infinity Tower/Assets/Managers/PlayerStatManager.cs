@@ -47,7 +47,6 @@ public class PlayerStatManager : MonoBehaviour
         get { return Damage + Atk; }
         private set { Damage = value; }
     }
-    public int Ammo;
 
     [Header("추가 능력치")]
     [Range(-1f, 1f)]
@@ -130,11 +129,6 @@ public class PlayerStatManager : MonoBehaviour
             currentHP = MaxHP;
         HealthBar.fillAmount = currentHP / MaxHP;
         HealthText.text = currentHP.ToString("00") + "/" + MaxHP.ToString("00");
-    }
-
-    public void UseAmmo(int amount)
-    {
-        Ammo -= amount;
     }
 
     public void ChangeState(PlayerState State) => currentState = State;

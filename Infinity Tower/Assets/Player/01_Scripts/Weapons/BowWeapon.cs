@@ -23,6 +23,7 @@ public class BowWeapon : Weapon
         if (endAttack || cooltimeCoroutine != null || ChargingCoroutine != null)
             return;
 
+        TriggerHitEnchants();
         ani.SetTrigger("Attack");
         isPushing = true;
         endAttack = true; // 쿨타임 플래그 가동
@@ -64,7 +65,7 @@ public class BowWeapon : Weapon
             (damage + PlayerStatManager.instance.damage) * (.3f + Percent * .7f)
         );
         Arrow _arrow = arrow.GetComponent<Arrow>();
-        _arrow.Shot(fireDirection, Percent, finalDamage);
+        _arrow.Shot(fireDirection, Percent, finalDamage, TriggerAttackEnchant);
         ChargingCoroutine = null;
     }
 

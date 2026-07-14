@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 069eb521257e88848b97ea244f73df57, type: 3}
-  m_Name: Bow
+  m_Name: M1911
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  spriteImage: {fileID: -2572660309348051032, guid: aa497250651774e4f8647a34ab58363b, type: 3}
-  itemName: "\uD65C"
-  itemInfo: "\uACF5\uACA9\uB825 \uB9CC\uD07C\uC740 \uB05D\uD310\uC655\\n\uD558\uC9C0\uB9CC
-    \uC18D\uB3C4\uAC00 \uB290\uB9AC\uB2E4"
+  spriteImage: {fileID: 9202094985950219199, guid: 0771733082309444887bb2997823b29f, type: 3}
+  itemName: M1911
+  itemInfo: "\uD560\uC544\uBC84\uC9C0\uB97C \uB118\uC5B4\uC11C \uC99D\uC870\uD560\uC544\uBC84\uC9C0
+    \uB54C \uCD1D"
   level: 0
   slotType: 1
   MaxItemCount: 1
   isEquippable: 1
   Equips:
-    nextItem: {fileID: 11400000, guid: 1ba128a73c38f8240815aebd22644f8f, type: 2}
+    nextItem: {fileID: 11400000, guid: 2d1d31a06b2bc9a42a6c89fc9406541a, type: 2}
     anvilInfoLine: 
-    Type: 2
-    itemDamage: 15
+    Type: 1
+    itemDamage: 2
     statModifiers: []

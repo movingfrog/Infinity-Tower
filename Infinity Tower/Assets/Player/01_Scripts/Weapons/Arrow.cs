@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class Arrow : MonoBehaviour
 {
     float Damage;
     Rigidbody2D rigid;
+    Action<GameObject> EnchantAction;
 
     public int[] layer;
     public float currentSpeed;
@@ -18,7 +20,7 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(rigid != null && rigid.linearVelocity.sqrMagnitude > .1f)
+        if (rigid != null && rigid.linearVelocity.sqrMagnitude > .1f)
         {
             float angle = Mathf.Atan2(rigid.linearVelocityY, rigid.linearVelocityX) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -39,14 +41,17 @@ public class Arrow : MonoBehaviour
         Physics2D.IgnoreLayerCollision(bulletLayer, wallLayerIndex, false);
         Physics2D.IgnoreLayerCollision(bulletLayer, groundLayerIndex, false);
     }
-    public void Shot(Vector2 value, float percent, float damage)
+
+    public void Shot(Vector2 value, float percent, float damage, Action<GameObject> Enchant)
     {
         Damage = damage;
         rigid.linearVelocity = value * currentSpeed * percent;
         GetComponent<Collider2D>().enabled = true;
+        EnchantAction = Enchant;
         StartCoroutine(IgnoreWall());
         StartCoroutine(useGravity(percent));
     }
+
     IEnumerator useGravity(float percent)
     {
         float flyTime = .3f + (percent * .7f);
@@ -54,9 +59,12 @@ public class Arrow : MonoBehaviour
         yield return new WaitForSeconds(flyTime);
         rigid.gravityScale = 1;
     }
+
     private bool layerCheck(int _layer)
     {
-        foreach (int temp in layer) if (temp == _layer) return true;
+        foreach (int temp in layer)
+            if (temp == _layer)
+                return true;
         return false;
     }
 
@@ -67,6 +75,7 @@ public class Arrow : MonoBehaviour
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
                 health.Hurt(Damage);
+                EnchantAction?.Invoke(collision.gameObject);
             }
             Destroy(GetComponent<Collider2D>());
             Destroy(rigid);

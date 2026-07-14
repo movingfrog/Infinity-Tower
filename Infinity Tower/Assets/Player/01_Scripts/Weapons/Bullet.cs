@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 forwardValue;
     float damage;
+    Action<GameObject> enchantAction;
 
     public int[] layer;
     public float bulletSpeed;
@@ -32,12 +34,19 @@ public class Bullet : MonoBehaviour
         Physics2D.IgnoreLayerCollision(bulletLayer, groundLayerIndex, false);
     }
 
-    public void Init(Vector3 position, Quaternion rotation, Vector2 value, float amount)
+    public void Init(
+        Vector3 position,
+        Quaternion rotation,
+        Vector2 value,
+        float amount,
+        Action<GameObject> Enchant
+    )
     {
         transform.position = position;
         transform.rotation = rotation;
         forwardValue = value;
         damage = amount;
+        enchantAction = Enchant;
     }
 
     private void FixedUpdate()
@@ -47,17 +56,20 @@ public class Bullet : MonoBehaviour
 
     private bool layerCheck(int _layer)
     {
-        foreach(int temp in layer) if(temp == _layer) return true;
+        foreach (int temp in layer)
+            if (temp == _layer)
+                return true;
         return false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(layerCheck(collision.gameObject.layer))
+        if (layerCheck(collision.gameObject.layer))
         {
-            if(collision.TryGetComponent<IHealth>(out IHealth health))
+            if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
                 health.Hurt(damage);
+                enchantAction?.Invoke(collision.gameObject);
             }
             Destroy(gameObject);
         }

@@ -9,6 +9,7 @@ public class SpearWeapon : Weapon
     public override void Attack()
     {
         float finalDamage = AttackDamageCaculator(PlayerStatManager.instance.damage + damage);
+        TriggerHitEnchants();
         ani.SetTrigger("Attack");
         endAttack = true;
         Vector3 SpearPosition = new Vector3(
@@ -27,6 +28,7 @@ public class SpearWeapon : Weapon
             if (enemy.TryGetComponent<IHealth>(out var health))
             {
                 health.Hurt(finalDamage);
+                TriggerAttackEnchant(enemy.gameObject);
             }
         }
     }
