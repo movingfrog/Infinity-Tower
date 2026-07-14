@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
                 health.Hurt(damage);
-                enchantAction.Invoke(collision.gameObject);
+                enchantAction?.Invoke(collision.gameObject);
             }
             Destroy(gameObject);
         }
