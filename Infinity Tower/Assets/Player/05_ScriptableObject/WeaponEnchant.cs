@@ -10,11 +10,22 @@ public enum EnchantType
 public abstract class WeaponEnchant : ScriptableObject
 {
     /// <summary>
+    /// 각인 오브젝트 이미지
+    /// </summary>
+    [field: SerializeField]
+    public Sprite EnchantImage;
+
+    public abstract string EnchantName { get; }
+
+    /// <summary>
     /// 각인 능력치 상세 설명
     /// </summary>
     [field: SerializeField, TextArea]
     public string EnchantExplain { get; private set; }
 
+    /// <summary>
+    /// 각인 능력치 종류
+    /// </summary>
     public abstract EnchantType Type { get; }
 
     /// <summary>

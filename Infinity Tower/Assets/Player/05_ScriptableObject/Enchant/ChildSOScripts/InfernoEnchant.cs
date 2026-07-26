@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InfernoEnchant", menuName = "WeaponEnchantData/InfernoEnchant")]
 public class InfernoEnchant : WeaponEnchant
 {
+    public override string EnchantName => "인페르노";
     public override EnchantType Type => EnchantType.Attack;
 
     private const float InfernoDamage = 3.0f;
