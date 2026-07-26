@@ -7,6 +7,7 @@ using UnityEngine;
 )]
 public class DemonSlimesThingEnchant : WeaponEnchant
 {
+    public override string EnchantName => "데몬 슬라임의 것";
     public override EnchantType Type => EnchantType.Attack;
 
     private const float TickRate = .15f;

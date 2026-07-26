@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PoisonEnchant", menuName = "WeaponEnchantData/PoisonEnchant")]
 public class PoisonEnchant : WeaponEnchant
 {
+    public override string EnchantName => "독";
     public override EnchantType Type => EnchantType.Attack;
 
     private const float PoisonDamage = 2;

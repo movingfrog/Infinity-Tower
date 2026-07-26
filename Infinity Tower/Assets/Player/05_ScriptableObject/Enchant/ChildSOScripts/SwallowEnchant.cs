@@ -3,6 +3,7 @@
 [CreateAssetMenu(fileName = "SwallowEnchant", menuName = "WeaponEnchantData/SwallowEnchant")]
 public class SwallowEnchant : WeaponEnchant
 {
+    public override string EnchantName => "삼키기";
     public override EnchantType Type => EnchantType.Attack;
 
     private const int percent = 30;

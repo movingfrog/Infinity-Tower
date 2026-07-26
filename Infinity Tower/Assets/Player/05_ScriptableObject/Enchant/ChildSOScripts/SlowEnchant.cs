@@ -3,6 +3,7 @@
 [CreateAssetMenu(fileName = "SlowEnchant", menuName = "WeaponEnchantData/SlowEnchant")]
 public class SlowEnchant : WeaponEnchant
 {
+    public override string EnchantName => "슬로우";
     public override EnchantType Type => EnchantType.Attack;
 
     private const float SpeedDownValue = 1.0f - .3f;
