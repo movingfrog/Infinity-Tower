@@ -37,6 +37,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.EquipEvent += AddEquipWeapon;
+            InventoryManager.Instance.UnEquipEvent += MinusEquipWeapon;
             InventoryManager.Instance.ChangeEvent += ChangeEquipWeapon;
         }
     }
@@ -48,6 +49,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.EquipEvent -= AddEquipWeapon;
+            InventoryManager.Instance.UnEquipEvent -= MinusEquipWeapon;
             InventoryManager.Instance.ChangeEvent -= ChangeEquipWeapon;
         }
     }
@@ -128,11 +130,31 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
+    private bool MinusEquipWeapon(Item targetItem, Item OtherEquipItem)
+    {
+        if (
+            targetItem == null
+            || targetItem.Equips == null
+            || OtherEquipItem == null
+            || OtherEquipItem.Equips == null
+        )
+        {
+            Debug.Log("실행 안됨");
+            return false;
+        }
+        var w = WeaponDirection.GetComponentInChildren<Weapon>();
+        if (w.Type == targetItem.Equips.Type && w.Level == targetItem.level) //인챈트 확인도 필요
+            return ChangeEquipWeapon(OtherEquipItem);
+        return false;
+    }
+
     private bool ChangeEquipWeapon(Item item)
     {
         if (item == null || item.Equips == null)
+        {
+            Debug.Log("실행 안됨");
             return false;
-
+        }
         if (WeaponDirection.transform.childCount > 1)
         {
             GameObject targetObject = null;

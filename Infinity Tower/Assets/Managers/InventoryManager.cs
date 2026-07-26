@@ -42,9 +42,10 @@ public class InventoryManager : InvenParent
     public InvenItem[] allItem = new InvenItem[17];
 
     public event Action<Item> EquipEvent;
+    public event Func<Item, Item, bool> UnEquipEvent;
     public event Func<Item, bool> ChangeEvent;
 
-    private int currentWeaponCount = 1;
+    private int currentWeaponCount;
 
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
@@ -161,13 +162,30 @@ public class InventoryManager : InvenParent
     {
         if (allItem[startIndex].item == null || !canPlace(targetIndex, allItem[startIndex]))
             return;
-
+        if (
+            allSlot[startIndex].type == SlotType.Weapon
+            && allSlot[targetIndex].type != SlotType.Weapon
+            && allItem[WEAPON_START == startIndex ? WEAPON_START + 1 : WEAPON_START].item == null
+        )
+            return;
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
         if (allSlot[targetIndex].type == SlotType.Accessories)
             EquipAccessories();
         if (allSlot[targetIndex].type == SlotType.Weapon)
+        {
+            if (allItem[WEAPON_START].item == null && allItem[WEAPON_START + 1].item == null)
+                currentWeaponCount = targetIndex == WEAPON_START ? 1 : 0;
             EquipWeapon(allItem[targetIndex]?.item);
+        }
+        if (
+            allSlot[startIndex].type == SlotType.Weapon
+            && allSlot[targetIndex].type != SlotType.Weapon
+        )
+            UnEquipWeapon(
+                allItem[targetIndex]?.item,
+                allItem[WEAPON_START + currentWeaponCount].item
+            );
         RefreshAllSlot();
     }
 
@@ -197,6 +215,16 @@ public class InventoryManager : InvenParent
         UnityEngine.Debug.Log("무기 장착");
 
         EquipEvent?.Invoke(weaponItem);
+    }
+
+    public void UnEquipWeapon(Item targetItem, Item OtherEquipItem)
+    {
+        UnityEngine.Debug.Log("무기 해제");
+
+        if (OtherEquipItem != null && UnEquipEvent?.Invoke(targetItem, OtherEquipItem) == true)
+        {
+            currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
+        }
     }
 
     public void ChangeWeapon(InputAction.CallbackContext callback)

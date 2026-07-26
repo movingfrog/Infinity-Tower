@@ -159,8 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a545807d995fab743a78979a47d8605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  Type: 2
+  Level: 1
   damage: 20
   attackRate: 2.25
+  enchants:
+  - {fileID: 0}
+  - {fileID: 0}
   shotPosition: {fileID: 3104046087448089607}
   bulletPrefab: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
   isCrossBow: 1
