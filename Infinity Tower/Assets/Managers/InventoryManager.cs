@@ -170,22 +170,22 @@ public class InventoryManager : InvenParent
             return;
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
-        if (allSlot[targetIndex].type == SlotType.Accessories)
+        if (allSlot[targetIndex].type == SlotType.Accessories) // 옮기는 아이템을 액세서리 슬롯에 장착할 경우 실행
             EquipAccessories();
-        if (allSlot[targetIndex].type == SlotType.Weapon)
+        if (allSlot[targetIndex].type == SlotType.Weapon) // 옮기는 아이템을 무기 슬롯에 장착할 경우 실행
         {
-            if (allItem[WEAPON_START].item == null && allItem[WEAPON_START + 1].item == null)
-                currentWeaponCount = targetIndex == WEAPON_START ? 1 : 0;
+            if (
+                allItem[WEAPON_START + currentWeaponCount].item != null
+                && allItem[WEAPON_START + (1 - currentWeaponCount)].item == null
+            ) // 현재 가리키는 무기가 장착되어있다면 실행
+                currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
             EquipWeapon(allItem[targetIndex]?.item);
         }
         if (
             allSlot[startIndex].type == SlotType.Weapon
             && allSlot[targetIndex].type != SlotType.Weapon
-        )
-            UnEquipWeapon(
-                allItem[targetIndex]?.item,
-                allItem[WEAPON_START + currentWeaponCount].item
-            );
+        ) // 무기 슬롯에서 다른 슬롯으로 옮길 경우 실행
+            UnEquipWeapon(allItem[targetIndex]?.item, allItem[WEAPON_START + currentWeaponCount].item);
         RefreshAllSlot();
     }
 
