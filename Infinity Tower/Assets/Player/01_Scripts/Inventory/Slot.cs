@@ -113,7 +113,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         else if (eventData.pointerCurrentRaycast.gameObject == null)
         {
-            invenManager.DroppingItem();
+            invenManager.DropSlotItem(slotIndex);
         }
         SlotSprite.rectTransform.SetParent(dragAfterParent);
     }

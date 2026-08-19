@@ -105,7 +105,7 @@ public class BlackSmithSystem : InvenParent
 
     public override RectTransform CanvasTransform() => GetComponent<RectTransform>();
 
-    public override void DroppingItem() { }
+    public override void DropSlotItem(int slotNum) { }
 
     private void RemoveInven()
     {

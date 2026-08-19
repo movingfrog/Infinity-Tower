@@ -47,6 +47,8 @@ public class InventoryManager : InvenParent
 
     private int currentWeaponCount;
 
+    private Transform PlayerTransform;
+
     private const int INVEN_START = 0;
     private const int WEAPON_START = 9;
     private const int ACCESSORY_START = 11;
@@ -145,6 +147,11 @@ public class InventoryManager : InvenParent
             i++;
         }
 
+        if (i >= WEAPON_START && amount > 0)
+        {
+            DroppingItem(dropItem, amount);
+        }
+
         RefreshAllSlot();
     }
 
@@ -191,7 +198,39 @@ public class InventoryManager : InvenParent
 
     public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
 
-    public override void DroppingItem() { }
+    public override void DropSlotItem(int slotNum)
+    {
+        DroppingItem(allItem[slotNum].item, allItem[slotNum].currentItemCount);
+        allItem[slotNum].resetItem();
+        RefreshAllSlot();
+    }
+
+    public void DroppingItem(Item DropItem, int amount)
+    {
+        if (PlayerTransform == null)
+            PlayerTransform = FindAnyObjectByType<PlayerController>().transform;
+
+        if (DropItem.isEquippable)
+            WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                DroppedItem,
+                DropItem,
+                PlayerTransform.position,
+                DropType.Inventory,
+                1.5f,
+                25f,
+                amount
+            );
+        else
+            WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+                DroppedLoot,
+                DropItem,
+                PlayerTransform.position,
+                DropType.Inventory,
+                1.5f,
+                .25f,
+                amount
+            );
+    }
 
     public void EquipAccessories()
     {
