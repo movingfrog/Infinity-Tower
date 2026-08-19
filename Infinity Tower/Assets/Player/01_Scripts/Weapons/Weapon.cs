@@ -47,6 +47,35 @@ public abstract class Weapon : MonoBehaviour
     public abstract void EndAttack();
     public abstract void PositionMove(Vector2 value, float attackRange);
 
+    public bool EquipEnchantCheck(WeaponEnchant enchant)
+    {
+        for (int i = 0; i < enchants.Length; i++)
+        {
+            if (enchants[i] == null)
+                return true;
+        }
+        return false;
+    }
+
+    public void EquipEnchant(WeaponEnchant enchant)
+    {
+        for (int i = 0; i < enchants.Length; i++)
+        {
+            if (enchants[i] == null)
+            {
+                enchants[i] = enchant;
+                return;
+            }
+        }
+    }
+
+    public void UnEquipEnchant(int slotNum)
+    {
+        if (slotNum < 0 || slotNum >= enchants.Length)
+            return;
+        enchants[slotNum] = null;
+    }
+
     protected IEnumerator StartCooltime()
     {
         yield return new WaitForSeconds(attackRate);

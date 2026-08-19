@@ -1,16 +1,20 @@
+﻿using TMPro;
 using UnityEngine;
 
 public class EnchantInfo : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private TextMeshProUGUI EnchantName;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private TextMeshProUGUI EnchantExplain;
+
+    public void SetInfo(WeaponEnchant enchant)
     {
-        
+        if (enchant != null)
+        {
+            EnchantName.text = enchant.EnchantName;
+            EnchantExplain.text = enchant.EnchantExplain;
+        }
     }
 }
