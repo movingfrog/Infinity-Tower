@@ -9,6 +9,7 @@ public class InvenItem
 {
     public Item item;
     public int currentItemCount;
+    public System.Guid weaponGuid;
 
     public InvenItem(Item _item, int _itemCount)
     {
@@ -16,10 +17,18 @@ public class InvenItem
         currentItemCount = _itemCount;
     }
 
+    public InvenItem(Item _item, int _itemCount, System.Guid _weaponGuid)
+    {
+        item = _item;
+        currentItemCount = _itemCount;
+        weaponGuid = _weaponGuid;
+    }
+
     public void resetItem()
     {
         item = null;
         currentItemCount = 0;
+        weaponGuid = System.Guid.Empty;
     }
 }
 
@@ -41,9 +50,9 @@ public class InventoryManager : InvenParent
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
 
-    public event Action<Item> EquipEvent;
-    public event Func<Item, Item, bool> UnEquipEvent;
-    public event Func<Item, bool> ChangeEvent;
+    public event Action<InvenItem> EquipEvent;
+    public event Func<InvenItem, InvenItem, bool> UnEquipEvent;
+    public event Func<Item, System.Guid, bool> ChangeEvent;
 
     private int currentWeaponCount;
 
@@ -122,6 +131,9 @@ public class InventoryManager : InvenParent
         }
     }
 
+    public (InvenItem, InvenItem) GetEquipWeaponItem() =>
+        (allItem[WEAPON_START], allItem[WEAPON_START + 1]);
+
     public void GetItem(Item dropItem, int amount)
     {
         int i = INVEN_START;
@@ -186,13 +198,13 @@ public class InventoryManager : InvenParent
                 && allItem[WEAPON_START + (1 - currentWeaponCount)].item == null
             ) // 현재 가리키는 무기가 장착되어있다면 실행
                 currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;
-            EquipWeapon(allItem[targetIndex]?.item);
+            EquipWeapon(allItem[targetIndex]);
         }
         if (
             allSlot[startIndex].type == SlotType.Weapon
             && allSlot[targetIndex].type != SlotType.Weapon
         ) // 무기 슬롯에서 다른 슬롯으로 옮길 경우 실행
-            UnEquipWeapon(allItem[targetIndex]?.item, allItem[WEAPON_START + currentWeaponCount].item);
+            UnEquipWeapon(allItem[targetIndex], allItem[WEAPON_START + currentWeaponCount]);
         RefreshAllSlot();
     }
 
@@ -249,14 +261,14 @@ public class InventoryManager : InvenParent
                 );
     }
 
-    public void EquipWeapon(Item weaponItem)
+    public void EquipWeapon(InvenItem weaponItem)
     {
         UnityEngine.Debug.Log("무기 장착");
 
         EquipEvent?.Invoke(weaponItem);
     }
 
-    public void UnEquipWeapon(Item targetItem, Item OtherEquipItem)
+    public void UnEquipWeapon(InvenItem targetItem, InvenItem OtherEquipItem)
     {
         UnityEngine.Debug.Log("무기 해제");
 
@@ -271,7 +283,10 @@ public class InventoryManager : InvenParent
         var weaponItem = allItem[WEAPON_START + currentWeaponCount];
         if (
             weaponItem.item != null
-            && ChangeEvent?.Invoke(allItem[WEAPON_START + currentWeaponCount].item) == true
+            && ChangeEvent?.Invoke(
+                allItem[WEAPON_START + currentWeaponCount].item,
+                allItem[WEAPON_START + currentWeaponCount].weaponGuid
+            ) == true
         )
         {
             currentWeaponCount = currentWeaponCount > 0 ? 0 : 1;

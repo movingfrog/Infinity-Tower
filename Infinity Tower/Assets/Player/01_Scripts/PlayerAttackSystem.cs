@@ -108,19 +108,32 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    private void AddEquipWeapon(Item item)
+    /// <summary>
+    /// 무기 추가 함수
+    /// </summary>
+    /// <param name="item">추가할 무기의 Item 및 Guid</param>
+    private void AddEquipWeapon(InvenItem item)
     {
-        if (item == null || item.Equips == null)
+        if (item == null || item.item.Equips == null)
             return;
+
+        if (GameManager.Instance.allWeaponGuid.Contains(item.weaponGuid))
+        {
+            Debug.Log("이미 생성한 무기입니다.");
+            return;
+        }
 
         foreach (var w in PrefabData)
         {
-            if (w.Type == item.Equips.Type)
+            if (w.Type == item.item.Equips.Type)
             {
                 GameObject weaponObject = Instantiate(
-                    w.GetPrefabByLevel(item.level),
+                    w.GetPrefabByLevel(item.item.level),
                     WeaponDirection.transform
                 );
+                item.weaponGuid = System.Guid.NewGuid();
+                weaponObject.GetComponent<Weapon>().Data.guid = item.weaponGuid;
+                GameManager.Instance.allWeaponGuid.Add(item.weaponGuid);
                 if (weapon == null)
                 {
                     weaponObject.SetActive(true);
@@ -130,25 +143,37 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    private bool MinusEquipWeapon(Item targetItem, Item OtherEquipItem)
+    /// <summary>
+    /// 무기 장착 해제 함수
+    /// </summary>
+    /// <param name="targetItem">장착 해제할 무기</param>
+    /// <param name="OtherEquipItem">다른 장착된 무기</param>
+    /// <returns>장착 해제 성공 여부</returns>
+    private bool MinusEquipWeapon(InvenItem targetItem, InvenItem OtherEquipItem)
     {
         if (
-            targetItem == null
-            || targetItem.Equips == null
-            || OtherEquipItem == null
-            || OtherEquipItem.Equips == null
+            targetItem.item == null
+            || targetItem.item.Equips == null
+            || OtherEquipItem.item == null
+            || OtherEquipItem.item.Equips == null
         )
         {
             Debug.Log("실행 안됨");
             return false;
         }
         var w = WeaponDirection.GetComponentInChildren<Weapon>();
-        if (w.Type == targetItem.Equips.Type && w.Level == targetItem.level) //인챈트 확인도 필요
-            return ChangeEquipWeapon(OtherEquipItem);
+        if (w.Data.guid == targetItem.weaponGuid) //인챈트 확인도 필요
+            return ChangeEquipWeapon(OtherEquipItem.item, OtherEquipItem.weaponGuid);
         return false;
     }
 
-    private bool ChangeEquipWeapon(Item item)
+    /// <summary>
+    /// 무기 교체 함수
+    /// </summary>
+    /// <param name="item">교체 될 무기</param>
+    /// <param name="guid">교체 될 무기의 GUID</param>
+    /// <returns>교체 성공 여부</returns>
+    private bool ChangeEquipWeapon(Item item, System.Guid guid)
     {
         if (item == null || item.Equips == null)
         {

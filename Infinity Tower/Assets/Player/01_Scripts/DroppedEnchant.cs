@@ -6,7 +6,7 @@ public class DroppedEnchant : MonoBehaviour
     /// <summary>
     /// 드롭된 각인 오브젝트의 각인 정보
     /// </summary>
-    public WeaponEnchant enchant { get; set; }
+    public WeaponEnchant enchant;
 
     [Header("플레이어 접근 시 등장하는 오브젝트들")]
     [SerializeField]
@@ -20,7 +20,7 @@ public class DroppedEnchant : MonoBehaviour
     private float InteractDistance = 1.5f;
 
     [SerializeField]
-    private GameObject EnchantCanvas;
+    private EnchantUI EnchantCanvas;
 
     [SerializeField]
     private LayerMask Player;
@@ -55,8 +55,10 @@ public class DroppedEnchant : MonoBehaviour
     {
         if (InfoObject.gameObject.activeSelf)
         {
-            EnchantCanvas.SetActive(true);
+            EnchantCanvas.gameObject.SetActive(true);
+            EnchantCanvas.SetAll(enchant);
             Time.timeScale = 0f; // 게임 일시정지
+            Debug.Log(Time.timeScale);
         }
     }
 

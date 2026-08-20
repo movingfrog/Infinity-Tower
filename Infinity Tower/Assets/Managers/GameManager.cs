@@ -57,4 +57,9 @@ public class GameManager : MonoBehaviour
     [Header("모든 보상 상자")]
     [field: SerializeField]
     public GameObject[] AllRewardChest { get; private set; }
+
+    [Header("모든 무기 GUID")]
+    public List<System.Guid> allWeaponGuid { get; private set; } = new List<System.Guid>();
+    public Dictionary<System.Guid, WeaponObjectData> allWeaponData { get; private set; } =
+        new Dictionary<System.Guid, WeaponObjectData>();
 }

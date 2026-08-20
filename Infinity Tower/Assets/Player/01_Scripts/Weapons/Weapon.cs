@@ -1,8 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+
+[Serializable]
+public class WeaponObjectData
+{
+    [Header("GUID")]
+    public System.Guid guid;
+
+    [Header("각인 설정")]
+    public WeaponEnchant[] enchants = new WeaponEnchant[2];
+
+    public bool CanEnchant()
+    {
+        for (int i = 0; i < enchants.Length; i++)
+        {
+            if (enchants[i] == null)
+                return true;
+        }
+        return false;
+    }
+
+    public void EquipEnchant(WeaponEnchant enchant)
+    {
+        for (int i = 0; i < enchants.Length; i++)
+        {
+            if (enchants[i] == null)
+            {
+                enchants[i] = enchant;
+                return;
+            }
+        }
+    }
+}
 
 public abstract class Weapon : MonoBehaviour
 {
+    public WeaponObjectData Data;
+
     protected Animator ani;
     protected float baseScale;
     protected Coroutine cooltimeCoroutine;
@@ -18,13 +53,21 @@ public abstract class Weapon : MonoBehaviour
     public bool endAttack { get; protected set; }
     public bool isPushing { get; set; }
 
-    [Header("각인 설정")]
-    public WeaponEnchant[] enchants = new WeaponEnchant[2];
+    public void InitializeWeapon(WeaponObjectData data)
+    {
+        Data = data;
+    }
 
     protected virtual void Awake()
     {
         TryGetComponent<Animator>(out ani);
         baseScale = Mathf.Abs(transform.localScale.x);
+    }
+
+    protected virtual void Start()
+    {
+        if (Data.guid != System.Guid.Empty)
+            GameManager.Instance.allWeaponData.Add(Data.guid, Data);
     }
 
     protected virtual void OnEnable()
@@ -47,33 +90,11 @@ public abstract class Weapon : MonoBehaviour
     public abstract void EndAttack();
     public abstract void PositionMove(Vector2 value, float attackRange);
 
-    public bool EquipEnchantCheck(WeaponEnchant enchant)
-    {
-        for (int i = 0; i < enchants.Length; i++)
-        {
-            if (enchants[i] == null)
-                return true;
-        }
-        return false;
-    }
-
-    public void EquipEnchant(WeaponEnchant enchant)
-    {
-        for (int i = 0; i < enchants.Length; i++)
-        {
-            if (enchants[i] == null)
-            {
-                enchants[i] = enchant;
-                return;
-            }
-        }
-    }
-
     public void UnEquipEnchant(int slotNum)
     {
-        if (slotNum < 0 || slotNum >= enchants.Length)
+        if (slotNum < 0 || slotNum >= Data.enchants.Length)
             return;
-        enchants[slotNum] = null;
+        Data.enchants[slotNum] = null;
     }
 
     protected IEnumerator StartCooltime()
@@ -90,7 +111,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual float AttackDamageCaculator(float finalDamage)
     {
-        if (Random.value <= PlayerStatManager.instance.Crit_Rate)
+        if (UnityEngine.Random.value <= PlayerStatManager.instance.Crit_Rate)
             finalDamage = finalDamage * PlayerStatManager.instance.Crit_Dmg;
         return finalDamage;
     }
@@ -107,11 +128,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected void TriggerEnchants(EnchantType targetType, GameObject enemy = null)
     {
-        for (int i = 0; i < enchants.Length; i++)
+        for (int i = 0; i < Data.enchants.Length; i++)
         {
-            if (enchants[i] != null && enchants[i].Type == targetType)
+            if (Data.enchants[i] != null && Data.enchants[i].Type == targetType)
             {
-                enchants[i].WeaponUpgrade(this, enemy);
+                Data.enchants[i].WeaponUpgrade(this, enemy);
             }
         }
     }
