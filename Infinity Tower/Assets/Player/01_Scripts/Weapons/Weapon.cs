@@ -66,6 +66,8 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("lfksjfdslk");
+        Debug.Log(Data.guid != System.Guid.Empty);
         if (Data.guid != System.Guid.Empty)
             GameManager.Instance.allWeaponData.Add(Data.guid, Data);
     }

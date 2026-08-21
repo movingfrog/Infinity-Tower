@@ -13,8 +13,9 @@ public class BowWeapon : Weapon
     public bool isCrossBow;
     public LayerMask EnemyLayer;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         fireDirection = Vector2.right;
     }
 

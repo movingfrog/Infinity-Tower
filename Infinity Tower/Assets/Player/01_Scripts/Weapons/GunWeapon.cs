@@ -38,8 +38,9 @@ public class GunWeapon : Weapon
             InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         currentAmmo = maxAmmo;
         fireDirection = Vector2.right;
     }

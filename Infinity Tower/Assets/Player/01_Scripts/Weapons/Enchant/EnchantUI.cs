@@ -21,7 +21,10 @@ public class WeaponSlot
     {
         if (
             weaponItem.item == null
-            || !GameManager.Instance.allWeaponData[weaponItem.weaponGuid].CanEnchant()
+            || (
+                GameManager.Instance.allWeaponData.ContainsKey(weaponItem.weaponGuid)
+                && !GameManager.Instance.allWeaponData[weaponItem.weaponGuid].CanEnchant()
+            )
         )
             BackImage.color = Color.red;
         else
