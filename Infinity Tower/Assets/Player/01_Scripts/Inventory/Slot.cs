@@ -81,7 +81,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if (InventoryManager.Instance.allItem[slotIndex].item == null)
             return;
-        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.allItem[slotIndex].item);
+        ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.allItem[slotIndex]);
     }
 
     public void OnDrag(PointerEventData eventData)

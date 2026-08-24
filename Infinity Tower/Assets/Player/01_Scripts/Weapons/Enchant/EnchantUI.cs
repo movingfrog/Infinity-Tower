@@ -141,8 +141,7 @@ public class EnchantUI : MonoBehaviour
         )
         {
             GameManager.Instance.allWeaponData[FirstWeaponItem.weaponGuid].EquipEnchant(enchant);
-            Time.timeScale = 1f; // 게임 재게
-            gameObject.SetActive(false); // UI 비활성화
+            Regame();
             Debug.Log("첫번째 무기 각인 장착");
         }
     }
@@ -155,8 +154,7 @@ public class EnchantUI : MonoBehaviour
         )
         {
             GameManager.Instance.allWeaponData[SecondWeaponItem.weaponGuid].EquipEnchant(enchant);
-            Time.timeScale = 1f; // 게임 재게
-            gameObject.SetActive(false); // UI 비활성화
+            Regame();
             Debug.Log("두번째 무기 각인 장착");
         }
     }
@@ -171,7 +169,13 @@ public class EnchantUI : MonoBehaviour
     public void SaveEnchantItem()
     {
         Debug.Log("각인 저장");
+        Regame();
+    }
+
+    private void Regame()
+    {
         Time.timeScale = 1f; // 게임 재게
         gameObject.SetActive(false); // UI 비활성화
+        Destroy(transform.parent.GetComponent<DroppedEnchant>().gameObject); // 드롭된 각인 오브젝트 제거
     }
 }
