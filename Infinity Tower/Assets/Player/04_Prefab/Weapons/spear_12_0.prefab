@@ -127,6 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd68ece9bbfe01c46b26c3235179af13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpearWeapon
+  Data:
+    enchants:
+    - {fileID: 0}
+    - {fileID: 0}
+  Type: 3
+  Level: 0
   damage: 2
   attackRate: 0.2
   attackSize: {x: 1.25, y: 0.5}
