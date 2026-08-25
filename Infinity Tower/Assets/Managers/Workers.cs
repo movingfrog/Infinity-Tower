@@ -206,3 +206,30 @@ public struct GetRandomReward : IWorker
         return Chests[0];
     }
 }
+
+public struct EnchantDropWorker : IWorker
+{
+    public void DropEnchant(GameObject prefab, WeaponEnchant enchant, Vector3 pos)
+    {
+        if (prefab == null || enchant == null)
+            return;
+        var obj = Object.Instantiate(prefab, pos, Quaternion.identity);
+        obj.TryGetComponent(out ChastDroppedEnchant dropEnchant);
+        if (dropEnchant == null)
+            return;
+        dropEnchant.enchant = enchant;
+    }
+}
+
+public struct GetRandomEnchant : IWorker
+{
+    public WeaponEnchant RandEnchantWorker(List<WeaponEnchant> allEnchant, int maxCount = 0)
+    {
+        if (allEnchant == null || allEnchant.Count == 0)
+            return null;
+        if (maxCount == 0)
+            maxCount = allEnchant.Count;
+        int randomIndex = Random.Range(0, maxCount);
+        return allEnchant[randomIndex];
+    }
+}

@@ -1,31 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DroppedEnchant : MonoBehaviour
+public abstract class DroppedEnchant : MonoBehaviour
 {
     /// <summary>
-    /// 드롭된 각인 오브젝트의 각인 정보
+    ///  드롭된 각인 오브젝트의 각인 정보
     /// </summary>
     public WeaponEnchant enchant;
 
     [Header("플레이어 접근 시 등장하는 오브젝트들")]
     [SerializeField]
-    private EnchantInfo InfoObject; //GameObject를 InfoObject에 할당 된 스크립트로 변환 필요
+    protected EnchantInfo InfoObject; //GameObject를 InfoObject에 할당 된 스크립트로 변환 필요
 
     [SerializeField]
-    private SpriteRenderer BackImage;
+    protected SpriteRenderer BackImage;
 
     [Header("플레이어 상호작용 값")]
     [SerializeField]
-    private float InteractDistance = 1.5f;
+    protected float InteractDistance = 1f;
 
     [SerializeField]
-    private EnchantUI EnchantCanvas;
+    protected Transform EnchantPosition;
 
     [SerializeField]
-    private LayerMask Player;
+    protected LayerMask Player;
 
-    private void Start()
+    protected void Start()
     {
         if (enchant != null && BackImage != null)
         {
@@ -51,30 +51,21 @@ public class DroppedEnchant : MonoBehaviour
         }
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
-    {
-        if (InfoObject.gameObject.activeSelf)
-        {
-            EnchantCanvas.gameObject.SetActive(true);
-            EnchantCanvas.SetAll(enchant);
-            Time.timeScale = 0f; // 게임 일시정지
-            Debug.Log(Time.timeScale);
-        }
-    }
+    protected abstract void OnInteract(InputAction.CallbackContext context);
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         Collider2D PlayerColl = Physics2D.OverlapCircle(
-            transform.position,
+            EnchantPosition.position,
             InteractDistance,
             Player
         );
         InfoObject.gameObject.SetActive(PlayerColl != null);
     }
 
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow * new Color(1, 1, 1, .3f);
-        Gizmos.DrawWireSphere(transform.position, InteractDistance);
+        Gizmos.DrawWireSphere(EnchantPosition.position, InteractDistance);
     }
 }

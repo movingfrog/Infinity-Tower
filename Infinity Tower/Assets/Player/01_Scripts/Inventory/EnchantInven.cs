@@ -2,8 +2,12 @@
 
 public class EnchantInven : InvenParent
 {
+    private GameObject EnchantPrefab;
+
     public EnchantSlot[] allSlot;
     public WeaponEnchant[] allWeaponEnchant;
+
+    private Transform PlayerTransform;
 
     public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
@@ -12,7 +16,25 @@ public class EnchantInven : InvenParent
 
     public override RectTransform CanvasTransform() => GetComponentInChildren<RectTransform>();
 
-    public override void DropSlotItem(int slotNum) { } // 구현 계획 필요
+    public override void DropSlotItem(int slotNum)
+    {
+        if (PlayerTransform == null)
+        {
+            PlayerTransform = FindAnyObjectByType<PlayerController>().transform;
+        }
+        WorkerHub<EnchantDropWorker>.Instance.DropEnchant(
+            EnchantPrefab,
+            allWeaponEnchant[slotNum],
+            PlayerTransform.position
+        );
+        allWeaponEnchant[slotNum] = null;
+        RefreshAllSlot();
+    } // 구현 계획 필요
+
+    private void Start()
+    {
+        EnchantPrefab = GameManager.Instance.InvenDropEnchantObject;
+    }
 
     private void OnEnable()
     {

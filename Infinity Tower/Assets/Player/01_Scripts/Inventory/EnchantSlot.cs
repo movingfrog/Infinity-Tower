@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EnchantSlot : MonoBehaviour
+public class EnchantSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Button button;
 
@@ -13,6 +14,9 @@ public class EnchantSlot : MonoBehaviour
     public Image SlotSprite;
 
     public int slotIndex;
+
+    [Header("Drag 속성")]
+    Transform dragAfterParent;
 
     private void Awake()
     {
@@ -39,5 +43,35 @@ public class EnchantSlot : MonoBehaviour
         if (EnchantInven.allWeaponEnchant[slotIndex] == null)
             return;
         EIUI.drawText(EnchantInven.allWeaponEnchant[slotIndex]);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        SlotSprite.rectTransform.position = eventData.position;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragAfterParent = SlotSprite.rectTransform.parent;
+        SlotSprite.rectTransform.SetParent(EnchantInven.CanvasTransform());
+        SlotSprite.transform.SetAsLastSibling();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (
+            eventData.pointerCurrentRaycast.gameObject != null
+            && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(
+                out EnchantSlot targetSlot
+            )
+        )
+        {
+            EnchantInven.swapItem(this.slotIndex, targetSlot.slotIndex);
+        }
+        else if (eventData.pointerCurrentRaycast.gameObject == null)
+        {
+            EnchantInven.DropSlotItem(slotIndex);
+        }
+        SlotSprite.rectTransform.SetParent(dragAfterParent);
     }
 }

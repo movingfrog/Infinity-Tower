@@ -183,6 +183,6 @@ public class EnchantUI : MonoBehaviour
     {
         Time.timeScale = 1f; // 게임 재게
         gameObject.SetActive(false); // UI 비활성화
-        Destroy(transform.parent.GetComponent<DroppedEnchant>().gameObject); // 드롭된 각인 오브젝트 제거
+        Destroy(transform.parent.GetComponent<ChastDroppedEnchant>().gameObject); // 드롭된 각인 오브젝트 제거
     }
 }

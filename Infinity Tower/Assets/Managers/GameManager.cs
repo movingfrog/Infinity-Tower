@@ -62,4 +62,12 @@ public class GameManager : MonoBehaviour
     public List<System.Guid> allWeaponGuid { get; private set; } = new List<System.Guid>();
     public Dictionary<System.Guid, WeaponObjectData> allWeaponData { get; private set; } =
         new Dictionary<System.Guid, WeaponObjectData>();
+
+    [Header("DropEnchant용 변수"), Tooltip("상자에서 떨어진 각인 Prefab을 할당해주세요")]
+    [field: SerializeField]
+    public GameObject ChestDropEnchantObject { get; private set; }
+
+    [Tooltip("인벤토리에서 떨어진 각인 Prefab을 할당해주세요")]
+    [field: SerializeField]
+    public GameObject InvenDropEnchantObject { get; private set; }
 }
