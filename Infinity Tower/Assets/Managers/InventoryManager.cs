@@ -50,6 +50,9 @@ public class InventoryManager : InvenParent
     public Slot[] allSlot;
     public InvenItem[] allItem = new InvenItem[17];
 
+    [field: SerializeField]
+    public EnchantInven EnchantInven { get; private set; }
+
     public event Action<InvenItem> EquipEvent;
     public event Func<InvenItem, InvenItem, bool> UnEquipEvent;
     public event Func<Item, System.Guid, bool> ChangeEvent;

@@ -169,7 +169,14 @@ public class EnchantUI : MonoBehaviour
     public void SaveEnchantItem()
     {
         Debug.Log("각인 저장");
-        Regame();
+        if (InventoryManager.Instance.EnchantInven.AddEnchant(enchant))
+        {
+            Regame();
+        }
+        else
+        {
+            DropEnchantItem();
+        }
     }
 
     private void Regame()
