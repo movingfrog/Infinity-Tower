@@ -70,4 +70,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("인벤토리에서 떨어진 각인 Prefab을 할당해주세요")]
     [field: SerializeField]
     public GameObject InvenDropEnchantObject { get; private set; }
+
+    [Header("모든 각인 SO")]
+    [field: SerializeField]
+    public List<WeaponEnchant> allEnchant { get; private set; }
 }
