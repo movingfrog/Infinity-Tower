@@ -69,7 +69,10 @@ public class InventoryManager : InvenParent
     private void Awake()
     {
         if (Instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
         Instance = this;
         for (int i = 0; i < allSlot.Length; i++)
             allSlot[i].invenManager = this;
@@ -269,6 +272,17 @@ public class InventoryManager : InvenParent
         UnityEngine.Debug.Log("무기 장착");
 
         EquipEvent?.Invoke(weaponItem);
+    }
+
+    public void ReEquip()
+    {
+        UnityEngine.Debug.Log(Instance.allItem[WEAPON_START].item != null);
+        if (allItem[WEAPON_START].item != null)
+            EquipWeapon(allItem[WEAPON_START]);
+        if (allItem[WEAPON_START + 1].item != null)
+            EquipWeapon(allItem[WEAPON_START + 1]);
+
+        EquipAccessories();
     }
 
     public void UnEquipWeapon(InvenItem targetItem, InvenItem OtherEquipItem)

@@ -79,6 +79,9 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void GetItemInfo()
     {
+        Debug.Log(InventoryManager.Instance != null);
+        Debug.Log(InventoryManager.Instance.allItem[slotIndex].item != null);
+
         if (InventoryManager.Instance.allItem[slotIndex].item == null)
             return;
         ItemInfoUI.Instance.OpenInfo(InventoryManager.Instance.allItem[slotIndex]);

@@ -54,6 +54,12 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.ReEquip();
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 movement = value.Get<Vector2>();
@@ -119,8 +125,31 @@ public class PlayerAttackSystem : MonoBehaviour
 
         if (GameManager.Instance.allWeaponGuid.Contains(item.weaponGuid))
         {
-            Debug.Log("이미 생성한 무기입니다.");
-            return;
+            Debug.Log("이미 guid가 생성된 무기입니다.");
+            Weapon[] weapons = WeaponDirection.GetComponentsInChildren<Weapon>(true);
+            foreach (Weapon w in weapons)
+            {
+                if (w.Data.guid == item.weaponGuid)
+                    return;
+            }
+            foreach (var w in PrefabData)
+            {
+                if (w.Type == item.item.Equips.Type)
+                {
+                    GameObject weaponObject = Instantiate(
+                        w.GetPrefabByLevel(item.item.level),
+                        WeaponDirection.transform
+                    );
+                    weaponObject
+                        .GetComponent<Weapon>()
+                        .InitializeWeapon(GameManager.Instance.allWeaponData[item.weaponGuid]);
+                    if (weapon == null)
+                    {
+                        weaponObject.SetActive(true);
+                        GetWeaponType();
+                    }
+                }
+            }
         }
 
         foreach (var w in PrefabData)
@@ -162,7 +191,7 @@ public class PlayerAttackSystem : MonoBehaviour
             return false;
         }
         var w = WeaponDirection.GetComponentInChildren<Weapon>();
-        if (w.Data.guid == targetItem.weaponGuid) //인챈트 확인도 필요
+        if (w.Data.guid == targetItem.weaponGuid)
             return ChangeEquipWeapon(OtherEquipItem.item, OtherEquipItem.weaponGuid);
         return false;
     }
