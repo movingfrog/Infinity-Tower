@@ -196,11 +196,15 @@ public partial class KingSlime : BossSystem
             if (HealthCount > 0)
             {
                 HealthCount--;
+                if (HealthCount == 0)
+                {
+                    HealthImage[HealthCount].gameObject.SetActive(true);
+                }
                 isDie = true;
             }
             else
             {
-                Debug.Log("죽고 보상을 주는 코드");
+                Destroy(gameObject);
             }
         }
     }
