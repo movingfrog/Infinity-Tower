@@ -22,6 +22,9 @@ public partial class KingSlime : BossSystem
     private float BlackHoleForce;
 
     [Header("체력 관련")]
+    [SerializeField]
+    private GameObject HealthBarCanvas;
+
     private int HealthCount = 5;
     private List<Image> AllHealth = new List<Image>();
     private List<Image> HealthImage = new List<Image>();
@@ -103,7 +106,7 @@ public partial class KingSlime : BossSystem
 
     private const float centerToGroundDistance = .3f;
 
-    private const int maxBubbleAmount = 40;
+    private const int maxBubbleAmount = 10;
     private const float bubbleRadius = .6f;
 
     protected override void Awake()
@@ -119,7 +122,7 @@ public partial class KingSlime : BossSystem
 
     protected override void CreateHPBar()
     {
-        GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
+        GameObject temp = Instantiate(HealthBar, HealthBarCanvas.transform);
         temp.GetComponentsInChildren<Image>(true, AllHealth);
         foreach (var image in AllHealth)
         {

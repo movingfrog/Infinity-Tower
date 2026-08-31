@@ -78,6 +78,7 @@ public abstract class OneAttackEnemy : parentEnemy, IAttack, IMove
         if (DroppedLootObject == null)
         {
             Debug.LogError("할당 되지 않았스빈다");
+            Destroy(gameObject);
             return;
         }
 

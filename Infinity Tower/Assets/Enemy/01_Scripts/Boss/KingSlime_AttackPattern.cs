@@ -21,7 +21,8 @@ public partial class KingSlime
             yield return null;
         }
         useArea.SetActive(false);
-        int randAttackCount = Random.Range(2, maxBubbleAttackCount);
+        int randAttackCount = Random.Range(2, maxBubbleAttackCount + 1);
+
         for (int i = 1; i <= randAttackCount; i++)
         {
             for (int j = 0; j < maxBubbleAmount; j++)
@@ -30,20 +31,23 @@ public partial class KingSlime
                 Vector3 BS = bubble.transform.localScale;
                 Vector3 S = transform.localScale;
                 bubble.transform.localScale = new Vector3(BS.x / S.x, BS.y / S.y, BS.z / S.z);
+
+                // j를 중심(0)을 기준으로 좌우로 나눔: 왼쪽 절반은 음수, 오른쪽 절반은 양수
+                float x;
                 if (j < maxBubbleAmount / 2)
                 {
-                    bubble.transform.localPosition = new Vector2(
-                        -bubbleRadius * (i % 2) + j * bubbleRadius * 2,
-                        -centerToGroundDistance
-                    ); //y값은 킹슬라임에서 바닥까지 떨어진 길이
+                    // 왼쪽 절반: j = 0 ~ 19 → 바깥쪽(가장 먼 왼쪽)부터 중앙 방향으로
+                    int leftIndex = (maxBubbleAmount / 2) - j; // 20, 19, ..., 1
+                    x = -bubbleRadius * (2 * leftIndex - 1) + bubbleRadius * (i % 2);
                 }
                 else
                 {
-                    bubble.transform.localPosition = new Vector2(
-                        bubbleRadius * (i % 2) + (j - maxBubbleAmount / 2) * bubbleRadius * 2,
-                        -centerToGroundDistance
-                    );
+                    // 오른쪽 절반: j = 20 ~ 39 → 중앙에서 바깥쪽으로
+                    int rightIndex = j - maxBubbleAmount / 2; // 0, 1, ..., 19
+                    x = bubbleRadius * (2 * rightIndex + 1) + bubbleRadius * (i % 2);
                 }
+
+                bubble.transform.localPosition = new Vector2(x, -centerToGroundDistance);
                 bubble.transform.parent = null;
             }
             yield return new WaitForSeconds(BubblePatternTime / randAttackCount);
@@ -221,6 +225,7 @@ public partial class KingSlime
             0,
             PlayerLayer
         );
+        useArea.SetActive(false);
         if (Player != null)
         {
             Player.GetComponent<IHealth>().Hurt(BiteDamage);

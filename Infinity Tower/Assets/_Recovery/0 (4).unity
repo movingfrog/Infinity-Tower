@@ -16094,7 +16094,7 @@ PrefabInstance:
     - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: allItem.Array.data[0].item
       value: 
-      objectReference: {fileID: 11400000, guid: da9755b49852eb1418cb4e519f8f2ff4, type: 2}
+      objectReference: {fileID: 11400000, guid: 2d1d31a06b2bc9a42a6c89fc9406541a, type: 2}
     - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: allItem.Array.data[1].item
       value: 
@@ -16106,7 +16106,7 @@ PrefabInstance:
     - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: allItem.Array.data[3].item
       value: 
-      objectReference: {fileID: 11400000, guid: a87704627a8936c4d80d055d76d371d6, type: 2}
+      objectReference: {fileID: 11400000, guid: 356772471073fde4aaba1828b6b970ec, type: 2}
     - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: allItem.Array.data[1].currentItemCount
       value: 1
@@ -17049,14 +17049,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4133076822725330626, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133076822725330626, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1157342735
-      objectReference: {fileID: 0}
     - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17843,14 +17835,6 @@ PrefabInstance:
     - target: {fileID: 4253704960025807699, guid: e94335233df993846b0df1ffeefc3d91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6235458402251680798, guid: e94335233df993846b0df1ffeefc3d91, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6235458402251680798, guid: e94335233df993846b0df1ffeefc3d91, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1157342735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

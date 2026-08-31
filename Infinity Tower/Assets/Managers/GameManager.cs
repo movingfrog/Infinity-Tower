@@ -16,12 +16,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    [Header("CamMoveWorker용 변수"), Tooltip("현재 씬의 Cinemachine을 할당해주세요")]
-    [field: SerializeField]
-    public CinemachineConfiner2D confiner { get; private set; }
+    [Header("CamMoveWorker용 변수")]
+    private CinemachineConfiner2D _confiner;
+    public CinemachineConfiner2D confiner
+    {
+        get
+        {
+            if (_confiner == null)
+                _confiner = FindAnyObjectByType<CinemachineConfiner2D>();
+            return _confiner;
+        }
+        set { _confiner = value; }
+    }
 
-    [Header("ItemDropWorker용 변수"), Tooltip("떨어진 아이템 Prefab을 할당해주세요")]
-    [field: SerializeField]
+    [Header("ItemDropWorker용 변수")]
+    [field: SerializeField, Tooltip("떨어진 아이템 Prefab을 할당해주세요")]
     public GameObject ItemPrefab { get; private set; }
 
     [Tooltip("떨어진 전리품 Prefab을 할당 해주세요")]
