@@ -65,7 +65,10 @@ public class EnchantInven : InvenParent
 
     public override void swapItem(int startIndex, int targetIndex)
     {
-        (allSlot[startIndex], allSlot[targetIndex]) = (allSlot[targetIndex], allSlot[startIndex]);
+        (allWeaponEnchant[startIndex], allWeaponEnchant[targetIndex]) = (
+            allWeaponEnchant[targetIndex],
+            allWeaponEnchant[startIndex]
+        );
 
         RefreshAllSlot();
     }

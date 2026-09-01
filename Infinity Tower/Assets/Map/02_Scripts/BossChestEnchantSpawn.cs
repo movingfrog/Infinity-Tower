@@ -15,11 +15,6 @@ public class BossChestEnchantSpawn : MonoBehaviour
     private void Awake()
     {
         BossChest = GetComponent<Chest>();
-        if (enchant == null)
-            enchant = WorkerHub<GetRandomEnchant>.Instance.RandEnchantWorker(
-                GameManager.Instance.allEnchant,
-                maxEnchantLevel
-            );
     }
 
     private void OnEnable()
@@ -36,8 +31,13 @@ public class BossChestEnchantSpawn : MonoBehaviour
 
     private void Open(InputAction.CallbackContext callbackContext)
     {
-        if (BossChest != null && BossChest.InteractionObject.activeSelf)
+        if (BossChest != null && BossChest.IsIn)
         {
+            if (enchant == null)
+                enchant = WorkerHub<GetRandomEnchant>.Instance.RandEnchantWorker(
+                    GameManager.Instance.allEnchant,
+                    maxEnchantLevel
+                );
             Instantiate(
                     GameManager.Instance.ChestDropEnchantObject,
                     transform.position,
@@ -45,6 +45,7 @@ public class BossChestEnchantSpawn : MonoBehaviour
                 )
                 .GetComponent<ChastDroppedEnchant>()
                 .enchant = enchant;
+            Destroy(this);
         }
     }
 }

@@ -173,6 +173,26 @@ public class InventoryManager : InvenParent
         RefreshAllSlot();
     }
 
+    public void GetItem(Item item, int amount, System.Guid guid)
+    {
+        int i = INVEN_START;
+        while (amount > 0 && i < WEAPON_START)
+        {
+            if (allItem[i].item == null)
+            {
+                allItem[i] = new InvenItem(item, amount, guid);
+                amount = 0;
+            }
+
+            if (i >= WEAPON_START && amount > 0)
+            {
+                DroppingItem(item, amount, guid);
+            }
+
+            RefreshAllSlot();
+        }
+    }
+
     public override bool canPlace(int targetIndex, InvenItem draggingItem)
     {
         SlotType targetType = allSlot[targetIndex].type;
@@ -248,6 +268,25 @@ public class InventoryManager : InvenParent
                 .25f,
                 amount
             );
+    }
+
+    public void DroppingItem(Item DropItem, int amount, System.Guid guid)
+    {
+        if (PlayerTransform == null)
+            PlayerTransform = FindAnyObjectByType<PlayerController>().transform;
+
+        WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+            DroppedItem,
+            DropItem,
+            PlayerTransform.position,
+            DropType.Inventory,
+            1.5f,
+            25f,
+            amount,
+            null,
+            null,
+            guid
+        );
     }
 
     public void EquipAccessories()

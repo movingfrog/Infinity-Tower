@@ -6,7 +6,7 @@ public class ChastDroppedEnchant : DroppedEnchant
     [SerializeField]
     private EnchantUI EnchantCanvas;
 
-    protected override void OnInteract(InputAction.CallbackContext context)
+    protected override void OnInteract()
     {
         if (InfoObject.gameObject.activeSelf)
         {

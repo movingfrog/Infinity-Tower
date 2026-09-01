@@ -39,7 +39,7 @@ public abstract class DroppedEnchant : MonoBehaviour
     {
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.inputActions.Player.Interact.started += OnInteract;
+            InputManager.Instance.inputActions.Player.Interact.started += Interact;
         }
     }
 
@@ -47,11 +47,24 @@ public abstract class DroppedEnchant : MonoBehaviour
     {
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.inputActions.Player.Interact.started -= OnInteract;
+            InputManager.Instance.inputActions.Player.Interact.started -= Interact;
         }
     }
 
-    protected abstract void OnInteract(InputAction.CallbackContext context);
+    private void Interact(InputAction.CallbackContext callback)
+    {
+        Collider2D PlayerColl = Physics2D.OverlapCircle(
+            EnchantPosition.position,
+            InteractDistance,
+            Player
+        );
+        if (PlayerColl != null)
+        {
+            OnInteract();
+        }
+    }
+
+    protected abstract void OnInteract();
 
     protected void FixedUpdate()
     {

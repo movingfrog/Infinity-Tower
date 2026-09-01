@@ -104,6 +104,11 @@ public class ItemInfoUI : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            weaponMagicSlot[0].text = "";
+            weaponMagicSlot[1].text = "";
+        }
         itemStat.text += $"<color={itemLevelHex}>희귀도: {ItemLevelName[(int)item.item.level]}";
     }
 

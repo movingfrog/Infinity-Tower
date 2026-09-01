@@ -19,6 +19,7 @@ public class Chest : MonoBehaviour
     [SerializeField]
     private float radius;
     private bool isIn;
+    public bool IsIn => isIn;
 
     private void Awake()
     {

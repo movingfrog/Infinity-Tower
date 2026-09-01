@@ -38,7 +38,8 @@ public struct ItemDropWorker : IWorker
         float Yforce = .25f,
         int itemCount = 0,
         GameObject ItemInfoObject = null,
-        GameObject parentObject = null
+        GameObject parentObject = null,
+        System.Guid guid = default
     )
     {
         if (prefab == null)
@@ -55,6 +56,11 @@ public struct ItemDropWorker : IWorker
                 : new Vector3(Xforce, Yforce, 0);
         item.item = data;
         rigid.AddForce(force);
+        if (guid != default)
+        {
+            obj.TryGetComponent(out InteractionItem interItem);
+            interItem.WeaponGuid = guid;
+        }
         if (magnet != null)
             magnet.Amount = itemCount;
         if (ItemInfoObject != null)
@@ -229,6 +235,7 @@ public struct GetRandomEnchant : IWorker
             return null;
         if (maxCount == 0)
             maxCount = allEnchant.Count;
+        maxCount = Mathf.Min(maxCount, allEnchant.Count);
         int randomIndex = Random.Range(0, maxCount);
         return allEnchant[randomIndex];
     }

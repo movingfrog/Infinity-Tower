@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InventoryDroppedEnchant : DroppedEnchant
 {
-    protected override void OnInteract(InputAction.CallbackContext context)
+    protected override void OnInteract()
     {
         if (InventoryManager.Instance.EnchantInven.AddEnchant(enchant))
         {
