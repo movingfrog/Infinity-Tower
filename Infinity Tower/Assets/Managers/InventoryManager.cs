@@ -230,7 +230,9 @@ public class InventoryManager : InvenParent
             allSlot[startIndex].type == SlotType.Weapon
             && allSlot[targetIndex].type != SlotType.Weapon
         ) // 무기 슬롯에서 다른 슬롯으로 옮길 경우 실행
+        {
             UnEquipWeapon(allItem[targetIndex], allItem[WEAPON_START + currentWeaponCount]);
+        }
         RefreshAllSlot();
     }
 
@@ -238,7 +240,19 @@ public class InventoryManager : InvenParent
 
     public override void DropSlotItem(int slotNum)
     {
-        DroppingItem(allItem[slotNum].item, allItem[slotNum].currentItemCount);
+        if (allItem[slotNum].weaponGuid == default)
+            DroppingItem(allItem[slotNum].item, allItem[slotNum].currentItemCount);
+        else
+            DroppingItem(
+                allItem[slotNum].item,
+                allItem[slotNum].currentItemCount,
+                allItem[slotNum].weaponGuid
+            );
+        if (slotNum == WEAPON_START || slotNum == WEAPON_START + 1)
+            UnEquipWeapon(
+                allItem[slotNum],
+                allItem[WEAPON_START + (slotNum == WEAPON_START ? 1 : 0)]
+            );
         allItem[slotNum].resetItem();
         RefreshAllSlot();
     }

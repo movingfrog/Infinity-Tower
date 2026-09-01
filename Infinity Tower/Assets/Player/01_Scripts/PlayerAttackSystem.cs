@@ -215,7 +215,7 @@ public class PlayerAttackSystem : MonoBehaviour
             foreach (var w in WeaponDirection.GetComponentsInChildren<Weapon>(true))
             {
                 w.gameObject.SetActive(false);
-                if (w.Type == item.Equips.Type && w.Level == item.level)
+                if (w.Data.guid == guid)
                 {
                     targetObject = w.gameObject;
                 }

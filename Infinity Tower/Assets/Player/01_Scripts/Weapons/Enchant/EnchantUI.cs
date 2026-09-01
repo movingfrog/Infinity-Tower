@@ -136,7 +136,7 @@ public class EnchantUI : MonoBehaviour
     public void EnchnatWeaponFirst()
     {
         if (
-            FirstWeaponItem != null
+            FirstWeaponItem.item != null
             && GameManager.Instance.allWeaponData[FirstWeaponItem.weaponGuid].CanEnchant()
         )
         {
@@ -149,7 +149,7 @@ public class EnchantUI : MonoBehaviour
     public void EnchantWeaponSecond()
     {
         if (
-            SecondWeaponItem != null
+            SecondWeaponItem.item != null
             && GameManager.Instance.allWeaponData[SecondWeaponItem.weaponGuid].CanEnchant()
         )
         {
