@@ -242,7 +242,7 @@ public class InventoryManager : InvenParent
     {
         if (
             (slotNum == WEAPON_START || slotNum == WEAPON_START + 1)
-            && (allItem[slotNum == WEAPON_START ? 1 : 0].item == null)
+            && (allItem[WEAPON_START + (slotNum == WEAPON_START ? 1 : 0)].item == null)
         )
             return;
         if (allItem[slotNum].weaponGuid == default)
