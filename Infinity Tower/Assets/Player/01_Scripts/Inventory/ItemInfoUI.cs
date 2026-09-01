@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,16 +6,25 @@ using UnityEngine.UI;
 public class ItemInfoUI : MonoBehaviour
 {
     public static ItemInfoUI Instance;
-    public static readonly string[] ItemLevelName = { "ÀÏ¹İ", "Èñ±Í", "Àü¼³" };
-    public static readonly string[] ItemStatName = { "°ø°İ·Â", "Ä¡¸íÅ¸ È®·ü", "Ä¡¸íÅ¸ ÇÇÇØ", "ÀÌµ¿ ¼Óµµ", "°ñµå È¹µæ·®", "È¸º¹·®" };
+    public static readonly string[] ItemLevelName = { "ì¼ë°˜", "í¬ê·€", "ì „ì„¤" };
+    public static readonly string[] ItemStatName =
+    {
+        "ê³µê²©ë ¥",
+        "ì¹˜ëª…íƒ€ í™•ë¥ ",
+        "ì¹˜ëª…íƒ€ í”¼í•´",
+        "ì´ë™ ì†ë„",
+        "ê³¨ë“œ íšë“ëŸ‰",
+        "íšŒë³µëŸ‰",
+    };
     public static readonly Color[] ItemLevelColor = { Color.white, Color.cyan, Color.yellow };
 
-    [Header("ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç")]
+    [Header("ì´ë™ ì• ë‹ˆë©”ì´ì…˜")]
     public Vector3 endPos;
     public float duration;
     RectTransform detailPanel;
     private Vector3 startPos;
-    [Header("¾ÆÀÌÅÛ Á¤º¸")]
+
+    [Header("ì•„ì´í…œ ì •ë³´")]
     public Image itemImage;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemInfo;
@@ -25,49 +34,87 @@ public class ItemInfoUI : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
         detailPanel = GetComponent<RectTransform>();
         startPos = transform.position;
     }
 
-    public void OpenInfo(Item item)
+    public void OpenInfo(InvenItem item)
     {
         drawText(item);
+
         detailPanel.DOAnchorPos(endPos, duration).SetEase(Ease.OutBounce);
     }
+
     public void CloseInfo() => detailPanel.DOMove(startPos, duration).SetEase(Ease.OutCirc);
 
-    public void drawText(Item item)
+    public void drawText(InvenItem item)
     {
-        itemImage.sprite = item.spriteImage;
-        itemName.color = ItemLevelColor[(int)item.level];
-        itemName.text = item.itemName;
-        itemInfo.text = item.itemInfo;
-        string itemLevelHex = "#" + ColorUtility.ToHtmlStringRGB(ItemLevelColor[(int)item.level]);
-        if (item.isEquippable)
+        itemImage.sprite = item.item.spriteImage;
+        itemName.color = ItemLevelColor[(int)item.item.level];
+        itemName.text = item.item.itemName;
+        itemInfo.text = item.item.itemInfo;
+        string itemLevelHex =
+            "#" + ColorUtility.ToHtmlStringRGB(ItemLevelColor[(int)item.item.level]);
+        if (item.item.isEquippable)
         {
             itemStat.color = statColor;
-            switch (item.slotType)
+            switch (item.item.slotType)
             {
                 case SlotType.Weapon:
-                    itemStat.text = $"{ItemStatName[0]}: +{item.Equips.itemDamage}";
+                    itemStat.text = $"{ItemStatName[0]}: +{item.item.Equips.itemDamage}";
+                    if (item.weaponGuid != System.Guid.Empty)
+                    {
+                        weaponMagicSlot[0].text = GameManager
+                            .Instance
+                            .allWeaponData[item.weaponGuid]
+                            .enchants[0]
+                            ?.EnchantExplain;
+
+                        weaponMagicSlot[1].text = GameManager
+                            .Instance
+                            .allWeaponData[item.weaponGuid]
+                            .enchants[1]
+                            ?.EnchantExplain;
+                    }
+                    else
+                    {
+                        weaponMagicSlot[0].text = "";
+                        weaponMagicSlot[1].text = "";
+                    }
                     break;
                 case SlotType.Accessories:
                     itemStat.text = "";
-                    for(int i = 0; i < item.Equips.statModifiers.Count; i++)
+                    weaponMagicSlot[0].text = "";
+                    weaponMagicSlot[1].text = "";
+                    for (int i = 0; i < item.item.Equips.statModifiers.Count; i++)
                     {
-                        itemStat.text += $"{ItemStatName[(int)item.Equips.statModifiers[i].Type]}: " + (item.Equips.statModifiers[i].Type == StatType.ATK ? "+" : "")
-                            + item.Equips.statModifiers[i].Value.ToString("0") + (item.Equips.statModifiers[i].Type != StatType.ATK ? "%" : "") + "\n";
+                        itemStat.text +=
+                            $"{ItemStatName[(int)item.item.Equips.statModifiers[i].Type]}: "
+                            + (item.item.Equips.statModifiers[i].Type == StatType.ATK ? "+" : "")
+                            + item.item.Equips.statModifiers[i].Value.ToString("0")
+                            + (item.item.Equips.statModifiers[i].Type != StatType.ATK ? "%" : "")
+                            + "\n";
                     }
                     break;
             }
         }
-        itemStat.text += $"<color={itemLevelHex}>Èñ±Íµµ: {ItemLevelName[(int)item.level]}";
+        else
+        {
+            weaponMagicSlot[0].text = "";
+            weaponMagicSlot[1].text = "";
+        }
+        itemStat.text += $"<color={itemLevelHex}>í¬ê·€ë„: {ItemLevelName[(int)item.item.level]}";
     }
 
     private void OnDestroy()
     {
-        if(Instance == this) Instance = null;
+        if (Instance == this)
+            Instance = null;
     }
 }

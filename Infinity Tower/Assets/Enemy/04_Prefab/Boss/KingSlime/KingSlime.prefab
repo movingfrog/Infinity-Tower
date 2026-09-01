@@ -41,6 +41,7 @@ Transform:
   - {fileID: 8711525044820010593}
   - {fileID: 3159192382888919567}
   - {fileID: 6202919913318546535}
+  - {fileID: 1460266652737878309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3908366083158044481
@@ -210,6 +211,9 @@ MonoBehaviour:
   <hitText>k__BackingField: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
   WaitNewAction: 3
   GroggyTime: 5
+  BlackHoleSize: {x: 31, y: 10}
+  BlackHoleForce: 3
+  HealthBarCanvas: {fileID: 0}
   state: 0
   AttackAreaValue:
   - {x: 25, y: 1}
@@ -230,6 +234,9 @@ MonoBehaviour:
   ChargeTime:
   - 0.75
   - 1
+  - 4
+  - 2.5
+  - 2
   RainPatternTime: 1.5
   BubblePatternTime: 2
   AdditionalWaitTime: 0.8
@@ -244,8 +251,13 @@ MonoBehaviour:
   HealTickRate: 0.25
   HealAmount: 15
   MaxHealAmount: 30
-  PhasePos: []
+  PhasePos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Guide: {fileID: 7715527024306734981}
+  NewPhasePlayerPosition: {fileID: 1460266652737878309}
 --- !u!95 &709902894319075227
 Animator:
   serializedVersion: 7
@@ -295,6 +307,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!1 &2202087481609302169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1460266652737878309}
+  m_Layer: 0
+  m_Name: NewPhasePlayerPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1460266652737878309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202087481609302169}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7, y: -0.25999984, z: 0}
+  m_LocalScale: {x: -0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4398625372775642260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7063246159530199132
 GameObject:
   m_ObjectHideFlags: 0

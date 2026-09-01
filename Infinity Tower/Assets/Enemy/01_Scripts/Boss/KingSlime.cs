@@ -14,8 +14,18 @@ public enum KingSlimePatternState
 
 public partial class KingSlime : BossSystem
 {
+    [Header("죽음 패턴 관련")]
+    [SerializeField]
+    private Vector2 BlackHoleSize;
+
+    [SerializeField]
+    private float BlackHoleForce;
+
     [Header("체력 관련")]
-    private int HealthCount = 4;
+    [SerializeField]
+    private GameObject HealthBarCanvas;
+
+    private int HealthCount = 5;
     private List<Image> AllHealth = new List<Image>();
     private List<Image> HealthImage = new List<Image>();
 
@@ -96,7 +106,7 @@ public partial class KingSlime : BossSystem
 
     private const float centerToGroundDistance = .3f;
 
-    private const int maxBubbleAmount = 40;
+    private const int maxBubbleAmount = 10;
     private const float bubbleRadius = .6f;
 
     protected override void Awake()
@@ -112,15 +122,17 @@ public partial class KingSlime : BossSystem
 
     protected override void CreateHPBar()
     {
-        GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
+        GameObject temp = Instantiate(HealthBar, HealthBarCanvas.transform);
         temp.GetComponentsInChildren<Image>(true, AllHealth);
         foreach (var image in AllHealth)
         {
             if (image.CompareTag("HealthBar"))
             {
                 HealthImage.Add(image);
+                Debug.Log(image.name);
             }
         }
+        Debug.Log(HealthImage.Count);
     }
 
     public override void Hurt(float damage)
@@ -128,14 +140,14 @@ public partial class KingSlime : BossSystem
         if (HP - damage > 0)
         {
             HP -= damage;
-            HealthImage[HealthCount].fillAmount = HP / MaxHP;
+            HealthImage[HealthCount - 1].fillAmount = HP / MaxHP;
             ShowDamage(damage, Color.white);
             _damageFlash.CallDamageFlash();
         }
         else
         {
             HP -= HP;
-            HealthImage[HealthCount].fillAmount = HP / MaxHP;
+            HealthImage[HealthCount - 1].fillAmount = HP / MaxHP;
             ShowDamage(damage, Color.white);
             _damageFlash.CallDamageFlash();
             Guide.SetActive(true);
@@ -143,12 +155,35 @@ public partial class KingSlime : BossSystem
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        if (isDie && collision.gameObject.CompareTag("Player"))
+        Collider2D PColl = Physics2D.OverlapBox(transform.position, BlackHoleSize, 0, PlayerLayer);
+        if (PColl != null)
         {
-            Guide.SetActive(false);
-            collision.transform.position = PhasePos[HealthCount].position;
+            float ScaleX =
+                Mathf.Abs(transform.localScale.x)
+                * ((PColl.transform.position.x - transform.position.x) > 0 ? 1 : -1);
+            transform.localScale = new Vector3(
+                ScaleX,
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
+        if (isDie)
+        {
+            if (PColl != null)
+            {
+                PColl.transform.position = Vector3.Lerp(
+                    PColl.transform.position,
+                    transform.position,
+                    BlackHoleForce * Time.deltaTime
+                );
+                if ((PColl.transform.position - transform.position).magnitude < .1f)
+                {
+                    Guide.SetActive(false);
+                    PColl.transform.position = PhasePos[HealthCount - 1].position;
+                }
+            }
         }
     }
 
@@ -159,14 +194,19 @@ public partial class KingSlime : BossSystem
         if (!isDie)
         {
             StopCoroutine(PatternCoroutine);
-            if (HealthCount > 0)
+            if (HealthCount > 1)
             {
                 HealthCount--;
+                Debug.Log(HealthCount);
+                if (HealthCount == 1)
+                {
+                    HealthImage[HealthCount - 1].gameObject.SetActive(true);
+                }
                 isDie = true;
             }
             else
             {
-                Debug.Log("죽고 보상을 주는 코드");
+                Destroy(gameObject);
             }
         }
     }
@@ -200,6 +240,7 @@ public partial class KingSlime : BossSystem
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green * new Color(1, 1, 1, .3f);
+        Gizmos.DrawWireCube(transform.position, BlackHoleSize);
         switch (state)
         {
             case KingSlimePatternState.Bubble:

@@ -1,52 +1,84 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class DroppedEnchant : MonoBehaviour
+public abstract class DroppedEnchant : MonoBehaviour
 {
     /// <summary>
-    /// 드롭된 각인 오브젝트의 각인 정보
+    ///  드롭된 각인 오브젝트의 각인 정보
     /// </summary>
-    public WeaponEnchant enchant { get; set; }
+    public WeaponEnchant enchant;
 
     [Header("플레이어 접근 시 등장하는 오브젝트들")]
     [SerializeField]
-    private GameObject InfoObject; //GameObject를 InfoObject에 할당 된 스크립트로 변환 필요
+    protected EnchantInfo InfoObject; //GameObject를 InfoObject에 할당 된 스크립트로 변환 필요
 
     [SerializeField]
-    private SpriteRenderer BackImage;
+    protected SpriteRenderer BackImage;
 
     [Header("플레이어 상호작용 값")]
     [SerializeField]
-    private float InteractDistance = 1.5f;
+    protected float InteractDistance = 1f;
 
     [SerializeField]
-    private LayerMask Player;
+    protected Transform EnchantPosition;
 
-    private void Start()
+    [SerializeField]
+    protected LayerMask Player;
+
+    protected void Start()
     {
-        if (enchant != null && TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        if (enchant != null && BackImage != null)
         {
-            spriteRenderer.sprite = enchant.EnchantImage;
             BackImage.sprite = enchant.EnchantImage;
         }
-        BackImage.gameObject.SetActive(false);
         InfoObject.gameObject.SetActive(false);
-        // InfoObject.SetInfo(enchant);
+        InfoObject.SetInfo(enchant);
     }
 
-    private void FixedUpdate()
+    private void OnEnable()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.inputActions.Player.Interact.started += Interact;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.inputActions.Player.Interact.started -= Interact;
+        }
+    }
+
+    private void Interact(InputAction.CallbackContext callback)
     {
         Collider2D PlayerColl = Physics2D.OverlapCircle(
-            transform.position,
+            EnchantPosition.position,
             InteractDistance,
             Player
         );
-        InfoObject.SetActive(PlayerColl != null);
-        BackImage.gameObject.SetActive(PlayerColl != null);
+        if (PlayerColl != null)
+        {
+            OnInteract();
+        }
     }
 
-    private void OnDrawGizmos()
+    protected abstract void OnInteract();
+
+    protected void FixedUpdate()
+    {
+        Collider2D PlayerColl = Physics2D.OverlapCircle(
+            EnchantPosition.position,
+            InteractDistance,
+            Player
+        );
+        InfoObject.gameObject.SetActive(PlayerColl != null);
+    }
+
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow * new Color(1, 1, 1, .3f);
-        Gizmos.DrawWireSphere(transform.position, InteractDistance);
+        Gizmos.DrawWireSphere(EnchantPosition.position, InteractDistance);
     }
 }

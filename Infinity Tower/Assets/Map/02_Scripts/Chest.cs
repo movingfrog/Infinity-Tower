@@ -10,8 +10,8 @@ public class Chest : MonoBehaviour
     private RewardTable Reward;
 
     [Header("플레이어 탐지 관련")]
-    [SerializeField]
-    private GameObject InteractionObject;
+    [field: SerializeField]
+    public GameObject InteractionObject { get; private set; }
 
     [SerializeField]
     private LayerMask PlayerLayer;
@@ -19,6 +19,7 @@ public class Chest : MonoBehaviour
     [SerializeField]
     private float radius;
     private bool isIn;
+    public bool IsIn => isIn;
 
     private void Awake()
     {

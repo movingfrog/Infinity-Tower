@@ -13,7 +13,7 @@ public abstract class WeaponEnchant : ScriptableObject
     /// 각인 오브젝트 이미지
     /// </summary>
     [field: SerializeField]
-    public Sprite EnchantImage;
+    public Sprite EnchantImage { get; private set; }
 
     public abstract string EnchantName { get; }
 

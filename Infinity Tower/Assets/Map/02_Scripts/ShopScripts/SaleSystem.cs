@@ -173,5 +173,5 @@ public class SaleSystem : InvenParent
         RefreshAllSlot();
     }
 
-    public override void DroppingItem() { }
+    public override void DropSlotItem(int slotNum) { }
 }

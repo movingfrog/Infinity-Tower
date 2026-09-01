@@ -26,6 +26,7 @@ public class TrapBubble : MonoBehaviour
     {
         PlayerObject = Player;
         PlayerHP = Player.GetComponent<IHealth>();
+        PlayerHP.Hurt(0);
     }
 
     private void BreakBubble(InputAction.CallbackContext context)
@@ -37,6 +38,7 @@ public class TrapBubble : MonoBehaviour
         }
         else
         {
+            PlayerObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             Destroy(gameObject);
         }
     }

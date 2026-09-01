@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8743571772155388579}
   - component: {fileID: 1220393361921689292}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Phase1
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8507143264933603336}
   - component: {fileID: 3472068761396991844}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Phase2
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 6799983459373492404}
   - component: {fileID: 1806341284793979261}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FullHealth
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 715278520848341341}
   - component: {fileID: 8464790507319814526}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Phase4
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 26718226570707871}
   - component: {fileID: 7461718204876983663}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Phase3
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

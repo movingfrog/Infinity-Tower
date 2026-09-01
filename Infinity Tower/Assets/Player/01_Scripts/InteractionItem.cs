@@ -1,9 +1,12 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractionItem : DropItem
 {
+    public System.Guid WeaponGuid;
+
     public GameObject InstItemInfo { get; set; }
 
     public GameObject originObject { get; set; }
@@ -35,7 +38,10 @@ public class InteractionItem : DropItem
     {
         if (!InstItemInfo.activeSelf)
             return;
-        InventoryManager.Instance.GetItem(item, 1);
+        if (WeaponGuid != Guid.Empty)
+            InventoryManager.Instance.GetItem(item, 1, WeaponGuid);
+        else
+            InventoryManager.Instance.GetItem(item, 1);
         Destroy(gameObject);
     }
 
