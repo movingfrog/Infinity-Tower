@@ -53,6 +53,9 @@ public abstract class Weapon : MonoBehaviour
     public bool endAttack { get; protected set; }
     public bool isPushing { get; set; }
 
+    Transform WeaponPos;
+    Transform Player;
+
     public void InitializeWeapon(WeaponObjectData data)
     {
         Data = data;
@@ -62,6 +65,8 @@ public abstract class Weapon : MonoBehaviour
     {
         TryGetComponent<Animator>(out ani);
         baseScale = Mathf.Abs(transform.localScale.x);
+        WeaponPos = transform.parent;
+        Player = transform.parent.parent;
     }
 
     protected virtual void Start()
@@ -90,6 +95,33 @@ public abstract class Weapon : MonoBehaviour
     public abstract void Attack();
     public abstract void EndAttack();
     public abstract void PositionMove(Vector2 value, float attackRange);
+
+    public virtual void MoveWeapon()
+    {
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Camera.main.WorldToScreenPoint(Player.position).z;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+
+        float dx = mouseWorldPos.x - Player.position.x;
+        float dy = mouseWorldPos.y - Player.position.y;
+        float theta = Mathf.Atan2(dy, dx);
+        float thetaDeg = theta * Mathf.Rad2Deg;
+
+        float playerSign = Mathf.Sign(Player.localScale.x);
+
+        // 위치
+        float ox = Player.position.x + .45f * Mathf.Cos(theta);
+        float oy = Player.position.y + .45f * Mathf.Sin(theta);
+        WeaponPos.position = new Vector3(ox, oy, WeaponPos.position.z);
+
+        float localTargetDeg = (playerSign < 0) ? (180f - thetaDeg) : thetaDeg;
+
+        WeaponPos.localRotation = Quaternion.Euler(0f, 0f, localTargetDeg);
+        Debug.Log(
+            $"[s={playerSign}] adjustedTheta:{localTargetDeg:F1} → "
+                + $"world.z:{WeaponPos.eulerAngles.z:F1}, local.z:{WeaponPos.localEulerAngles.z:F1}"
+        );
+    }
 
     public void UnEquipEnchant(int slotNum)
     {

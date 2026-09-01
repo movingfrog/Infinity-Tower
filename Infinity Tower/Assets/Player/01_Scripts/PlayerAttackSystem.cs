@@ -24,6 +24,8 @@ public class PlayerAttackSystem : MonoBehaviour
     public WeaponData[] PrefabData;
     private Weapon weapon;
 
+    Coroutine AttackState;
+
     private void Awake()
     {
         TryGetComponent(out PlayerAni);
@@ -32,7 +34,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
+        InputManager.Instance.inputActions.Player.Attack.performed += StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
         if (InventoryManager.Instance != null)
         {
@@ -62,6 +64,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        return;
         Vector2 movement = value.Get<Vector2>();
         weapon.PositionMove(movement, attackDirection);
     }
@@ -85,16 +88,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (weapon != null)
         {
             weapon.isPushing = true;
-            if (
-                PlayerAni.GetBool("isUsingSkill")
-                || PlayerAni.GetBool("isDash")
-                || PlayerStatManager.instance.currentState != PlayerState.Idle
-            )
-                return;
-            if (!weapon.endAttack)
-            {
-                weapon.Attack();
-            }
+            weapon.StartCoroutine(LookPointer());
         }
     }
 
@@ -104,6 +98,15 @@ public class PlayerAttackSystem : MonoBehaviour
             return;
         weapon.isPushing = false;
         weapon.EndAttack();
+    }
+
+    IEnumerator LookPointer()
+    {
+        while (weapon.isPushing)
+        {
+            weapon.MoveWeapon();
+            yield return null;
+        }
     }
 
     private void GetWeaponType()
