@@ -240,6 +240,11 @@ public class InventoryManager : InvenParent
 
     public override void DropSlotItem(int slotNum)
     {
+        if (
+            (slotNum == WEAPON_START || slotNum == WEAPON_START + 1)
+            && (allItem[slotNum == WEAPON_START ? 1 : 0].item == null)
+        )
+            return;
         if (allItem[slotNum].weaponGuid == default)
             DroppingItem(allItem[slotNum].item, allItem[slotNum].currentItemCount);
         else
