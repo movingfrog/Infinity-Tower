@@ -129,6 +129,7 @@ public partial class KingSlime : BossSystem
             if (image.CompareTag("HealthBar"))
             {
                 HealthImage.Add(image);
+                Debug.Log(image.name);
             }
         }
         Debug.Log(HealthImage.Count);
@@ -193,12 +194,13 @@ public partial class KingSlime : BossSystem
         if (!isDie)
         {
             StopCoroutine(PatternCoroutine);
-            if (HealthCount > 0)
+            if (HealthCount > 1)
             {
                 HealthCount--;
-                if (HealthCount == 0)
+                Debug.Log(HealthCount);
+                if (HealthCount == 1)
                 {
-                    HealthImage[HealthCount].gameObject.SetActive(true);
+                    HealthImage[HealthCount - 1].gameObject.SetActive(true);
                 }
                 isDie = true;
             }

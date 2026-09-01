@@ -3,7 +3,7 @@
 public class RewardSystem : MonoBehaviour
 {
     [SerializeField]
-    private Transform RewardPos;
+    protected Transform RewardPos;
 
     [SerializeField]
     private parentEnemy[] AllEnemy;
@@ -26,7 +26,7 @@ public class RewardSystem : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void SpawnReward()
+    protected virtual void SpawnReward()
     {
         if (GameManager.Instance == null || GameManager.Instance.AllRewardChest == null)
             return;

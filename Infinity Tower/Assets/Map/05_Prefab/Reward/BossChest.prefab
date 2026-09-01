@@ -4978,7 +4978,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e5f473a699ce80048ad5dc7dfd44b6d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5119,13 +5119,14 @@ GameObject:
   - component: {fileID: 3186332503103186526}
   - component: {fileID: 4200268962595997830}
   - component: {fileID: 8751389686579096107}
+  - component: {fileID: 1662091324835082234}
   m_Layer: 0
   m_Name: BossChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8658942422016496530
 Transform:
   m_ObjectHideFlags: 0
@@ -5198,6 +5199,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossChestEnchantSpawn
   enchant: {fileID: 0}
   maxEnchantLevel: 3
+--- !u!114 &1662091324835082234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455208108647200609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55497646cacc534383d97868e5990f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossPortalSpawn
+  Portal: {fileID: 0}
 --- !u!1 &9214446396797786991
 GameObject:
   m_ObjectHideFlags: 0
