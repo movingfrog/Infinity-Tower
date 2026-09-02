@@ -677,7 +677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540610002514666730, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2507,42 +2507,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[0].item
-      value: 
-      objectReference: {fileID: 11400000, guid: da9755b49852eb1418cb4e519f8f2ff4, type: 2}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[1].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 1baf951df19e5b14790265e0d4add7fa, type: 2}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[2].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 14d64eb4e4035f64f9ca841788d6e9df, type: 2}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[3].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 1ba128a73c38f8240815aebd22644f8f, type: 2}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[4].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 2d1d31a06b2bc9a42a6c89fc9406541a, type: 2}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[1].currentItemCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[2].currentItemCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[3].currentItemCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 562379812875393892, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
-      propertyPath: allItem.Array.data[4].currentItemCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 740139412897734336, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [Serializable]
 public class WeaponObjectData
@@ -40,7 +41,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected Animator ani;
     protected float baseScale;
-    protected Coroutine cooltimeCoroutine;
+    public Coroutine cooltimeCoroutine { get; protected set; }
 
     [Header("무기 특성 설정")]
     public WeaponType Type;
@@ -94,7 +95,6 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void Attack();
     public abstract void EndAttack();
-    public abstract void PositionMove(Vector2 value, float attackRange);
 
     public virtual void MoveWeapon()
     {
@@ -117,10 +117,17 @@ public abstract class Weapon : MonoBehaviour
         float localTargetDeg = (playerSign < 0) ? (180f - thetaDeg) : thetaDeg;
 
         WeaponPos.localRotation = Quaternion.Euler(0f, 0f, localTargetDeg);
-        Debug.Log(
-            $"[s={playerSign}] adjustedTheta:{localTargetDeg:F1} → "
-                + $"world.z:{WeaponPos.eulerAngles.z:F1}, local.z:{WeaponPos.localEulerAngles.z:F1}"
-        );
+        Debug.Log(WeaponPos.localEulerAngles.z);
+        if (WeaponPos.localEulerAngles.z >= 90f && WeaponPos.localEulerAngles.z <= 270f)
+        {
+            Debug.Log("slfkdjsfsl");
+            WeaponPos.localScale = new Vector3(1, -1, 1f);
+        }
+        else
+        {
+            Debug.Log("jjjjjjjjjj");
+            WeaponPos.localScale = new Vector3(1, 1, 1f);
+        }
     }
 
     public void UnEquipEnchant(int slotNum)
@@ -133,7 +140,6 @@ public abstract class Weapon : MonoBehaviour
     protected IEnumerator StartCooltime()
     {
         yield return new WaitForSeconds(attackRate);
-        endAttack = false;
         cooltimeCoroutine = null;
     }
 

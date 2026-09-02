@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,37 +7,14 @@ public class GunWeapon : Weapon
 {
     private Coroutine shootingCoroutine;
     private Vector2 fireDirection;
-    private bool _hasAuto;
 
     [Header("총기 설정")]
     public Transform shotPosition;
     public GameObject bulletPrefab;
     public int maxAmmo;
-    public float fireRate;
-    public bool hasAuto;
 
     public int currentAmmo { get; private set; }
     public bool isReload { get; private set; }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        _hasAuto = hasAuto;
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (InputManager.Instance != null)
-            InputManager.Instance.inputActions.Player.FireMode.started += ToggleAutoFire;
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        if (InputManager.Instance != null)
-            InputManager.Instance.inputActions.Player.FireMode.started -= ToggleAutoFire;
-    }
 
     protected override void Start()
     {
@@ -45,29 +23,23 @@ public class GunWeapon : Weapon
         fireDirection = Vector2.right;
     }
 
-    public void ToggleAutoFire(InputAction.CallbackContext callback)
-    {
-        if (_hasAuto)
-            hasAuto = !hasAuto;
-    }
-
     public override void Attack()
     {
-        if (shootingCoroutine != null || isReload || CheckNoAmmo())
+        if (shootingCoroutine != null || isReload)
             return;
 
         TriggerHitEnchants();
-        ani.SetTrigger("Attack");
+        ani.SetBool("Attack", true);
         endAttack = true;
         shootingCoroutine = StartCoroutine(ShootingLoop());
     }
 
     private IEnumerator ShootingLoop()
     {
-        ani.SetBool("isAuto", hasAuto);
-        while (ExecuteShot() && hasAuto && isPushing)
+        ani.SetBool("isAuto", true);
+        while (ExecuteShot() && isPushing)
         {
-            yield return new WaitForSeconds(fireRate);
+            yield return new WaitForSeconds(attackRate);
         }
         ani.SetBool("isAuto", false);
         shootingCoroutine = null;
@@ -81,6 +53,9 @@ public class GunWeapon : Weapon
             float finalDamage = AttackDamageCaculator(
                 damage + PlayerStatManager.instance.damage * 0.15f
             );
+            fireDirection = (
+                (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position
+            ).normalized;
             Quaternion rotation = Quaternion.Euler(0, 0, fireDirection.y * 90);
 
             Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
@@ -113,7 +88,7 @@ public class GunWeapon : Weapon
         currentAmmo = maxAmmo;
         isReload = false;
 
-        if (isPushing && hasAuto)
+        if (isPushing)
             Attack();
     }
 
@@ -124,6 +99,7 @@ public class GunWeapon : Weapon
             StopCoroutine(shootingCoroutine);
             shootingCoroutine = null;
             ani.SetBool("isAuto", false);
+            ani.SetBool("Attack", false);
         }
 
         if (cooltimeCoroutine == null)
@@ -131,26 +107,4 @@ public class GunWeapon : Weapon
             cooltimeCoroutine = StartCoroutine(StartCooltime());
         }
     }
-
-    public override void PositionMove(Vector2 value, float range)
-    {
-        float valueX = 1 - Mathf.Abs(GetSign(value.y));
-        transform.parent.localPosition = new Vector2(range * valueX, range * GetSign(value.y));
-
-        if (value.y == 0)
-            transform.rotation = Quaternion.identity;
-        else
-            transform.rotation = Quaternion.Euler(
-                0,
-                0,
-                90 * GetSign(value.y) * transform.parent.parent.localScale.x
-            );
-
-        fireDirection = new Vector2(
-            valueX * transform.parent.parent.localScale.x,
-            GetSign(value.y)
-        );
-    }
-
-    private bool CheckNoAmmo() => currentAmmo == 0;
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3104046087448089607}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 269908223728086528}
   - component: {fileID: 3064388799948972635}
   - component: {fileID: 5057025845488052253}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Crossbow-Sheet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 5442089710193195636}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,13 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a545807d995fab743a78979a47d8605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  Data:
+    enchants:
+    - {fileID: 0}
+    - {fileID: 0}
   Type: 2
   Level: 1
   damage: 20
   attackRate: 2.25
-  enchants:
-  - {fileID: 0}
-  - {fileID: 0}
   shotPosition: {fileID: 3104046087448089607}
   bulletPrefab: {fileID: 8944202342597398735, guid: 71475da44cb50b1498b2771dd67dcc54, type: 3}
   isCrossBow: 1

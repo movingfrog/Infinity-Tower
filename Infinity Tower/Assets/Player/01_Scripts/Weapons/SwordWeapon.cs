@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SwordWeapon : Weapon
 {
@@ -7,26 +8,46 @@ public class SwordWeapon : Weapon
     public override void Attack()
     {
         TriggerHitEnchants();
-        MoveWeapon();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((EnemyLayer & (1 << collision.gameObject.layer)) != 0)
         {
-            if (collision.TryGetComponent<IHealth>(out var health))
+            if (
+                collision.TryGetComponent<parentEnemy>(out var health)
+                && health.DamageWaitCoroutine == null
+            )
             {
-                health.Hurt(AttackDamageCaculator(PlayerStatManager.instance.damage + damage));
+                health.DamageWaitCoroutine = StartCoroutine(DamageWait(attackRate, health));
                 TriggerAttackEnchant(collision.gameObject);
             }
         }
+    } // 맞는 대상을 통해서 공격 속도를 변경 필요
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if ((EnemyLayer & (1 << collision.gameObject.layer)) != 0)
+        {
+            if (
+                collision.TryGetComponent<parentEnemy>(out var health)
+                && health.DamageWaitCoroutine == null
+            )
+            {
+                health.DamageWaitCoroutine = StartCoroutine(DamageWait(attackRate, health));
+                TriggerAttackEnchant(collision.gameObject);
+            }
+        }
+    } // n초당 한 번 공격하도록 변경
+
+    private IEnumerator DamageWait(float time, IHealth health)
+    {
+        health.Hurt(AttackDamageCaculator(PlayerStatManager.instance.damage + damage));
+        yield return new WaitForSeconds(time);
     }
 
     public override void EndAttack()
     {
-        if (cooltimeCoroutine == null)
-            cooltimeCoroutine = StartCoroutine(StartCooltime());
+        isPushing = false;
     }
-
-    public override void PositionMove(Vector2 value, float attackRange) { }
 }

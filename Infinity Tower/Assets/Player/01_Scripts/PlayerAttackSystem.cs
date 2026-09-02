@@ -62,13 +62,6 @@ public class PlayerAttackSystem : MonoBehaviour
             InventoryManager.Instance.ReEquip();
     }
 
-    public void OnMove(InputValue value)
-    {
-        return;
-        Vector2 movement = value.Get<Vector2>();
-        weapon.PositionMove(movement, attackDirection);
-    }
-
     public void OnFireMode()
     {
         if (isPusing)
@@ -105,6 +98,7 @@ public class PlayerAttackSystem : MonoBehaviour
         while (weapon.isPushing)
         {
             weapon.MoveWeapon();
+            weapon.Attack();
             yield return null;
         }
     }
@@ -207,7 +201,11 @@ public class PlayerAttackSystem : MonoBehaviour
     /// <returns>교체 성공 여부</returns>
     private bool ChangeEquipWeapon(Item item, System.Guid guid)
     {
-        if (item == null || item.Equips == null)
+        if (
+            item == null
+            || item.Equips == null
+            || (weapon != null && weapon.cooltimeCoroutine != null)
+        )
         {
             Debug.Log("실행 안됨");
             return false;

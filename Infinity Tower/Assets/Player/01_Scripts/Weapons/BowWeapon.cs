@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class BowWeapon : Weapon
@@ -6,6 +7,7 @@ public class BowWeapon : Weapon
     private Coroutine ChargingCoroutine;
     private GameObject arrow;
     private Vector2 fireDirection;
+    private float coolTimeRate;
 
     [Header("활 공격 변수")]
     public Transform shotPosition;
@@ -17,44 +19,23 @@ public class BowWeapon : Weapon
     {
         base.Start();
         fireDirection = Vector2.right;
+        coolTimeRate = attackRate;
     }
 
     public override void Attack()
     {
-        if (endAttack || cooltimeCoroutine != null || ChargingCoroutine != null)
+        if (cooltimeCoroutine != null || ChargingCoroutine != null)
             return;
 
         TriggerHitEnchants();
         ani.SetTrigger("Attack");
         isPushing = true;
-        endAttack = true; // 쿨타임 플래그 가동
         ChargingCoroutine = StartCoroutine(Charging());
     }
 
     public override void EndAttack()
     {
         isPushing = false;
-        if (cooltimeCoroutine == null)
-            cooltimeCoroutine = StartCoroutine(StartCooltime());
-    }
-
-    public override void PositionMove(Vector2 value, float attackRange)
-    {
-        float ValueX = 1 - Mathf.Abs(GetSign(value.y));
-        transform.parent.localPosition = new Vector2(
-            attackRange * ValueX,
-            attackRange * GetSign(value.y)
-        );
-        if (value.y == 0)
-            transform.rotation = Quaternion.identity;
-        else
-            transform.rotation = Quaternion.Euler(
-                new Vector3(0, 0, 90 * GetSign(value.y) * transform.parent.parent.localScale.x)
-            );
-        fireDirection = new Vector2(
-            ValueX * transform.parent.parent.localScale.x,
-            GetSign(value.y)
-        );
     }
 
     private void ShotArrow(float Percent)
@@ -66,6 +47,9 @@ public class BowWeapon : Weapon
             (damage + PlayerStatManager.instance.damage) * (.3f + Percent * .7f)
         );
         Arrow _arrow = arrow.GetComponent<Arrow>();
+        fireDirection = (
+            (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position
+        ).normalized;
         _arrow.Shot(fireDirection, Percent, finalDamage, TriggerAttackEnchant);
         ChargingCoroutine = null;
     }
@@ -90,7 +74,8 @@ public class BowWeapon : Weapon
             temp = Mathf.Min(temp + Time.deltaTime, 1f);
             yield return null;
         }
-
+        attackRate = coolTimeRate * (.3f + temp * .7f);
+        cooltimeCoroutine = StartCoroutine(StartCooltime());
         if (arrowRB != null)
             arrowRB.simulated = true;
         ShotArrow(temp);
