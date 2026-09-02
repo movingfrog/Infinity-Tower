@@ -24,6 +24,8 @@ public class PlayerAttackSystem : MonoBehaviour
     public WeaponData[] PrefabData;
     private Weapon weapon;
 
+    Coroutine AttackState;
+
     private void Awake()
     {
         TryGetComponent(out PlayerAni);
@@ -60,12 +62,6 @@ public class PlayerAttackSystem : MonoBehaviour
             InventoryManager.Instance.ReEquip();
     }
 
-    public void OnMove(InputValue value)
-    {
-        Vector2 movement = value.Get<Vector2>();
-        weapon.PositionMove(movement, attackDirection);
-    }
-
     public void OnFireMode()
     {
         if (isPusing)
@@ -85,16 +81,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (weapon != null)
         {
             weapon.isPushing = true;
-            if (
-                PlayerAni.GetBool("isUsingSkill")
-                || PlayerAni.GetBool("isDash")
-                || PlayerStatManager.instance.currentState != PlayerState.Idle
-            )
-                return;
-            if (!weapon.endAttack)
-            {
-                weapon.Attack();
-            }
+            weapon.StartCoroutine(LookPointer());
         }
     }
 
@@ -104,6 +91,16 @@ public class PlayerAttackSystem : MonoBehaviour
             return;
         weapon.isPushing = false;
         weapon.EndAttack();
+    }
+
+    IEnumerator LookPointer()
+    {
+        while (weapon.isPushing)
+        {
+            weapon.MoveWeapon();
+            weapon.Attack();
+            yield return null;
+        }
     }
 
     private void GetWeaponType()
@@ -204,7 +201,11 @@ public class PlayerAttackSystem : MonoBehaviour
     /// <returns>교체 성공 여부</returns>
     private bool ChangeEquipWeapon(Item item, System.Guid guid)
     {
-        if (item == null || item.Equips == null)
+        if (
+            item == null
+            || item.Equips == null
+            || (weapon != null && weapon.cooltimeCoroutine != null)
+        )
         {
             Debug.Log("실행 안됨");
             return false;

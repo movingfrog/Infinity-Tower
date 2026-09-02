@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862027947372154323}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7604733518876711983}
   - component: {fileID: 7859126290061585033}
   - component: {fileID: 1017884299847463919}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: M1911
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 8744784273070916196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,15 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf80cd16af9fb04a9186ae23564a4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunWeapon
+  Data:
+    enchants:
+    - {fileID: 0}
+    - {fileID: 0}
   Type: 1
   Level: 0
   damage: 2
   attackRate: 0.5
-  enchants:
-  - {fileID: 0}
-  - {fileID: 0}
   shotPosition: {fileID: 1862027947372154323}
   bulletPrefab: {fileID: 6161912332551938688, guid: 7c56e96b3be31cb4c96c2e0907282e83, type: 3}
   maxAmmo: 7
-  fireRate: 0
-  hasAuto: 0
+  GunImage: {fileID: 9202094985950219199, guid: 0771733082309444887bb2997823b29f, type: 3}

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5149007919245064209}
   - component: {fileID: 2255404972267804259}
   - component: {fileID: 334222989200588924}
-  m_Layer: 0
+  - component: {fileID: 9039679190548152498}
+  m_Layer: 12
   m_Name: spear_12_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7570915604868299361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,8 +136,60 @@ MonoBehaviour:
   Level: 0
   damage: 2
   attackRate: 0.2
-  attackSize: {x: 1.25, y: 0.5}
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: {x: 0.25, y: 0.25}
+--- !u!60 &9039679190548152498
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570915604868299361}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8125, y: 0.8125}
+    newSize: {x: 0.26, y: 0.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.16444485, y: 0.31036523}
+      - {x: 0.2497914, y: 0.2765269}
+      - {x: -0.39746976, y: -0.368541}
+      - {x: -0.31448066, y: -0.37547714}
+      - {x: 0.27692598, y: 0.22002882}
+      - {x: 0.30513504, y: 0.16361497}
+      - {x: 0.37915698, y: 0.37692702}
+  m_UseDelaunayMesh: 1

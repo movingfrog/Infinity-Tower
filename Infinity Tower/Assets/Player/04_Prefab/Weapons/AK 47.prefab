@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153461768575300304}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8434819428202189856}
   - component: {fileID: 710961456861813226}
   - component: {fileID: 1966427098210312027}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AK 47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 4964434572871969415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,12 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf80cd16af9fb04a9186ae23564a4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunWeapon
+  Data:
+    enchants:
+    - {fileID: 0}
+    - {fileID: 0}
   Type: 1
   Level: 1
   damage: 2
-  attackRate: 0.3
+  attackRate: 0.2
   shotPosition: {fileID: 4153461768575300304}
   bulletPrefab: {fileID: 6161912332551938688, guid: 7c56e96b3be31cb4c96c2e0907282e83, type: 3}
   maxAmmo: 30
-  fireRate: 0.2
-  hasAuto: 1
+  GunImage: {fileID: 4565813657897213748, guid: 61222bbc155fcc243945ee4b543b72e2, type: 3}

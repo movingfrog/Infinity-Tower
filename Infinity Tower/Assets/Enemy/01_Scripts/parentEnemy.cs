@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public GameObject parentCanvas;
     public GameObject HealthBar;
     protected HealthBar healthBar;
+
+    public Coroutine DamageWaitCoroutine { get; set; }
 
     protected Animator ani;
     protected DamageFlash _damageFlash;
