@@ -119,12 +119,10 @@ public abstract class Weapon : MonoBehaviour
         WeaponPos.localRotation = Quaternion.Euler(0f, 0f, localTargetDeg);
         if (WeaponPos.localEulerAngles.z >= 90f && WeaponPos.localEulerAngles.z <= 270f)
         {
-            Debug.Log("slfkdjsfsl");
             WeaponPos.localScale = new Vector3(1, -1, 1f);
         }
         else
         {
-            Debug.Log("jjjjjjjjjj");
             WeaponPos.localScale = new Vector3(1, 1, 1f);
         }
     }
