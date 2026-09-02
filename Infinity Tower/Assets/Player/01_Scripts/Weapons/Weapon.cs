@@ -117,7 +117,6 @@ public abstract class Weapon : MonoBehaviour
         float localTargetDeg = (playerSign < 0) ? (180f - thetaDeg) : thetaDeg;
 
         WeaponPos.localRotation = Quaternion.Euler(0f, 0f, localTargetDeg);
-        Debug.Log(WeaponPos.localEulerAngles.z);
         if (WeaponPos.localEulerAngles.z >= 90f && WeaponPos.localEulerAngles.z <= 270f)
         {
             Debug.Log("slfkdjsfsl");

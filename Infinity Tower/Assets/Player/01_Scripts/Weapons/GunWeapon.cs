@@ -99,8 +99,8 @@ public class GunWeapon : Weapon
             StopCoroutine(shootingCoroutine);
             shootingCoroutine = null;
             ani.SetBool("isAuto", false);
-            ani.SetBool("Attack", false);
         }
+        ani.SetBool("Attack", false);
 
         if (cooltimeCoroutine == null)
         {

@@ -34,7 +34,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.inputActions.Player.Attack.performed += StartAttack;
+        InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
         InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
         if (InventoryManager.Instance != null)
         {

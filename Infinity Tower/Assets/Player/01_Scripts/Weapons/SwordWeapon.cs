@@ -40,10 +40,11 @@ public class SwordWeapon : Weapon
         }
     } // n초당 한 번 공격하도록 변경
 
-    private IEnumerator DamageWait(float time, IHealth health)
+    private IEnumerator DamageWait(float time, parentEnemy health)
     {
         health.Hurt(AttackDamageCaculator(PlayerStatManager.instance.damage + damage));
         yield return new WaitForSeconds(time);
+        health.DamageWaitCoroutine = null;
     }
 
     public override void EndAttack()
