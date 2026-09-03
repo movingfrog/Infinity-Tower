@@ -63,9 +63,9 @@ public class GhostKnight : OneAttackEnemy
             0,
             PlayerLayer
         );
-        if (PColl != null)
+        if (PColl != null && PColl.TryGetComponent<IHealth>(out IHealth health))
         {
-            PColl.GetComponent<IHealth>().Hurt(AttackDamage);
+            health.Hurt(AttackDamage);
         }
 
         resetAttack();
@@ -86,7 +86,7 @@ public class GhostKnight : OneAttackEnemy
         {
             Vector3 targetPos = PColl.transform.position - GhostKnightAttacker.transform.position;
             GhostKnightAttacker.transform.localScale = new Vector3(targetPos.x >= 0 ? -1 : 1, 1, 1);
-            rigid.linearVelocity = targetPos;
+            rigid.linearVelocity = (Vector2)targetPos.normalized * Speed;
         }
     }
 
