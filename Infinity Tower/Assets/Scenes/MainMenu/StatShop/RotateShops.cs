@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class RotateShops : MonoBehaviour
 {
-    public ShopControllCenter SCC { get; set; }
     private bool isRotate;
-
-    public int CurrentIndex { get; private set; } = 0; // 현재 선택된 상점 인덱스 - 기능 수행 싱글톤 클래스로 옮길 예정
 
     [Header("UI 속성")]
     [SerializeField, Tooltip("상점 미리보기 아이콘")]
@@ -51,7 +48,7 @@ public class RotateShops : MonoBehaviour
 
     public void ResetShopPos()
     {
-        CurrentIndex = 0;
+        ShopFuncControllCenter.Instance.CurrentIndex = 0;
         RotateShop(0);
     }
 
@@ -61,14 +58,14 @@ public class RotateShops : MonoBehaviour
             return;
         Sequence rotateSequence = DOTween.Sequence();
         isRotate = true;
-        CurrentIndex += index;
-        if (CurrentIndex < 0)
+        ShopFuncControllCenter.Instance.CurrentIndex += index;
+        if (ShopFuncControllCenter.Instance.CurrentIndex < 0)
         {
-            CurrentIndex = PreviewIcons.Length - 1;
+            ShopFuncControllCenter.Instance.CurrentIndex = PreviewIcons.Length - 1;
         }
-        else if (CurrentIndex >= PreviewIcons.Length)
+        else if (ShopFuncControllCenter.Instance.CurrentIndex >= PreviewIcons.Length)
         {
-            CurrentIndex = 0;
+            ShopFuncControllCenter.Instance.CurrentIndex = 0;
         }
 
         for (int i = 0; i < PreviewIcons.Length; i++)
@@ -79,9 +76,10 @@ public class RotateShops : MonoBehaviour
                 return;
             }
 
-            PreviewIcons[i].color = (i == CurrentIndex) ? SelectColor : UnSelectColor;
+            PreviewIcons[i].color =
+                (i == ShopFuncControllCenter.Instance.CurrentIndex) ? SelectColor : UnSelectColor;
 
-            int n = i - CurrentIndex;
+            int n = i - ShopFuncControllCenter.Instance.CurrentIndex;
             if (n < 0)
                 n += PreviewIcons.Length;
             rotateSequence.Join(
@@ -104,8 +102,14 @@ public class RotateShops : MonoBehaviour
             );
             PreviewOption[i].rectTransform.SetParent(RotationParent[n], false);
         }
-        OptionName.text = SCC._TechInfo[CurrentIndex].Name;
-        OptionExplane.text = SCC._TechInfo[CurrentIndex].Explane;
+        OptionName.text = ShopFuncControllCenter
+            .Instance
+            ._TechInfo[ShopFuncControllCenter.Instance.CurrentIndex]
+            .Name;
+        OptionExplane.text = ShopFuncControllCenter
+            .Instance
+            ._TechInfo[ShopFuncControllCenter.Instance.CurrentIndex]
+            .Explane;
         rotateSequence.OnComplete(() =>
         {
             isRotate = false;

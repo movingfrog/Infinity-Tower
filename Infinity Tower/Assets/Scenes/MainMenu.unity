@@ -3997,6 +3997,7 @@ GameObject:
   - component: {fileID: 440242747}
   - component: {fileID: 440242746}
   - component: {fileID: 440242745}
+  - component: {fileID: 440242751}
   - component: {fileID: 440242749}
   - component: {fileID: 440242750}
   m_Layer: 5
@@ -4159,7 +4160,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad914364298c0147bf44be3995f0eaa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShopControllCenter
+  m_EditorClassIdentifier: Assembly-CSharp::ShopUIControllCenter
   Goods: {fileID: 11400000, guid: e8dc885a4c10d4447a10ca8fb0350561, type: 2}
   Title: {fileID: 23934025}
   PreviewMenu: {fileID: 1710833951}
@@ -4184,18 +4185,31 @@ MonoBehaviour:
   GoodsUseAmount: {fileID: 554785787}
   ActiveColor: {r: 0.9411765, g: 0.8509804, b: 0.627451, a: 1}
   UnActiveColor: {r: 0.5411765, g: 0.47058824, b: 0.32156864, a: 1}
+--- !u!114 &440242751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440242744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a10abb55823c04ab839ea9786c04fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopFuncControllCenter
   TechInfoes:
   - Name: "\uC804\uD22C \uC0C1\uC810"
     Explane: "\uC804\uD22C\uC5D0 \uC0AC\uC6A9\uB418\uB294 \uB2A5\uB825\uC744\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
   - Name: "\uC7AC\uD654 \uC0C1\uC810"
-    Explane: "\uC7AC\uD654\uC5D0 \uAD00\uB828\uB41C \uB2A5\uB825\uC744\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
+    Explane: "\uC7AC\uD654\uC5D0 \uAD00\uB828\uB41C \uB2A5\uB825\uC744\r\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
   - Name: "\uAE30\uB3D9 \uC0C1\uC810"
-    Explane: "\uAE30\uB3D9\uC131\uACFC \uAD00\uB828\uB41C \uB2A5\uB825\uC744\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
+    Explane: "\uC774\uB3D9\uACFC \uAD00\uB828\uB41C \uB2A5\uB825\uC744\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
   - Name: "\uCCB4\uB825 \uC0C1\uC810"
     Explane: "\uCCB4\uB825\uACFC \uAD00\uB828\uB41C \uB2A5\uB825\uC744\n\uC81C\uACF5\uD569\uB2C8\uB2E4"
   - Name: "\uAD81\uADF9 \uC0C1\uC810"
-    Explane: "\uBAA8\uB4E0 \uC0C1\uC810\uC744 \uD1B5\uB2EC\uD55C \uC790\uB9CC\uC774\n\uC0AC\uC6A9\uD560
+    Explane: "\uBAA8\uB4E0 \uB2A5\uB825\uC744 \uD1B5\uB2EC\uD55C \uC790\uB9CC\uC774\r\n\uC0AC\uC6A9\uD560
       \uC218 \uC788\uB294 \uC0C1\uC810\uC785\uB2C8\uB2E4"
+  CurrentIndex: 0
 --- !u!224 &445960370 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4160037929583581063, guid: 30ef0a72b63c72146b286bb7413d8542, type: 3}
@@ -4857,7 +4871,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 440242750}
-        m_TargetAssemblyTypeName: ShopControllCenter, Assembly-CSharp
+        m_TargetAssemblyTypeName: ShopUIControllCenter, Assembly-CSharp
         m_MethodName: GoShop
         m_Mode: 1
         m_Arguments:
@@ -14500,7 +14514,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 440242750}
-        m_TargetAssemblyTypeName: ShopControllCenter, Assembly-CSharp
+        m_TargetAssemblyTypeName: ShopUIControllCenter, Assembly-CSharp
         m_MethodName: BackShop
         m_Mode: 1
         m_Arguments:

@@ -12,7 +12,7 @@ public struct TechInfo
 }
 
 [RequireComponent(typeof(RotateShops))]
-public class ShopControllCenter : MonoBehaviour
+public class ShopUIControllCenter : MonoBehaviour
 {
     [Header("할당하지 않은 내부 변수")]
     private RotateShops RotShop;
@@ -71,10 +71,6 @@ public class ShopControllCenter : MonoBehaviour
     [SerializeField, Tooltip("기술 다음 레벨 색")]
     private Color UnActiveColor = Color.white;
 
-    [SerializeField, Tooltip("기술 정보")]
-    private TechInfo[] TechInfoes; // 기능 수행 싱글톤 클래스로 옮길 예정
-    public TechInfo[] _TechInfo => TechInfoes;
-
     private void Awake()
     {
         RotShop = GetComponent<RotateShops>();
@@ -83,7 +79,6 @@ public class ShopControllCenter : MonoBehaviour
     private void OnEnable()
     {
         ResetAll();
-        RotShop.SCC = this;
         RotShop.ResetShopPos();
     }
 
@@ -103,7 +98,7 @@ public class ShopControllCenter : MonoBehaviour
     {
         PreviewMenu.SetActive(false);
         for (int i = 0; i < Shops.Length; i++)
-            Shops[i].SetActive(RotShop.CurrentIndex == i);
+            Shops[i].SetActive(ShopFuncControllCenter.Instance.CurrentIndex == i);
         CheckTool.SetActive(false);
         BuyTool.SetActive(true);
         InfoBox.SetActive(false);
@@ -112,7 +107,12 @@ public class ShopControllCenter : MonoBehaviour
 
     private void ChangeTiitle()
     {
-        Title.text += TechInfoes[RotShop.CurrentIndex].Name;
+        Title.text +=
+            " - "
+            + ShopFuncControllCenter
+                .Instance
+                ._TechInfo[ShopFuncControllCenter.Instance.CurrentIndex]
+                .Name;
     }
 
     public void BackShop()
