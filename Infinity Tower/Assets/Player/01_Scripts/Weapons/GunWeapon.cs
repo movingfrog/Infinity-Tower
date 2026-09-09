@@ -51,7 +51,8 @@ public class GunWeapon : Weapon
         {
             currentAmmo--;
             float finalDamage = AttackDamageCaculator(
-                damage + PlayerStatManager.instance.damage * 0.15f
+                (damage + PlayerStatManager.instance.Atk * 0.15f)
+                    * PlayerStatManager.instance.damage
             );
             fireDirection = (
                 (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position

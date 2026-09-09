@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,11 +43,7 @@ public class PlayerStatManager : MonoBehaviour
     [Header("공격 시스템")]
     [SerializeField]
     private float Damage;
-    public float damage
-    {
-        get { return Damage + Atk; }
-        private set { Damage = value; }
-    }
+    public float damage => Damage;
 
     [Header("추가 능력치")]
     [Range(-1f, 1f)]
@@ -80,6 +77,32 @@ public class PlayerStatManager : MonoBehaviour
         Atk = 0;
         GoldBoost = 1;
         HealBoost = 1;
+    }
+
+    public void ApplyToStat(TechStatModifier modifier)
+    {
+        float value = modifier.value;
+        switch (modifier.statType)
+        {
+            case StatType.ATK:
+                Damage += value / 100f;
+                break;
+            case StatType.CRIT_RATE:
+                Crit_Rate += value / 100f;
+                break;
+            case StatType.CRIT_DMG:
+                Crit_Dmg += value / 100f;
+                break;
+            case StatType.SPEED:
+                Speed += value / 100f;
+                break;
+            case StatType.GOLDBOOST:
+                GoldBoost += value / 100f;
+                break;
+            case StatType.HEALBOOST:
+                HealBoost += value / 100f;
+                break;
+        }
     }
 
     public void statUp(StatType stat, float Increase)

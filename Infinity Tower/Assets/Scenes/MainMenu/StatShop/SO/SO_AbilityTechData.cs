@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Tilemaps;
+using UnityEngine;
 
-public abstract class SO_AbllityTechData : ScriptableObject
+public class SO_AbilityTechData : SO_TechData
 {
-    public abstract void Ability();
+    public override void Apply(int level)
+    {
+        //AbilityManager.instance.Acquire(this);
+    }
 }

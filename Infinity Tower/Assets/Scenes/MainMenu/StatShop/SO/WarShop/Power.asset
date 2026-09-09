@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707029ceb07cb9c45b6d3331b6f955b7, type: 3}
   m_Name: Power
   m_EditorClassIdentifier: Assembly-CSharp::SO_StatTechData
-  TechIcon: {fileID: 0}
-  <Name>k__BackingField: 
-  <Explane>k__BackingField: 
+  TechIcon: {fileID: 21300000, guid: 31ea0cfb5c1c54ce092890066ee89f22, type: 3}
+  <Name>k__BackingField: "\uD798"
+  _explane: "\uACF5\uACA9\uB825\uC774 {0}%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  _effect: "\uACF5\uACA9\uB825 {0}% -> \uACF5\uACA9\uB825{1}%"
   <UseAmount>k__BackingField: 0
   techStatModifier:
     statType: 0

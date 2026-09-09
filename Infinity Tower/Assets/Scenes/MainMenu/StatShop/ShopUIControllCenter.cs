@@ -14,9 +14,6 @@ public struct TechInfo
 [RequireComponent(typeof(RotateShops))]
 public class ShopUIControllCenter : MonoBehaviour
 {
-    [Header("할당하지 않은 내부 변수")]
-    private RotateShops RotShop;
-
     [SerializeField]
     private SO_AcientStone Goods;
 
@@ -71,17 +68,6 @@ public class ShopUIControllCenter : MonoBehaviour
     [SerializeField, Tooltip("기술 다음 레벨 색")]
     private Color UnActiveColor = Color.white;
 
-    private void Awake()
-    {
-        RotShop = GetComponent<RotateShops>();
-    }
-
-    private void OnEnable()
-    {
-        ResetAll();
-        RotShop.ResetShopPos();
-    }
-
     public void ResetAll()
     {
         Title.text = "마석 상점";
@@ -118,5 +104,19 @@ public class ShopUIControllCenter : MonoBehaviour
     public void BackShop()
     {
         ResetAll();
+    }
+
+    public void SetBox(SO_TechData data, int level)
+    {
+        TechImage.sprite = data.TechIcon;
+        TechName.text = data.Name;
+        TechLevelExplane.text = data.GetExplane(level);
+        TechLevelEffect.text = data.GetEffect(level);
+        GoodsUseAmount.text = $"<sprite=0>{data.UseAmount}";
+
+        for (int i = 0; i < LevelViewer.Length; i++)
+            LevelViewer[i].color = i < level ? ActiveColor : UnActiveColor;
+
+        InfoBox.SetActive(true);
     }
 }

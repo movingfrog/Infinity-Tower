@@ -42,7 +42,11 @@ public class SpearWeapon : Weapon
 
     private IEnumerator DamageWait(float time, parentEnemy health)
     {
-        health.Hurt(AttackDamageCaculator(PlayerStatManager.instance.damage + damage));
+        health.Hurt(
+            AttackDamageCaculator(
+                (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage
+            )
+        );
         yield return new WaitForSeconds(time);
         health.DamageWaitCoroutine = null;
     }
