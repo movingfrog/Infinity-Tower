@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
@@ -43,6 +44,11 @@ public class Portal : MonoBehaviour
         isTeleport = true;
         Vector3 playerPos = player.transform.position;
         player.transform.position = transform.position;
+
+        CinemachineCamera vcam =
+            GameManager.Instance.confiner.gameObject.GetComponent<CinemachineCamera>();
+        Vector3 delta = player.transform.position - vcam.transform.position;
+        vcam.OnTargetObjectWarped(vcam.Follow, delta);
     }
 
     private void OnDrawGizmos()
