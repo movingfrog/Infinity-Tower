@@ -14,8 +14,8 @@ public struct TechInfo
 [RequireComponent(typeof(RotateShops))]
 public class ShopUIControllCenter : MonoBehaviour
 {
-    [SerializeField]
-    private SO_AcientStone Goods;
+    [field: SerializeField]
+    public SO_AcientStone Goods { get; private set; }
 
     [Header("타이틀 UI")]
     [SerializeField, Tooltip("타이틀 TMP할당")]
@@ -34,6 +34,9 @@ public class ShopUIControllCenter : MonoBehaviour
 
     [SerializeField, Tooltip("구매 도구")]
     private GameObject BuyTool;
+
+    [SerializeField, Tooltip("상점 도구")]
+    private GameObject ShopTool;
 
     [Header("정보 UI")]
     [SerializeField, Tooltip("재화 정보")]
@@ -75,6 +78,7 @@ public class ShopUIControllCenter : MonoBehaviour
         for (int i = 0; i < Shops.Length; i++)
             Shops[i].SetActive(false);
         BuyTool.SetActive(false);
+        ShopTool.SetActive(false);
         CheckTool.SetActive(true);
         InfoBox.SetActive(false);
         GoodsInfo.text = Goods.Get.ToString("0");
@@ -86,7 +90,7 @@ public class ShopUIControllCenter : MonoBehaviour
         for (int i = 0; i < Shops.Length; i++)
             Shops[i].SetActive(ShopFuncControllCenter.Instance.CurrentIndex == i);
         CheckTool.SetActive(false);
-        BuyTool.SetActive(true);
+        ChangeToolBar(false);
         InfoBox.SetActive(false);
         ChangeTiitle();
     }
@@ -99,6 +103,20 @@ public class ShopUIControllCenter : MonoBehaviour
                 .Instance
                 ._TechInfo[ShopFuncControllCenter.Instance.CurrentIndex]
                 .Name;
+    }
+
+    public void ChangeToolBar(bool isBuy)
+    {
+        if (isBuy)
+        {
+            BuyTool.SetActive(true);
+            ShopTool.SetActive(false);
+        }
+        else
+        {
+            BuyTool.SetActive(false);
+            ShopTool.SetActive(true);
+        }
     }
 
     public void BackShop()

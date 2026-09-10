@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopFuncControllCenter : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ShopFuncControllCenter : MonoBehaviour
     /// <summary>
     /// 구매를 위한 선택 기술 데이터
     /// </summary>
-    public SO_TechData SelectData { get; private set; }
+    public OnTechPointer SelectData { get; private set; }
 
     private void Awake()
     {
@@ -32,9 +33,24 @@ public class ShopFuncControllCenter : MonoBehaviour
         RS.ResetShopPos();
     }
 
-    public void ChnageData(SO_TechData _data, int _level)
+    public void ChnageData(OnTechPointer _data)
     {
         SelectData = _data;
-        SUICC.SetBox(SelectData, _level);
+        SUICC.SetBox(_data.Data, _data.Level);
+        SUICC.ChangeToolBar(TechUpgradeManager.instance.CanPurchase(_data.Data, _data.Level));
+    }
+
+    public void Purchase()
+    {
+        if (SelectData != null)
+        {
+            if (
+                TechUpgradeManager.instance.Purchase(SelectData.Data, SelectData.Level, SUICC.Goods)
+            )
+            {
+                SelectData.Purchase();
+                SUICC.ChangeToolBar(false);
+            }
+        }
     }
 }
