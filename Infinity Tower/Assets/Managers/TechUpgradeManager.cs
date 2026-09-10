@@ -5,7 +5,7 @@ public class TechUpgradeManager : MonoBehaviour
 {
     public static TechUpgradeManager instance { get; private set; }
 
-    private readonly Dictionary<SO_TechData, int> appliedLevelByTech = new();
+    private readonly Dictionary<SO_TechData, int> purchasedLevelByTech = new();
 
     private void Awake()
     {
@@ -26,9 +26,8 @@ public class TechUpgradeManager : MonoBehaviour
     /// </summary>
     public bool CanPurchase(SO_TechData data, int level)
     {
-        if (appliedLevelByTech.TryGetValue(data, out int existingLevel) && existingLevel >= level)
-            return false;
-        return true;
+        int existingLevel = purchasedLevelByTech.TryGetValue(data, out int found) ? found : 0;
+        return level == existingLevel + 1;
     }
 
     public bool Purchase(SO_TechData data, int level, SO_AcientStone goods)
@@ -36,7 +35,7 @@ public class TechUpgradeManager : MonoBehaviour
         if (!(CanPurchase(data, level) && goods.Decrease(data.UseAmount)))
             return false;
 
-        appliedLevelByTech[data] = level;
+        purchasedLevelByTech[data] = level;
         return true;
     }
 
@@ -46,7 +45,7 @@ public class TechUpgradeManager : MonoBehaviour
     /// </summary>
     public void ApplyAllPurchaseTechs()
     {
-        foreach (var pair in appliedLevelByTech)
+        foreach (var pair in purchasedLevelByTech)
         {
             pair.Key.Apply(pair.Value);
         }
@@ -54,6 +53,6 @@ public class TechUpgradeManager : MonoBehaviour
 
     public int GetCurrentLevel(SO_TechData data)
     {
-        return appliedLevelByTech.TryGetValue(data, out int lv) ? lv : 0;
+        return purchasedLevelByTech.TryGetValue(data, out int lv) ? lv : 0;
     }
 }

@@ -147,8 +147,8 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual float AttackDamageCaculator(float finalDamage)
     {
-        if (UnityEngine.Random.value <= PlayerStatManager.instance.Crit_Rate)
-            finalDamage = finalDamage * PlayerStatManager.instance.Crit_Dmg;
+        if (UnityEngine.Random.value <= PlayerStatManager.instance.f_Crit_Rate)
+            finalDamage = finalDamage * PlayerStatManager.instance.f_Crit_Dmg;
         return finalDamage;
     }
 

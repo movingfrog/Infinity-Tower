@@ -40,19 +40,40 @@ public class PlayerStatManager : MonoBehaviour
     [field: SerializeField]
     public int maxLevel { get; private set; }
 
-    [Header("공격 시스템")]
-    [SerializeField]
-    private float Damage;
-    public float damage => Damage;
+    [Header("마석 상점 능력치")]
+    private float d_Damage = 1;
+    private float d_Crit_Rate = 0;
+    private float d_Crit_Dmg = 0;
+    private float d_Speed = 0;
+    private float d_GoldBoost = 0;
+    private float d_HealBoost = 0;
+
+    public float damage => d_Damage;
+    public float f_Crit_Rate => Crit_Rate + d_Crit_Rate;
+    public float f_Crit_Dmg => Crit_Dmg + d_Crit_Dmg;
+    public float f_Speed => Speed + d_Speed;
+    public float f_GoldBoost => GoldBoost + d_GoldBoost;
+    public float f_HealBoost => HealBoost + d_HealBoost;
 
     [Header("추가 능력치")]
     [Range(-1f, 1f)]
-    public float Crit_Rate = .3f;
-    public float Crit_Dmg = 1.5f;
-    public float Speed = 1;
-    public float Atk = 0;
-    public float GoldBoost = 1;
-    public float HealBoost = 1;
+    [SerializeField]
+    private float Crit_Rate = .3f;
+
+    [SerializeField]
+    private float Crit_Dmg = 1.5f;
+
+    [SerializeField]
+    private float Speed = 1;
+
+    [field: SerializeField]
+    public float Atk { get; private set; } = 0;
+
+    [SerializeField]
+    private float GoldBoost = 1;
+
+    [SerializeField]
+    private float HealBoost = 1;
 
     private void Awake()
     {
@@ -64,9 +85,16 @@ public class PlayerStatManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
         currentHP = MaxHP;
         ChangeHealth(0);
+    }
+
+    private void Start()
+    {
+        if (TechUpgradeManager.instance != null)
+            TechUpgradeManager.instance.ApplyAllPurchaseTechs();
     }
 
     public void resetStat()
@@ -85,22 +113,22 @@ public class PlayerStatManager : MonoBehaviour
         switch (modifier.statType)
         {
             case StatType.ATK:
-                Damage += value / 100f;
+                d_Damage += value / 100f;
                 break;
             case StatType.CRIT_RATE:
-                Crit_Rate += value / 100f;
+                d_Crit_Rate += value / 100f;
                 break;
             case StatType.CRIT_DMG:
-                Crit_Dmg += value / 100f;
+                d_Crit_Dmg += value / 100f;
                 break;
             case StatType.SPEED:
-                Speed += value / 100f;
+                d_Speed += value / 100f;
                 break;
             case StatType.GOLDBOOST:
-                GoldBoost += value / 100f;
+                d_GoldBoost += value / 100f;
                 break;
             case StatType.HEALBOOST:
-                HealBoost += value / 100f;
+                d_HealBoost += value / 100f;
                 break;
         }
     }

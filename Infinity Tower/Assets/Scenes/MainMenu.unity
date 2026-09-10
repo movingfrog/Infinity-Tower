@@ -1908,12 +1908,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnTechPointer
   MainIcon: {fileID: 1148342614}
-  IconColor: {r: 0, g: 0, b: 0, a: 0}
-  NextPurchaseObject: {fileID: 0}
+  IconColor: {r: 0.8392157, g: 0.627451, b: 0.47843137, a: 1}
+  NextPurchaseObject: {fileID: 1177017232}
   LinkedLine: {fileID: 1031682612}
   canPurchaseColor: {r: 0.9098039, g: 0.78039217, b: 0.46666667, a: 1}
   purchaseColor: {r: 0.972549, g: 0.9254902, b: 0.8156863, a: 1}
-  <Data>k__BackingField: {fileID: 0}
+  <Data>k__BackingField: {fileID: 11400000, guid: cac7b449dea0cfa4bae6fca49191540c, type: 2}
   Level: 2
 --- !u!1 &228692032
 GameObject:
@@ -4063,7 +4063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &440242745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6213,7 +6213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &684117739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10529,6 +10529,7 @@ GameObject:
   - component: {fileID: 1177017229}
   - component: {fileID: 1177017231}
   - component: {fileID: 1177017230}
+  - component: {fileID: 1177017232}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -10594,6 +10595,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177017228}
   m_CullTransparentMesh: 1
+--- !u!114 &1177017232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177017228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a389ebf721d819f46afa435a6707f89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnTechPointer
+  MainIcon: {fileID: 718713325}
+  IconColor: {r: 0.8392157, g: 0.627451, b: 0.47843137, a: 1}
+  NextPurchaseObject: {fileID: 0}
+  LinkedLine: {fileID: 285263649}
+  canPurchaseColor: {r: 0.9098039, g: 0.78039217, b: 0.46666667, a: 1}
+  purchaseColor: {r: 0.972549, g: 0.9254902, b: 0.8156863, a: 1}
+  <Data>k__BackingField: {fileID: 11400000, guid: cac7b449dea0cfa4bae6fca49191540c, type: 2}
+  Level: 3
 --- !u!1 &1177211475
 GameObject:
   m_ObjectHideFlags: 0
@@ -13988,7 +14009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnTechPointer
   MainIcon: {fileID: 1975201058}
-  IconColor: {r: 1, g: 0, b: 0, a: 1}
+  IconColor: {r: 0.8392157, g: 0.627451, b: 0.47843137, a: 1}
   NextPurchaseObject: {fileID: 221801652}
   LinkedLine: {fileID: 934335255}
   canPurchaseColor: {r: 0.9098039, g: 0.78039217, b: 0.46666667, a: 1}
@@ -14557,7 +14578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1710833952
 RectTransform:
   m_ObjectHideFlags: 0
