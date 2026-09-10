@@ -77,7 +77,7 @@ public class ShadowKnight : OneAttackEnemy
         );
         if (PColl != null && PColl.TryGetComponent(out IHealth PHealth))
         {
-            PHealth.Hurt(AttackDamage);
+            PHealth.Hurt(AttackDamage, gameObject);
         }
 
         resetAttack();

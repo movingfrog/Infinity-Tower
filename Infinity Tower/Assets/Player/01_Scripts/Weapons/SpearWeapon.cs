@@ -45,7 +45,8 @@ public class SpearWeapon : Weapon
         health.Hurt(
             AttackDamageCaculator(
                 (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage
-            )
+            ),
+            gameObject
         );
         yield return new WaitForSeconds(time);
         health.DamageWaitCoroutine = null;

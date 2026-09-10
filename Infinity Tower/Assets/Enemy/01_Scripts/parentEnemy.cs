@@ -43,7 +43,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         healthBar.Init(transform.position, GetComponent<Collider2D>().bounds.extents.y);
     }
 
-    public virtual void Hurt(float damage)
+    public virtual void Hurt(float damage, GameObject attacker)
     {
         if (HP - damage > 0)
         {

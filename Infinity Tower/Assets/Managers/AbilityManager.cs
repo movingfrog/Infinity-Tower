@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -43,18 +42,18 @@ public class AbilityManager : MonoBehaviour
         ownedAbilities.Add(owned);
     }
 
-    public void NotifyAttack(AttackContext ctx)
+    public void NotifyAttack(ref AttackContext ctx)
     {
         foreach (var owned in ownedAbilities)
             if (owned.Data is IOnAttack r)
-                r.OnAttack(owned.Level, ctx);
+                r.OnAttack(owned.Level, ref ctx);
     }
 
-    public void NotifyHit(HitContext ctx)
+    public void NotifyHit(ref HitContext ctx)
     {
         foreach (var owned in ownedAbilities)
             if (owned.Data is IOnHit r)
-                r.OnHit(owned.Level, ctx);
+                r.OnHit(owned.Level, ref ctx);
     }
 
     public bool HasAbility(SO_AbilityTechData data) => ownedAbilities.Exists(o => o.Data == data);

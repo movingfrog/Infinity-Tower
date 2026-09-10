@@ -74,7 +74,7 @@ public class Arrow : MonoBehaviour
         {
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
-                health.Hurt(Damage);
+                health.Hurt(Damage, gameObject);
                 EnchantAction?.Invoke(collision.gameObject);
             }
             Destroy(GetComponent<Collider2D>());

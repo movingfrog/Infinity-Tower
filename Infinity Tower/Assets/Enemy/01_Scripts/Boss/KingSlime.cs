@@ -135,7 +135,7 @@ public partial class KingSlime : BossSystem
         Debug.Log(HealthImage.Count);
     }
 
-    public override void Hurt(float damage)
+    public override void Hurt(float damage, GameObject attacker)
     {
         if (HP - damage > 0)
         {

@@ -26,7 +26,7 @@ public class PoisonEnchant : WeaponEnchant
             yield break;
         for (int i = 0; i < TickAmount; i++)
         {
-            Enemy.Hurt(Damage);
+            Enemy.Hurt(Damage, target);
             yield return new WaitForSeconds(TickTime);
         }
     }

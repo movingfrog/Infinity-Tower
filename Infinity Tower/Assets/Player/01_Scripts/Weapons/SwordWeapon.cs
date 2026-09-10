@@ -43,7 +43,8 @@ public class SwordWeapon : Weapon
         health.Hurt(
             AttackDamageCaculator(
                 (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage
-            )
+            ),
+            gameObject
         );
         TriggerAttackEnchant(health.gameObject);
         yield return new WaitForSeconds(time);

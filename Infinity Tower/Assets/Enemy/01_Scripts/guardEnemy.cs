@@ -52,7 +52,7 @@ public class guardEnemy : OneAttackEnemy
         if (player != null)
         {
             IHealth PHealth = player.GetComponent<IHealth>();
-            PHealth.Hurt(AttackDamage);
+            PHealth.Hurt(AttackDamage, gameObject);
         }
     }
 
