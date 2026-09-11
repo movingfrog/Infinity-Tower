@@ -42,13 +42,24 @@ public class Portal : MonoBehaviour
     protected virtual void TpPlayer(Collider2D player)
     {
         isTeleport = true;
-        Vector3 playerPos = player.transform.position;
-        player.transform.position = transform.position;
+        Vector3 oldPlayerPos = player.transform.position; // 텔레포트 전 위치 저장
+        player.transform.position = transform.position; // 텔레포트
+
+        var confinerChanger = player.GetComponent<CamConfinerChanger>();
+        confinerChanger?.RecheckConfinerImmediate();
 
         CinemachineCamera vcam =
             GameManager.Instance.confiner.gameObject.GetComponent<CinemachineCamera>();
-        Vector3 delta = player.transform.position - vcam.transform.position;
+        CinemachineFollow follow = vcam.GetComponent<CinemachineFollow>();
+
+        Vector3 targetCamPos = (Vector3)transform.position + follow.FollowOffset;
+
+        // 핵심 수정: 플레이어가 "실제로 이동한 거리"를 delta로 전달
+        Vector3 delta = player.transform.position - oldPlayerPos;
+
+        vcam.PreviousStateIsValid = false;
         vcam.OnTargetObjectWarped(vcam.Follow, delta);
+        vcam.ForceCameraPosition(targetCamPos, vcam.transform.rotation);
     }
 
     private void OnDrawGizmos()

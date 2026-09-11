@@ -10,11 +10,19 @@ public class CamConfinerChanger : MonoBehaviour
         confiner = GameManager.Instance.confiner;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void RecheckConfinerImmediate()
     {
-        if (collision.CompareTag("Confiner"))
+        Collider2D[] hits = Physics2D.OverlapPointAll(transform.position);
+        Debug.Log($"[Confiner Recheck] 겹친 개수: {hits.Length}");
+        foreach (var hit in hits)
         {
-            WorkerHub<CameraMoveWorker>.Instance.confinerChange(collision, confiner);
+            Debug.Log($" - {hit.name} (tag: {hit.tag})");
+            if (hit.gameObject.CompareTag("Confiner"))
+            {
+                Debug.Log($"[Confiner Recheck] 선택된 Confiner: {hit.name}");
+                WorkerHub<CameraMoveWorker>.Instance.confinerChange(hit, confiner);
+                break;
+            }
         }
     }
 }

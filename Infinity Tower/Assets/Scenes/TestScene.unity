@@ -15867,6 +15867,11 @@ PolygonCollider2D:
       - {x: 16.5, y: -16}
       - {x: -16.5, y: -16}
   m_UseDelaunayMesh: 1
+--- !u!60 &1937151722 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8623383099511452313, guid: 7574e24205b7b0642bcaf95e53bac4bb, type: 3}
+  m_PrefabInstance: {fileID: 3398013061202747648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2006311057
 GameObject:
   m_ObjectHideFlags: 0
@@ -17283,11 +17288,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.38889
+      value: -7.611111
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17319,6 +17324,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892692096828012815, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
+      propertyPath: DefaultBlend.Style
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7975404860166779099, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
@@ -17517,10 +17526,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: Damping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: BoundingShape2D
       value: 
-      objectReference: {fileID: 768483100}
+      objectReference: {fileID: 1937151722}
+    - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: SlowingDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4059811114642469669, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.1
