@@ -5,6 +5,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     float Damage;
+    float currentDamage;
     Rigidbody2D rigid;
     Action<GameObject> EnchantAction;
 
@@ -42,9 +43,16 @@ public class Arrow : MonoBehaviour
         Physics2D.IgnoreLayerCollision(bulletLayer, groundLayerIndex, false);
     }
 
-    public void Shot(Vector2 value, float percent, float damage, Action<GameObject> Enchant)
+    public void Shot(
+        Vector2 value,
+        float percent,
+        float damage,
+        float _currentDamage,
+        Action<GameObject> Enchant
+    )
     {
         Damage = damage;
+        currentDamage = _currentDamage;
         rigid.linearVelocity = value * currentSpeed * percent;
         GetComponent<Collider2D>().enabled = true;
         EnchantAction = Enchant;
@@ -75,6 +83,8 @@ public class Arrow : MonoBehaviour
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
                 health.Hurt(Damage, gameObject);
+                var ctx = new AttackContext(health, Damage, Damage != currentDamage);
+                AbilityManager.instance.NotifyAttack(ref ctx);
                 EnchantAction?.Invoke(collision.gameObject);
             }
             Destroy(GetComponent<Collider2D>());

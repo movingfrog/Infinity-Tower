@@ -208,5 +208,6 @@ MonoBehaviour:
     m_Bits: 384
   arrivePos: {fileID: 4599764325364597589}
   isTeleport: 0
-  StageName: BossMap
-  isProto: 0
+  BossStage: BossMap
+  NormalStageName: TestScene
+  ClearAmount: 2

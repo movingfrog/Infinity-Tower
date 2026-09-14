@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,6 +53,10 @@ public class PlayerStatManager : MonoBehaviour
     public float f_Speed => Speed + d_Speed;
     public float f_GoldBoost => GoldBoost + d_GoldBoost;
     public float f_HealBoost => HealBoost + d_HealBoost;
+
+    public float f_AcientStoneBoost { get; private set; } = 1;
+
+    public int DashCount { get; set; } = 0;
 
     [Header("추가 능력치")]
     [Range(-1f, 1f)]
@@ -129,6 +132,12 @@ public class PlayerStatManager : MonoBehaviour
                 break;
             case StatType.HEALBOOST:
                 d_HealBoost += value / 100f;
+                break;
+            case StatType.HEALTH:
+                IncreassHealth(value);
+                break;
+            case StatType.ACIENTBOOST:
+                f_AcientStoneBoost += value / 100f;
                 break;
         }
     }

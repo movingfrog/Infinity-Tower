@@ -371,8 +371,16 @@ public class InventoryManager : InvenParent
         }
     }
 
-    public void GetGoods(GoodsType type, uint amount) =>
+    public void GetGoods(GoodsType type, uint amount)
+    {
+        if (type == GoodsType.AcientStone)
+        {
+            Goods[(int)type]
+                .Increase((uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost));
+            return;
+        }
         Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.f_GoldBoost));
+    }
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 
