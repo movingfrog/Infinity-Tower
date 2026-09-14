@@ -40,6 +40,8 @@ public class AbilityManager : MonoBehaviour
     {
         var owned = new OwnedAbility(data, level);
         ownedAbilities.Add(owned);
+        if (owned.Data is IOnAcquire r)
+            r.OnAcquire(level);
     }
 
     public void NotifyAttack(ref AttackContext ctx)

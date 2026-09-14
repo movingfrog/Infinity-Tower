@@ -50,10 +50,10 @@ public class GunWeapon : Weapon
         if (currentAmmo > 0)
         {
             currentAmmo--;
-            float finalDamage = AttackDamageCaculator(
+            float _damage =
                 (damage + PlayerStatManager.instance.Atk * 0.15f)
-                    * PlayerStatManager.instance.damage
-            );
+                * PlayerStatManager.instance.damage;
+            float finalDamage = AttackDamageCaculator(_damage);
             fireDirection = (
                 (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position
             ).normalized;
@@ -65,6 +65,7 @@ public class GunWeapon : Weapon
                 rotation,
                 fireDirection,
                 finalDamage,
+                _damage,
                 TriggerAttackEnchant
             );
             return true;

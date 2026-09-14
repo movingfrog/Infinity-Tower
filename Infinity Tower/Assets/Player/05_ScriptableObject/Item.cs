@@ -10,6 +10,8 @@ public enum StatType
     SPEED,
     GOLDBOOST,
     HEALBOOST,
+    HEALTH,
+    ACIENTBOOST,
 }
 
 public enum ItemLevel

@@ -83,4 +83,6 @@ public class GameManager : MonoBehaviour
     [Header("모든 각인 SO")]
     [field: SerializeField]
     public List<WeaponEnchant> allEnchant { get; private set; }
+
+    public int PriceDiscountAmount { get; set; } = 100;
 }

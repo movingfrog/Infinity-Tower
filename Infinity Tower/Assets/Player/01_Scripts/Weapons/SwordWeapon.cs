@@ -40,12 +40,16 @@ public class SwordWeapon : Weapon
 
     private IEnumerator DamageWait(float time, parentEnemy health)
     {
-        health.Hurt(
-            AttackDamageCaculator(
-                (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage
-            ),
-            gameObject
+        float Damage =
+            (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage;
+        float f_Damage = AttackDamageCaculator(Damage);
+        health.Hurt(f_Damage, gameObject);
+        AttackContext ctx = new AttackContext(
+            health.GetComponent<IHealth>(),
+            f_Damage,
+            Damage != f_Damage
         );
+        AbilityManager.instance.NotifyAttack(ref ctx);
         TriggerAttackEnchant(health.gameObject);
         yield return new WaitForSeconds(time);
         health.DamageWaitCoroutine = null;

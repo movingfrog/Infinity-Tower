@@ -4,17 +4,27 @@ using UnityEngine.SceneManagement;
 public class StageMovePortal : Portal
 {
     [SerializeField]
-    private string StageName;
+    private string BossStage;
 
     [SerializeField]
-    private bool isProto;
+    private string NormalStageName;
+
+    [Space(10f), SerializeField]
+    private int ClearAmount;
     private static int currentStage;
 
     protected override void TpPlayer(Collider2D player)
     {
         currentStage++;
-        if (isProto && currentStage >= 2)
-            SceneManager.LoadScene(2);
-        SceneManager.LoadScene(StageName);
+        if (currentStage >= ClearAmount)
+        {
+            SceneManager.LoadScene(BossStage);
+            currentStage -= ClearAmount;
+        }
+        else
+        {
+            SceneManager.LoadScene(NormalStageName);
+            currentStage++;
+        }
     }
 }
