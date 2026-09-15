@@ -113,7 +113,7 @@ public partial class KingSlime
         IHealth PlayerHealth = Player.GetComponent<IHealth>();
         for (int i = 0; i < PoisionTickAmount; i++)
         {
-            PlayerHealth.Hurt(PoisionDamage);
+            PlayerHealth.Hurt(PoisionDamage, gameObject);
             yield return new WaitForSeconds(1f);
         }
     }
@@ -157,17 +157,17 @@ public partial class KingSlime
             IHealth PHP = Player.GetComponent<IHealth>();
             if (attackRange * .3f >= distance)
             {
-                PHP.Hurt(JumpkDamage);
+                PHP.Hurt(JumpkDamage, gameObject);
                 Debug.Log("점프시키는 기능 추가할 수 있음");
             }
             else if (attackRange * .7f >= distance)
             {
-                PHP.Hurt(JumpkDamage * .5f);
+                PHP.Hurt(JumpkDamage * .5f, gameObject);
                 Debug.Log("점프시키는 기능 추가할 수 있음");
             }
             else
             {
-                PHP.Hurt(JumpkDamage * .3f);
+                PHP.Hurt(JumpkDamage * .3f, gameObject);
                 Debug.Log("점프시키는 기능 추가할 수 있음");
             }
         }
@@ -228,7 +228,7 @@ public partial class KingSlime
         useArea.SetActive(false);
         if (Player != null)
         {
-            Player.GetComponent<IHealth>().Hurt(BiteDamage);
+            Player.GetComponent<IHealth>().Hurt(BiteDamage, gameObject);
         }
         else
             yield return StartCoroutine(Groggy());

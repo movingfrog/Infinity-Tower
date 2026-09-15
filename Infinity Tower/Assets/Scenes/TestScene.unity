@@ -15867,6 +15867,11 @@ PolygonCollider2D:
       - {x: 16.5, y: -16}
       - {x: -16.5, y: -16}
   m_UseDelaunayMesh: 1
+--- !u!60 &1937151722 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8623383099511452313, guid: 7574e24205b7b0642bcaf95e53bac4bb, type: 3}
+  m_PrefabInstance: {fileID: 3398013061202747648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2006311057
 GameObject:
   m_ObjectHideFlags: 0
@@ -15959,6 +15964,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a852cf6d1b3189f4baa7243ba5c25d7f, type: 2}
   - {fileID: 11400000, guid: f400e4dd75dd9e34d984162d084c218f, type: 2}
   - {fileID: 11400000, guid: 889cc7909ad81f94b9fc73481aef21f0, type: 2}
+  <FullAbility>k__BackingField: {fileID: 11400000, guid: 86a246dad9da31f47b259ef4ab182b75, type: 2}
+  <MIPAbility>k__BackingField: {fileID: 11400000, guid: 3a64810dfa70ffc48aa0c3bae891a6a2, type: 2}
+  <MFAbility>k__BackingField: {fileID: 11400000, guid: 0395fe3c5774e3e4b86fdfcdfe2624a7, type: 2}
 --- !u!82 &2006311061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16387,6 +16395,10 @@ PrefabInstance:
     - target: {fileID: 2404430556230928684, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724490000603634205, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
+      propertyPath: Damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3474347754118874227, guid: 7b39aa909bc418f499f759e1efd77172, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17279,11 +17291,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.38889
+      value: -7.611111
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17315,6 +17327,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892692096828012815, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
+      propertyPath: DefaultBlend.Style
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7975404860166779099, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
@@ -17513,10 +17529,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759568184261516931, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: Damping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: BoundingShape2D
       value: 
-      objectReference: {fileID: 768483100}
+      objectReference: {fileID: 1937151722}
+    - target: {fileID: 3418683500762304096, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
+      propertyPath: SlowingDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4059811114642469669, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.1

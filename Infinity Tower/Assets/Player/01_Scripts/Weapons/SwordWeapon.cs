@@ -20,7 +20,6 @@ public class SwordWeapon : Weapon
             )
             {
                 health.DamageWaitCoroutine = StartCoroutine(DamageWait(attackRate, health));
-                TriggerAttackEnchant(collision.gameObject);
             }
         }
     } // 맞는 대상을 통해서 공격 속도를 변경 필요
@@ -35,14 +34,23 @@ public class SwordWeapon : Weapon
             )
             {
                 health.DamageWaitCoroutine = StartCoroutine(DamageWait(attackRate, health));
-                TriggerAttackEnchant(collision.gameObject);
             }
         }
     } // n초당 한 번 공격하도록 변경
 
     private IEnumerator DamageWait(float time, parentEnemy health)
     {
-        health.Hurt(AttackDamageCaculator(PlayerStatManager.instance.damage + damage));
+        float Damage =
+            (PlayerStatManager.instance.Atk + damage) * PlayerStatManager.instance.damage;
+        float f_Damage = AttackDamageCaculator(Damage);
+        health.Hurt(f_Damage, gameObject);
+        AttackContext ctx = new AttackContext(
+            health.GetComponent<IHealth>(),
+            f_Damage,
+            Damage != f_Damage
+        );
+        AbilityManager.instance.NotifyAttack(ref ctx);
+        TriggerAttackEnchant(health.gameObject);
         yield return new WaitForSeconds(time);
         health.DamageWaitCoroutine = null;
     }

@@ -1,14 +1,14 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public interface IHealth
 {
-    // Ã¼·Â °ü·Ã º¯¼ö
+    // ì²´ë ¥ ê´€ë ¨ ë³€ìˆ˜
     public float HP { get; set; }
     public float MaxHP { get; set; }
     public GameObject hitText { get; set; }
 
-    // Ã¼·Â °ü·Ã ÇÔ¼ö
-    public void Hurt(float damage);
+    // ì²´ë ¥ ê´€ë ¨ í•¨ìˆ˜
+    public void Hurt(float damage, GameObject attacker);
     public void Heal(float amount, GameObject healObject);
     public void Die();
 }

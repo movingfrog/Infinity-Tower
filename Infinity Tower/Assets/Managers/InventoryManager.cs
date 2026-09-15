@@ -215,7 +215,10 @@ public class InventoryManager : InvenParent
             return;
         (allItem[startIndex], allItem[targetIndex]) = (allItem[targetIndex], allItem[startIndex]);
 
-        if (allSlot[targetIndex].type == SlotType.Accessories) // 옮기는 아이템을 액세서리 슬롯에 장착할 경우 실행
+        if (
+            allSlot[targetIndex].type == SlotType.Accessories
+            || allSlot[startIndex].type == SlotType.Accessories
+        ) // 액세서리 슬롯에 장착/해제할 경우 실행
             EquipAccessories();
         if (allSlot[targetIndex].type == SlotType.Weapon) // 옮기는 아이템을 무기 슬롯에 장착할 경우 실행
         {
@@ -368,8 +371,22 @@ public class InventoryManager : InvenParent
         }
     }
 
-    public void GetGoods(GoodsType type, uint amount) =>
-        Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.GoldBoost));
+    public void GetGoods(GoodsType type, uint amount)
+    {
+        if (type == GoodsType.AcientStone)
+        {
+            Goods[(int)type]
+                .Increase((uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost));
+            return;
+        }
+        Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.f_GoldBoost));
+        if (type == GoodsType.Gold)
+        {
+            var ability = GameManager.Instance.MIPAbility;
+            if (AbilityManager.instance.HasAbility(ability))
+                ability.Commit((int)Goods[(int)type].Get);
+        }
+    }
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
 

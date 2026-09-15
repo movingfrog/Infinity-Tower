@@ -76,8 +76,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDashing && !ani.GetBool("isUsingSkill"))
         {
-            float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.Speed;
+            float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.f_Speed;
 
+            var ability = GameManager.Instance.MFAbility;
+            if (AbilityManager.instance.HasAbility(ability))
+            {
+                ability.Commit((int)moveX);
+            }
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }
@@ -136,7 +141,11 @@ public class PlayerController : MonoBehaviour
             && !PlayerStatManager.instance.getState(PlayerState.Idle)
         )
             return;
-        if (!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
+        if (
+            !isDashing
+            && dashCount + PlayerStatManager.instance.DashCount > 0
+            && !ani.GetBool("isUsingSkill")
+        )
         {
             if (dashCool != null)
                 StopCoroutine(dashCool);

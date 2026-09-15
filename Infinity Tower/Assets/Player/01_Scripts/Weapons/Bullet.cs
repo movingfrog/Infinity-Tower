@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody2D rigid;
     Vector2 forwardValue;
+    float _damage;
     float damage;
     Action<GameObject> enchantAction;
 
@@ -39,6 +40,7 @@ public class Bullet : MonoBehaviour
         Quaternion rotation,
         Vector2 value,
         float amount,
+        float _currentAmount,
         Action<GameObject> Enchant
     )
     {
@@ -46,6 +48,7 @@ public class Bullet : MonoBehaviour
         transform.rotation = rotation;
         forwardValue = value;
         damage = amount;
+        _damage = _currentAmount;
         enchantAction = Enchant;
     }
 
@@ -68,7 +71,9 @@ public class Bullet : MonoBehaviour
         {
             if (collision.TryGetComponent<IHealth>(out IHealth health))
             {
-                health.Hurt(damage);
+                health.Hurt(damage, gameObject);
+                var ctx = new AttackContext(health, damage, _damage != damage);
+                AbilityManager.instance.NotifyAttack(ref ctx);
                 enchantAction?.Invoke(collision.gameObject);
             }
             Destroy(gameObject);

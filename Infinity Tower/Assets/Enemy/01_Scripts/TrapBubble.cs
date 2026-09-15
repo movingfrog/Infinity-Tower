@@ -26,14 +26,14 @@ public class TrapBubble : MonoBehaviour
     {
         PlayerObject = Player;
         PlayerHP = Player.GetComponent<IHealth>();
-        PlayerHP.Hurt(0);
+        PlayerHP.Hurt(0, gameObject);
     }
 
     private void BreakBubble(InputAction.CallbackContext context)
     {
         if (TrappingCount > 0)
         {
-            PlayerHP.Hurt(Damage);
+            PlayerHP.Hurt(Damage, gameObject);
             TrappingCount--;
         }
         else
@@ -46,6 +46,6 @@ public class TrapBubble : MonoBehaviour
     private void LateUpdate()
     {
         PlayerObject.position = transform.position;
-        PlayerHP.Hurt(0);
+        PlayerHP.Hurt(0, gameObject);
     }
 }

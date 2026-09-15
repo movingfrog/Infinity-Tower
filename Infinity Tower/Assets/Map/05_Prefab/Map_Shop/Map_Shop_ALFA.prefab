@@ -19732,7 +19732,7 @@ PrefabInstance:
     - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: arrivePos
       value: 
-      objectReference: {fileID: 6154820342302053701}
+      objectReference: {fileID: 7343574328281234906}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14
@@ -20936,6 +20936,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 5018290892671747337}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7343574328281234906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 5018290892671747337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!1001 &5443729361668039155
 PrefabInstance:
   m_ObjectHideFlags: 0

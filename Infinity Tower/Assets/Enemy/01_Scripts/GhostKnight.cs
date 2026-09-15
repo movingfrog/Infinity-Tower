@@ -65,7 +65,7 @@ public class GhostKnight : OneAttackEnemy
         );
         if (PColl != null && PColl.TryGetComponent<IHealth>(out IHealth health))
         {
-            health.Hurt(AttackDamage);
+            health.Hurt(AttackDamage, gameObject);
         }
 
         resetAttack();

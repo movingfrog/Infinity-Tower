@@ -39,23 +39,44 @@ public class PlayerStatManager : MonoBehaviour
     [field: SerializeField]
     public int maxLevel { get; private set; }
 
-    [Header("공격 시스템")]
-    [SerializeField]
-    private float Damage;
-    public float damage
-    {
-        get { return Damage + Atk; }
-        private set { Damage = value; }
-    }
+    [Header("마석 상점 능력치")]
+    private float d_Damage = 1;
+    private float d_Crit_Rate = 0;
+    private float d_Crit_Dmg = 0;
+    private float d_Speed = 0;
+    private float d_GoldBoost = 0;
+    private float d_HealBoost = 0;
+
+    public float damage => d_Damage;
+    public float f_Crit_Rate => Crit_Rate + d_Crit_Rate;
+    public float f_Crit_Dmg => Crit_Dmg + d_Crit_Dmg;
+    public float f_Speed => Speed + d_Speed;
+    public float f_GoldBoost => GoldBoost + d_GoldBoost;
+    public float f_HealBoost => HealBoost + d_HealBoost;
+
+    public float f_AcientStoneBoost { get; private set; } = 1;
+
+    public int DashCount { get; set; } = 0;
 
     [Header("추가 능력치")]
     [Range(-1f, 1f)]
-    public float Crit_Rate = .3f;
-    public float Crit_Dmg = 1.5f;
-    public float Speed = 1;
-    public float Atk = 0;
-    public float GoldBoost = 1;
-    public float HealBoost = 1;
+    [SerializeField]
+    private float Crit_Rate = .3f;
+
+    [SerializeField]
+    private float Crit_Dmg = 1.5f;
+
+    [SerializeField]
+    private float Speed = 1;
+
+    [field: SerializeField]
+    public float Atk { get; private set; } = 0;
+
+    [SerializeField]
+    private float GoldBoost = 1;
+
+    [SerializeField]
+    private float HealBoost = 1;
 
     private void Awake()
     {
@@ -67,9 +88,16 @@ public class PlayerStatManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
         currentHP = MaxHP;
         ChangeHealth(0);
+    }
+
+    private void Start()
+    {
+        if (TechUpgradeManager.instance != null)
+            TechUpgradeManager.instance.ApplyAllPurchaseTechs();
     }
 
     public void resetStat()
@@ -80,6 +108,38 @@ public class PlayerStatManager : MonoBehaviour
         Atk = 0;
         GoldBoost = 1;
         HealBoost = 1;
+    }
+
+    public void ApplyToStat(TechStatModifier modifier)
+    {
+        float value = modifier.value;
+        switch (modifier.statType)
+        {
+            case StatType.ATK:
+                d_Damage += value / 100f;
+                break;
+            case StatType.CRIT_RATE:
+                d_Crit_Rate += value / 100f;
+                break;
+            case StatType.CRIT_DMG:
+                d_Crit_Dmg += value / 100f;
+                break;
+            case StatType.SPEED:
+                d_Speed += value / 100f;
+                break;
+            case StatType.GOLDBOOST:
+                d_GoldBoost += value / 100f;
+                break;
+            case StatType.HEALBOOST:
+                d_HealBoost += value / 100f;
+                break;
+            case StatType.HEALTH:
+                IncreassHealth(value);
+                break;
+            case StatType.ACIENTBOOST:
+                f_AcientStoneBoost += value / 100f;
+                break;
+        }
     }
 
     public void statUp(StatType stat, float Increase)
@@ -110,6 +170,11 @@ public class PlayerStatManager : MonoBehaviour
     public void IncreassHealth(float amount)
     {
         MaxHP += amount;
+        var ability = GameManager.Instance.FullAbility;
+        if (AbilityManager.instance.HasAbility(ability))
+        {
+            ability.Commit(AbilityManager.instance.GetLevel(ability), (int)amount);
+        }
         ChangeHealth(amount);
     }
 
@@ -124,7 +189,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        currentHP += amount * (amount > 0 ? HealBoost : 1);
+        currentHP += amount * (amount > 0 ? f_HealBoost : 1);
         if (currentHP > MaxHP)
             currentHP = MaxHP;
         HealthBar.fillAmount = currentHP / MaxHP;
