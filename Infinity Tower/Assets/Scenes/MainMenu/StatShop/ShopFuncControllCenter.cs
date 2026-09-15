@@ -49,6 +49,7 @@ public class ShopFuncControllCenter : MonoBehaviour
             )
             {
                 SelectData.Purchase();
+                SUICC.RefreshGoodsInfo();
                 SUICC.ChangeToolBar(false);
             }
         }
