@@ -380,6 +380,12 @@ public class InventoryManager : InvenParent
             return;
         }
         Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.f_GoldBoost));
+        if (type == GoodsType.Gold)
+        {
+            var ability = GameManager.Instance.MIPAbility;
+            if (AbilityManager.instance.HasAbility(ability))
+                ability.Commit((int)Goods[(int)type].Get);
+        }
     }
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);

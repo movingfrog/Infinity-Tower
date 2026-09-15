@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
         {
             float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.f_Speed;
 
+            var ability = GameManager.Instance.MFAbility;
+            if (AbilityManager.instance.HasAbility(ability))
+            {
+                ability.Commit((int)moveX, this);
+            }
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }

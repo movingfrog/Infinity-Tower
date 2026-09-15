@@ -84,5 +84,16 @@ public class GameManager : MonoBehaviour
     [field: SerializeField]
     public List<WeaponEnchant> allEnchant { get; private set; }
 
+    [Header("상점 가격 할인률")]
     public int PriceDiscountAmount { get; set; } = 100;
+
+    [Header("지정되지 않은 스킬")]
+    [field: SerializeField]
+    public SO_FeelLikeFullAbility FullAbility { get; private set; }
+
+    [field: SerializeField]
+    public SO_MoneyIsPowerAbility MIPAbility { get; private set; }
+
+    [field: SerializeField]
+    public SO_MovingForceAbility MFAbility { get; private set; }
 }

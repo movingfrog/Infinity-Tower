@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177aea62d6baa0a418d282f35960bdc8, type: 3}
+  m_Name: MovingForce
+  m_EditorClassIdentifier: Assembly-CSharp::SO_MovingForceAbility
+  TechIcon: {fileID: 21300000, guid: b03d85ca44ed04e9aa875bdd0265e569, type: 3}
+  <Name>k__BackingField: "\uCD94\uC9C4\uB825"
+  _explane: "\uBA48\uCD94\uC9C0\uC54A\uACE0 \uC774\uB3D9 \uC2DC \uACF5\uACA9\uB825\uC744
+    {0}% \uCD5C\uB300 {1}\uBC88 \uC99D\uAC00\uD569\uB2C8\uB2E4\n\uBA48\uCD94\uBA74
+    \uACF5\uACA9\uB825\uC774 {0}% \uD558\uB77D\uD569\uB2C8\uB2E4"
+  _effect: 
+  <UseAmount>k__BackingField: 0
+  MaxStack: 10

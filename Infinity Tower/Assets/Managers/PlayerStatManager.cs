@@ -170,6 +170,11 @@ public class PlayerStatManager : MonoBehaviour
     public void IncreassHealth(float amount)
     {
         MaxHP += amount;
+        var ability = GameManager.Instance.FullAbility;
+        if (AbilityManager.instance.HasAbility(ability))
+        {
+            ability.Commit(AbilityManager.instance.GetLevel(ability), (int)amount);
+        }
         ChangeHealth(amount);
     }
 

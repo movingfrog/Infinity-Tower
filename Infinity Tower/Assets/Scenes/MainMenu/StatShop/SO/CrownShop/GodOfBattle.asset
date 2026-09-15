@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707029ceb07cb9c45b6d3331b6f955b7, type: 3}
+  m_Name: GodOfBattle
+  m_EditorClassIdentifier: Assembly-CSharp::SO_StatTechData
+  TechIcon: {fileID: 21300000, guid: b03d85ca44ed04e9aa875bdd0265e569, type: 3}
+  <Name>k__BackingField: "\uC804\uD22C\uC758 \uC2E0"
+  _explane: "\uACF5\uACA9\uB825\uC744 {0}% \uB9CC\uD07C \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4"
+  _effect: 
+  <UseAmount>k__BackingField: 0
+  techStatModifier:
+    statType: 0
+    modType: 1
+    value: 500

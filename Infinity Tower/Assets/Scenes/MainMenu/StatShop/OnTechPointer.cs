@@ -4,34 +4,34 @@ using UnityEngine.UI;
 
 public class OnTechPointer : MonoBehaviour, IPointerClickHandler
 {
-    private Image BGImage;
-    private bool isLock = true;
+    protected Image BGImage;
+    protected bool isLock = true;
 
     [SerializeField, Tooltip("사용될 아이콘")]
-    private Image MainIcon;
+    protected Image MainIcon;
 
     [SerializeField, Tooltip("아이콘 색상")]
-    private Color IconColor;
+    protected Color IconColor;
 
     [SerializeField, Tooltip("다음 단계 객체")]
-    private OnTechPointer NextPurchaseObject;
+    protected OnTechPointer NextPurchaseObject;
 
     [SerializeField, Tooltip("색이 변경될 라인")]
-    private Image LinkedLine;
+    protected Image LinkedLine;
 
     [SerializeField, Tooltip("구매 가능 색 값")]
-    private Color canPurchaseColor;
+    protected Color canPurchaseColor;
 
     [SerializeField, Tooltip("구매 상태 색 값")]
-    private Color purchaseColor;
+    protected Color purchaseColor;
 
     [field: SerializeField]
-    public SO_TechData Data { get; private set; }
+    public SO_TechData Data { get; protected set; }
 
     [field: SerializeField, Tooltip("최소값을 1을 넘도록 해주세요")]
     public int Level;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         BGImage = GetComponent<Image>();
         MainIcon.color = IconColor;
@@ -50,14 +50,14 @@ public class OnTechPointer : MonoBehaviour, IPointerClickHandler
         ShopFuncControllCenter.Instance.ChnageData(this);
     }
 
-    private void UnlockLevel()
+    protected virtual void UnlockLevel()
     {
         BGImage.color = canPurchaseColor;
         LinkedLine.color = canPurchaseColor;
         isLock = false;
     }
 
-    public void Purchase()
+    public virtual void Purchase()
     {
         NextPurchaseObject?.UnlockLevel();
         BGImage.color = purchaseColor;

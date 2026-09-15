@@ -11,7 +11,7 @@ public class SO_FeelLikeFullAbility : SO_AbilityTechData
 
     public override string GetEffect(int level)
     {
-        return string.Format(_effect, IncreaseAmount * level);
+        return string.Format(_effect, (IncreaseAmount - 1) * level, IncreaseAmount * level);
     }
 
     public override string GetExplane(int level)
