@@ -36,6 +36,7 @@ public class SO_MovingForceAbility : SO_AbilityTechData
         {
             int f_Stack = stack;
             stack += force != 0 ? 1 : -1;
+            stack = stack < 0 ? 0 : stack;
             stack = Mathf.Min(stack, MaxStack);
             var r = new TechStatModifier(
                 StatType.ATK,
