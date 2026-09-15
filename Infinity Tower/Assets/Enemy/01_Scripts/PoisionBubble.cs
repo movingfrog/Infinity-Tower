@@ -38,7 +38,7 @@ public class PoisionBubble : MonoBehaviour
         IHealth PlayerHealth = Player.GetComponent<IHealth>();
         for (int i = 0; i < PoisonTickAmount; i++)
         {
-            PlayerHealth.Hurt(AttackDamage, gameObject);
+            PlayerHealth.Hurt(AttackDamage, Player.gameObject);
             yield return new WaitForSeconds(PoisonTickRate);
         }
     }

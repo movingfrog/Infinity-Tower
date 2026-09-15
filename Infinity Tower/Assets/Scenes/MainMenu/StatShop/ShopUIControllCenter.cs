@@ -137,4 +137,6 @@ public class ShopUIControllCenter : MonoBehaviour
 
         InfoBox.SetActive(true);
     }
+
+    public void RefreshGoodsInfo() => GoodsInfo.text = Goods.Get.ToString("0");
 }

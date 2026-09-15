@@ -73,6 +73,8 @@ public class RotateShops : MonoBehaviour
             if (PreviewIcons[i] == null)
             {
                 Debug.LogError("미리보기 아이콘이 할당되지 않았습니다");
+                rotateSequence.Kill();
+                isRotate = false;
                 return;
             }
 

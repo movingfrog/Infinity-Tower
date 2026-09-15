@@ -105,6 +105,7 @@ public class ShopBox : MonoBehaviour
             uint price = (uint)(
                 PriceTable.GetPrice(sellItem.level, isHealth)
                 * GameManager.Instance.PriceDiscountAmount
+                / 100f
             );
             bool isPaymentSuccess = false;
             if (!isHealth)

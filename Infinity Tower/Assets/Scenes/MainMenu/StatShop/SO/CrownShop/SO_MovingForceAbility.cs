@@ -21,12 +21,12 @@ public class SO_MovingForceAbility : SO_AbilityTechData
         return string.Format(_explane, u_Percent, MaxStack);
     }
 
-    public void Commit(int Force, MonoBehaviour P)
+    public void Commit(int Force)
     {
         force = Force;
         if (currentCoroutine == null)
         {
-            currentCoroutine = P.StartCoroutine(ChangeStack());
+            currentCoroutine = PlayerStatManager.instance.StartCoroutine(ChangeStack());
         }
     }
 

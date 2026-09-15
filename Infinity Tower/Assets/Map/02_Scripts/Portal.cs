@@ -46,13 +46,14 @@ public class Portal : MonoBehaviour
         player.transform.position = transform.position; // 텔레포트
 
         var confinerChanger = player.GetComponent<CamConfinerChanger>();
-        confinerChanger?.RecheckConfinerImmediate();
+        if (confinerChanger != null)
+            confinerChanger.RecheckConfinerImmediate();
 
         CinemachineCamera vcam =
             GameManager.Instance.confiner.gameObject.GetComponent<CinemachineCamera>();
         CinemachineFollow follow = vcam.GetComponent<CinemachineFollow>();
 
-        Vector3 targetCamPos = (Vector3)transform.position + follow.FollowOffset;
+        Vector3 targetCamPos = transform.position + follow.FollowOffset;
 
         // 핵심 수정: 플레이어가 "실제로 이동한 거리"를 delta로 전달
         Vector3 delta = player.transform.position - oldPlayerPos;

@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             var ability = GameManager.Instance.MFAbility;
             if (AbilityManager.instance.HasAbility(ability))
             {
-                ability.Commit((int)moveX, this);
+                ability.Commit((int)moveX);
             }
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;

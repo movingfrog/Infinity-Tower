@@ -15,7 +15,6 @@ public class StageMovePortal : Portal
 
     protected override void TpPlayer(Collider2D player)
     {
-        currentStage++;
         if (currentStage >= ClearAmount)
         {
             SceneManager.LoadScene(BossStage);

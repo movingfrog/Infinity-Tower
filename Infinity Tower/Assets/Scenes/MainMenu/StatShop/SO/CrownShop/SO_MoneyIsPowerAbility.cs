@@ -23,7 +23,7 @@ public class SO_MoneyIsPowerAbility : SO_AbilityTechData
         {
             int f_stack = stack;
             stack = MoneyAmount / m_Amount;
-            Mathf.Min(stack, 10);
+            stack = Mathf.Min(stack, 10);
             int p_amount = stack - f_stack;
             var r = new TechStatModifier(
                 StatType.ATK,

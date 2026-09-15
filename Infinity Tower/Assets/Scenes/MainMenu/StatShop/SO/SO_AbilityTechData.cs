@@ -1,5 +1,4 @@
-﻿using UnityEditor.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SO_AbilityTechData : SO_TechData
 {

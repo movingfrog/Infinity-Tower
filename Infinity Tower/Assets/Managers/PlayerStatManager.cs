@@ -189,7 +189,7 @@ public class PlayerStatManager : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        currentHP += amount * (amount > 0 ? HealBoost : 1);
+        currentHP += amount * (amount > 0 ? f_HealBoost : 1);
         if (currentHP > MaxHP)
             currentHP = MaxHP;
         HealthBar.fillAmount = currentHP / MaxHP;
