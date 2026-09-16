@@ -67,6 +67,10 @@ public class GunWeapon : Weapon
                 _damage,
                 TriggerAttackEnchant
             );
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.GunAttack)
+            );
             return true;
         }
 

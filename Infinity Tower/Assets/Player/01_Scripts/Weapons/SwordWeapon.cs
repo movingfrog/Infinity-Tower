@@ -5,6 +5,15 @@ public class SwordWeapon : Weapon
 {
     public LayerMask EnemyLayer;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.p_Sword)
+        );
+    }
+
     public override void Attack()
     {
         TriggerHitEnchants();

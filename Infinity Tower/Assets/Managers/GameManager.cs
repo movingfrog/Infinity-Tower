@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     [Header("효과음 및 배경음악")]
     public AudioSource Source;
-    public AudioClip[] SFX;
-    public AudioClip[] BGM;
+    public SO_Sound SFX;
+    public SO_Sound BGM;
 
     [Header("모든 보상 상자")]
     [field: SerializeField]

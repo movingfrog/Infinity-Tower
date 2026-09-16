@@ -17,7 +17,10 @@ public class MagnetItem : DropItem
             return;
         InventoryManager.Instance.GetItem(item, Amount);
         //아이템이 남으면 넘어가는 예외처리 필요
-        //획득하는 소리 추가 필요
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.Pickup)
+        );
         Debug.LogError("획득하는 소리 필요");
         Destroy(gameObject);
     }
