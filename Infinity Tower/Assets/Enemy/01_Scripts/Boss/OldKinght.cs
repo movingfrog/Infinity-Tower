@@ -77,33 +77,41 @@ public class OldKinght : BossSystem
         if (p_Coll != null)
         {
             float threshold = Mathf.Max(.1f, Speed * Time.fixedDeltaTime * 1.5f);
-            while (
-                p_Coll != null
-                && Mathf.Abs(p_Coll.transform.position.x - transform.position.x) > threshold
-            )
+            while (p_Coll != null)
             {
                 Vector3 pos = p_Coll.transform.position;
-                ani.SetBool("isRun", true);
-                rigid.linearVelocityX = Mathf.Sign(pos.x - transform.position.x) * Speed;
-                var Scale = transform.localScale;
-                Scale.x = Mathf.Sign(rigid.linearVelocityX) * 1;
-                transform.localScale = Scale;
+                float direction = Mathf.Sign(pos.x - transform.position.x);
+
+                var scale = transform.localScale;
+                scale.x = direction;
+                transform.localScale = scale;
 
                 Collider2D targetColl = Physics2D.OverlapBox(
-                    transform.position + (Vector3)(attackPos * Vector3.right * Mathf.Sign(Scale.x)),
+                    transform.position + (Vector3)(attackPos * Vector3.right * direction),
                     attackSize,
                     0,
                     p_Layer
                 );
+
                 if (targetColl != null)
                 {
                     ani.SetTrigger("isAttack");
                     isAttacking = true;
                     break;
                 }
+
+                if (Mathf.Abs(pos.x - transform.position.x) <= threshold)
+                {
+                    break;
+                }
+
+                ani.SetBool("isRun", true);
+                rigid.linearVelocityX = direction * Speed;
+
                 yield return null;
                 p_Coll = Physics2D.OverlapCircle(transform.position, Radius, p_Layer);
             }
+
             rigid.linearVelocityX = 0;
             ani.SetBool("isRun", false);
         }
