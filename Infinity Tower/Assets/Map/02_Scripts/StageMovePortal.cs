@@ -15,6 +15,10 @@ public class StageMovePortal : Portal
 
     protected override void TpPlayer(Collider2D player)
     {
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.Portal)
+        );
         if (currentStage >= ClearAmount)
         {
             SceneManager.LoadScene(BossStage);

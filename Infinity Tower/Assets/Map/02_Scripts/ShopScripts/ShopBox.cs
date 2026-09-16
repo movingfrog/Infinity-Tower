@@ -126,6 +126,10 @@ public class ShopBox : MonoBehaviour
                     ItemInfoObject,
                     gameObject
                 );
+                WorkerHub<SoundWorker>.Instance.PlaySFX(
+                    GameManager.Instance.Source,
+                    GameManager.Instance.SFX.GetClip(SoundType.Purchase)
+                );
                 ItemImage.sprite = null;
                 ItemInfoObject = null;
                 sellItem = null;

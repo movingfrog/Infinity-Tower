@@ -49,6 +49,20 @@ public class AbilityManager : MonoBehaviour
         foreach (var owned in ownedAbilities)
             if (owned.Data is IOnAttack r)
                 r.OnAttack(owned.Level, ref ctx);
+        if (ctx.isCrit)
+        {
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Critical)
+            );
+        }
+        else
+        {
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Attack)
+            );
+        }
     }
 
     public void NotifyHit(ref HitContext ctx)

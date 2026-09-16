@@ -44,6 +44,10 @@ public class Portal : MonoBehaviour
         isTeleport = true;
         Vector3 oldPlayerPos = player.transform.position; // 텔레포트 전 위치 저장
         player.transform.position = transform.position; // 텔레포트
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.Portal)
+        );
 
         var confinerChanger = player.GetComponent<CamConfinerChanger>();
         if (confinerChanger != null)

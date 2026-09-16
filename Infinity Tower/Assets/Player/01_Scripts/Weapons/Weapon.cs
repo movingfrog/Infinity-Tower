@@ -134,7 +134,7 @@ public abstract class Weapon : MonoBehaviour
         Data.enchants[slotNum] = null;
     }
 
-    protected IEnumerator StartCooltime()
+    protected virtual IEnumerator StartCooltime()
     {
         yield return new WaitForSeconds(attackRate);
         cooltimeCoroutine = null;

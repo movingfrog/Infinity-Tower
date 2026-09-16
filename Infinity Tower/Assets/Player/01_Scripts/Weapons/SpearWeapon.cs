@@ -10,6 +10,15 @@ public class SpearWeapon : Weapon
         TriggerHitEnchants();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.p_Spear)
+        );
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((EnemyLayer & (1 << collision.gameObject.layer)) != 0)

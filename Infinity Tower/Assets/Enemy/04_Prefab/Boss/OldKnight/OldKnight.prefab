@@ -65,7 +65,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ee20038b680b5d043bbaf5edb032910a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OldKinght
   Fly: 0
   isDie: 0
-  defaultHP: 2000
+  defaultHP: 1500
   parentCanvas: {fileID: 0}
   HealthBar: {fileID: 3756616803046183541, guid: 3bc902cf9b37fda4d99252a5bbda97d1, type: 3}
   <hitText>k__BackingField: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}

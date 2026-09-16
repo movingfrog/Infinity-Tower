@@ -42,6 +42,10 @@ public class InteractionItem : DropItem
             InventoryManager.Instance.GetItem(item, 1, WeaponGuid);
         else
             InventoryManager.Instance.GetItem(item, 1);
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.Pickup)
+        );
         Destroy(gameObject);
     }
 

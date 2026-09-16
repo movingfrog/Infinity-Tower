@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             if (isDashing)
                 rigid.gravityScale = defaultGravity;
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Jump)
+            );
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
             jumpCount--;
@@ -153,6 +157,10 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             ani.SetBool("isDash", true);
             ani.Play("Dash", 0, 0);
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Dash)
+            );
             gameObject.layer = 8;
             defaultGravity = rigid.gravityScale;
             rigid.gravityScale = 0;

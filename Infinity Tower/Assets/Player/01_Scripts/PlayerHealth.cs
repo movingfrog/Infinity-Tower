@@ -22,7 +22,13 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         HitContext hit = new HitContext(damage, attacker);
         if (damage > 0)
+        {
             AbilityManager.instance.NotifyHit(ref hit);
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Hit)
+            );
+        }
         ShowHealthText(hit.FinalDamage, Color.red);
         StartCoroutine(WaitHitEffect());
         PlayerStatManager.instance.ChangeHealth(-hit.FinalDamage);
