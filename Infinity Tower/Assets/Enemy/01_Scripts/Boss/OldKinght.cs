@@ -14,6 +14,9 @@ public class OldKinght : BossSystem
     private float Speed = 1;
 
     [Header("체력 UI변수")]
+    [SerializeField]
+    private GameObject HealthbarCanvas;
+
     [Tooltip("체력 바 변수")]
     private Image HealthBarUI;
 
@@ -56,7 +59,7 @@ public class OldKinght : BossSystem
 
     protected override void CreateHPBar()
     {
-        GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
+        GameObject temp = Instantiate(HealthBar, HealthbarCanvas.transform);
         Image[] allImage = temp.GetComponentsInChildren<Image>();
         foreach (var i in allImage)
         {
@@ -73,9 +76,13 @@ public class OldKinght : BossSystem
         Collider2D p_Coll = Physics2D.OverlapCircle(transform.position, Radius, p_Layer);
         if (p_Coll != null)
         {
-            Vector3 pos = p_Coll.transform.position;
-            while ((pos - transform.position).magnitude > .1)
+            float threshold = Mathf.Max(.1f, Speed * Time.fixedDeltaTime * 1.5f);
+            while (
+                p_Coll != null
+                && Mathf.Abs(p_Coll.transform.position.x - transform.position.x) > threshold
+            )
             {
+                Vector3 pos = p_Coll.transform.position;
                 ani.SetBool("isRun", true);
                 rigid.linearVelocityX = Mathf.Sign(pos.x - transform.position.x) * Speed;
                 var Scale = transform.localScale;
@@ -95,7 +102,9 @@ public class OldKinght : BossSystem
                     break;
                 }
                 yield return null;
+                p_Coll = Physics2D.OverlapCircle(transform.position, Radius, p_Layer);
             }
+            rigid.linearVelocityX = 0;
             ani.SetBool("isRun", false);
         }
         else
