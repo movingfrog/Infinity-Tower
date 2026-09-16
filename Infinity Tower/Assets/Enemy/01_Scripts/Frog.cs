@@ -1,71 +1,179 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public partial class Frog : OneAttackEnemy
+public class Frog : OneAttackEnemy
 {
+    [Header("Range")]
     [SerializeField]
-    private GameObject[] AttackPattern;
+    private Vector2 moveRange;
 
     [SerializeField]
-    private float radius;
+    private Vector2 attackRange;
 
+    [Header("Target")]
     [SerializeField]
     private LayerMask Player;
 
-    Collider2D PlayerColl;
-    bool isIn;
+    [Header("Component")]
+    [SerializeField]
+    private Animator animator;
+
+    private SpriteRenderer spriteRenderer;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private float direction = 1f;
+
 
     public override void Attack()
     {
-        if (isAttack || !isIn)
+        if (isAttack)
             return;
 
-        TongueAttack();
+        Vector2 center = transform.position;
+        center.x += direction * attackRange.x * 0.5f;
+
+        Collider2D PColl =
+            Physics2D.OverlapBox(
+                center,
+                attackRange,
+                0f,
+                Player
+            );
+
+        if (PColl == null)
+            return;
 
         isAttack = true;
-        resetAttack();
+
+        rigid.linearVelocityX = 0;
+
+        animator.SetBool("IsRun", false);
+        animator.SetTrigger("Attack");
     }
+
 
     public override void Move()
     {
-        Collider2D PColl = Physics2D.OverlapCircle(transform.position, radius, Player);
+        if (isAttack)
+        {
+            rigid.linearVelocityX = 0;
+
+            animator.SetBool("IsRun", false);
+
+            return;
+        }
+
+        Collider2D PColl =
+            Physics2D.OverlapBox(
+                transform.position,
+                moveRange,
+                0f,
+                Player
+            );
 
         if (PColl != null)
         {
-            Collider2D APC =
-                Physics2D.OverlapCircle(transform.position, radius * .5f, Player);
+            Debug.Log("성공");
+            float moveDirection =
+                Mathf.Sign(
+                    PColl.transform.position.x
+                    - transform.position.x
+                );
 
-            if (APC == null)
-            {
-                rigid.linearVelocityX =
-                    Speed * Mathf.Sign(PColl.transform.position.x - transform.position.x);
+            rigid.linearVelocityX =
+                Speed * moveDirection;
+            Debug.Log("성공");
+            direction = moveDirection;
+            Debug.Log("성공");
+            spriteRenderer.flipX =
+                direction < 0;
+            Debug.Log("좌우성공");
+            animator.SetBool("IsRun", true);
 
-                healthBar.MovePosition(transform.position);
-                isIn = false;
-            }
-            else
-            {
-                rigid.linearVelocityX = 0;
-                PlayerColl = APC;
-                isIn = true;
-            }
+            healthBar.MovePosition(
+                transform.position
+            );
         }
         else
         {
             rigid.linearVelocityX = 0;
-            isIn = false;
+
+            animator.SetBool("IsRun", false);
         }
     }
+    public void Hit()
+    {
+        Vector2 center = transform.position;
+        center.x += direction * attackRange.x * 0.5f;
 
-    partial void TongueAttack();
+        Collider2D PColl =
+            Physics2D.OverlapBox(
+                center,
+                attackRange,
+                0f,
+                Player
+            );
+
+        if (PColl == null)
+            return;
+
+        IHealth health =
+            PColl.GetComponent<IHealth>();
+
+        if (health != null)
+            health.Hurt(AttackDamage);
+
+        PlayerStatManager.instance.StartCoroutine(
+            SlowPlayer()
+        );
+    }
+
+
+    private IEnumerator SlowPlayer()
+    {
+        PlayerStatManager.instance.statUp(
+            StatType.SPEED,
+            -15
+        );
+
+        yield return new WaitForSeconds(3f);
+
+        PlayerStatManager.instance.statUp(
+            StatType.SPEED,
+            15
+        );
+    }
+
+
+    public void EndAttack()
+    {
+        resetAttack();
+    }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color =
-            isIn
-                ? Color.white
-                : Color.softRed * new Color(1, 1, 1, .3f);
+        Gizmos.color = Color.yellow;
 
-        Gizmos.DrawWireSphere(transform.position, radius);
-        Gizmos.DrawWireSphere(transform.position, radius * .5f);
+        Gizmos.DrawWireCube(
+            transform.position,
+            moveRange
+        );
+
+
+        Vector2 center = transform.position;
+        center.x += direction * attackRange.x * 0.5f;
+
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(
+            center,
+            attackRange
+        );
     }
 }

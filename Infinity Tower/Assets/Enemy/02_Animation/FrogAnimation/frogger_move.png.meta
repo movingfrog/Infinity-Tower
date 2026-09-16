@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: ad863fc508423784e8f1ec43796f9a93
+guid: 35ed3be196c189743995845036734e3c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8020143640844766479
-    second: spritesheet_0
+      213: 5859455471658249610
+    second: frogger_move_0
   - first:
-      213: -6251682230944352461
-    second: spritesheet_1
+      213: -3949152960372974398
+    second: frogger_move_1
   - first:
-      213: -1259408508766424310
-    second: spritesheet_2
+      213: -1877338066121774259
+    second: frogger_move_2
   - first:
-      213: -5962389079421231736
-    second: spritesheet_3
+      213: 4089148688008712158
+    second: frogger_move_3
   - first:
-      213: 2788568348960109317
-    second: spritesheet_4
+      213: 2361813205413186990
+    second: frogger_move_4
+  - first:
+      213: 6205538674597666268
+    second: frogger_move_5
+  - first:
+      213: -3704261887415901859
+    second: frogger_move_6
+  - first:
+      213: 1666329665275155639
+    second: frogger_move_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +93,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -125,111 +134,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: frogger_move_0
       rect:
         serializedVersion: 2
-        x: 27
+        x: 153
+        y: 0
+        width: 87
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8da86de4b7f05150800000000000000
+      internalID: 5859455471658249610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_1
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 0
+        width: 96
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc59495e4ac139c0800000000000000
+      internalID: -3949152960372974398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_2
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 0
+        width: 115
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b2e75b9fa52f5e0800000000000000
+      internalID: -1877338066121774259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_3
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 0
+        width: 122
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edf838601139fb830800000000000000
+      internalID: 4089148688008712158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_4
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 0
+        width: 118
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eadca7ec898d6c020800000000000000
+      internalID: 2361813205413186990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_5
+      rect:
+        serializedVersion: 2
+        x: 2060
+        y: 0
+        width: 109
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd9753db808e1650800000000000000
+      internalID: 6205538674597666268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_6
+      rect:
+        serializedVersion: 2
+        x: 2462
+        y: 0
+        width: 93
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51ae8d7071d79cc0800000000000000
+      internalID: -3704261887415901859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogger_move_7
+      rect:
+        serializedVersion: 2
+        x: 2843
         y: 0
         width: 74
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0d092816264d4f60800000000000000
-      internalID: 8020143640844766479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_1
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 0
-        width: 74
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 337b0ff32209d39a0800000000000000
-      internalID: -6251682230944352461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 0
-        width: 74
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a037fd742aea58ee0800000000000000
-      internalID: -1259408508766424310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 411
-        y: 0
-        width: 74
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 88ddd6ce8b6514da0800000000000000
-      internalID: -5962389079421231736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 0
-        width: 74
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5033aaf832cf2b620800000000000000
-      internalID: 2788568348960109317
+      spriteID: 7b4db61800eff1710800000000000000
+      internalID: 1666329665275155639
       vertices: []
       indices: 
       edges: []
@@ -238,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1979248292b8fef4db2ae27d32c4a7f4
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +323,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spritesheet_0: 8020143640844766479
-      spritesheet_1: -6251682230944352461
-      spritesheet_2: -1259408508766424310
-      spritesheet_3: -5962389079421231736
-      spritesheet_4: 2788568348960109317
+      frogger_move_0: 5859455471658249610
+      frogger_move_1: -3949152960372974398
+      frogger_move_2: -1877338066121774259
+      frogger_move_3: 4089148688008712158
+      frogger_move_4: 2361813205413186990
+      frogger_move_5: 6205538674597666268
+      frogger_move_6: -3704261887415901859
+      frogger_move_7: 1666329665275155639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

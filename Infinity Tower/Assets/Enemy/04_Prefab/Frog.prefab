@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5925284042562385021}
   - component: {fileID: 1769707820544777750}
   - component: {fileID: 7628172200939455082}
+  - component: {fileID: 3151891940801501485}
   m_Layer: 6
   m_Name: Frog
   m_TagString: Untagged
@@ -86,9 +87,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9074539206338946419, guid: 39662e60c1eb4f94a8157e2c10d7a671, type: 3}
+  m_Sprite: {fileID: 8020143640844766479, guid: ad863fc508423784e8f1ec43796f9a93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.1875, y: 0.71875}
@@ -106,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 5382528468017375953}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6682627eb4dbade40aac26a96e16aa32, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1cab0998d10c5514fa18f5db08f00937, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -233,3 +234,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeBody
   recordTimeInternal: 5
+--- !u!114 &3151891940801501485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382528468017375953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9faa1744d02df364a83d8439611a425b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Frog
+  Fly: 0
+  isDie: 0
+  defaultHP: 130
+  parentCanvas: {fileID: 0}
+  HealthBar: {fileID: 2976045327041854509, guid: a2c7f1caff6d74042850fa3d8872d0f1, type: 3}
+  <hitText>k__BackingField: {fileID: 731421580909642978, guid: e5529f85ddade9f43b752af74f8c99dc, type: 3}
+  <AttackDamage>k__BackingField: 3
+  <attackDelay>k__BackingField: 0.5
+  <Speed>k__BackingField: 1.8
+  LootItem: {fileID: 0}
+  DroppedLootObject: {fileID: 0}
+  minItemCount: 0
+  maxItemCount: 0
+  minSpawnCount: 0
+  maxSpawnCount: 0
+  SpawnXForce: 0
+  moveRange: {x: 12, y: 1}
+  attackRange: {x: 1.9, y: 0.5}
+  Player:
+    serializedVersion: 2
+    m_Bits: 128
+  animator: {fileID: 7593387040093259109}
