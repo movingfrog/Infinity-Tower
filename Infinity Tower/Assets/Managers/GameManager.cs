@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     [Header("효과음 및 배경음악")]
     public AudioSource Source;
-    public AudioClip[] SFX;
-    public AudioClip[] BGM;
+    public SO_Sound SFX;
+    public SO_Sound BGM;
 
     [Header("모든 보상 상자")]
     [field: SerializeField]
@@ -83,4 +83,17 @@ public class GameManager : MonoBehaviour
     [Header("모든 각인 SO")]
     [field: SerializeField]
     public List<WeaponEnchant> allEnchant { get; private set; }
+
+    [Header("상점 가격 할인률")]
+    public int PriceDiscountAmount { get; set; } = 100;
+
+    [Header("지정되지 않은 스킬")]
+    [field: SerializeField]
+    public SO_FeelLikeFullAbility FullAbility { get; private set; }
+
+    [field: SerializeField]
+    public SO_MoneyIsPowerAbility MIPAbility { get; private set; }
+
+    [field: SerializeField]
+    public SO_MovingForceAbility MFAbility { get; private set; }
 }

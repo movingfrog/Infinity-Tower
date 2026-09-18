@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(DamageFlash))]
@@ -40,10 +38,10 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     {
         GameObject temp = Instantiate(HealthBar, parentCanvas.transform);
         healthBar = temp.GetComponent<HealthBar>();
-        healthBar.Init(transform.position, GetComponent<Collider2D>().bounds.extents.y, Fly);
+        healthBar.Init(transform.position, GetComponent<Collider2D>().bounds.extents.y);
     }
 
-    public virtual void Hurt(float damage)
+    public virtual void Hurt(float damage, GameObject attacker)
     {
         if (HP - damage > 0)
         {

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
@@ -15,11 +15,11 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision != null)
+        if (collision != null)
         {
             if (collision.TryGetComponent<IHealth>(out IHealth Phealth))
             {
-                Phealth.Hurt(Damage);
+                Phealth.Hurt(Damage, gameObject);
             }
             Destroy(gameObject);
         }

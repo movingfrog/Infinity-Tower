@@ -63,6 +63,10 @@ public class Chest : MonoBehaviour
             return;
         ani.SetBool("IsOpened", true);
         Reward.Reward(transform);
+        WorkerHub<SoundWorker>.Instance.PlaySFX(
+            GameManager.Instance.Source,
+            GameManager.Instance.SFX.GetClip(SoundType.OpenChest)
+        );
         InputManager.Instance.inputActions.Player.Interact.started -= Open;
         isRegistered = false;
         InteractionObject.SetActive(false);

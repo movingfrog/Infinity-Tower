@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GunWeapon : Weapon
 {
@@ -50,13 +48,15 @@ public class GunWeapon : Weapon
         if (currentAmmo > 0)
         {
             currentAmmo--;
-            float finalDamage = AttackDamageCaculator(
-                damage + PlayerStatManager.instance.damage * 0.15f
-            );
+            float _damage =
+                (damage + PlayerStatManager.instance.Atk * 0.15f)
+                * PlayerStatManager.instance.damage;
+            float finalDamage = AttackDamageCaculator(_damage);
             fireDirection = (
                 (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position
             ).normalized;
-            Quaternion rotation = Quaternion.Euler(0, 0, fireDirection.y * 90);
+            float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
             bullet.Init(
@@ -64,7 +64,12 @@ public class GunWeapon : Weapon
                 rotation,
                 fireDirection,
                 finalDamage,
+                _damage,
                 TriggerAttackEnchant
+            );
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.GunAttack)
             );
             return true;
         }

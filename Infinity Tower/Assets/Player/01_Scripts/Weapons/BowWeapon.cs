@@ -41,17 +41,35 @@ public class BowWeapon : Weapon
     private void ShotArrow(float Percent)
     {
         ani.SetTrigger("Shot");
+        if (!isCrossBow)
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.BowAttack)
+            );
         arrow.transform.SetParent(null, true);
         arrow.transform.localScale = Vector3.one;
-        float finalDamage = AttackDamageCaculator(
-            (damage + PlayerStatManager.instance.damage) * (.3f + Percent * .7f)
-        );
+        float _damage =
+            (damage + PlayerStatManager.instance.Atk)
+            * PlayerStatManager.instance.damage
+            * (.3f + Percent * .7f);
+        float finalDamage = AttackDamageCaculator(_damage);
         Arrow _arrow = arrow.GetComponent<Arrow>();
         fireDirection = (
             (Vector2)transform.parent.position - (Vector2)transform.parent.parent.position
         ).normalized;
-        _arrow.Shot(fireDirection, Percent, finalDamage, TriggerAttackEnchant);
+        _arrow.Shot(fireDirection, Percent, finalDamage, _damage, TriggerAttackEnchant);
         ChargingCoroutine = null;
+    }
+
+    protected override IEnumerator StartCooltime()
+    {
+        yield return new WaitForSeconds(attackRate);
+        cooltimeCoroutine = null;
+        if (isCrossBow)
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.BowCharge)
+            );
     }
 
     IEnumerator Charging()
@@ -64,6 +82,11 @@ public class BowWeapon : Weapon
         if (arrowRB != null)
             arrowRB.simulated = false;
 
+        if (isCrossBow)
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.BowAttack)
+            );
         while (isPushing)
         {
             if (isCrossBow)

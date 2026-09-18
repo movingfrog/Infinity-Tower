@@ -102,7 +102,11 @@ public class ShopBox : MonoBehaviour
     {
         if (hasItem && ItemInfoObject != null && ItemInfoObject.activeSelf)
         {
-            uint price = PriceTable.GetPrice(sellItem.level, isHealth);
+            uint price = (uint)(
+                PriceTable.GetPrice(sellItem.level, isHealth)
+                * GameManager.Instance.PriceDiscountAmount
+                / 100f
+            );
             bool isPaymentSuccess = false;
             if (!isHealth)
                 isPaymentSuccess = InventoryManager.Instance.UseGoods(GoodsType.Gold, price);
@@ -121,6 +125,10 @@ public class ShopBox : MonoBehaviour
                     1,
                     ItemInfoObject,
                     gameObject
+                );
+                WorkerHub<SoundWorker>.Instance.PlaySFX(
+                    GameManager.Instance.Source,
+                    GameManager.Instance.SFX.GetClip(SoundType.Purchase)
                 );
                 ItemImage.sprite = null;
                 ItemInfoObject = null;

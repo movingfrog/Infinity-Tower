@@ -76,8 +76,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDashing && !ani.GetBool("isUsingSkill"))
         {
-            float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.Speed;
+            float moveX = movement.x * basicMoveSpeed * PlayerStatManager.instance.f_Speed;
 
+            var ability = GameManager.Instance.MFAbility;
+            if (AbilityManager.instance.HasAbility(ability))
+            {
+                ability.Commit((int)moveX);
+            }
             //if (rigid.linearVelocityX > moveX) return;
             rigid.linearVelocityX = moveX;
         }
@@ -123,6 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             if (isDashing)
                 rigid.gravityScale = defaultGravity;
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Jump)
+            );
             rigid.linearVelocityY = 0;
             rigid.AddForceY(JumpForce, ForceMode2D.Impulse);
             jumpCount--;
@@ -136,7 +145,11 @@ public class PlayerController : MonoBehaviour
             && !PlayerStatManager.instance.getState(PlayerState.Idle)
         )
             return;
-        if (!isDashing && dashCount > 0 && !ani.GetBool("isUsingSkill"))
+        if (
+            !isDashing
+            && dashCount + PlayerStatManager.instance.DashCount > 0
+            && !ani.GetBool("isUsingSkill")
+        )
         {
             if (dashCool != null)
                 StopCoroutine(dashCool);
@@ -144,6 +157,10 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             ani.SetBool("isDash", true);
             ani.Play("Dash", 0, 0);
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Dash)
+            );
             gameObject.layer = 8;
             defaultGravity = rigid.gravityScale;
             rigid.gravityScale = 0;

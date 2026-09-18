@@ -18,11 +18,20 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void Heal(float amount, GameObject healObject) { }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, GameObject attacker)
     {
-        ShowHealthText(damage, Color.red);
+        HitContext hit = new HitContext(damage, attacker);
+        if (damage > 0)
+        {
+            AbilityManager.instance.NotifyHit(ref hit);
+            WorkerHub<SoundWorker>.Instance.PlaySFX(
+                GameManager.Instance.Source,
+                GameManager.Instance.SFX.GetClip(SoundType.Hit)
+            );
+        }
+        ShowHealthText(hit.FinalDamage, Color.red);
         StartCoroutine(WaitHitEffect());
-        PlayerStatManager.instance.ChangeHealth(-damage);
+        PlayerStatManager.instance.ChangeHealth(-hit.FinalDamage);
     }
 
     private void ShowHealthText(float value, Color color)

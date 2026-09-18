@@ -134,7 +134,7 @@ public abstract class Weapon : MonoBehaviour
         Data.enchants[slotNum] = null;
     }
 
-    protected IEnumerator StartCooltime()
+    protected virtual IEnumerator StartCooltime()
     {
         yield return new WaitForSeconds(attackRate);
         cooltimeCoroutine = null;
@@ -147,8 +147,8 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual float AttackDamageCaculator(float finalDamage)
     {
-        if (UnityEngine.Random.value <= PlayerStatManager.instance.Crit_Rate)
-            finalDamage = finalDamage * PlayerStatManager.instance.Crit_Dmg;
+        if (UnityEngine.Random.value <= PlayerStatManager.instance.f_Crit_Rate)
+            finalDamage = finalDamage * PlayerStatManager.instance.f_Crit_Dmg;
         return finalDamage;
     }
 
