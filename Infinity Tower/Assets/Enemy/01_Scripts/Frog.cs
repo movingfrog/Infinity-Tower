@@ -51,9 +51,6 @@ public class Frog : OneAttackEnemy
 
         isAttack = true;
 
-        rigid.linearVelocityX = 0;
-
-        animator.SetBool("IsRun", false);
         animator.SetTrigger("Attack");
     }
 
@@ -79,7 +76,7 @@ public class Frog : OneAttackEnemy
 
         if (PColl != null)
         {
-            Debug.Log("성공");
+            
             float moveDirection =
                 Mathf.Sign(
                     PColl.transform.position.x
@@ -88,12 +85,12 @@ public class Frog : OneAttackEnemy
 
             rigid.linearVelocityX =
                 Speed * moveDirection;
-            Debug.Log("성공");
+            
             direction = moveDirection;
-            Debug.Log("성공");
+            
             spriteRenderer.flipX =
                 direction < 0;
-            Debug.Log("좌우성공");
+    
             animator.SetBool("IsRun", true);
 
             healthBar.MovePosition(
