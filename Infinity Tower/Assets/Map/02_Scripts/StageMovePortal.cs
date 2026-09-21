@@ -11,7 +11,7 @@ public class StageMovePortal : Portal
 
     [Space(10f), SerializeField]
     private int ClearAmount;
-    private static int currentStage;
+    public static int currentStage { get; private set; }
 
     protected override void TpPlayer(Collider2D player)
     {

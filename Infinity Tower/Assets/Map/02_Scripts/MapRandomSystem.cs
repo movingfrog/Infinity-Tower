@@ -16,10 +16,7 @@ public class MapRandomSystem : MonoBehaviour
     private List<GameObject> AllShopMap;
 
     [SerializeField]
-    private List<GameObject> AllStageMap;
-
-    [SerializeField]
-    private List<GameObject> AllEventMap;
+    private List<StageMapList> AllStageMapList;
 
     [Space(10f), SerializeField]
     private Transform ShopPos;
@@ -38,11 +35,11 @@ public class MapRandomSystem : MonoBehaviour
         int stageCount = Random.Range(minNonEventMapCount, maxNonEventMapCount + 1);
         int eventCount = Mathf.Max(0, MAX_MAPCOUNT - stageCount);
         List<GameObject> allStage = WorkerHub<GetRandomMap>.Instance.RandMapWorker(
-            AllStageMap,
+            AllStageMapList[StageMovePortal.currentStage].MapList,
             (uint)stageCount
         );
         List<GameObject> allEvent = WorkerHub<GetRandomMap>.Instance.RandMapWorker(
-            AllEventMap,
+            AllStageMapList[StageMovePortal.currentStage].EventList,
             (uint)eventCount
         );
 
