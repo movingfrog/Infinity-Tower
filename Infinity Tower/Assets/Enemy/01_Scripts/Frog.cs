@@ -29,7 +29,6 @@ public class Frog : OneAttackEnemy
 
     private float direction = 1f;
 
-
     public override void Attack()
     {
         if (isAttack)
@@ -38,13 +37,7 @@ public class Frog : OneAttackEnemy
         Vector2 center = transform.position;
         center.x += direction * attackRange.x * 0.5f;
 
-        Collider2D PColl =
-            Physics2D.OverlapBox(
-                center,
-                attackRange,
-                0f,
-                Player
-            );
+        Collider2D PColl = Physics2D.OverlapBox(center, attackRange, 0f, Player);
 
         if (PColl == null)
             return;
@@ -53,7 +46,6 @@ public class Frog : OneAttackEnemy
 
         animator.SetTrigger("Attack");
     }
-
 
     public override void Move()
     {
@@ -66,36 +58,21 @@ public class Frog : OneAttackEnemy
             return;
         }
 
-        Collider2D PColl =
-            Physics2D.OverlapBox(
-                transform.position,
-                moveRange,
-                0f,
-                Player
-            );
+        Collider2D PColl = Physics2D.OverlapBox(transform.position, moveRange, 0f, Player);
 
         if (PColl != null)
         {
-            
-            float moveDirection =
-                Mathf.Sign(
-                    PColl.transform.position.x
-                    - transform.position.x
-                );
+            float moveDirection = Mathf.Sign(PColl.transform.position.x - transform.position.x);
 
-            rigid.linearVelocityX =
-                Speed * moveDirection;
-            
+            rigid.linearVelocityX = Speed * moveDirection;
+
             direction = moveDirection;
-            
-            spriteRenderer.flipX =
-                direction < 0;
-    
+
+            spriteRenderer.flipX = direction < 0;
+
             animator.SetBool("IsRun", true);
 
-            healthBar.MovePosition(
-                transform.position
-            );
+            healthBar.MovePosition(transform.position);
         }
         else
         {
@@ -104,49 +81,33 @@ public class Frog : OneAttackEnemy
             animator.SetBool("IsRun", false);
         }
     }
+
     public void Hit()
     {
         Vector2 center = transform.position;
         center.x += direction * attackRange.x * 0.5f;
 
-        Collider2D PColl =
-            Physics2D.OverlapBox(
-                center,
-                attackRange,
-                0f,
-                Player
-            );
+        Collider2D PColl = Physics2D.OverlapBox(center, attackRange, 0f, Player);
 
         if (PColl == null)
             return;
 
-        IHealth health =
-            PColl.GetComponent<IHealth>();
+        IHealth health = PColl.GetComponent<IHealth>();
 
         if (health != null)
-            health.Hurt(AttackDamage);
+            health.Hurt(AttackDamage, gameObject);
 
-        PlayerStatManager.instance.StartCoroutine(
-            SlowPlayer()
-        );
+        PlayerStatManager.instance.StartCoroutine(SlowPlayer());
     }
-
 
     private IEnumerator SlowPlayer()
     {
-        PlayerStatManager.instance.statUp(
-            StatType.SPEED,
-            -15
-        );
+        PlayerStatManager.instance.statUp(StatType.SPEED, -15);
 
         yield return new WaitForSeconds(3f);
 
-        PlayerStatManager.instance.statUp(
-            StatType.SPEED,
-            15
-        );
+        PlayerStatManager.instance.statUp(StatType.SPEED, 15);
     }
-
 
     public void EndAttack()
     {
@@ -157,20 +118,13 @@ public class Frog : OneAttackEnemy
     {
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawWireCube(
-            transform.position,
-            moveRange
-        );
-
+        Gizmos.DrawWireCube(transform.position, moveRange);
 
         Vector2 center = transform.position;
         center.x += direction * attackRange.x * 0.5f;
 
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(
-            center,
-            attackRange
-        );
+        Gizmos.DrawWireCube(center, attackRange);
     }
 }
