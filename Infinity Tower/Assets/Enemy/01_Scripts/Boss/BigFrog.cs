@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -118,6 +117,8 @@ public class BigFrog : BossSystem
             target.GetComponent<PlayerController>().StartCoroutine(SlowPlayer());
             ani.SetBool("isSucc", true);
         }
+        else
+            isAttack = false;
     }
 
     public void SwallowHeal()
