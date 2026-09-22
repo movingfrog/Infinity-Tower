@@ -18,15 +18,15 @@ public class StageMovePortal : Portal
             GameManager.Instance.Source,
             GameManager.Instance.SFX.GetClip(SoundType.Portal)
         );
+        currentStageCount++;
         if (currentStageCount >= ClearAmount)
         {
             SceneChangeManager.Instance.SceneChange(BossStage);
-            currentStageCount -= ClearAmount;
+            currentStageCount = 0;
         }
         else
         {
             SceneChangeManager.Instance.SceneChange(NormalStageName);
-            currentStageCount++;
         }
     }
 }
