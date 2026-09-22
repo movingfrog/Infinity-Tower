@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.4336166, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4692121351416984129
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1e87c3298d19d41901d94a9f193988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
-  Reward: {fileID: 11400000, guid: ba0bbecb1b2e3b147afcd0b9bce5c835, type: 2}
+  Reward: {fileID: 11400000, guid: 6d19be52beed5394f84f77c5b5371454, type: 2}
   <InteractionObject>k__BackingField: {fileID: 4065624245160864387}
   PlayerLayer:
     serializedVersion: 2
