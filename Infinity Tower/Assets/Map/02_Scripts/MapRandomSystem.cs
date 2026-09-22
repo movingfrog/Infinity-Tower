@@ -35,11 +35,11 @@ public class MapRandomSystem : MonoBehaviour
         int stageCount = Random.Range(minNonEventMapCount, maxNonEventMapCount + 1);
         int eventCount = Mathf.Max(0, MAX_MAPCOUNT - stageCount);
         List<GameObject> allStage = WorkerHub<GetRandomMap>.Instance.RandMapWorker(
-            AllStageMapList[StageMovePortal.currentStage].MapList,
+            AllStageMapList[NextStageMovePortal.currentStage].MapList,
             (uint)stageCount
         );
         List<GameObject> allEvent = WorkerHub<GetRandomMap>.Instance.RandMapWorker(
-            AllStageMapList[StageMovePortal.currentStage].EventList,
+            AllStageMapList[NextStageMovePortal.currentStage].EventList,
             (uint)eventCount
         );
 
