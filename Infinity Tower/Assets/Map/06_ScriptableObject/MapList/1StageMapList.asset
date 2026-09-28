@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd99024da15f4540b0f835a3700f956, type: 3}
+  m_Name: 1StageMapList
+  m_EditorClassIdentifier: Assembly-CSharp::StageMapList
+  <MapList>k__BackingField:
+  - {fileID: 6203201041109014117, guid: 3e3edbed365872c4a9f428cb849ca0e3, type: 3}
+  - {fileID: 5150256727872467730, guid: 7c7451d092de3c9418ca56b1a4615cf9, type: 3}
+  - {fileID: 8212225933749769596, guid: a90829daf189a77408616da9451b779d, type: 3}
+  - {fileID: 6050830576649391199, guid: 6aef3038b1e1b1f479f43bfe9e2a3233, type: 3}
+  - {fileID: 1517486031432083311, guid: 31b87336b8f39d44bbf7f292d5a1ca5f, type: 3}
+  - {fileID: 4754431298059523940, guid: bcf391cbff3016e45b290e9ea17708d1, type: 3}
+  - {fileID: 1048073607069326209, guid: 7bca1b79415bba64098d55be891a190a, type: 3}
+  - {fileID: 2012041009394886126, guid: c35d61e7d24ffab43bfb784e3ca5c1cc, type: 3}
+  - {fileID: 2852914105020852857, guid: b3e47b8020e89d64fa06adb06a357e85, type: 3}
+  - {fileID: 2699322007329317278, guid: d9378ea1fa46d314ca4e8322bf985baf, type: 3}
+  <EventList>k__BackingField:
+  - {fileID: 2087062700344864893, guid: 3062a88568d13804abee4c6b74c664bf, type: 3}
+  - {fileID: 7861112637399525910, guid: 0f9eec67ed2f7ea4d9afdf16a17d1632, type: 3}

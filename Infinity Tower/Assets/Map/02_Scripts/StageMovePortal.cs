@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StageMovePortal : Portal
 {
@@ -7,11 +6,11 @@ public class StageMovePortal : Portal
     private string BossStage;
 
     [SerializeField]
-    private string NormalStageName;
+    protected string NormalStageName;
 
     [Space(10f), SerializeField]
     private int ClearAmount;
-    private static int currentStage;
+    private static int currentStageCount;
 
     protected override void TpPlayer(Collider2D player)
     {
@@ -19,15 +18,15 @@ public class StageMovePortal : Portal
             GameManager.Instance.Source,
             GameManager.Instance.SFX.GetClip(SoundType.Portal)
         );
-        if (currentStage >= ClearAmount)
+        currentStageCount++;
+        if (currentStageCount >= ClearAmount)
         {
-            SceneManager.LoadScene(BossStage);
-            currentStage -= ClearAmount;
+            SceneChangeManager.Instance.SceneChange(BossStage);
+            currentStageCount = 0;
         }
         else
         {
-            SceneManager.LoadScene(NormalStageName);
-            currentStage++;
+            SceneChangeManager.Instance.SceneChange(NormalStageName);
         }
     }
 }
