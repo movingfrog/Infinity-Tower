@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.51
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.11
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 3406998496744707095, guid: 5df2058859893ac4893daf94e1eac3cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4121,11 +4121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4059811114642469669, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.51
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 4059811114642469669, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.11
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 4059811114642469669, guid: 42d9e9f409a00874bbf0fcd90deac0cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4284,11 +4284,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2369981768116042485, guid: 8f64fbb997d7a8b46aaddf5b9932680c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.51
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 2369981768116042485, guid: 8f64fbb997d7a8b46aaddf5b9932680c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.11
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 2369981768116042485, guid: 8f64fbb997d7a8b46aaddf5b9932680c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4372,6 +4372,7 @@ MonoBehaviour:
   BossMap:
   - {fileID: 4270618134468071538, guid: c8771f9da59e5594ca37961a0ac83e89, type: 3}
   - {fileID: 3612670215695608476, guid: ddd50a8b634564a498dd737415a3817e, type: 3}
+  - {fileID: 2499498239443513306, guid: f5ee14f8237acb744b56a02a405c1ffd, type: 3}
 --- !u!4 &1464480729
 Transform:
   m_ObjectHideFlags: 0
