@@ -2,9 +2,12 @@
 
 public class MainMenuSystem : MonoBehaviour
 {
+    [SerializeField]
+    private string SceneName;
+
     public void PlayGame()
     {
-        SceneChangeManager.Instance.SceneChange(1);
+        SceneChangeManager.Instance.SceneChange(SceneName);
     }
 
     public void Setting()

@@ -31266,6 +31266,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8177930277889821702, guid: 8269ffddc043d774bbda841f9ed6d32a, type: 3}
+      propertyPath: BossStage
+      value: EndScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177930277889821702, guid: 8269ffddc043d774bbda841f9ed6d32a, type: 3}
+      propertyPath: isLastBoss
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

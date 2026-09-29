@@ -4,6 +4,9 @@ public class NextStageMovePortal : StageMovePortal
 {
     public static int currentStage { get; private set; }
 
+    [SerializeField]
+    private bool isLastBoss;
+
     protected override void TpPlayer(Collider2D player)
     {
         WorkerHub<SoundWorker>.Instance.PlaySFX(
@@ -11,6 +14,9 @@ public class NextStageMovePortal : StageMovePortal
             GameManager.Instance.SFX.GetClip(SoundType.Portal)
         );
         currentStage++;
-        SceneChangeManager.Instance.SceneChange(NormalStageName);
+        if (isLastBoss)
+            SceneChangeManager.Instance.SceneChange(BossStage);
+        else
+            SceneChangeManager.Instance.SceneChange(NormalStageName);
     }
 }
