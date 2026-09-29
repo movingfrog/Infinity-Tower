@@ -3,7 +3,7 @@
 public class StageMovePortal : Portal
 {
     [SerializeField]
-    private string BossStage;
+    protected string BossStage;
 
     [SerializeField]
     protected string NormalStageName;
