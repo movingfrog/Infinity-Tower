@@ -170,6 +170,7 @@ public class PlayerStatManager : MonoBehaviour
     public void IncreassHealth(float amount)
     {
         MaxHP += amount;
+        StatisticManager.Instance.GetHealth((int)amount);
         var ability = GameManager.Instance.FullAbility;
         if (AbilityManager.instance.HasAbility(ability))
         {
@@ -183,6 +184,7 @@ public class PlayerStatManager : MonoBehaviour
         if (MaxHP - amount <= 0)
             return false;
         MaxHP -= amount;
+        StatisticManager.Instance.UseHealth((int)amount);
         ChangeHealth(0);
         return true;
     }
@@ -190,6 +192,7 @@ public class PlayerStatManager : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         currentHP += amount * (amount > 0 ? f_HealBoost : 1);
+        StatisticManager.Instance.Heal((int)(amount * (amount > 0 ? f_HealBoost : 0)));
         if (currentHP > MaxHP)
             currentHP = MaxHP;
         HealthBar.fillAmount = currentHP / MaxHP;

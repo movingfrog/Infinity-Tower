@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour, IHealth
 {
+    Animator ani;
+
     public GameObject parentCanvas;
     public GameObject _hitText;
 
@@ -14,12 +17,24 @@ public class PlayerHealth : MonoBehaviour, IHealth
     public float HP { get; set; }
     public GameObject hitText { get; set; }
 
-    public void Die() { }
+    private void Awake()
+    {
+        ani = GetComponent<Animator>();
+    }
+
+    public void Die()
+    {
+        StatisticManager.Instance.OnStatistic();
+    }
 
     public void Heal(float amount, GameObject healObject) { }
 
     public void Hurt(float damage, GameObject attacker)
     {
+        if (ani.GetBool("isDie"))
+        {
+            return;
+        }
         HitContext hit = new HitContext(damage, attacker);
         if (damage > 0)
         {
@@ -28,10 +43,23 @@ public class PlayerHealth : MonoBehaviour, IHealth
                 GameManager.Instance.Source,
                 GameManager.Instance.SFX.GetClip(SoundType.Hit)
             );
+            StatisticManager.Instance.GetHurt((int)damage);
         }
         ShowHealthText(hit.FinalDamage, Color.red);
         StartCoroutine(WaitHitEffect());
         PlayerStatManager.instance.ChangeHealth(-hit.FinalDamage);
+        if (PlayerStatManager.instance.currentHP <= 0)
+        {
+            ani.SetBool("isDie", true);
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        Destroy(GetComponent<PlayerController>());
+        Destroy(GetComponent<PlayerAttackSystem>());
+        Destroy(GetComponent<PlayerInput>());
     }
 
     private void ShowHealthText(float value, Color color)

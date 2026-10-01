@@ -375,16 +375,23 @@ public class InventoryManager : InvenParent
     {
         if (type == GoodsType.AcientStone)
         {
-            Goods[(int)type]
-                .Increase((uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost));
+            uint currentAcient = (uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost);
+            Goods[(int)type].Increase(currentAcient);
+            StatisticManager.Instance.GetAcienetStone((int)currentAcient);
             return;
         }
-        Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.f_GoldBoost));
+        uint currentAmount = (uint)(amount * PlayerStatManager.instance.f_GoldBoost);
+        Goods[(int)type].Increase(currentAmount);
         if (type == GoodsType.Gold)
         {
+            StatisticManager.Instance.GetGold((int)currentAmount);
             var ability = GameManager.Instance.MIPAbility;
             if (AbilityManager.instance.HasAbility(ability))
                 ability.Commit((int)Goods[(int)type].Get);
+        }
+        else if (type == GoodsType.Stone)
+        {
+            StatisticManager.Instance.GetStone((int)currentAmount);
         }
     }
 

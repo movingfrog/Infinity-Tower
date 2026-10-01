@@ -43,6 +43,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
 
     public virtual void Hurt(float damage, GameObject attacker)
     {
+        StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
             HP -= damage;
@@ -77,6 +78,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
     public virtual void Die()
     {
         isDie = true;
+        StatisticManager.Instance.Kill();
         Destroy(GetComponent<Collider2D>());
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(healthBar.gameObject);

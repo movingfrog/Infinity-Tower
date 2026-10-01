@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.Jobs;
 using UnityEngine.UI;
 
 public class OldKinght : BossSystem
@@ -143,6 +141,7 @@ public class OldKinght : BossSystem
 
     public override void Hurt(float damage, GameObject attacker)
     {
+        StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
             HP -= damage;
