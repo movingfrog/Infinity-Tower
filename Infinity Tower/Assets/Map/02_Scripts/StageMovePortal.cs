@@ -12,6 +12,8 @@ public class StageMovePortal : Portal
     private int ClearAmount;
     private static int currentStageCount;
 
+    public static void resetStageCount() => currentStageCount = 0;
+
     protected override void TpPlayer(Collider2D player)
     {
         WorkerHub<SoundWorker>.Instance.PlaySFX(

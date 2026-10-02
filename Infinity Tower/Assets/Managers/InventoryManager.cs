@@ -84,16 +84,6 @@ public class InventoryManager : InvenParent
         Inven.SetActive(false);
         DroppedItem = GameManager.Instance.ItemPrefab;
         DroppedLoot = GameManager.Instance.LootPrefab;
-        UseInEditor();
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    private void UseInEditor()
-    {
-        for (int i = 0; i < Goods.Length; i++)
-        {
-            Goods[i].Decrease(Goods[i].Get);
-        }
     }
 
     private void OnEnable()
@@ -403,6 +393,14 @@ public class InventoryManager : InvenParent
         {
             allSlot[i].refrashUI(allItem[i]);
         }
+    }
+
+    public void GameOver()
+    {
+        UseGoods(GoodsType.Gold, Goods[(int)GoodsType.Gold].Get);
+        UseGoods(GoodsType.Stone, Goods[(int)GoodsType.Stone].Get);
+
+        Destroy(this);
     }
 
     private void OnDestroy()

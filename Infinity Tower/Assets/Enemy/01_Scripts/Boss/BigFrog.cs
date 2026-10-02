@@ -148,6 +148,12 @@ public class BigFrog : BossSystem
         }
     }
 
+    public override void Die()
+    {
+        StatisticManager.Instance.Kill();
+        Destroy(gameObject);
+    }
+
     protected override IEnumerator Groggy()
     {
         yield return new WaitForSeconds(GroggyTime);

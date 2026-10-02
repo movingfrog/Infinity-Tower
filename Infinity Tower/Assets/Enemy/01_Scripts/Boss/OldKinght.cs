@@ -159,6 +159,12 @@ public class OldKinght : BossSystem
         }
     }
 
+    public override void Die()
+    {
+        StatisticManager.Instance.Kill();
+        Destroy(gameObject);
+    }
+
     public void Charging()
     {
         Damage += u_Damage;

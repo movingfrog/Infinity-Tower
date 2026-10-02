@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
 public class StatisticData
 {
-    public Text UIText;
+    public TextMeshProUGUI UIText;
     public string StatisticName;
     public int StatisticValue;
 
@@ -38,6 +39,12 @@ public class StatisticManager : MonoBehaviour
 
     [field: SerializeField]
     public Image[] currentAccessory;
+
+    [SerializeField]
+    private GameObject nextButton;
+
+    [SerializeField]
+    private GameObject goMainButton;
 
     public void Kill() => StatisticDataArray[0].StatisticValue++;
 
@@ -75,13 +82,58 @@ public class StatisticManager : MonoBehaviour
     {
         StatisticPanel.SetActive(true);
         StatisticDataArray[1].StatisticValue = NextStageMovePortal.currentStage;
+        NextStageMovePortal.resetStage();
+        StageMovePortal.resetStageCount();
+        SetImages();
         statisticCoroutine = StartCoroutine(ShowStatistic());
+    }
+
+    private void SetImages()
+    {
+        if (InventoryManager.Instance.allItem[9].item != null)
+            currentWeapon[0].sprite = InventoryManager.Instance.allItem[9].item.spriteImage;
+        if (InventoryManager.Instance.allItem[10].item != null)
+            currentWeapon[1].sprite = InventoryManager.Instance.allItem[10].item.spriteImage;
+        if (InventoryManager.Instance.allItem[11].item != null)
+            currentAccessory[0].sprite = InventoryManager.Instance.allItem[11].item.spriteImage;
+        if (InventoryManager.Instance.allItem[12].item != null)
+            currentAccessory[1].sprite = InventoryManager.Instance.allItem[12].item.spriteImage;
+    }
+
+    public void OnNext()
+    {
+        if (statisticCoroutine != null)
+        {
+            StopCoroutine(statisticCoroutine);
+            statisticCoroutine = null;
+            for (int i = 0; i < StatisticDataArray.Length; i++)
+            {
+                StatisticDataArray[i].UpdateText(1);
+            }
+        }
+        nextButton.SetActive(false);
+        goMainButton.SetActive(true);
+        GameOver();
+    }
+
+    private void GameOver()
+    {
+        InventoryManager.Instance.GameOver();
+        Destroy(PlayerStatManager.instance);
+        Destroy(InputManager.Instance);
+        Destroy(GameManager.Instance?.gameObject);
+    }
+
+    public void OnGoMain()
+    {
+        Destroy(gameObject);
+        SceneChangeManager.Instance.SceneChange("MainMenu");
     }
 
     IEnumerator ShowStatistic()
     {
         float t = 0;
-        while (t >= 1)
+        while (t < 1)
         {
             t += Time.unscaledDeltaTime;
             for (int i = 0; i < StatisticDataArray.Length; i++)
@@ -90,5 +142,11 @@ public class StatisticManager : MonoBehaviour
             }
             yield return null;
         }
+
+        statisticCoroutine = null;
+
+        nextButton.SetActive(false);
+        goMainButton.SetActive(true);
+        GameOver();
     }
 }

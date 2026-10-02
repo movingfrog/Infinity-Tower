@@ -91,6 +91,10 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         {
             HP += amount;
             ShowDamage(amount, Color.yellow);
+            if (HP > MaxHP)
+            {
+                HP = MaxHP;
+            }
             //GameObject healEffect = Instantiate(healObject);
             //healEffect.transform.position = transform.position;
             //Destroy(healEffect, .5f);

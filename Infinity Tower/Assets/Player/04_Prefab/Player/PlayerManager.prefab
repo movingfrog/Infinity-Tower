@@ -4337,7 +4337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4699,7 +4699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5690,7 +5690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2423142391397635580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5792,7 +5792,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7135577266665217438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5406115989387815050}
+        m_TargetAssemblyTypeName: StatisticManager, Assembly-CSharp
+        m_MethodName: OnGoMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2822763619672942621
 GameObject:
   m_ObjectHideFlags: 0
@@ -7793,7 +7805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14647,13 +14659,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 5406115989387815050}
+        m_TargetAssemblyTypeName: StatisticManager, Assembly-CSharp
+        m_MethodName: OnNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16090,6 +16102,7 @@ GameObject:
   - component: {fileID: 2724490000603634205}
   - component: {fileID: 562379812875393892}
   - component: {fileID: 1220529515796055185}
+  - component: {fileID: 5406115989387815050}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -16246,6 +16259,58 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &5406115989387815050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938766473200344192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3261eb70a7ab2c47b5bf3b770703850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatisticManager
+  <StatisticPanel>k__BackingField: {fileID: 5287929063374629542}
+  <StatisticDataArray>k__BackingField:
+  - UIText: {fileID: 5302045169062290273}
+    StatisticName: "\uCC98\uCE58\uD55C \uC801"
+    StatisticValue: 0
+  - UIText: {fileID: 7454951154830067649}
+    StatisticName: "\uC62C\uB77C\uAC04 \uCE35"
+    StatisticValue: 0
+  - UIText: {fileID: 6293423045099867221}
+    StatisticName: "\uD68D\uB4DD\uD55C \uCCB4\uB825"
+    StatisticValue: 0
+  - UIText: {fileID: 3140211396396242166}
+    StatisticName: "\uC0AC\uC6A9\uD55C \uCCB4\uB825"
+    StatisticValue: 0
+  - UIText: {fileID: 7750732052735354994}
+    StatisticName: "\uBC1B\uC740 \uD53C\uD574"
+    StatisticValue: 0
+  - UIText: {fileID: 669726074513813439}
+    StatisticName: "\uCD1D \uB370\uBBF8\uC9C0"
+    StatisticValue: 0
+  - UIText: {fileID: 5540199299815912565}
+    StatisticName: "\uCD1D \uD68C\uBCF5\uB7C9"
+    StatisticValue: 0
+  - UIText: {fileID: 3759206199554148879}
+    StatisticName: "\uD68D\uB4DD\uD55C \uB9C8\uC11D"
+    StatisticValue: 0
+  - UIText: {fileID: 3642123770096481727}
+    StatisticName: "\uD68D\uB4DD\uD55C \uACE8\uB4DC"
+    StatisticValue: 0
+  - UIText: {fileID: 1756392986501447932}
+    StatisticName: "\uD68D\uB4DD\uD55C \uAC15\uD654\uC11D"
+    StatisticValue: 0
+  currentWeapon:
+  - {fileID: 3958323640626235804}
+  - {fileID: 230232830868360532}
+  currentAccessory:
+  - {fileID: 756752318713246677}
+  - {fileID: 2756093229350354197}
+  nextButton: {fileID: 7238174044996266924}
+  goMainButton: {fileID: 2772654131070655454}
 --- !u!1 &7966413913859963226
 GameObject:
   m_ObjectHideFlags: 0
@@ -18979,7 +19044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

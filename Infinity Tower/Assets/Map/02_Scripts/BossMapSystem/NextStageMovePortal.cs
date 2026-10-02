@@ -7,6 +7,8 @@ public class NextStageMovePortal : StageMovePortal
     [SerializeField]
     private bool isLastBoss;
 
+    public static void resetStage() => currentStage = 0;
+
     protected override void TpPlayer(Collider2D player)
     {
         WorkerHub<SoundWorker>.Instance.PlaySFX(

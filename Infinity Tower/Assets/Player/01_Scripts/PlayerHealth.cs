@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         if (PlayerStatManager.instance.currentHP <= 0)
         {
             ani.SetBool("isDie", true);
+            ani.Play("Die");
             GameOver();
         }
     }
