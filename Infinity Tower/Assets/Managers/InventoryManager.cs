@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -386,6 +385,8 @@ public class InventoryManager : InvenParent
     }
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
+
+    public uint GoodsCount(GoodsType type) => Goods[(int)type].Get;
 
     public override void RefreshAllSlot()
     {

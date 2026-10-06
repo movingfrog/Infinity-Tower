@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 [Serializable]
 public class WeaponObjectData
