@@ -182,13 +182,13 @@ MonoBehaviour:
   <AttackDamage>k__BackingField: 5
   <attackDelay>k__BackingField: 1.5
   <Speed>k__BackingField: 1.5
-  LootItem: {fileID: 0}
-  DroppedLootObject: {fileID: 0}
-  minItemCount: 0
-  maxItemCount: 0
-  minSpawnCount: 0
-  maxSpawnCount: 0
-  SpawnXForce: 0
+  LootItem: {fileID: 11400000, guid: 29a5317786f208b439957da3b8c7b694, type: 2}
+  DroppedLootObject: {fileID: 6495848276855784538, guid: 15601a93f638d954084c890a8c8473e8, type: 3}
+  minItemCount: 3
+  maxItemCount: 5
+  minSpawnCount: 1
+  maxSpawnCount: 2
+  SpawnXForce: 1
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 128
