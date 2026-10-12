@@ -130,6 +130,8 @@ public class BigFrog : BossSystem
 
     public override void Hurt(float damage, GameObject attacker)
     {
+        if (isDie)
+            return;
         StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
