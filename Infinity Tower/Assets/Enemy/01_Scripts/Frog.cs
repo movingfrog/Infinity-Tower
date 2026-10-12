@@ -82,6 +82,12 @@ public class Frog : OneAttackEnemy
         }
     }
 
+    public override void Die()
+    {
+        Destroy(gameObject);
+        base.Die();
+    }
+
     public void Hit()
     {
         Vector2 center = transform.position;
