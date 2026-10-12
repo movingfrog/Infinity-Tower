@@ -137,6 +137,7 @@ public partial class KingSlime : BossSystem
 
     public override void Hurt(float damage, GameObject attacker)
     {
+        StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
             HP -= damage;
@@ -206,6 +207,7 @@ public partial class KingSlime : BossSystem
             }
             else
             {
+                StatisticManager.Instance.Kill();
                 Destroy(gameObject);
             }
         }

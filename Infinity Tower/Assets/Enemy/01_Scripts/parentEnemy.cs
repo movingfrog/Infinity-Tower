@@ -43,6 +43,9 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
 
     public virtual void Hurt(float damage, GameObject attacker)
     {
+        if (isDie)
+            return;
+        StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
             HP -= damage;
@@ -80,6 +83,7 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         Destroy(GetComponent<Collider2D>());
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(healthBar.gameObject);
+        StatisticManager.Instance.Kill();
         ani.SetTrigger("isDie");
     }
 
@@ -89,6 +93,10 @@ public abstract class parentEnemy : MonoBehaviour, IHealth
         {
             HP += amount;
             ShowDamage(amount, Color.yellow);
+            if (HP > MaxHP)
+            {
+                HP = MaxHP;
+            }
             //GameObject healEffect = Instantiate(healObject);
             //healEffect.transform.position = transform.position;
             //Destroy(healEffect, .5f);

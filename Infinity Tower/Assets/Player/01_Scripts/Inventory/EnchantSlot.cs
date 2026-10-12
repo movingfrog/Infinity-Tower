@@ -40,7 +40,7 @@ public class EnchantSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void GetItemInfo()
     {
-        if (EnchantInven.allWeaponEnchant[slotIndex] == null)
+        if (EnchantInven.allWeaponEnchant[slotIndex] == null || EIUI == null)
             return;
         EIUI.drawText(EnchantInven.allWeaponEnchant[slotIndex]);
     }

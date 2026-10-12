@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -84,16 +83,6 @@ public class InventoryManager : InvenParent
         Inven.SetActive(false);
         DroppedItem = GameManager.Instance.ItemPrefab;
         DroppedLoot = GameManager.Instance.LootPrefab;
-        UseInEditor();
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    private void UseInEditor()
-    {
-        for (int i = 0; i < Goods.Length; i++)
-        {
-            Goods[i].Decrease(Goods[i].Get);
-        }
     }
 
     private void OnEnable()
@@ -375,20 +364,29 @@ public class InventoryManager : InvenParent
     {
         if (type == GoodsType.AcientStone)
         {
-            Goods[(int)type]
-                .Increase((uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost));
+            uint currentAcient = (uint)(amount * PlayerStatManager.instance.f_AcientStoneBoost);
+            Goods[(int)type].Increase(currentAcient);
+            StatisticManager.Instance.GetAcienetStone((int)currentAcient);
             return;
         }
-        Goods[(int)type].Increase((uint)(amount * PlayerStatManager.instance.f_GoldBoost));
+        uint currentAmount = (uint)(amount * PlayerStatManager.instance.f_GoldBoost);
+        Goods[(int)type].Increase(currentAmount);
         if (type == GoodsType.Gold)
         {
+            StatisticManager.Instance.GetGold((int)currentAmount);
             var ability = GameManager.Instance.MIPAbility;
             if (AbilityManager.instance.HasAbility(ability))
                 ability.Commit((int)Goods[(int)type].Get);
         }
+        else if (type == GoodsType.Stone)
+        {
+            StatisticManager.Instance.GetStone((int)currentAmount);
+        }
     }
 
     public bool UseGoods(GoodsType type, uint amount) => Goods[(int)type].Decrease(amount);
+
+    public uint GoodsCount(GoodsType type) => Goods[(int)type].Get;
 
     public override void RefreshAllSlot()
     {
@@ -396,6 +394,14 @@ public class InventoryManager : InvenParent
         {
             allSlot[i].refrashUI(allItem[i]);
         }
+    }
+
+    public void GameOver()
+    {
+        UseGoods(GoodsType.Gold, Goods[(int)GoodsType.Gold].Get);
+        UseGoods(GoodsType.Stone, Goods[(int)GoodsType.Stone].Get);
+
+        Destroy(this);
     }
 
     private void OnDestroy()

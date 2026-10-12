@@ -130,6 +130,7 @@ public class BigFrog : BossSystem
 
     public override void Hurt(float damage, GameObject attacker)
     {
+        StatisticManager.Instance.Damage((int)damage);
         if (HP - damage > 0)
         {
             HP -= damage;
@@ -145,6 +146,14 @@ public class BigFrog : BossSystem
             _damageFlash.CallDamageFlash();
             Die();
         }
+    }
+
+    public override void Die()
+    {
+        if (isDie)
+            return;
+        Destroy(gameObject);
+        StatisticManager.Instance.Kill();
     }
 
     protected override IEnumerator Groggy()
