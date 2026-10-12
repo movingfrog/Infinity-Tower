@@ -59,7 +59,7 @@ public class BlackSmithSystem : InvenParent
         UpgradeAnimation = GetComponent<Animator>();
         for (int i = 0; i < AnvilInvenSlots.Length; i++)
             AnvilInvenSlots[i].invenManager = this;
-        startPos = EnchantInfoUI.position;
+        startPos = EnchantInfoUI.anchoredPosition;
     }
 
     private void OnEnable()
@@ -82,6 +82,7 @@ public class BlackSmithSystem : InvenParent
     public void ChangeUpgrade()
     {
         isEnchant = false;
+        RemoveEnchant();
         UpgradeButton.SetActive(true);
         EnchantSlots.SetActive(false);
         EquipSlot.SetActive(false);
@@ -92,6 +93,7 @@ public class BlackSmithSystem : InvenParent
     public void ChangeEnchant()
     {
         isEnchant = true;
+        RemoveInven();
         UpgradeButton.SetActive(false);
         EnchantSlots.SetActive(true);
         EquipSlot.SetActive(true);
@@ -132,7 +134,7 @@ public class BlackSmithSystem : InvenParent
     private void giveEnchant()
     {
         RemoveEnchant();
-        for (int i = 0; i < EnchantSlotStart; i++)
+        for (int i = 0; i < AnvilEnchantSlotStart; i++)
         {
             InventoryManager.Instance.EnchantInven.allWeaponEnchant[i] =
                 AnvilEnchantInven.allWeaponEnchant[i];
@@ -248,6 +250,7 @@ public class BlackSmithSystem : InvenParent
                     DropType.Inventory,
                     -1
                 );
+                allItem[AnvilSlotStart].item = null;
             }
         }
     }
@@ -311,17 +314,20 @@ public class BlackSmithSystem : InvenParent
 
     public void EquipEnchant()
     {
+        var target = allItem[AnvilSlotStart];
+        var enchant = AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart];
+
         if (
-            AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart] != null
-            && allItem[AnvilSlotStart].item != null
+            enchant == null
+            || target.item == null
+            || !GameManager.Instance.allWeaponData.TryGetValue(target.weaponGuid, out var weapon)
+            || !weapon.CanEnchant()
         )
-        {
-            GameManager
-                .Instance.allWeaponData[allItem[AnvilSlotStart].weaponGuid]
-                .EquipEnchant(AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart]);
-            Panel.SetActive(true);
-            UpgradeAnimation.SetTrigger("isAnvil");
-        }
+            return;
+
+        weapon.EquipEnchant(enchant);
+        Panel.SetActive(true);
+        UpgradeAnimation.SetTrigger("isAnvil");
     }
 
     public void Upgrade()
@@ -334,6 +340,15 @@ public class BlackSmithSystem : InvenParent
         else
         {
             AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart] = null;
+            if (
+                allItem[AnvilSlotStart].item != null
+                && !GameManager
+                    .Instance.allWeaponData[allItem[AnvilSlotStart].weaponGuid]
+                    .CanEnchant()
+            )
+            {
+                RemoveEnchant();
+            }
         }
         if (allItem[AnvilSlotStart].item.level == ItemLevel.Legend)
             RemoveInven();

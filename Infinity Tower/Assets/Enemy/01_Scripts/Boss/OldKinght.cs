@@ -161,8 +161,10 @@ public class OldKinght : BossSystem
 
     public override void Die()
     {
-        StatisticManager.Instance.Kill();
+        if (isDie)
+            return;
         Destroy(gameObject);
+        StatisticManager.Instance.Kill();
     }
 
     public void Charging()

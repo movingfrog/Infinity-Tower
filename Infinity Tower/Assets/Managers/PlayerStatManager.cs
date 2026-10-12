@@ -192,7 +192,8 @@ public class PlayerStatManager : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         currentHP += amount * (amount > 0 ? f_HealBoost : 1);
-        StatisticManager.Instance.Heal((int)(amount * (amount > 0 ? f_HealBoost : 0)));
+        if (amount != 0)
+            StatisticManager.Instance.Heal((int)(amount * (amount > 0 ? f_HealBoost : 0)));
         if (currentHP > MaxHP)
             currentHP = MaxHP;
         HealthBar.fillAmount = currentHP / MaxHP;
