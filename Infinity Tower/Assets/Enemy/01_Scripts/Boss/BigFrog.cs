@@ -150,8 +150,8 @@ public class BigFrog : BossSystem
 
     public override void Die()
     {
-        StatisticManager.Instance.Kill();
         Destroy(gameObject);
+        StatisticManager.Instance.Kill();
     }
 
     protected override IEnumerator Groggy()
