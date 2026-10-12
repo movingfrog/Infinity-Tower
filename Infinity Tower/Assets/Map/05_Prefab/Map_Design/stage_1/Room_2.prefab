@@ -5608,8 +5608,8 @@ Tilemap:
   - first: {x: 13, y: -10, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5618,8 +5618,8 @@ Tilemap:
   - first: {x: 14, y: -10, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5918,8 +5918,8 @@ Tilemap:
   - first: {x: 13, y: -9, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5928,8 +5928,8 @@ Tilemap:
   - first: {x: 14, y: -9, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -9687,15 +9687,19 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 554
+  - m_RefCount: 550
     m_Data: {fileID: 11400000, guid: 50f0d094364a9574abb1945c45fc01bb, type: 2}
   - m_RefCount: 37
     m_Data: {fileID: 11400000, guid: 24120dee53ee0ca479568652e15b293b, type: 2}
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: eb62fcf2e3e5fa849b5f91ca4c4acdd3, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 554
+  - m_RefCount: 550
     m_Data: {fileID: 2000184495, guid: 8c8a47bd46209424e90b07ddd439a4c8, type: 3}
   - m_RefCount: 37
     m_Data: {fileID: -1633304255, guid: 8c8a47bd46209424e90b07ddd439a4c8, type: 3}
+  - m_RefCount: 4
+    m_Data: {fileID: -2027952904, guid: 8c8a47bd46209424e90b07ddd439a4c8, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 591
     m_Data:
