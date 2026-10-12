@@ -2970,6 +2970,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
   m_PrefabInstance: {fileID: 520200250539035229}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4995418582535939226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 520200250539035229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1521443501105952536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3103,6 +3108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 8778007987497817975, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3121,6 +3130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4298656328495438786}
     m_Modifications:
+    - target: {fileID: 3376485769961069733, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 4995418582535939226}
     - target: {fileID: 4788513106059588213, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.25
@@ -3312,6 +3325,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6767980305566488133, guid: b0bb47718d1dfa645890b907d9297146, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 4995418582535939226}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3418,6 +3435,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4298656328495438786}
     m_Modifications:
+    - target: {fileID: 3151891940801501485, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 4995418582535939226}
     - target: {fileID: 5382528468017375953, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
       propertyPath: m_Name
       value: Frog

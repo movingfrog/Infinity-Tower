@@ -4571,6 +4571,7 @@ Transform:
   - {fileID: 670742578381934972}
   - {fileID: 63114118399871030}
   - {fileID: 4679744782161775126}
+  - {fileID: 7054805263726360975}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &4210725750032526474
@@ -4670,6 +4671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 1940201815600677265}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight (1)
@@ -4809,6 +4814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostKnightBody
       objectReference: {fileID: 0}
+    - target: {fileID: 5236724105733110059, guid: 9eb713d35ab51c143adf8e289782f7a4, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 1940201815600677265}
     - target: {fileID: 7732757606044222855, guid: 9eb713d35ab51c143adf8e289782f7a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.269666
@@ -4933,6 +4942,113 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3004441729650044372, guid: 3f54b597df586424397dd331618d7fa1, type: 3}
   m_PrefabInstance: {fileID: 5881436936863030432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6379259404888321878
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2829563154537958669}
+    m_Modifications:
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Name
+      value: HealthTextCanvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+--- !u!1 &1940201815600677265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 6379259404888321878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7054805263726360975 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 6379259404888321878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8289621367635050069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4941,6 +5057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 1940201815600677265}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight

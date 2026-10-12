@@ -355,6 +355,7 @@ MonoBehaviour:
   - {fileID: 8616419305628166675}
   - {fileID: 8457532217917568425}
   - {fileID: 5391744606964310115}
+  - {fileID: 8276311496471171314}
 --- !u!1 &3064318100768647357
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,7 +4602,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6322,12 +6323,12 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 653027726441361232, guid: e973bb2b359759a428f9b6702725ad14, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 170
     m_Data: {fileID: -2850865217863180624, guid: e973bb2b359759a428f9b6702725ad14, type: 3}
   m_TileMatrixArray:

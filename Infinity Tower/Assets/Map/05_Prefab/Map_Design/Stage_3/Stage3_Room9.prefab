@@ -5250,6 +5250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5800807287273010331}
   - {fileID: 4946902904584792793}
   - {fileID: 4644858213444446591}
   - {fileID: 797858087603195445}
@@ -5362,6 +5363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 5734889056852439659}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -5416,6 +5421,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 3953141300013381688}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1626204198798311659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 3953141300013381688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!1001 &4185326815527623696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5424,6 +5440,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 3137834908901362821}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight (2)
@@ -5490,6 +5510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostKnightBody
       objectReference: {fileID: 0}
+    - target: {fileID: 5236724105733110059, guid: 9eb713d35ab51c143adf8e289782f7a4, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 3137834908901362821}
     - target: {fileID: 7732757606044222855, guid: 9eb713d35ab51c143adf8e289782f7a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.55452
@@ -5695,6 +5719,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 9132669923268941116}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -5744,6 +5772,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+--- !u!114 &8268178280273100718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 5977236982108079997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!4 &8641451463347098699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
@@ -5757,6 +5796,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 3137834908901362821}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight
@@ -5819,6 +5862,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 5027185558310231504}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -5873,6 +5920,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 6665419673755845194}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8992917611683019417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 6665419673755845194}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!1001 &6841200808117186031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5881,6 +5939,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 8268178280273100718}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11
@@ -5935,6 +5997,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 6841200808117186031}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9132669923268941116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 6841200808117186031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!1001 &7316440274143044867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5943,6 +6016,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 8992917611683019417}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -5997,6 +6074,124 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 7316440274143044867}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5027185558310231504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 7316440274143044867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
+--- !u!1001 &7629240556192834114
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2829563154537958669}
+    m_Modifications:
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.85578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.15909
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+      propertyPath: m_Name
+      value: HealthTextCanvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+--- !u!1 &3137834908901362821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 7629240556192834114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5800807287273010331 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 7629240556192834114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7806983061525423306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6005,6 +6200,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 3137834908901362821}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight
@@ -6067,6 +6266,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2829563154537958669}
     m_Modifications:
+    - target: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+      propertyPath: arrivePos
+      value: 
+      objectReference: {fileID: 1626204198798311659}
     - target: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14
@@ -6121,6 +6324,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2675123951586513718, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
   m_PrefabInstance: {fileID: 8060170362204228280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5734889056852439659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2327535321491077331, guid: 29bf12c7f848ecf4995a8b4a6ab47e4b, type: 3}
+  m_PrefabInstance: {fileID: 8060170362204228280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc346e49312dc4583d3a7b368fa6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
 --- !u!1001 &8546330961965275349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6202,6 +6416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 797858087603195445}
     m_Modifications:
+    - target: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 3137834908901362821}
     - target: {fileID: 6854246486833567928, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
       propertyPath: m_Name
       value: ShadowKnight (1)

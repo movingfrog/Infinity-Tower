@@ -8402,6 +8402,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7100637688190773931}
     m_Modifications:
+    - target: {fileID: 3376485769961069733, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     - target: {fileID: 4788513106059588213, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.18
@@ -8475,6 +8479,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7100637688190773931}
     m_Modifications:
+    - target: {fileID: 3376485769961069733, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     - target: {fileID: 4788513106059588213, guid: 4b55d4d6c42f33a43b50663720cb432b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.121735
@@ -8625,6 +8633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7100637688190773931}
     m_Modifications:
+    - target: {fileID: 3151891940801501485, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     - target: {fileID: 5382528468017375953, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
       propertyPath: m_Name
       value: Frog
@@ -8792,6 +8804,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4134333745870608089, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
   m_PrefabInstance: {fileID: 2652258600672641542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7396567285551541441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4786013470191677127, guid: 531d42619e4ade44ab899cfc659fb2b0, type: 3}
+  m_PrefabInstance: {fileID: 2652258600672641542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3278012405897117723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8877,6 +8894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7100637688190773931}
     m_Modifications:
+    - target: {fileID: 3151891940801501485, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     - target: {fileID: 5382528468017375953, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
       propertyPath: m_Name
       value: Frog (2)
@@ -8950,6 +8971,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7100637688190773931}
     m_Modifications:
+    - target: {fileID: 3151891940801501485, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     - target: {fileID: 5382528468017375953, guid: 7c9fd5c365e315f438926c6798b99f02, type: 3}
       propertyPath: m_Name
       value: Frog (1)
@@ -9067,6 +9092,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5741868826432482907, guid: c1a33a5449ad7694c8b629a5c86be76b, type: 3}
+      propertyPath: parentCanvas
+      value: 
+      objectReference: {fileID: 7396567285551541441}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
