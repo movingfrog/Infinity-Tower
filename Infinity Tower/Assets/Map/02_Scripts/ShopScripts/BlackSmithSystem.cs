@@ -250,6 +250,7 @@ public class BlackSmithSystem : InvenParent
                     DropType.Inventory,
                     -1
                 );
+                allItem[AnvilSlotStart].item = null;
             }
         }
     }
@@ -313,18 +314,20 @@ public class BlackSmithSystem : InvenParent
 
     public void EquipEnchant()
     {
+        var target = allItem[AnvilSlotStart];
+        var enchant = AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart];
+
         if (
-            AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart] != null
-            && allItem[AnvilSlotStart].item != null
-            && GameManager.Instance.allWeaponData[allItem[AnvilSlotStart].weaponGuid].CanEnchant()
+            enchant == null
+            || target.item == null
+            || !GameManager.Instance.allWeaponData.TryGetValue(target.weaponGuid, out var weapon)
+            || !weapon.CanEnchant()
         )
-        {
-            GameManager
-                .Instance.allWeaponData[allItem[AnvilSlotStart].weaponGuid]
-                .EquipEnchant(AnvilEnchantInven.allWeaponEnchant[AnvilEnchantSlotStart]);
-            Panel.SetActive(true);
-            UpgradeAnimation.SetTrigger("isAnvil");
-        }
+            return;
+
+        weapon.EquipEnchant(enchant);
+        Panel.SetActive(true);
+        UpgradeAnimation.SetTrigger("isAnvil");
     }
 
     public void Upgrade()
