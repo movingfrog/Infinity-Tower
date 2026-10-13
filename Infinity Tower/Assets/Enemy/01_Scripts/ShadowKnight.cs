@@ -40,6 +40,12 @@ public class ShadowKnight : OneAttackEnemy
         SR = GetComponent<SpriteRenderer>();
     }
 
+    public override void Die()
+    {
+        Destroy(gameObject);
+        base.Die();
+    }
+
     public override void Attack()
     {
         if (isDie)

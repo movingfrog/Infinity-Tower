@@ -4059,6 +4059,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+--- !u!114 &4090110408365586532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+  m_PrefabInstance: {fileID: 1851528494328017552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801f56fe5a5694d438130ab9c0e54f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowKnight
 --- !u!4 &8884343375747011179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7132140922238771451, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
@@ -4125,6 +4136,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+--- !u!114 &4380675983339318172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+  m_PrefabInstance: {fileID: 2141540225987060072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801f56fe5a5694d438130ab9c0e54f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowKnight
 --- !u!4 &9169947989655585171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7132140922238771451, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
@@ -4142,6 +4164,26 @@ PrefabInstance:
       propertyPath: RewardPos
       value: 
       objectReference: {fileID: 8660110295159779700}
+    - target: {fileID: 4072070077996645546, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
+      propertyPath: 'AllEnemy.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4380675983339318172}
+    - target: {fileID: 4072070077996645546, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
+      propertyPath: 'AllEnemy.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8691819187041109338}
+    - target: {fileID: 4072070077996645546, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
+      propertyPath: 'AllEnemy.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7987168257642606531}
+    - target: {fileID: 4072070077996645546, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
+      propertyPath: 'AllEnemy.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5126861635072087119}
+    - target: {fileID: 4072070077996645546, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
+      propertyPath: 'AllEnemy.Array.data[4]'
+      value: 
+      objectReference: {fileID: 4090110408365586532}
     - target: {fileID: 4564856903909164368, guid: 8cbf1cbb98e9eeb41a429e1e629bfa58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4346,6 +4388,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7132140922238771451, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
   m_PrefabInstance: {fileID: 5740701750285657399}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7987168257642606531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+  m_PrefabInstance: {fileID: 5740701750285657399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801f56fe5a5694d438130ab9c0e54f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowKnight
 --- !u!1001 &5881436936863030432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4486,6 +4539,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7132140922238771451, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
   m_PrefabInstance: {fileID: 6479700861335359406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8691819187041109338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+  m_PrefabInstance: {fileID: 6479700861335359406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801f56fe5a5694d438130ab9c0e54f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowKnight
 --- !u!1001 &7373883096231419579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4552,6 +4616,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7132140922238771451, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
   m_PrefabInstance: {fileID: 7373883096231419579}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5126861635072087119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410286606262815476, guid: fa151612f6603c947acfb45cea8a14df, type: 3}
+  m_PrefabInstance: {fileID: 7373883096231419579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801f56fe5a5694d438130ab9c0e54f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowKnight
 --- !u!1001 &7944489574654375485
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,6 +34,12 @@ public class GhostKnight : OneAttackEnemy
         GhostKnightAttacker.onAttackEvent.AddListener(InsertDamage);
     }
 
+    public override void Die()
+    {
+        Destroy(gameObject);
+        base.Die();
+    }
+
     public override void Attack()
     {
         if (isDie)
