@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public enum WeaponType
 {
@@ -34,8 +35,16 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
-        InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
+        if (false)
+        {
+            InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
+            InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
+        }
+        else
+        {
+            InputManager.Instance.inputActions.Player.Aim.performed += OnAim;
+            InputManager.Instance.inputActions.Player.Aim.canceled += EndAttack;
+        }
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.EquipEvent += AddEquipWeapon;
@@ -46,8 +55,16 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        InputManager.Instance.inputActions.Player.Attack.started -= StartAttack;
-        InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;
+        if (false)
+        {
+            InputManager.Instance.inputActions.Player.Attack.started -= StartAttack;
+            InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;
+        }
+        else
+        {
+            InputManager.Instance.inputActions.Player.Aim.started -= OnAim;
+            InputManager.Instance.inputActions.Player.Aim.canceled -= EndAttack;
+        }
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.EquipEvent -= AddEquipWeapon;
@@ -93,6 +110,15 @@ public class PlayerAttackSystem : MonoBehaviour
         weapon.EndAttack();
     }
 
+    public void OnAim(InputAction.CallbackContext ctx)
+    {
+        if (weapon != null)
+        {
+            weapon.isPushing = true;
+            LookPointer(ctx.ReadValue<Vector2>());
+        }
+    }
+
     IEnumerator LookPointer()
     {
         while (weapon.isPushing)
@@ -101,6 +127,12 @@ public class PlayerAttackSystem : MonoBehaviour
             weapon.Attack();
             yield return null;
         }
+    }
+
+    void LookPointer(Vector3 inputValue)
+    {
+        weapon.MoveWeapon(inputValue);
+        weapon.Attack();
     }
 
     private void GetWeaponType()

@@ -126,6 +126,36 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    public virtual void MoveWeapon(Vector3 stickDIr)
+    {
+        float dx = stickDIr.x;
+        float dy = stickDIr.y;
+
+        if (dx * dx + dy * dy < 0.01f)
+            return;
+
+        float theta = Mathf.Atan2(dy, dx);
+        float thetaDeg = theta * Mathf.Rad2Deg;
+
+        float playerSign = Mathf.Sign(Player.localScale.x);
+        // 위치
+        float ox = Player.position.x + .45f * Mathf.Cos(theta);
+        float oy = Player.position.y + .45f * Mathf.Sin(theta);
+        WeaponPos.position = new Vector3(ox, oy, WeaponPos.position.z);
+
+        float localTargetDeg = (playerSign < 0) ? (180f - thetaDeg) : thetaDeg;
+
+        WeaponPos.localRotation = Quaternion.Euler(0f, 0f, localTargetDeg);
+        if (WeaponPos.localEulerAngles.z >= 90f && WeaponPos.localEulerAngles.z <= 270f)
+        {
+            WeaponPos.localScale = new Vector3(1, -1, 1f);
+        }
+        else
+        {
+            WeaponPos.localScale = new Vector3(1, 1, 1f);
+        }
+    }
+
     public void UnEquipEnchant(int slotNum)
     {
         if (slotNum < 0 || slotNum >= Data.enchants.Length)
