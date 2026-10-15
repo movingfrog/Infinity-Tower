@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +17,8 @@ public class SceneChangeManager : MonoBehaviour
 
     [SerializeField]
     private float minLoadTime = 1f;
+
+    public List<Action> sceneChangeInvoke { get; private set; } = new();
 
     private void Awake()
     {

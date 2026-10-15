@@ -92,6 +92,12 @@ public class PlayerStatManager : MonoBehaviour
         }
         currentHP = MaxHP;
         ChangeHealth(0);
+        SceneChangeManager.Instance.sceneChangeInvoke.Add(ResetSatiety);
+    }
+
+    private void OnDestroy()
+    {
+        SceneChangeManager.Instance.sceneChangeInvoke.Remove(ResetSatiety);
     }
 
     private void Start()
@@ -99,6 +105,8 @@ public class PlayerStatManager : MonoBehaviour
         if (TechUpgradeManager.instance != null)
             TechUpgradeManager.instance.ApplyAllPurchaseTechs();
     }
+
+    private void ResetSatiety() => Satiety = 0;
 
     public void resetStat()
     {
