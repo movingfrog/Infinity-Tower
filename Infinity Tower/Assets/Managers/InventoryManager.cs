@@ -269,16 +269,16 @@ public class InventoryManager : InvenParent
                 25f,
                 amount
             );
-        else
-            WorkerHub<ItemDropWorker>.Instance.DropItemWork(
-                DroppedLoot,
-                DropItem,
-                PlayerTransform.position,
-                DropType.Inventory,
-                1.5f,
-                .25f,
-                amount
-            );
+        //else
+        //WorkerHub<ItemDropWorker>.Instance.DropItemWork(
+        //    DroppedLoot,
+        //    DropItem,
+        //    PlayerTransform.position + Vector3.right * UnityEngine.Random.Range(1, -1),
+        //    DropType.Inventory,
+        //    1.5f,
+        //    .25f,
+        //    amount
+        //);
     }
 
     public void DroppingItem(Item DropItem, int amount, System.Guid guid)

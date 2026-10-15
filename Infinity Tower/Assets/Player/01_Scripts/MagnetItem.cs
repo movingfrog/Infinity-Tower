@@ -21,7 +21,6 @@ public class MagnetItem : DropItem
             GameManager.Instance.Source,
             GameManager.Instance.SFX.GetClip(SoundType.Pickup)
         );
-        Debug.LogError("획득하는 소리 필요");
         Destroy(gameObject);
     }
 }

@@ -35,7 +35,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        if (false)
+        if (true)
         {
             InputManager.Instance.inputActions.Player.Attack.started += StartAttack;
             InputManager.Instance.inputActions.Player.Attack.canceled += EndAttack;
@@ -55,7 +55,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        if (false)
+        if (true)
         {
             InputManager.Instance.inputActions.Player.Attack.started -= StartAttack;
             InputManager.Instance.inputActions.Player.Attack.canceled -= EndAttack;

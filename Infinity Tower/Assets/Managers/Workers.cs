@@ -56,6 +56,10 @@ public struct ItemDropWorker : IWorker
                 : new Vector3(Xforce, Yforce, 0);
         item.item = data;
         rigid.AddForce(force);
+        if (type == DropType.Inventory)
+        {
+            item.isMove = false;
+        }
         if (guid != default)
         {
             obj.TryGetComponent(out InteractionItem interItem);

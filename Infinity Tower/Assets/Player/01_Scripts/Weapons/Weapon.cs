@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class WeaponObjectData
@@ -97,7 +98,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void MoveWeapon()
     {
-        Vector3 mouseScreenPos = Input.mousePosition;
+        Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
         mouseScreenPos.z = Camera.main.WorldToScreenPoint(Player.position).z;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
