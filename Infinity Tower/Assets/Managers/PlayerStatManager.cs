@@ -92,18 +92,20 @@ public class PlayerStatManager : MonoBehaviour
         }
         currentHP = MaxHP;
         ChangeHealth(0);
-        SceneChangeManager.Instance.sceneChangeInvoke.Add(ResetSatiety);
     }
 
     private void OnDestroy()
     {
-        SceneChangeManager.Instance.sceneChangeInvoke.Remove(ResetSatiety);
+        if (SceneChangeManager.Instance != null)
+            SceneChangeManager.Instance.sceneChangeInvoke.Remove(ResetSatiety);
     }
 
     private void Start()
     {
         if (TechUpgradeManager.instance != null)
             TechUpgradeManager.instance.ApplyAllPurchaseTechs();
+        if (SceneChangeManager.Instance != null)
+            SceneChangeManager.Instance.sceneChangeInvoke.Add(ResetSatiety);
     }
 
     private void ResetSatiety() => Satiety = 0;
