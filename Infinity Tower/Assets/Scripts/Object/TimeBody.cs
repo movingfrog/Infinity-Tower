@@ -56,8 +56,8 @@ public class TimeBody : MonoBehaviour
 
     private void Start()
     {
-        if (TimeManager.Instance == null)
-            UnityEditor.EditorApplication.isPlaying = false;
+        //if (TimeManager.Instance == null)
+        //    UnityEditor.EditorApplication.isPlaying = false;
         TimeManager.Instance.timeBodies.Add(this);
     } //TimeManager없을 때 예외처리 코드
 
