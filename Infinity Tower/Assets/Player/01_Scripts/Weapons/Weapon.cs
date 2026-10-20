@@ -73,8 +73,14 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void Start()
     {
         Debug.Log(Data.guid != System.Guid.Empty);
-        if (Data.guid != System.Guid.Empty)
+        if (
+            Data.guid != System.Guid.Empty
+            && !GameManager.Instance.allWeaponData.ContainsKey(Data.guid)
+        )
+        {
+            Debug.Log("dlfkjs");
             GameManager.Instance.allWeaponData.Add(Data.guid, Data);
+        }
     }
 
     protected virtual void OnEnable()

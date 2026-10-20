@@ -159,7 +159,15 @@ public class PlayerAttackSystem : MonoBehaviour
             foreach (Weapon w in weapons)
             {
                 if (w.Data.guid == item.weaponGuid)
-                    return;
+                {
+                    if (w.Level != item.item.level)
+                    {
+                        Destroy(w.gameObject);
+                        break;
+                    }
+                    else
+                        return;
+                }
             }
             foreach (var w in PrefabData)
             {
@@ -172,13 +180,17 @@ public class PlayerAttackSystem : MonoBehaviour
                     weaponObject
                         .GetComponent<Weapon>()
                         .InitializeWeapon(GameManager.Instance.allWeaponData[item.weaponGuid]);
-                    if (weapon == null)
+                    Debug.Log(weapon.name);
+                    if (weapon.gameObject == null || weapon.gameObject != weaponObject)
                     {
+                        Debug.Log("success");
                         weaponObject.SetActive(true);
                         GetWeaponType();
                     }
                 }
             }
+
+            return;
         }
 
         foreach (var w in PrefabData)

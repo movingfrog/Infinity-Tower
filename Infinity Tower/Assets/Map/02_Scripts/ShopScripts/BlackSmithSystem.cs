@@ -125,6 +125,7 @@ public class BlackSmithSystem : InvenParent
         for (int i = 0; i < AnvilSlotStart; i++)
         {
             InventoryManager.Instance.allItem[i] = allItem[i];
+            InventoryManager.Instance.swapItem(i, i);
         }
 
         InventoryManager.Instance.RefreshAllSlot();
@@ -153,8 +154,8 @@ public class BlackSmithSystem : InvenParent
             AnvilUIRefresh(
                 InventoryManager.Instance.GoodsCount(GoodsType.Gold),
                 InventoryManager.Instance.GoodsCount(GoodsType.Stone),
-                0,
-                0,
+                (int)PriceTable.UpgradePrice(allItem[AnvilSlotStart].item.level)[GoodsType.Gold],
+                (int)PriceTable.UpgradePrice(allItem[AnvilSlotStart].item.level)[GoodsType.Stone],
                 allItem[AnvilSlotStart].item
             );
         else
@@ -281,7 +282,7 @@ public class BlackSmithSystem : InvenParent
             for (int i = 0; i < upgradeInfo.Length; i++)
                 upgradeInfo[i].color = Color.white;
             upgradeInfo[0].sprite = item.spriteImage;
-            upgradeInfo[1].sprite = item.Equips.nextItem.spriteImage;
+            upgradeInfo[1].sprite = item.Equips.nextItem?.spriteImage;
             upgradeText.text = item.Equips.anvilInfoLine;
         }
         else

@@ -11,9 +11,6 @@ public abstract class DropItem : MonoBehaviour
     public float moveSize = 1;
     public LayerMask player;
 
-    [Header("아이템 이동")]
-    public bool isMove = true;
-
     protected virtual void Start()
     {
         if (item != null && TryGetComponent<SpriteRenderer>(out var spriteRenderer))
@@ -34,8 +31,7 @@ public abstract class DropItem : MonoBehaviour
             }
             else
             {
-                if (isMove)
-                    moveItem(outPlayer);
+                moveItem(outPlayer);
             }
         }
     }
