@@ -1,5 +1,6 @@
 ﻿using System;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,12 @@ public class InventoryManager : InvenParent
 
     [Header("인벤 열고 닫는 기능")]
     public GameObject Inven;
+
+    [field: SerializeField]
+    public GameObject EnchantInvenObject;
+
+    [field: SerializeField]
+    public GameObject StatinfoObject { get; private set; }
 
     [Header("재화")]
     public SO_Goods[] Goods;
@@ -117,6 +124,8 @@ public class InventoryManager : InvenParent
                 }
             }
             Inven.SetActive(true);
+            EnchantInvenObject.SetActive(false);
+            StatinfoObject.SetActive(false);
             PlayerStatManager.instance.ChangeState(PlayerState.InvenOpen);
         }
         else

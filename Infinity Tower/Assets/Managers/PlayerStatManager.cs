@@ -48,6 +48,9 @@ public class PlayerStatManager : MonoBehaviour
     private float d_HealBoost = 0;
 
     public float damage => d_Damage;
+
+    public float f_Damage(float PDamage) => (Atk + PDamage) * damage;
+
     public float f_Crit_Rate => Crit_Rate + d_Crit_Rate;
     public float f_Crit_Dmg => Crit_Dmg + d_Crit_Dmg;
     public float f_Speed => Speed + d_Speed;
