@@ -41,7 +41,7 @@ public class ItemInfoUI : MonoBehaviour
         }
         Instance = this;
         detailPanel = GetComponent<RectTransform>();
-        startPos = transform.position;
+        startPos = detailPanel.anchoredPosition;
     }
 
     public void OpenInfo(InvenItem item)
@@ -49,9 +49,11 @@ public class ItemInfoUI : MonoBehaviour
         drawText(item);
 
         detailPanel.DOAnchorPos(endPos, duration).SetEase(Ease.OutBounce);
+        Debug.Log(startPos);
+        Debug.Log(endPos);
     }
 
-    public void CloseInfo() => detailPanel.DOMove(startPos, duration).SetEase(Ease.OutCirc);
+    public void CloseInfo() => detailPanel.DOAnchorPos(startPos, duration).SetEase(Ease.OutCirc);
 
     public void drawText(InvenItem item)
     {
