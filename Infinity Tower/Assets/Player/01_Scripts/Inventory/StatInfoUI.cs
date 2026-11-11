@@ -79,9 +79,11 @@ public class StatInfoUI : MonoBehaviour
         switch (type)
         {
             case StatInfoType.Int:
+                Debug.Log($"value: {value}, dValue: {dValue}, pValue: {pValue}");
                 return $"{(int)value}(<color=yellow>{(int)dValue}</color>+<color=green>{(int)pValue}</color>)";
             case StatInfoType.Float:
-                return $"{(int)value * 100}%(<color=yellow>{(int)dValue * 100}%</color>+<color=green>{(int)pValue * 100}%</color>)";
+                Debug.Log($"value: {value}, dValue: {dValue}, pValue: {pValue}");
+                return $"{(int)(value * 100)}%(<color=yellow>{(int)(dValue * 100)}%</color>+<color=green>{(int)(pValue * 100)}%</color>)";
             case StatInfoType.Percent:
                 return (value).ToString("0") + "%";
             default:
