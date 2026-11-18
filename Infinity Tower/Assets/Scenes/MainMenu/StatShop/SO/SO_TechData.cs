@@ -1,5 +1,22 @@
 ﻿using UnityEngine;
 
+public enum AbilityCondition
+{
+    None,
+    Passive,
+    Stackable,
+    Conditional,
+}
+
+public enum AbilityType
+{
+    War,
+    Goods,
+    Mobility,
+    Health,
+    Crown,
+}
+
 public class SO_TechData : ScriptableObject
 {
     [field: SerializeField]
@@ -7,6 +24,15 @@ public class SO_TechData : ScriptableObject
 
     [field: SerializeField]
     public string Name { get; private set; }
+
+    [field: SerializeField]
+    public AbilityCondition Condition { get; private set; }
+
+    [field: SerializeField]
+    public AbilityType Type { get; private set; }
+
+    [field: SerializeField]
+    public int MaxLevel { get; private set; }
 
     /// <summary>
     /// Expane의 숫자 값은 0과 1로 setTexting하기

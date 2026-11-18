@@ -19,6 +19,9 @@ public class NextStageMovePortal : StageMovePortal
         if (isLastBoss)
             SceneChangeManager.Instance.SceneChange(BossStage);
         else
+        {
             SceneChangeManager.Instance.SceneChange(NormalStageName);
+            InventoryManager.Instance.MinimapChange(Minimap);
+        }
     }
 }

@@ -12,6 +12,9 @@ public class StageMovePortal : Portal
     private int ClearAmount;
     private static int currentStageCount;
 
+    [Space(10f), SerializeField]
+    protected Texture2D Minimap;
+
     public static void resetStageCount() => currentStageCount = 0;
 
     protected override void TpPlayer(Collider2D player)
@@ -24,6 +27,7 @@ public class StageMovePortal : Portal
         if (currentStageCount >= ClearAmount)
         {
             SceneChangeManager.Instance.SceneChange(BossStage);
+            InventoryManager.Instance.MinimapChange(Minimap);
             currentStageCount = 0;
         }
         else

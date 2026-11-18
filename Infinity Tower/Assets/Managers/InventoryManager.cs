@@ -3,6 +3,7 @@ using TMPro;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class InvenItem
@@ -58,6 +59,9 @@ public class InventoryManager : InvenParent
 
     [field: SerializeField]
     public EnchantInven EnchantInven { get; private set; }
+
+    [SerializeField]
+    private RawImage MinimapImage;
 
     public event Action<InvenItem> EquipEvent;
     public event Func<InvenItem, InvenItem, bool> UnEquipEvent;
@@ -404,6 +408,8 @@ public class InventoryManager : InvenParent
             allSlot[i].refrashUI(allItem[i]);
         }
     }
+
+    public void MinimapChange(Texture2D Minimap) => MinimapImage.texture = Minimap;
 
     public void GameOver()
     {

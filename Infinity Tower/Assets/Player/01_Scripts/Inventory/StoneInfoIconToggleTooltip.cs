@@ -20,6 +20,12 @@ public class StoneInfoIconToggleTooltip : MonoBehaviour, IPointerClickHandler
         InputManager.Instance.inputActions.UI.PressAction.performed += OnPressPerformed;
     }
 
+    private void OnDestroy()
+    {
+        if (InputManager.Instance != null)
+            InputManager.Instance.inputActions.UI.PressAction.performed -= OnPressPerformed;
+    }
+
     private void OnDisable()
     {
         // 오브젝트가 꺼질 때 상태를 정리
@@ -44,9 +50,6 @@ public class StoneInfoIconToggleTooltip : MonoBehaviour, IPointerClickHandler
     {
         if (childObject != null)
             childObject.SetActive(false);
-
-        if (InputManager.Instance != null)
-            InputManager.Instance.inputActions.UI.PressAction.performed -= OnPressPerformed;
     }
 
     // 열려 있는 동안 어디든 눌렀을 때 호출됨
