@@ -17784,6 +17784,10 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 8400000, guid: 306afa61bfa7b434998c1c4503fd2791, type: 2}
+    - target: {fileID: 765906735459548449, guid: cc1aa81a7b1597442a6e8a58b73ca052, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 1289448969072068749, guid: cc1aa81a7b1597442a6e8a58b73ca052, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

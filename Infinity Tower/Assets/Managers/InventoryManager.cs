@@ -409,7 +409,7 @@ public class InventoryManager : InvenParent
         }
     }
 
-    public void MinimapChange(Texture2D Minimap) => MinimapImage.texture = Minimap;
+    public void MinimapChange(Texture Minimap) => MinimapImage.texture = Minimap;
 
     public void GameOver()
     {

@@ -13,7 +13,7 @@ public class StageMovePortal : Portal
     private static int currentStageCount;
 
     [Space(10f), SerializeField]
-    protected Texture2D Minimap;
+    protected Texture Minimap;
 
     public static void resetStageCount() => currentStageCount = 0;
 
