@@ -180,8 +180,7 @@ public class PlayerAttackSystem : MonoBehaviour
                     weaponObject
                         .GetComponent<Weapon>()
                         .InitializeWeapon(GameManager.Instance.allWeaponData[item.weaponGuid]);
-                    Debug.Log(weapon.name);
-                    if (weapon.gameObject == null || weapon.gameObject != weaponObject)
+                    if (weapon == null)
                     {
                         Debug.Log("success");
                         weaponObject.SetActive(true);
