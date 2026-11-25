@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa30feb6afbd6340bdfed76ac619bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomClearSystem
-  InPortal: {fileID: 0}
-  OutPortal: {fileID: 0}
+  InPortal: {fileID: 6326718726780368973}
+  OutPortal: {fileID: 3952314283651439811}
   RewardSystem: {fileID: 1708555323347146452}
   PlayerLayer:
     serializedVersion: 2
@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8767156073690439495
 Transform:
   m_ObjectHideFlags: 0
@@ -7739,6 +7739,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 907808201455891177, guid: ccc157c5bc8114246a3b1f10b2364b38, type: 3}
   m_PrefabInstance: {fileID: 536403180235788028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3952314283651439811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3578355366224138815, guid: ccc157c5bc8114246a3b1f10b2364b38, type: 3}
+  m_PrefabInstance: {fileID: 536403180235788028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bea08fe3dc81945a92ced93c3da6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveRoomPortal
 --- !u!1001 &1423372978863693805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8036,6 +8047,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8537298007108194531, guid: f506bad1eca671747954e7abf53ca8c4, type: 3}
   m_PrefabInstance: {fileID: 6981130327893981538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6326718726780368973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3975816603963851055, guid: f506bad1eca671747954e7abf53ca8c4, type: 3}
+  m_PrefabInstance: {fileID: 6981130327893981538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bea08fe3dc81945a92ced93c3da6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveRoomPortal
 --- !u!1001 &7247568820693632616
 PrefabInstance:
   m_ObjectHideFlags: 0
