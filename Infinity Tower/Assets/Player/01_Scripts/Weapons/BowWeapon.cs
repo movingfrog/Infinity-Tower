@@ -43,7 +43,7 @@ public class BowWeapon : Weapon
         ani.SetTrigger("Shot");
         if (!isCrossBow)
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.BowAttack)
             );
         arrow.transform.SetParent(null, true);
@@ -67,7 +67,7 @@ public class BowWeapon : Weapon
         cooltimeCoroutine = null;
         if (isCrossBow)
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.BowCharge)
             );
     }
@@ -84,7 +84,7 @@ public class BowWeapon : Weapon
 
         if (isCrossBow)
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.BowAttack)
             );
         while (isPushing)

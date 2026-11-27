@@ -14,7 +14,7 @@ public class SpearWeapon : Weapon
     {
         base.OnEnable();
         WorkerHub<SoundWorker>.Instance.PlaySFX(
-            GameManager.Instance.Source,
+            GameManager.Instance.SFXSource,
             GameManager.Instance.SFX.GetClip(SoundType.p_Spear)
         );
     }

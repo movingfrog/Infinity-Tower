@@ -63,7 +63,8 @@ public class GameManager : MonoBehaviour
     public List<Item> allEquip { get; private set; }
 
     [Header("효과음 및 배경음악")]
-    public AudioSource Source;
+    public AudioSource SFXSource;
+    public AudioSource BGMSource;
     public SO_Sound SFX;
     public SO_Sound BGM;
 

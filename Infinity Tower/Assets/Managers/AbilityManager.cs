@@ -52,14 +52,14 @@ public class AbilityManager : MonoBehaviour
         if (ctx.isCrit)
         {
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.Critical)
             );
         }
         else
         {
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.Attack)
             );
         }

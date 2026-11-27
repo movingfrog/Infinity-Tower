@@ -12,7 +12,7 @@ public class NextStageMovePortal : StageMovePortal
     protected override void TpPlayer(Collider2D player)
     {
         WorkerHub<SoundWorker>.Instance.PlaySFX(
-            GameManager.Instance.Source,
+            GameManager.Instance.SFXSource,
             GameManager.Instance.SFX.GetClip(SoundType.Portal)
         );
         currentStage++;

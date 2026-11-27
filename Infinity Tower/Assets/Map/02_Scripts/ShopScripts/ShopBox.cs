@@ -127,7 +127,7 @@ public class ShopBox : MonoBehaviour
                     gameObject
                 );
                 WorkerHub<SoundWorker>.Instance.PlaySFX(
-                    GameManager.Instance.Source,
+                    GameManager.Instance.SFXSource,
                     GameManager.Instance.SFX.GetClip(SoundType.Purchase)
                 );
                 ItemImage.sprite = null;

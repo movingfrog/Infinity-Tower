@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         {
             AbilityManager.instance.NotifyHit(ref hit);
             WorkerHub<SoundWorker>.Instance.PlaySFX(
-                GameManager.Instance.Source,
+                GameManager.Instance.SFXSource,
                 GameManager.Instance.SFX.GetClip(SoundType.Hit)
             );
             StatisticManager.Instance.GetHurt((int)damage);
